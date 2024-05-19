@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d619a3525c64b7d83e08e305b552eeb" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAODOANHTHU" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAOTON" Width="1.5" PointX="12.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHITIETPHIEUNHAP" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHITIETSUACHUA" Width="1.5" PointX="10.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHUCNANG" Width="1.5" PointX="8" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHUXE" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CT_SUDUNGVTPT" Width="1.5" PointX="12.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CTBAOCAODOANHTHU" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.DONVITINH" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.HIEUXE" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NGUOIDUNG" Width="1.5" PointX="8" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NHOMNGUOIDUNG" Width="1.5" PointX="5.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUNHAP" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUSUACHUA" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUTHUTIEN" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.THAMSO" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.TIENCONG" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.VATTUPHUTUNG" Width="1.5" PointX="10.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.XE" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTBaoCaoDoanhThu1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_BaoCaoTon" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTPhieuNhap1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTPhieuNhap2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTSC1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTSC2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTSuDungVTPT1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_Xe1" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTSuDungVTPT2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTBaoCaoDoanhThu2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_VTPT" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_Xe2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_NguoiDung" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_PhieuNhap" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_PhieuSuaChua" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_PhieuThuTien" ManuallyRouted="false" />
+        <AssociationConnector Association="QLGARAOTOModel.PHANQUYEN" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
