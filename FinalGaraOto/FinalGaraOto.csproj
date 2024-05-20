@@ -117,6 +117,7 @@
     <Compile Include="DangNhap.xaml.cs">
       <DependentUpon>DangNhap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataProvider.cs" />
     <Compile Include="DONVITINH.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>

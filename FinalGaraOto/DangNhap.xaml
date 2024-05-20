@@ -45,7 +45,7 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <DockPanel Height="60" Background="#FFA8A8A8">
+            <DockPanel Background="#FFA8A8A8" Margin="0,0,0,10">
                 <TextBlock Margin="16,0,0,0" Text="Đăng nhập" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </DockPanel>
         </Grid>
@@ -53,18 +53,17 @@
         <Grid Grid.Row="2">
             <materialDesign:Card HorizontalAlignment="Center" Width="1700" BorderBrush="{DynamicResource MaterialDesignPaper}">
                 <StackPanel Margin="0,126,0,0">
-                    <TextBox
+                    <TextBox x:Name="txtTenDangNhap"
                 materialDesign:HintAssist.Hint="Tên đăng nhập"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="403" Height="65" Margin="0,11,0,0" FontSize="20"  />
-                    <PasswordBox x:Name="txtDangNhap"
+                    <PasswordBox x:Name="txtMatKhau"
                 materialDesign:HintAssist.Hint="Mật khẩu"
-                Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Password="" Width="403" Height="65" Margin="0,11,0,0" FontSize="20" >
+                Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Password="" Width="403" Height="65" Margin="0,11,0,0" FontSize="20" />
 
-                    </PasswordBox>
                     <Button 
-                        Content="Đăng nhập" Width="150" Margin="-250,20,0,0" Height="47" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}" FontSize="20" FontWeight="Bold" Foreground="Black"/>
-                    <Button 
-                        Content="Thoát" Width="150" Margin="250,-50,0,0" Height="47" Background="#FF1D2850" BorderBrush="{DynamicResource MaterialDesignPaper}" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource MaterialDesignPaper}"/>
+                        Content="Đăng nhập" Width="150" Margin="-20,20,0,0" Height="47" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}" FontSize="20" FontWeight="Bold" Foreground="Black"
+                        Click="BtnDangNhap_Click"/>
+                    
                 </StackPanel>
             </materialDesign:Card>
             <TextBlock HorizontalAlignment="Left" Margin="602,857,0,0" TextWrapping="Wrap" Text="Bạn là Quản lý và chưa có tài khoản?" VerticalAlignment="Top" FontSize="20"/>

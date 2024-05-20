@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,30 @@ namespace FinalGaraOto
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void BtnDangNhap_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtTenDangNhap.Text) || string.IsNullOrEmpty(txtMatKhau.Password))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                string _TenDangNhap = txtTenDangNhap.Text;
+                string _MatKhau = txtMatKhau.Password;
+                var acc = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == _TenDangNhap && x.MatKhau == _MatKhau).Count();
+                if (acc > 0)
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu bị sai!");
+                }
+            }
         }
     }
 }
