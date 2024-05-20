@@ -138,9 +138,10 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Account" 
-                                             Margin="10" 
+                                             Margin="10 30" 
                                              Width="40" 
                                              Height="40"
+                                             
                                              />
                             <TextBox
                         materialDesign:HintAssist.Hint="Họ và tên"
@@ -152,7 +153,7 @@
 
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CakeVariantOutline" 
-                                             Margin="10" 
+                                             Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
                             <DatePicker
@@ -166,7 +167,7 @@
 
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CardAccountDetailsOutline" 
-                                             Margin="10" 
+                                             Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
                             <TextBox
@@ -180,7 +181,7 @@
 
                         <StackPanel Grid.Row="3" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="MapMarkerRadius" 
-                                             Margin="10" 
+                                             Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
                             <TextBox
@@ -194,7 +195,7 @@
 
                         <StackPanel Grid.Row="4" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Phone" 
-                         Margin="10" 
+                         Margin="10 30" 
                          Width="40" 
                          Height="40"/>
                             <TextBox
@@ -208,7 +209,7 @@
 
                         <StackPanel Grid.Row="5" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountBox" 
-                         Margin="10" 
+                         Margin="10 30" 
                          Width="40" 
                          Height="40"/>
                             <TextBox
@@ -224,7 +225,7 @@
                             <materialDesign:PackIcon
                         x:Name="IconPass"
                         Kind="Password" 
-                         Margin="10" 
+                         Margin="10 30" 
                          Width="40" 
                          Height="40"/>
                             <TextBox
