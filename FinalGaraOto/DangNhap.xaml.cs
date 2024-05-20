@@ -24,6 +24,7 @@ namespace FinalGaraOto
         {
             InitializeComponent();
         }
+        #region stackpanel
         private void btnClosing_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -53,8 +54,8 @@ namespace FinalGaraOto
         {
             this.DragMove();
         }
-
-        private void BtnDangNhap_Click(object sender, RoutedEventArgs e)
+        #endregion
+        private void BtnDangNhap_Click(object sender, RoutedEventArgs e) //Click de dang nhap
         {
             if (string.IsNullOrEmpty(txtTenDangNhap.Text) || string.IsNullOrEmpty(txtMatKhau.Password))
             {

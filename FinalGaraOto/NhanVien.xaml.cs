@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,24 +27,7 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadNhanVienList();
         }
-        void LoadNhanVienList()
-        {
-            ObservableCollection<NhanViens> nhanViens = new ObservableCollection<NhanViens>();
-            var List = DataProvider.Ins.DB.NGUOIDUNGs.ToList();
-            foreach (var item in List)
-            {
-                NhanViens nhanViens1 = new NhanViens();
-                nhanViens1.Ma = item.MaNguoiDung;
-                nhanViens1.HoVaTen = item.TenNguoiDung;
-                nhanViens1.ChucVu = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == item.MaNhom).Select(x => x.TenNhom).First().ToString();
-                nhanViens.Add(nhanViens1);
-                dtgNhanVien.ItemsSource = nhanViens;
-            }
-
-        }
-
-
-
+        #region stackbutton
         private void BtnClosing_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -73,12 +57,48 @@ namespace FinalGaraOto
         {
             this.DragMove();
         }
-        private void Btn_ThemNhanVien(object sender, RoutedEventArgs e)
+        #endregion 
+        void LoadNhanVienList() //Hien thi nhan vien len datagrid
+        {
+            ObservableCollection<NhanViens> nhanViens = new ObservableCollection<NhanViens>();
+            var List = DataProvider.Ins.DB.NGUOIDUNGs.ToList();
+            foreach (var item in List)
+            {
+                NhanViens nhanViens1 = new NhanViens();
+                nhanViens1.Ma = item.MaNguoiDung;
+                nhanViens1.HoVaTen = item.TenNguoiDung;
+                nhanViens1.ChucVu = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == item.MaNhom).Select(x => x.TenNhom).First().ToString();
+                nhanViens.Add(nhanViens1);
+                dtgNhanVien.ItemsSource = nhanViens;
+            }
+
+        }
+        private void Btn_ThemNhanVien(object sender, RoutedEventArgs e) //Chuyen qua Window ThemNhanVien
         {
             ThemNhanVien themNhanVien = new ThemNhanVien();
             themNhanVien.ShowDialog();
+            this.Close();
         }
-
+       
+        /*private void dtgNV_SelectionChanged(object sender, SelectionChangedEventArgs e) //Khi chon 1 hang thi se hien thi sang Groupbox Thong tin chi tiet
+        {
+            if(dtgNhanVien.SelectedIndex.ToString()!=null)
+            {
+                DataGridRow dtr = (DataGridRow)dtgNhanVien.SelectedItem;
+                if (dtr != null)
+                {
+                    int Ma = int.Parse(dtr.ToString());
+                    var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == Ma).FirstOrDefault();
+                    txbHoVaTen.Text=l.TenNguoiDung;
+                    txbNgaySinh.Text=l.NgaySinhNguoiDung.ToString();
+                    txbCCCD.Text = l.CCCDNguoiDung;
+                    txbDiaChi.Text = l.DiaChiNguoiDung;
+                    txbSDT.Text=l.SDTNguoiDung;
+                    txbTenDangNhap.Text=l.TenDangNhap;
+                    txbMatKhau.Text=l.MatKhau;
+                }
+            }
+        }*/
     }
     public class NhanViens
     {

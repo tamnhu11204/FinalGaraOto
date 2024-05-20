@@ -153,25 +153,26 @@
                                             <RowDefinition Height="319*"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="19,0,0,0" Grid.RowSpan="2">
-                                            <TextBox
+                                            <TextBox x:Name="txbHoVaTen"
                                                 materialDesign:HintAssist.Hint="Họ và tên"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350"/>
-                                            <DatePicker Margin="-100,11,0,0" Width="350"
+                                            <DatePicker x:Name="txbNgaySinh"
+                                                Margin="-100,11,0,0" Width="350"
                                                         materialDesign:HintAssist.Hint="Ngày sinh"
                                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" Height="59" FontSize="18" />
-                                            <TextBox
+                                            <TextBox x:Name="txbCCCD"
                                                 materialDesign:HintAssist.Hint="Số CCCD"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18" Width="350" />
-                                            <TextBox
+                                            <TextBox x:Name="txbDiaChi"
                                                 materialDesign:HintAssist.Hint="Địa chỉ"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                            <TextBox
+                                            <TextBox x:Name="txbSDT"
                                                 materialDesign:HintAssist.Hint="Số điện thoại"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                            <TextBox
+                                            <TextBox x:Name="txbTenDangNhap"
                                                 materialDesign:HintAssist.Hint="Tên đăng nhập"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                            <TextBox
+                                            <TextBox x:Name="txbMatKhau"
                                                 materialDesign:HintAssist.Hint="Mật khau"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
 
