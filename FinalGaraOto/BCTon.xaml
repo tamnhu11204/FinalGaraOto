@@ -26,10 +26,8 @@
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=MinusCircle}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" 
-                                Click="btnMinimize_Click"/>
+            ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
                         <Button x:Name="btnMaximize"
-                                Click="btnMaximize_Click"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CropSquare}"
             ToolBar.OverflowMode="AsNeeded"
@@ -37,7 +35,6 @@
              Height="47" BorderBrush="{x:Null}"
               Click="btnMaximize_Click"/>
                         <Button x:Name="btnClosing" 
-                                Click="btnClosing_Click"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CloseCircle}"
             ToolBar.OverflowMode="AsNeeded"
@@ -129,7 +126,7 @@
  Content="Xem báo cáo" FontSize="20" 
  Background="#FF258C1F" BorderBrush="{x:Null}" 
  RenderTransformOrigin="1.001,0.513"
- Margin="0,10,300,0" Click="Bnt_xembc_Click"/>
+ Margin="0,10,300,0" />
             </StackPanel>
             <ComboBox Name="NamCb"
         materialDesign:TextFieldAssist.PrefixText="Năm"
@@ -162,8 +159,7 @@
                     Content="Doanh thu" FontSize="20" 
                     Background="#FF1B76C6" BorderBrush="{x:Null}" 
                     RenderTransformOrigin="1.001,0.513"
-                    Margin="1252,49,288,766"
- />
+                    Margin="1252,49,288,766"/>
 
 
         </Grid>

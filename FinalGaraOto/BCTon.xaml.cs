@@ -26,24 +26,15 @@ namespace FinalGaraOto
             InitializeComponent();
         }
 
-<<<<<<< HEAD
         private void btnClosing_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Bạn có chắc là muốn thoát không?", "Quản Lý Quán Cafe", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
-=======
-        public void btnClosing_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (r == MessageBoxResult.Yes)
->>>>>>> 5ad231a714a68ace9b0115bdc9013f30195ba1ea
             {
                 this.Close();
             }
         }
 
-<<<<<<< HEAD
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -67,7 +58,10 @@ namespace FinalGaraOto
             thongKe.Show();
             this.Close();
         }
-
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
         private void LoadDataFromDatabaseNam()
         {
             string connectionString = "Server = DESKTOP-F5DEQJ7\\DIEMNGAN; Initial Catalog = QLGARAOTO; Integrated Security = True"; ; // Thay thế bằng chuỗi kết nối của bạn
@@ -143,31 +137,6 @@ namespace FinalGaraOto
             Dg_BCTon.ItemsSource= dataTable.DefaultView;
         }
 
-        private void Bnt_xembc_Click(object sender, RoutedEventArgs e)
-        {
-
-=======
-        public void btnMaximize_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-            else if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-        }
-
-        public void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
->>>>>>> 5ad231a714a68ace9b0115bdc9013f30195ba1ea
-        }
     }
 
 }

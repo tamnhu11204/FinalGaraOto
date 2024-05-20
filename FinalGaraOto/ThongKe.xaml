@@ -27,22 +27,19 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             Content="{materialDesign:PackIcon Kind=MinusCircle}"
             ToolBar.OverflowMode="AsNeeded"
             ToolTip="Thoát" Foreground="White" 
-            Height="47" BorderBrush="{x:Null}" FontSize="20"
-             Click="btnMinimize_Click"/>
+            Height="47" BorderBrush="{x:Null}" FontSize="20"/>
                         <Button x:Name="btnMaximize"
                                 Click="btnMaximize_Click"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CropSquare}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}"
-             Click="btnMaximize_Click"/>
+            ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}"/>
                         <Button x:Name="btnClosing" 
                                 Click="btnClosing_Click"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CloseCircle}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}"
-                         Click="btnClosing_Click"/>
+            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"

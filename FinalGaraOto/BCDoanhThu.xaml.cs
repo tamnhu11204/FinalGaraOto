@@ -26,7 +26,6 @@ namespace FinalGaraOto
             InitializeComponent();
         }
 
-<<<<<<< HEAD
         private void btnThongKe_Click(object sender, RoutedEventArgs e)
         {
            ThongKe thongKe = new ThongKe();
@@ -42,21 +41,16 @@ namespace FinalGaraOto
         }
         private void btnClosing_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Bạn có chắc là muốn thoát không?", "Quản Lý Quán Cafe", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
-=======
-        public void btnClosing_Click(object sender, RoutedEventArgs e)
-        {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (r == MessageBoxResult.Yes)
->>>>>>> 5ad231a714a68ace9b0115bdc9013f30195ba1ea
             {
                 this.Close();
             }
         }
-
-<<<<<<< HEAD
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -121,28 +115,6 @@ namespace FinalGaraOto
             }
 
             ThangCb.ItemsSource = data;
-
-=======
-        public void btnMaximize_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-            else if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-        }
-
-        public void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
->>>>>>> 5ad231a714a68ace9b0115bdc9013f30195ba1ea
         }
     }
 }
