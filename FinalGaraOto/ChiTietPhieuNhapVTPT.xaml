@@ -24,26 +24,29 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                         <Button x:Name="btnMinimize"
                                 Click="btnMinimize_Click"
-            Background="{x:Null}"
-            Content="{materialDesign:PackIcon Kind=MinusCircle}"
-            ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
+                                Background="{x:Null}"
+                                Content="{materialDesign:PackIcon Kind=MinusCircle}"
+                                ToolBar.OverflowMode="AsNeeded"
+                                ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
+                        
                         <Button x:Name="btnMaximize"
                                 Click="btnMaximize_Click"
-            Background="{x:Null}"
-            Content="{materialDesign:PackIcon Kind=CropSquare}"
-            ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+                                Background="{x:Null}"
+                                Content="{materialDesign:PackIcon Kind=CropSquare}"
+                                ToolBar.OverflowMode="AsNeeded"
+                                ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+                        
                         <Button x:Name="btnClosing"
                                 Click="btnClosing_Click"
-            Background="{x:Null}"
-            Content="{materialDesign:PackIcon Kind=CloseCircle}"
-            ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+                                Background="{x:Null}"
+                                Content="{materialDesign:PackIcon Kind=CloseCircle}"
+                                ToolBar.OverflowMode="AsNeeded"
+                                ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
                     </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
-               Text="Quản lý gara ô tô" FontSize="50" FontFamily="Cooper Black" Foreground="{DynamicResource MaterialDesignPaper}" />
+                                   Text="Quản lý gara ô tô" FontSize="50" FontFamily="Cooper Black" Foreground="{DynamicResource MaterialDesignPaper}" />
                     </StackPanel>
                 </DockPanel>
             </materialDesign:ColorZone>
@@ -52,44 +55,55 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         <Grid Grid.Row="1">
             <ToolBarTray Height="60" Background="#FF1B76C6" >
                 <ToolBar ClipToBounds="False" Background="#FF1B76C6"
-     Style="{StaticResource MaterialDesignToolBar}" Margin="0,0,-1690,0">
+                         Style="{StaticResource MaterialDesignToolBar}" Margin="0,0,-1690,0">
                     <Button x:Name="btnTaiKhoan" 
-        ToolTip="Xem thông tin tài khoản cá nhân">
+                            Click="taiKhoan_Tab"
+                            ToolTip="Xem thông tin tài khoản cá nhân">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Account" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnDichVu" 
-        ToolTip="Tiếp nhận sửa chữa xe">
+                            Click="dichVu_Tab"
+                            ToolTip="Tiếp nhận sửa chữa xe">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="FaceAgent" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Dịch vụ" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnKhoHang" 
-        ToolTip="Xem vật tư phụ tùng">
+                            Click="khoHang_Tab"
+                            ToolTip="Xem vật tư phụ tùng">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Warehouse" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnThongKe" 
-        ToolTip="Xem thống kê tháng" >
+                            Click="thongKe_Tab"
+                            ToolTip="Xem thống kê tháng" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DatabaseClock" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Thống kê" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnTuyChon" 
-        ToolTip="Follow me on Twitter">
+                            Click="tuyChon_Tab"
+                            ToolTip="Follow me on Twitter">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CogOutline" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Tùy chọn" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnNhanVien" 
-        ToolTip="Quản lý nhân viên, chức vụ">
+                            Click="nhanVien_Tab"
+                            ToolTip="Quản lý nhân viên, chức vụ">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountBoxMultipleOutline" Width="30" Height="30" Foreground="White"/>
                             <TextBlock Text="Nhân viên" FontSize="20" Foreground="White"/>

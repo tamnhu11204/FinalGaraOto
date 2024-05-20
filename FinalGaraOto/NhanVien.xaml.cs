@@ -27,7 +27,28 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadNhanVienList();
         }
+<<<<<<< HEAD
         #region stackbutton
+=======
+        void LoadNhanVienList()
+        {
+            ObservableCollection<NhanViens> nhanViens = new ObservableCollection<NhanViens>();
+            var List = DataProvider.Ins.DB.NGUOIDUNGs.ToList();
+            foreach (var item in List)
+            {
+                NhanViens nhanViens1 = new NhanViens();
+                nhanViens1.Ma = item.MaNguoiDung;
+                nhanViens1.HoVaTen = item.TenNguoiDung;
+                nhanViens1.ChucVu = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == item.MaNhom).Select(x => x.TenNhom).First().ToString();
+                nhanViens.Add(nhanViens1);
+                dtgNhanVien.ItemsSource = nhanViens;
+            }
+
+        }
+
+
+        #region scroll bar button
+>>>>>>> 6660f7ed57ff2676ed95b57dbbe73150de8f576e
         private void BtnClosing_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -57,6 +78,7 @@ namespace FinalGaraOto
         {
             this.DragMove();
         }
+<<<<<<< HEAD
         #endregion 
         void LoadNhanVienList() //Hien thi nhan vien len datagrid
         {
@@ -74,6 +96,58 @@ namespace FinalGaraOto
 
         }
         private void Btn_ThemNhanVien(object sender, RoutedEventArgs e) //Chuyen qua Window ThemNhanVien
+=======
+
+        #endregion
+
+        #region button tab
+
+        private void thongKe_Tab(object sender, RoutedEventArgs e)
+        {
+            ThongKe thongke_tab = new ThongKe();
+            thongke_tab.Show();
+            this.Close();
+        }
+
+
+        private void taiKhoan_Tab(object sender, RoutedEventArgs e)
+        {
+            MainWindow taikhoan_tab = new MainWindow();
+            taikhoan_tab.Show();
+            this.Close();
+        }
+
+        private void dichVu_Tab(object sender, RoutedEventArgs e)
+        {
+            DichVu dichvu_tab = new DichVu();
+            dichvu_tab.Show();
+            this.Close();
+        }
+
+        private void nhanVien_Tab(object sender, RoutedEventArgs e)
+        {
+            NhanVien nhanvien_tab = new NhanVien();
+            nhanvien_tab.Show();
+            this.Close();
+        }
+
+        private void khoHang_Tab(object sender, RoutedEventArgs e)
+        {
+            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            khohang_tab.Show();
+            this.Close();
+        }
+
+        private void tuyChon_Tab(object sender, RoutedEventArgs e)
+        {
+            TuyChon tuychon_tab = new TuyChon();
+            tuychon_tab.Show();
+            this.Close();
+        }
+        #endregion
+
+        private void Btn_ThemNhanVien(object sender, RoutedEventArgs e)
+>>>>>>> 6660f7ed57ff2676ed95b57dbbe73150de8f576e
         {
             ThemNhanVien themNhanVien = new ThemNhanVien();
             themNhanVien.ShowDialog();
