@@ -22,19 +22,19 @@
                 <DockPanel Height="80">
                     <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                         <Button 
-                                Click="BtnMinimize_Click"
+                                Click="btnMinimize_Click"
                                 Background="{x:Null}"
                                 Content="{materialDesign:PackIcon Kind=MinusCircle}"
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Thoát" Foreground="{DynamicResource MaterialDesignPaper}" Height="47" BorderBrush="{x:Null}" FontSize="20" />
                         <Button 
-                                Click="BtnMaximize_Click"
+                                Click="btnMaximize_Click"
                                 Background="{x:Null}"
                                 Content="{materialDesign:PackIcon Kind=CropSquare}"
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Thu nhỏ/Phóng to" Foreground="{DynamicResource MaterialDesignPaper}" Height="47" BorderBrush="{x:Null}" />
                         <Button
-                                Click="BtnClosing_Click"
+                                Click="btnClosing_Click"
                                 Background="{x:Null}"
                                 Content="{materialDesign:PackIcon Kind=CloseCircle}"
                                 ToolBar.OverflowMode="AsNeeded"
