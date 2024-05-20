@@ -10,7 +10,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Height="1065" 
         Width="1700"
-        WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -24,16 +24,19 @@
                 <DockPanel Height="80">
                     <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                         <Button x:Name="btnMinimize"
+                                Click="btnMinimize_Click"
                     Background="{x:Null}"
                     Content="{materialDesign:PackIcon Kind=MinusCircle}"
                     ToolBar.OverflowMode="AsNeeded"
                     ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
                         <Button x:Name="btnMaximize"
+                                Click="btnMaximize_Click"
                     Background="{x:Null}"
                     Content="{materialDesign:PackIcon Kind=CropSquare}"
                     ToolBar.OverflowMode="AsNeeded"
                     ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
                         <Button x:Name="btnClosing" 
+                                Click ="btnClosing_Click"
                     Background="{x:Null}"
                     Content="{materialDesign:PackIcon Kind=CloseCircle}"
                     ToolBar.OverflowMode="AsNeeded"
@@ -135,9 +138,10 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Account" 
-                                             Margin="10" 
+                                             Margin="10 30" 
                                              Width="40" 
                                              Height="40"
+                                             
                                              />
                             <TextBox
                         materialDesign:HintAssist.Hint="Họ và tên"
@@ -149,7 +153,7 @@
 
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CakeVariantOutline" 
-                                             Margin="10" 
+                                             Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
                             <DatePicker
@@ -163,7 +167,7 @@
 
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CardAccountDetailsOutline" 
-                                             Margin="10" 
+                                             Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
                             <TextBox
@@ -177,7 +181,7 @@
 
                         <StackPanel Grid.Row="3" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="MapMarkerRadius" 
-                                             Margin="10" 
+                                             Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
                             <TextBox
@@ -191,7 +195,7 @@
 
                         <StackPanel Grid.Row="4" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Phone" 
-                         Margin="10" 
+                         Margin="10 30" 
                          Width="40" 
                          Height="40"/>
                             <TextBox
@@ -205,7 +209,7 @@
 
                         <StackPanel Grid.Row="5" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountBox" 
-                         Margin="10" 
+                         Margin="10 30" 
                          Width="40" 
                          Height="40"/>
                             <TextBox
@@ -221,7 +225,7 @@
                             <materialDesign:PackIcon
                         x:Name="IconPass"
                         Kind="Password" 
-                         Margin="10" 
+                         Margin="10 30" 
                          Width="40" 
                          Height="40"/>
                             <TextBox

@@ -23,5 +23,9 @@ namespace FinalGaraOto
         {
             InitializeComponent();
         }
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

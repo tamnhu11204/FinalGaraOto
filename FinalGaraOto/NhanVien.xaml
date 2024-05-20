@@ -7,9 +7,15 @@
         mc:Ignorable="d"
         Title="NhanVien" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+<<<<<<< HEAD
         Height="1065" 
         Width="1700"
         WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
+=======
+Height="1065" 
+Width="1700"
+WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
+>>>>>>> 3936fef63d6505f098b908af234e9253e464587b
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -22,6 +28,7 @@
                 <DockPanel Height="80">
                     <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                         <Button x:Name="btnMinimize"
+<<<<<<< HEAD
                                 Click="BtnMinimize_Click"
                                 Background="{x:Null}"
                                 Content="{materialDesign:PackIcon Kind=MinusCircle}"
@@ -39,6 +46,25 @@
                                 Content="{materialDesign:PackIcon Kind=CloseCircle}"
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Đóng" Foreground="{DynamicResource MaterialDesignPaper}" BorderBrush="{x:Null}"/>
+=======
+                                Click="btnMinimize_Click"
+            Background="{x:Null}"
+            Content="{materialDesign:PackIcon Kind=MinusCircle}"
+            ToolBar.OverflowMode="AsNeeded"
+            ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
+                        <Button x:Name="btnMaximize"
+                                Click="btnMaximize_Click"
+            Background="{x:Null}"
+            Content="{materialDesign:PackIcon Kind=CropSquare}"
+            ToolBar.OverflowMode="AsNeeded"
+            ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+                        <Button x:Name="btnClosing" 
+                                Click="btnClosing_Click"
+            Background="{x:Null}"
+            Content="{materialDesign:PackIcon Kind=CloseCircle}"
+            ToolBar.OverflowMode="AsNeeded"
+            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+>>>>>>> 3936fef63d6505f098b908af234e9253e464587b
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
