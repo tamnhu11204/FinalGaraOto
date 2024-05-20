@@ -32,7 +32,7 @@ namespace FinalGaraOto
             LoadComboBoxThangBaoCao();
         }
 
-
+        #region scroll bar button
         public void btnClosing_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -58,6 +58,58 @@ namespace FinalGaraOto
                 this.WindowState= WindowState.Maximized;
             }
         }
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+        #endregion
+
+        #region button tab
+
+        private void thongKe_Tab(object sender, RoutedEventArgs e)
+        {
+            ThongKe thongke_tab = new ThongKe();
+            thongke_tab.Show();
+            this.Close();
+        }
+
+
+        private void taiKhoan_Tab(object sender, RoutedEventArgs e)
+        {
+            MainWindow taikhoan_tab = new MainWindow();
+            taikhoan_tab.Show();
+            this.Close();
+        }
+
+        private void dichVu_Tab(object sender, RoutedEventArgs e)
+        {
+            DichVu dichvu_tab = new DichVu();
+            dichvu_tab.Show();
+            this.Close();
+        }
+
+        private void nhanVien_Tab(object sender, RoutedEventArgs e)
+        {
+            NhanVien nhanvien_tab = new NhanVien();
+            nhanvien_tab.Show();
+            this.Close();
+        }
+
+        private void khoHang_Tab(object sender, RoutedEventArgs e)
+        {
+            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            khohang_tab.Show();
+            this.Close();
+        }
+
+        private void tuyChon_Tab(object sender, RoutedEventArgs e)
+        {
+            TuyChon tuychon_tab = new TuyChon();
+            tuychon_tab.Show();
+            this.Close();
+        }
+        #endregion
+
 
         private void Btn_Xuat_Click(object sender, RoutedEventArgs e)
         {
@@ -122,6 +174,7 @@ namespace FinalGaraOto
             {
                 var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang.Value.Month).ToList();
 
+<<<<<<< HEAD
                 foreach (var item in List)
                 {
                   
@@ -137,8 +190,9 @@ namespace FinalGaraOto
             this.DragMove();
         }
 
+=======
+            ThangCb.ItemsSource = data;
+        }
+>>>>>>> 23e51462c5c2f91ab287f497287fa5a2087072b7
     }
-
-        
-
 }

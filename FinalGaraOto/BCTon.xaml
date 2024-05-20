@@ -23,23 +23,26 @@
                     <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                         <Button x:Name="btnMinimize"
                                 Click="btnMinimize_Click"
-            Background="{x:Null}"
-            Content="{materialDesign:PackIcon Kind=MinusCircle}"
-            ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
+                                Background="{x:Null}"
+                                Content="{materialDesign:PackIcon Kind=MinusCircle}"
+                                ToolBar.OverflowMode="AsNeeded"
+                                ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
+                        
                         <Button x:Name="btnMaximize"
-            Background="{x:Null}"
-            Content="{materialDesign:PackIcon Kind=CropSquare}"
-            ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thu nhỏ" Foreground="White"
-             Height="47" BorderBrush="{x:Null}"
-              Click="btnMaximize_Click"/>
+                                Background="{x:Null}"
+                                Content="{materialDesign:PackIcon Kind=CropSquare}"
+                                ToolBar.OverflowMode="AsNeeded"
+                                ToolTip="Thu nhỏ" Foreground="White"
+                                Height="47" BorderBrush="{x:Null}"
+                                Click="btnMaximize_Click"/>
+                        
                         <Button x:Name="btnClosing" 
-            Background="{x:Null}"
-            Content="{materialDesign:PackIcon Kind=CloseCircle}"
-            ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}"
-             Click="btnClosing_Click"/>
+                                Background="{x:Null}"
+                                Content="{materialDesign:PackIcon Kind=CloseCircle}"
+                                ToolBar.OverflowMode="AsNeeded"
+                                ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}"
+                                Click="btnClosing_Click"/>
+                        
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
@@ -52,44 +55,55 @@
         <Grid Grid.Row="1">
             <ToolBarTray Height="60" Background="#FF1B76C6" >
                 <ToolBar ClipToBounds="False" Background="#FF1B76C6"
-     Style="{StaticResource MaterialDesignToolBar}" Margin="0,0,-1690,0">
+                         Style="{StaticResource MaterialDesignToolBar}" Margin="0,0,-1690,0">
                     <Button x:Name="btnTaiKhoan" 
-        ToolTip="Xem thông tin tài khoản cá nhân">
+                            Click="taiKhoan_Tab"
+                            ToolTip="Xem thông tin tài khoản cá nhân">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Account" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnDichVu" 
-        ToolTip="Tiếp nhận sửa chữa xe">
+                            Click="dichVu_Tab"
+                            ToolTip="Tiếp nhận sửa chữa xe">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="FaceAgent" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Dịch vụ" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnKhoHang" 
-        ToolTip="Xem vật tư phụ tùng">
+                            Click="khoHang_Tab"
+                            ToolTip="Xem vật tư phụ tùng">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Warehouse" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnThongKe" 
-        ToolTip="Xem thống kê tháng" Click="btnThongKe_Click" >
+                            Click="thongKe_Tab"
+                            ToolTip="Xem thống kê tháng" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DatabaseClock" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Thống kê" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnTuyChon" 
-        ToolTip="Follow me on Twitter">
+                            Click="tuyChon_Tab"
+                            ToolTip="Follow me on Twitter">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CogOutline" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Tùy chọn" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="btnNhanVien" 
-        ToolTip="Quản lý nhân viên, chức vụ">
+                            Click="nhanVien_Tab"
+                            ToolTip="Quản lý nhân viên, chức vụ">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountBoxMultipleOutline" Width="30" Height="30" Foreground="White"/>
                             <TextBlock Text="Nhân viên" FontSize="20" Foreground="White"/>
@@ -108,14 +122,14 @@
             <StackPanel Margin="0,605,0,50" >
 
                 <Button x:Name="Bnt_xuatfilebc"
-        Command="{Binding XuatFileBaoCaoCommand}"
-        CommandParameter="{Binding ElementName= UCBaoCaoDoanhThu}"
-        Content="Xuất file báo cáo " FontSize="20" Background="#FF747778" Width="184" Height="50" 
-        BorderBrush="{x:Null}" Margin="800,0,0,0"/>
+                        Command="{Binding XuatFileBaoCaoCommand}"
+                        CommandParameter="{Binding ElementName= UCBaoCaoDoanhThu}"
+                        Content="Xuất file báo cáo " FontSize="20" Background="#FF747778" Width="184" Height="50" 
+                        BorderBrush="{x:Null}" Margin="800,0,0,0"/>
                 <Button x:Name="Bnt_dong" 
-                Command="{Binding DongCommand}"
-                CommandParameter="{Binding ElementName= UCBaoCaoTon}"
-                Content="Thoát" FontSize="20" Background="#FF1D2850" Width="106" Height="50" BorderBrush="{x:Null}" Margin="850,-50,-300,0"/>
+                        Command="{Binding DongCommand}"
+                        CommandParameter="{Binding ElementName= UCBaoCaoTon}"
+                        Content="Thoát" FontSize="20" Background="#FF1D2850" Width="106" Height="50" BorderBrush="{x:Null}" Margin="850,-50,-300,0"/>
 
             </StackPanel>
             <StackPanel Margin="157,49,924,496">

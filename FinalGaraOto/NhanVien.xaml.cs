@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,40 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadNhanVienList();
         }
-        void LoadNhanVienList()
+
+
+        #region scroll bar button
+        private void btnClosing_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (r == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+        #endregion 
+        void LoadNhanVienList() //Hien thi nhan vien len datagrid
         {
             ObservableCollection<NhanViens> nhanViens = new ObservableCollection<NhanViens>();
             var List = DataProvider.Ins.DB.NGUOIDUNGs.ToList();
@@ -43,42 +77,78 @@ namespace FinalGaraOto
         }
 
 
+        #region button tab
 
-        private void BtnClosing_Click(object sender, RoutedEventArgs e)
+        private void thongKe_Tab(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (r == MessageBoxResult.Yes)
-            {
-                this.Close();
-            }
-        }
-
-        private void BtnMaximize_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-            else if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
+            ThongKe thongke_tab = new ThongKe();
+            thongke_tab.Show();
+            this.Close();
         }
 
-        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+
+        private void taiKhoan_Tab(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            MainWindow taikhoan_tab = new MainWindow();
+            taikhoan_tab.Show();
+            this.Close();
         }
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void dichVu_Tab(object sender, RoutedEventArgs e)
         {
-            this.DragMove();
+            DichVu dichvu_tab = new DichVu();
+            dichvu_tab.Show();
+            this.Close();
         }
+
+        private void nhanVien_Tab(object sender, RoutedEventArgs e)
+        {
+            NhanVien nhanvien_tab = new NhanVien();
+            nhanvien_tab.Show();
+            this.Close();
+        }
+
+        private void khoHang_Tab(object sender, RoutedEventArgs e)
+        {
+            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            khohang_tab.Show();
+            this.Close();
+        }
+
+        private void tuyChon_Tab(object sender, RoutedEventArgs e)
+        {
+            TuyChon tuychon_tab = new TuyChon();
+            tuychon_tab.Show();
+            this.Close();
+        }
+        #endregion
+
         private void Btn_ThemNhanVien(object sender, RoutedEventArgs e)
         {
             ThemNhanVien themNhanVien = new ThemNhanVien();
             themNhanVien.ShowDialog();
+            this.Close();
         }
-
+       
+        /*private void dtgNV_SelectionChanged(object sender, SelectionChangedEventArgs e) //Khi chon 1 hang thi se hien thi sang Groupbox Thong tin chi tiet
+        {
+            if(dtgNhanVien.SelectedIndex.ToString()!=null)
+            {
+                DataGridRow dtr = (DataGridRow)dtgNhanVien.SelectedItem;
+                if (dtr != null)
+                {
+                    int Ma = int.Parse(dtr.ToString());
+                    var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == Ma).FirstOrDefault();
+                    txbHoVaTen.Text=l.TenNguoiDung;
+                    txbNgaySinh.Text=l.NgaySinhNguoiDung.ToString();
+                    txbCCCD.Text = l.CCCDNguoiDung;
+                    txbDiaChi.Text = l.DiaChiNguoiDung;
+                    txbSDT.Text=l.SDTNguoiDung;
+                    txbTenDangNhap.Text=l.TenDangNhap;
+                    txbMatKhau.Text=l.MatKhau;
+                }
+            }
+        }*/
     }
     public class NhanViens
     {

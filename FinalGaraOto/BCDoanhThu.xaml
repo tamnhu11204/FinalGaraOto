@@ -63,35 +63,40 @@
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnDichVu" 
-        ToolTip="Tiếp nhận sửa chữa xe">
+                            Click="dichVu_Tab"
+                            ToolTip="Tiếp nhận sửa chữa xe">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="FaceAgent" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Dịch vụ" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnKhoHang" 
-        ToolTip="Xem vật tư phụ tùng">
+                            Click="khoHang_Tab"
+                            ToolTip="Xem vật tư phụ tùng">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Warehouse" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnThongKe" 
-        ToolTip="Xem thống kê tháng" Click="btnThongKe_Click" >
+                            Click="thongKe_Tab"
+                            ToolTip="Xem thống kê tháng" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DatabaseClock" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Thống kê" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnTuyChon" 
-        ToolTip="Follow me on Twitter">
+                            Click="tuyChon_Tab"
+                            ToolTip="Follow me on Twitter">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CogOutline" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Tùy chọn" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnNhanVien" 
-        ToolTip="Quản lý nhân viên, chức vụ">
+                            Click="nhanVien_Tab"
+                            ToolTip="Quản lý nhân viên, chức vụ">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AccountBoxMultipleOutline" Width="30" Height="30" Foreground="White"/>
                             <TextBlock Text="Nhân viên" FontSize="20" Foreground="White"/>

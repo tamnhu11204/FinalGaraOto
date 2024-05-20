@@ -29,19 +29,7 @@ namespace FinalGaraOto
             LoadDataFromDatabaseThang();
         }
 
-        private void btnThongKe_Click(object sender, RoutedEventArgs e)
-        {
-           ThongKe thongKe = new ThongKe();
-            thongKe.Show();
-            this.Close();
-        }
-
-        private void Bnt_bcton_Click(object sender, RoutedEventArgs e)
-        {
-           BCTon HangTon = new BCTon();
-            HangTon.Show();
-            this.Close();
-        }
+        #region scroll bar button
         private void btnClosing_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -70,6 +58,62 @@ namespace FinalGaraOto
                 this.WindowState= WindowState.Maximized;
             }
         }
+
+        #endregion
+
+        #region button tab
+
+        private void Bnt_bcton_Click(object sender, RoutedEventArgs e)
+        {
+           BCTon HangTon = new BCTon();
+            HangTon.Show();
+            this.Close();
+        }
+
+        private void thongKe_Tab(object sender, RoutedEventArgs e)
+        {
+            ThongKe thongke_tab = new ThongKe();
+            thongke_tab.Show();
+            this.Close();
+        }
+
+
+        private void taiKhoan_Tab(object sender, RoutedEventArgs e)
+        {
+            MainWindow taikhoan_tab = new MainWindow();
+            taikhoan_tab.Show();
+            this.Close();
+        }
+
+        private void dichVu_Tab(object sender, RoutedEventArgs e)
+        {
+            DichVu dichvu_tab = new DichVu();
+            dichvu_tab.Show();
+            this.Close();
+        }
+
+        private void nhanVien_Tab(object sender, RoutedEventArgs e)
+        {
+            NhanVien nhanvien_tab = new NhanVien();
+            nhanvien_tab.Show();
+            this.Close();
+        }
+
+        private void khoHang_Tab(object sender, RoutedEventArgs e)
+        {
+            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            khohang_tab.Show();
+            this.Close();
+        }
+
+        private void tuyChon_Tab(object sender, RoutedEventArgs e)
+        {
+            TuyChon tuychon_tab = new TuyChon();
+            tuychon_tab.Show();
+            this.Close();
+        }
+        #endregion
+
 
 
         private void LoadDataFromDatabaseNam()

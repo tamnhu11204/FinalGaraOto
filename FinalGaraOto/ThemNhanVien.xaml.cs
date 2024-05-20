@@ -25,7 +25,7 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadComboBoxChucVu();
         }
-        void LoadComboBoxChucVu()
+        void LoadComboBoxChucVu() //Hien thi cac item trong combobox
         {
             var List = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Select(x=>x.TenNhom).ToList();
             foreach (var item in List)
@@ -33,14 +33,14 @@ namespace FinalGaraOto
                 cbbChucVu.Items.Add(item);
             }
         }
-        private void BtnThoat_Click(object sender, RoutedEventArgs e)
+        private void BtnThoat_Click(object sender, RoutedEventArgs e) //Thoat va chuyen qua Window NhanVien
         {
             NhanVien nhanVien = new NhanVien();
             nhanVien.Show();
             this.Close();
         }
 
-        private void BtnThem_Click(object sender, RoutedEventArgs e)
+        private void BtnThem_Click(object sender, RoutedEventArgs e) //Them nhan vien
         {
             if (string.IsNullOrEmpty(txbCCCD.Text) || string.IsNullOrEmpty(txbDiaChi.Text) || string.IsNullOrEmpty(txbHoVaTen.Text)
                 || string.IsNullOrEmpty(txbMatKhau.Text) || string.IsNullOrEmpty(txbNgaySinh.Text) || string.IsNullOrEmpty(txbSDT.Text)
@@ -58,8 +58,9 @@ namespace FinalGaraOto
                 }
                 else
                 {
-                    NGUOIDUNG n = new NGUOIDUNG();
-                    n.TenNguoiDung = txbHoVaTen.ToString();
+                    var n = new NGUOIDUNG();
+
+                    n.TenNguoiDung = txbHoVaTen.Text;
 
                     DateTime? ngaySinh = txbNgaySinh.SelectedDate;
                     if (ngaySinh.HasValue)
@@ -72,22 +73,22 @@ namespace FinalGaraOto
                         return;
                     }
 
-                    n.CCCDNguoiDung = txbCCCD.ToString();
-                    n.DiaChiNguoiDung = txbDiaChi.ToString();
-                    n.SDTNguoiDung = txbSDT.ToString();
-                    n.TenDangNhap = txbTenDangNhap.ToString();
-                    n.MatKhau = txbMatKhau.ToString();
+                    n.CCCDNguoiDung = txbCCCD.Text;
+                    n.DiaChiNguoiDung = txbDiaChi.Text;
+                    n.SDTNguoiDung = txbSDT.Text;
+                    n.TenDangNhap = txbTenDangNhap.Text;
+                    n.MatKhau = txbMatKhau.Text;
 
                     string selectedValue = cbbChucVu.SelectedItem as string;
                     var l = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.TenNhom == selectedValue).First();
                     n.MaNhom = l.MaNhom;
-
-                    using (var dbContext = new QLGARAOTOEntities()) 
-                    {
-                        dbContext.NGUOIDUNGs.Add(n);
-                    }
+                    
+                    DataProvider.Ins.DB.NGUOIDUNGs.Add(n);
+                    DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Thêm nhân viên thành công!");
+                    NhanVien nhanVien = new NhanVien();
+                    nhanVien.Show();
                     this.Close();
                 }
             }
