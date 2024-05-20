@@ -118,31 +118,34 @@
                 Content="Thoát" FontSize="20" Background="#FF1D2850" Width="106" Height="50" BorderBrush="{x:Null}" Margin="850,-50,-300,0"/>
 
             </StackPanel>
-            <StackPanel Margin="307,49,774,496">
+            <StackPanel Margin="157,49,924,496">
                 <Button x:Name="Bnt_xembc"
  Width="150"
- Command="{Binding XemBaoCaoCommand}"
- CommandParameter="{Binding ElementName= UCBaoCaoTon}" Height="50"
+ Height="50"
  Content="Xem báo cáo" FontSize="20" 
  Background="#FF258C1F" BorderBrush="{x:Null}" 
  RenderTransformOrigin="1.001,0.513"
- Margin="0,10,300,0" />
+ Margin="20,10,00,0" Click="Bnt_xembc_Click" />
             </StackPanel>
-            <ComboBox Name="NamCb"
+
+            <ComboBox Name="NamCb" 
         materialDesign:TextFieldAssist.PrefixText="Năm"
-        IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple"
+        IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="112" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple"
         materialDesign:BottomDashedLineAdorner.Thickness="2">
             </ComboBox>
             
             <ComboBox Name="ThangCb"
         materialDesign:TextFieldAssist.PrefixText="Tháng "
-        IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
+        IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,74,0,0" FontSize="20"
+         Width="126">
               
             </ComboBox>
 
 
 
-            <DataGrid x:Name="Dg_BCTon"  Margin="0,132,0,178" FontSize="20" >
+            <DataGrid x:Name="Dg_BCTon"
+                      ItemsSource="{Binding List}"
+                      Margin="0,132,0,178" FontSize="20" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="STT" Width="85"/>
                     <DataGridTextColumn Header="Tên vật tư phụ tùng" Width="500"/>

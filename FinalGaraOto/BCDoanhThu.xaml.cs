@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace FinalGaraOto
         public BCDoanhThu()
         {
             InitializeComponent();
+            LoadDataFromDatabaseNam();
+            LoadDataFromDatabaseThang();
         }
 
         private void btnThongKe_Click(object sender, RoutedEventArgs e)
@@ -71,50 +74,22 @@ namespace FinalGaraOto
 
         private void LoadDataFromDatabaseNam()
         {
-            string connectionString = "DESKTOP-F5DEQJ7\\DIEMNGAN"; // Thay thế bằng chuỗi kết nối của bạn
-            string query = ("SELECT NamBaoCaoTon FROM BAOCAODOANHTHU"); // Thay thế bằng truy vấn của bạn
 
-            List<string> data = new List<string>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            var List = DataProvider.Ins.DB.BAOCAODOANHTHUs.Select(x => x.NamBaoCao.Year).ToList();
+            foreach (var item in List)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    data.Add(reader["NamBaoCao"].ToString()); // Thay thế ColumnName bằng tên cột bạn muốn lấy
-                }
-
-                reader.Close();
+                NamCb.Items.Add(item);
             }
-
-            NamCb.ItemsSource = data;
         }
 
         private void LoadDataFromDatabaseThang()
         {
-            string connectionString = "DESKTOP-F5DEQJ7\\DIEMNGAN"; // Thay thế bằng chuỗi kết nối của bạn
-            string query = ("SELECT ThangBaoCaoTon FROM BAOCAODOANHTHU"); // Thay thế bằng truy vấn của bạn
 
-            List<string> data = new List<string>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            var List = DataProvider.Ins.DB.BAOCAODOANHTHUs.Select(x => x.NamBaoCao.Month).ToList();
+            foreach (var item in List)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    data.Add(reader["ThangBaoCao"].ToString()); // Thay thế ColumnName bằng tên cột bạn muốn lấy
-                }
-
-                reader.Close();
+                ThangCb.Items.Add(item);
             }
-
-            ThangCb.ItemsSource = data;
         }
     }
 }

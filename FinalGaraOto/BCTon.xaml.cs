@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,9 +22,12 @@ namespace FinalGaraOto
     /// </summary>
     public partial class BCTon : Window
     {
+       
         public BCTon()
         {
             InitializeComponent();
+            LoadComboBoxNamBaoCao();
+            LoadComboBoxThangBaoCao();
         }
 
         private void btnClosing_Click(object sender, RoutedEventArgs e)
@@ -62,81 +66,39 @@ namespace FinalGaraOto
         {
             this.DragMove();
         }
-        private void LoadDataFromDatabaseNam()
+
+        void LoadComboBoxNamBaoCao()
         {
-            string connectionString = "Server = DESKTOP-F5DEQJ7\\DIEMNGAN; Initial Catalog = QLGARAOTO; Integrated Security = True"; ; // Thay thế bằng chuỗi kết nối của bạn
-            string query = ("SELECT year(NamBaoCaoTon) FROM BAOCAOTON"); // Thay thế bằng truy vấn của bạn
-
-            List<string> data = new List<string>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            var List = DataProvider.Ins.DB.BAOCAOTONs.Select(x => x.NamBaoCaoTon.Year).ToList();
+            foreach (var item in List)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    data.Add(reader["NamBaoCao"].ToString()); // Thay thế ColumnName bằng tên cột bạn muốn lấy
-                }
-
-                reader.Close();
+                NamCb.Items.Add(item);
             }
-
-            NamCb.ItemsSource = data;
         }
 
-        private void LoadDataFromDatabaseThang()
+        void LoadComboBoxThangBaoCao()
         {
-            string connectionString = "Server = DESKTOP-F5DEQJ7\\DIEMNGAN; Initial Catalog = QLGARAOTO; Integrated Security = True";  // Thay thế bằng chuỗi kết nối của bạn
-            string query = ("SELECT month(ThangBaoCaoTon) FROM BAOCAOTON"); // Thay thế bằng truy vấn của bạn
-
-            List<string> data = new List<string>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            var List = DataProvider.Ins.DB.BAOCAOTONs.Select(x => x.ThangBaoCaoTon.Month).ToList();
+            foreach (var item in List)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    data.Add(reader["ThangBaoCao"].ToString()); // Thay thế ColumnName bằng tên cột bạn muốn lấy
-                }
-
-                reader.Close();
+                ThangCb.Items.Add(item);
             }
-
-            ThangCb.ItemsSource = data;
-            
         }
 
-        private void LoadData_Datagrid()
+        private void Bnt_xembc_Click(object sender, RoutedEventArgs e)
         {
-            // Chuỗi kết nối tới cơ sở dữ liệu
-            string connectionString = "Server = DESKTOP-F5DEQJ7\\DIEMNGAN; Initial Catalog = QLGARAOTO; Integrated Security = True";
 
-            // Truy vấn SQL để lấy dữ liệu
-            string query = "SELECT ";
 
-            // Tạo một đối tượng DataTable để lưu trữ dữ liệu
-            DataTable dataTable = new DataTable();
-
-            // Thực hiện kết nối và truy vấn
-            using (SqlConnection connection = new SqlConnection(connectionString))
+          
+            var List = DataProvider.Ins.DB.VATTUPHUTUNGs.Select(x => x.TenVTPT).ToList();
+            foreach(var item in List)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-
-                // Mở kết nối và đổ dữ liệu vào DataTable
-                connection.Open();
-                dataAdapter.Fill(dataTable);
+                
             }
-
-            // Gán DataTable làm nguồn dữ liệu cho DataGrid
-            Dg_BCTon.ItemsSource= dataTable.DefaultView;
+               
         }
 
+       
     }
 
 }

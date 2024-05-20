@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FinalGaraOto.Action;
+using FinalGaraOto.Model;
 
 namespace FinalGaraOto
 {
@@ -27,7 +28,8 @@ namespace FinalGaraOto
         public ThongKe()
         {
             InitializeComponent();
-            
+            LoadComboBoxNamBaoCao();
+            LoadComboBoxThangBaoCao();
         }
 
 
@@ -76,54 +78,60 @@ namespace FinalGaraOto
             this.Close();
         }
 
-        private void LoadDataFromDatabaseNam()
+        void LoadComboBoxNamBaoCao()
         {
-            string connectionString = "DESKTOP-F5DEQJ7\\DIEMNGAN"; // Thay thế bằng chuỗi kết nối của bạn
-            string query = ("SELECT NamBaoCaoTon FROM BAOCAOTON"); // Thay thế bằng truy vấn của bạn
-
-            List<string> data = new List<string>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (Bangthongke.TabIndex == 0)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Year).ToList();
+                
+                foreach (var item in List)
                 {
-                    data.Add(reader["NamBaoCao"].ToString()); // Thay thế ColumnName bằng tên cột bạn muốn lấy
+                   
+                    
+                    NamCb.Items.Add(item);
                 }
-
-                reader.Close();
             }
+        else
+            {
+               
+                var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang.Value.Year).ToList();
 
-            NamCb.ItemsSource = data;
+                foreach (var item in List)
+                {
+                   
+
+                    NamCb.Items.Add(item);
+                }
+            }
         }
 
-        private void LoadDataFromDatabaseThang()
+        void LoadComboBoxThangBaoCao()
         {
-            string connectionString = "DESKTOP-F5DEQJ7\\DIEMNGAN"; // Thay thế bằng chuỗi kết nối của bạn
-            string query = ("SELECT BAOCAOTON.ThangBaoCaoTon, BAOCAODOANHTHU.FROM BAOCAOTON"); // Thay thế bằng truy vấn của bạn
-
-            List<string> data = new List<string>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (Bangthongke.TabIndex ==0 )
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Month).ToList();
 
-                while (reader.Read())
+                foreach (var item in List)
                 {
-                    data.Add(reader["ThangBaoCao"].ToString()); // Thay thế ColumnName bằng tên cột bạn muốn lấy
+                   
+
+                    ThangCb.Items.Add(item);
                 }
-
-                reader.Close();
             }
+            else
+            {
+                var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang.Value.Month).ToList();
 
-            ThangCb.ItemsSource = data;
+                foreach (var item in List)
+                {
+                  
 
+                    ThangCb.Items.Add(item);
+                }
+            }
         }
+
+
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
