@@ -29,18 +29,20 @@ namespace FinalGaraOto
         void LoadNhanVienList()
         {
             ObservableCollection<NhanViens> nhanViens = new ObservableCollection<NhanViens>();
-            var List=DataProvider.Ins.DB.NGUOIDUNGs.ToList();
-            foreach(var item in List)
+            var List = DataProvider.Ins.DB.NGUOIDUNGs.ToList();
+            foreach (var item in List)
             {
                 NhanViens nhanViens1 = new NhanViens();
                 nhanViens1.Ma = item.MaNguoiDung;
                 nhanViens1.HoVaTen = item.TenNguoiDung;
-                nhanViens1.ChucVu= DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == item.MaNhom).Select(x => x.TenNhom).First().ToString();
+                nhanViens1.ChucVu = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == item.MaNhom).Select(x => x.TenNhom).First().ToString();
                 nhanViens.Add(nhanViens1);
                 dtgNhanVien.ItemsSource = nhanViens;
             }
-           
+
         }
+
+
 
         private void BtnClosing_Click(object sender, RoutedEventArgs e)
         {
@@ -71,42 +73,12 @@ namespace FinalGaraOto
         {
             this.DragMove();
         }
-
         private void Btn_ThemNhanVien(object sender, RoutedEventArgs e)
         {
             ThemNhanVien themNhanVien = new ThemNhanVien();
             themNhanVien.ShowDialog();
         }
 
-        public void btnClosing_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (r == MessageBoxResult.Yes)
-            {
-                this.Close();
-            }
-        }
-
-        public void btnMaximize_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-            else if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-        }
-
-        public void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
     }
     public class NhanViens
     {
