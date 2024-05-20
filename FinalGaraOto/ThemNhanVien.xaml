@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ThemNhanVien" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Height="800" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+        Height="800" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -24,51 +24,54 @@
         </Grid>
 
 
-        <Grid Grid.Row="1" Margin="0,0,0,10">
+        <Grid Margin="0,40,0,10" Grid.RowSpan="2">
             <StackPanel Margin="96,112,-108,145" Orientation="Horizontal">
-                <Grid Margin="-50,-30,467,0" Width="127" Height="665" >
+                <Grid Margin="-50,-30,467,0" Width="127" Height="764" >
                     <materialDesign:PackIcon Kind="Account" Margin="73,20,0,0" Width="40" Height="40"/>
                     <materialDesign:PackIcon Kind="CakeVariantOutline" Margin="73,90,0,0" Width="40" Height="40"/>
                     <materialDesign:PackIcon Kind="CardAccountDetailsOutline" Margin="73,160,0,0" Width="40" Height="40"/>
                     <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="73,230,0,0" Width="40" Height="40"/>
                     <materialDesign:PackIcon Kind="Phone" Margin="73,298,0,0" Width="40" Height="40"/>
                     <materialDesign:PackIcon Kind="AccountBox" Margin="73,368,0,0" Width="40" Height="40"/>
-                    <materialDesign:PackIcon Kind="CardAccountDetailsStarOutline" Margin="73,440,0,0" Width="40" Height="40"/>
+                    <materialDesign:PackIcon Kind="LockOutline" Margin="73,440,0,0" Width="40" Height="40"/>
+                    <materialDesign:PackIcon Kind="CardAccountDetailsStarOutline" Margin="73,510,0,0" Width="40" Height="40"/>
                 </Grid>
                 <Grid Margin="-500,6,0,0" Height="564" Width="548">
-                    <StackPanel Margin="19,-63,0,0">
-                        <TextBox
+                    <StackPanel Margin="19,-117,0,0">
+                        <TextBox x:Name="txbHoVaTen"
                         materialDesign:HintAssist.Hint="Họ và tên"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="400"/>
-                        <DatePicker Margin="-100,11,0,0" Width="400"
+                        <DatePicker x:Name="txbNgaySinh"
+                            Margin="-100,11,0,0" Width="400"
                                 materialDesign:HintAssist.Hint="Ngày sinh"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" Height="59" FontSize="18" />
-                        <TextBox
+                        <TextBox x:Name="txbCCCD"
                         materialDesign:HintAssist.Hint="Số CCCD"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18" Width="400" />
-                        <TextBox
+                        <TextBox x:Name="txbDiaChi"
                         materialDesign:HintAssist.Hint="Địa chỉ"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="400" />
-                        <TextBox
+                        <TextBox x:Name="txbSDT"
                         materialDesign:HintAssist.Hint="Số điện thoại"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="400" />
-                        <TextBox
+                        <TextBox x:Name="txbTenDangNhap"
                         materialDesign:HintAssist.Hint="Tên đăng nhập"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="400" />
-                        <ComboBox Margin="-100,11,0,0" Width="400"
+                        <TextBox x:Name="txbMatKhau"
+                            materialDesign:HintAssist.Hint="Mật khẩu"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="400" />
+                        <ComboBox x:Name="cbbChucVu"
+                            Margin="-100,11,0,0" Width="400" 
                               materialDesign:HintAssist.Hint="Chức vụ"
                               Style="{StaticResource MaterialDesignOutlinedComboBox}" Height="58" FontSize="20">
-                            <ComboBoxItem
-                            Content="Item 1" />
-                            <ComboBoxItem
-                            Content="Item 2" />
                         </ComboBox>
-                        <Button Content="Thêm" Background="#FF89BAD2"
+                        <Button Click="BtnThem_Click"
+                            Content="Thêm" Background="#FF89BAD2"
                             Margin="-400,25,0,0" Height="50" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
-            <Button Content="Thoát" Background="#FF1D2850"
+            <Button Content="Thoát" Background="#FF1D2850" Click="BtnThoat_Click"
             Margin="444,596,157,249" Height="50" Width="119" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
         </Grid>
     </Grid>

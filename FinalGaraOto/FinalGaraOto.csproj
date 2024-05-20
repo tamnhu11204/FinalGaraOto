@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Action\ButtonSrollBar.cs" />
     <Compile Include="BAOCAODOANHTHU.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>

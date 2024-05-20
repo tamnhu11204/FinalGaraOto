@@ -3,27 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows;
+using FinalGaraOto.Model;
 
-namespace FinalGaraOto
+namespace FinalGaraOto.Action
 {
-    /// <summary>
-    /// Interaction logic for TuyChon.xaml
-    /// </summary>
-    public partial class TuyChon : Window
+    public class ButtonSrollBar : Window
     {
-        public TuyChon()
-        {
-            InitializeComponent();
-        }
-
         public void btnClosing_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);

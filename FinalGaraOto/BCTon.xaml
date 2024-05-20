@@ -9,7 +9,7 @@
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
  Height="1065" 
  Width="1700"
- WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen">
+ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -22,12 +22,14 @@
                 <DockPanel Height="80">
                     <StackPanel DockPanel.Dock="Right" Background="Transparent" Orientation="Horizontal">
                         <Button x:Name="btnMinimize"
+                                Click="btnMinimize_Click"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=MinusCircle}"
             ToolBar.OverflowMode="AsNeeded"
             ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" 
                                 Click="btnMinimize_Click"/>
                         <Button x:Name="btnMaximize"
+                                Click="btnMaximize_Click"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CropSquare}"
             ToolBar.OverflowMode="AsNeeded"
@@ -35,6 +37,7 @@
              Height="47" BorderBrush="{x:Null}"
               Click="btnMaximize_Click"/>
                         <Button x:Name="btnClosing" 
+                                Click="btnClosing_Click"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CloseCircle}"
             ToolBar.OverflowMode="AsNeeded"
