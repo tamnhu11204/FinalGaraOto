@@ -25,17 +25,21 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen">
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=MinusCircle}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
+            ToolTip="Thoát" Foreground="White" 
+            Height="47" BorderBrush="{x:Null}" FontSize="20"
+             Click="btnMinimize_Click"/>
                         <Button x:Name="btnMaximize"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CropSquare}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+            ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}"
+             Click="btnMaximize_Click"/>
                         <Button x:Name="btnClosing" 
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CloseCircle}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}"
+                         Click="btnClosing_Click"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
@@ -105,58 +109,25 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen">
                 <Button x:Name="Doanhthu"
                         Command="{Binding DoanhthuCommand}"
                         CommandParameter="{Binding ElementName= UCThongKe}"
-                        Content="Doanh thu" FontSize="20" Background="#FF1079D6" Width="140" Height="52" Margin="0,30,0,681.4" HorizontalAlignment="Left"/>
+                        Content="Doanh thu" FontSize="20" Background="#FF1079D6" Width="140" Height="52" Margin="0,30,0,681.4" HorizontalAlignment="Left" Click="Doanhthu_Click"/>
                 <Button x:Name="Hangton"
                         Command="{Binding HangtonCommand}"
                         CommandParameter="{Binding ElementName=UCHangTon}"
-                        Content="Hàng tồn" FontSize="20" Background="#FF1079D6" Width="140" Height="52" HorizontalAlignment="Right" Margin="-10,-1000,100,415"/>
+                        Content="Hàng tồn" FontSize="20" Background="#FF1079D6" Width="140" Height="52" HorizontalAlignment="Right" Margin="-10,-1000,100,415" Click="Hangton_Click"/>
 
             </StackPanel>
 
             <ComboBox
+                Name="NamCb"
                 materialDesign:TextFieldAssist.PrefixText="Năm"
                 IsEditable="True" FontSize="14" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
-                <ComboBoxItem
-    Content="2021" />
-                <ComboBoxItem
-    Content="2022" />
-                <ComboBoxItem
-    Content="2023" />
-                <ComboBoxItem
-    Content="2024" />
+                
             </ComboBox>
             <ComboBox
-  
+  Name="ThangCb"
   materialDesign:TextFieldAssist.PrefixText="Tháng "
   IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="14">
-                <ComboBoxItem
-    Content="1" />
-                <ComboBoxItem
-    Content="2" />
-                <ComboBoxItem
-    Content="3" />
-                <ComboBoxItem
-    Content="4" />
-                <ComboBoxItem
-Content="5" />
-                <ComboBoxItem
-Content="6" />
-                <ComboBoxItem
-Content="7" />
-
-                <ComboBoxItem
-Content="8" />
-
-                <ComboBoxItem
-Content="9" />
-
-                <ComboBoxItem
-Content="10" />
-                <ComboBoxItem
-Content="11" />
-                <ComboBoxItem
-Content="12" />
-
+                
             </ComboBox>
 
             <StackPanel Margin="290,30,1156,560" >
@@ -165,7 +136,7 @@ Content="12" />
              CommandParameter="{Binding ElementName=UCThongKe}"
              Content="Xuất" FontSize="14" Background="#FF18A7A7"
              Width="84" Height="35"  FontWeight="Bold" RenderTransformOrigin="0.352,-0.217"
-             Margin="-20,30,10,0"/>
+             Margin="-20,30,10,0" Click="Btn_Xuat_Click"/>
 
             </StackPanel>
 
@@ -186,18 +157,16 @@ Content="12" />
                         <Grid.ColumnDefinitions >
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="1,-3,164,3" >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Mã hóa đơn" Width="150"/>
-                                    <GridViewColumn Header="Khách hàng" Width="250"/>
-                                    <GridViewColumn Header="Biển số xe" Width="200"/>
-                                    <GridViewColumn Header="Ngày thanh toán" Width="200"/>
-                                    <GridViewColumn Header="Doanh thu" Width="350"/>
+                        <DataGrid Margin="1,-3,164,3" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding Mahoadon}"/>
+                                <DataGridTextColumn Header="Khách hàng" Binding="{Binding Khachhang}"/>
+                                <DataGridTextColumn Header="Biển số xe" Binding="{Binding Biensoxe}"/>
+                                <DataGridTextColumn Header="Ngày thanh toán" Binding="{Binding Ngaythanhtoan}"/>
+                                <DataGridTextColumn Header="Doanh thu" Binding="{Binding Doanhthu}"/>
 
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
+                            </DataGrid.Columns>
+                        </DataGrid>
 
                     </Grid>
                 </TabItem>
@@ -206,21 +175,18 @@ Content="12" />
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-1,-3,164,3">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Vật tư" Width="300"
-                                                    DisplayMemberBinding="{Binding Vattu}"/>
-                                    <GridViewColumn Header="Số lượng" Width="150"
-                                                    DisplayMemberBinding="{Binding SoLuong}"/>
-                                    <GridViewColumn Header="Đơn giá" Width="200"/>
-                                    <GridViewColumn Header="Nhà cung cấp" Width="200"/>
-                                    <GridViewColumn Header="Ngày nhập hàng" Width="200"/>
-                                    <GridViewColumn Header="Mã đơn nhập" Width="180"/>
-                                    <GridViewColumn Header="Tổng chi phí" Width="280" />
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
+                        <DataGrid   Margin="1,-3,164,3" IsReadOnly="True" AutoGenerateColumns="False" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Vật tư" Binding="{Binding Vattu}"/>
+
+                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Soluong}"/>
+                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding Dongia}"/>
+                                <DataGridTextColumn Header="Nhà cung cấp" Binding="{Binding Nhacungcap}"/>
+                                <DataGridTextColumn Header="Ngày nhập hàng" Binding="{Binding Ngaynhaphang}"/>
+                                <DataGridTextColumn Header="Mã đơn nhập" Binding="{Binding Madonnhap}"/>
+                                <DataGridTextColumn Header="Tổng chi phí" Binding="{Binding Tongchiphi}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </TabItem>
             </TabControl>

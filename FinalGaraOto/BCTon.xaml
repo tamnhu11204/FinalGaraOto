@@ -25,17 +25,21 @@
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=MinusCircle}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
+            ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" 
+                                Click="btnMinimize_Click"/>
                         <Button x:Name="btnMaximize"
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CropSquare}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+            ToolTip="Thu nhỏ" Foreground="White"
+             Height="47" BorderBrush="{x:Null}"
+              Click="btnMaximize_Click"/>
                         <Button x:Name="btnClosing" 
             Background="{x:Null}"
             Content="{materialDesign:PackIcon Kind=CloseCircle}"
             ToolBar.OverflowMode="AsNeeded"
-            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+            ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}"
+             Click="btnClosing_Click"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
@@ -71,7 +75,7 @@
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnThongKe" 
-        ToolTip="Xem thống kê tháng" >
+        ToolTip="Xem thống kê tháng" Click="btnThongKe_Click" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DatabaseClock" Width="30" Height="30" Foreground="White" />
                             <TextBlock Text="Thống kê" FontSize="20" Foreground="White"/>
@@ -122,67 +126,42 @@
  Content="Xem báo cáo" FontSize="20" 
  Background="#FF258C1F" BorderBrush="{x:Null}" 
  RenderTransformOrigin="1.001,0.513"
- Margin="0,10,300,0"/>
+ Margin="0,10,300,0" Click="Bnt_xembc_Click"/>
             </StackPanel>
-            <ComboBox
+            <ComboBox Name="NamCb"
         materialDesign:TextFieldAssist.PrefixText="Năm"
-        IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
-                <ComboBoxItem
-            Content="2021" />
-                <ComboBoxItem
-            Content="2022" />
-                <ComboBoxItem
-            Content="2023" />
-                <ComboBoxItem
-            Content="2024" />
+        IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple"
+        materialDesign:BottomDashedLineAdorner.Thickness="2">
             </ComboBox>
-            <ComboBox
-  
+            
+            <ComboBox Name="ThangCb"
         materialDesign:TextFieldAssist.PrefixText="Tháng "
         IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
-                <ComboBoxItem
-            Content="1" />
-                <ComboBoxItem
-            Content="2" />
-                <ComboBoxItem
-            Content="3" />
-                <ComboBoxItem
-            Content="4" />
-                <ComboBoxItem
-            Content="5" />
-                <ComboBoxItem
-            Content="6" />
-                <ComboBoxItem
-            Content="7" />
-
-                <ComboBoxItem
-            Content="8" />
-
-                <ComboBoxItem
-            Content="9" />
-
-                <ComboBoxItem
-            Content="10" />
-                <ComboBoxItem
-            Content="11" />
-                <ComboBoxItem
-            Content="12" />
+              
             </ComboBox>
 
 
 
-            <ListView x:Name="Lv_Bcdoanhthu"  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,132,0,178" FontSize="20" >
-                <ListView.View>
-                    <GridView >
-                        <GridViewColumn Header="STT" Width="85" DisplayMemberBinding="{Binding STT}" />
-                        <GridViewColumn Header="Tên vật tư phụ tùng" Width="500"/>
-                        <GridViewColumn Header="Tồn đầu" Width="200" DisplayMemberBinding="{Binding Hieuxe}"/>
-                        <GridViewColumn Header="Phát sinh" Width="200"/>
-                        <GridViewColumn Header="Tồn cuối" Width="200"/>
+            <DataGrid x:Name="Dg_BCTon"  Margin="0,132,0,178" FontSize="20" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="STT" Width="85"/>
+                    <DataGridTextColumn Header="Tên vật tư phụ tùng" Width="500"/>
+                    <DataGridTextColumn Header="Tồn đầu" Width="200"/>
+                    <DataGridTextColumn Header="Phát sinh" Width="200"/>
+                    <DataGridTextColumn Header="Tồn cuối" Width="200"/>
 
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="Bnt_bcdoanhthu"
+                    Height="50"
+                    Command="{Binding XemBaoCaoCommand}"
+                    CommandParameter="{Binding ElementName=UCBaoCaoTon}"
+                    Content="Doanh thu" FontSize="20" 
+                    Background="#FF1B76C6" BorderBrush="{x:Null}" 
+                    RenderTransformOrigin="1.001,0.513"
+                    Margin="1252,49,288,766"
+ />
+
 
         </Grid>
     </Grid>

@@ -24,5 +24,41 @@ namespace FinalGaraOto
         {
             InitializeComponent();
         }
+
+       
+
+        private void btnClosing_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc là muốn thoát không?", "Quản Lý Quán Cafe", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        
+            if ( result == MessageBoxResult.Yes)
+            {
+               this.Close();
+            }
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Minimized) 
+            {
+                this.WindowState= WindowState.Normal;
+            }
+            else
+            {
+                this.WindowState= WindowState.Maximized;
+            }
+        }
+
+        private void thongke_Tab(object sender, RoutedEventArgs e)
+        {
+            ThongKe thongke_tab= new ThongKe();
+            thongke_tab.Show();
+            this.Close();
+        }
     }
 }

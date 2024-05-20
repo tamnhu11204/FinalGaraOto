@@ -27,17 +27,17 @@
                     Background="{x:Null}"
                     Content="{materialDesign:PackIcon Kind=MinusCircle}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
+                    ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" Click="btnMinimize_Click" />
                         <Button x:Name="btnMaximize"
                     Background="{x:Null}"
                     Content="{materialDesign:PackIcon Kind=CropSquare}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+                    ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" Click="btnMaximize_Click" />
                         <Button x:Name="btnClosing" 
                     Background="{x:Null}"
                     Content="{materialDesign:PackIcon Kind=CloseCircle}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
+                    ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" Click="btnClosing_Click" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
@@ -72,7 +72,7 @@
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="btnThongKe" 
+                    <Button x:Name="btnThongKe"  Click="thongke_Tab"
                 ToolTip="Xem thống kê tháng" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="DatabaseClock" Width="30" Height="30" Foreground="White" />
