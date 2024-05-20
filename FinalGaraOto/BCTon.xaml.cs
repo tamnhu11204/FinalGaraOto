@@ -26,6 +26,7 @@ namespace FinalGaraOto
             InitializeComponent();
         }
 
+        #region scroll bar button
         private void btnClosing_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult r = MessageBox.Show("Bạn có muốn đóng chương trình không?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -34,7 +35,10 @@ namespace FinalGaraOto
                 this.Close();
             }
         }
-
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -44,24 +48,63 @@ namespace FinalGaraOto
         {
             if (this.WindowState == WindowState.Minimized)
             {
-                this.WindowState= WindowState.Normal;
+                this.WindowState = WindowState.Normal;
             }
             else
             {
-                this.WindowState= WindowState.Maximized;
+                this.WindowState = WindowState.Maximized;
             }
         }
 
-        private void btnThongKe_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+
+        #region button tab
+
+        private void thongKe_Tab(object sender, RoutedEventArgs e)
         {
-            ThongKe thongKe = new ThongKe();
-            thongKe.Show();
+            ThongKe thongke_tab = new ThongKe();
+            thongke_tab.Show();
             this.Close();
         }
-        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+
+
+        private void taiKhoan_Tab(object sender, RoutedEventArgs e)
         {
-            this.DragMove();
+            MainWindow taikhoan_tab = new MainWindow();
+            taikhoan_tab.Show();
+            this.Close();
         }
+
+        private void dichVu_Tab(object sender, RoutedEventArgs e)
+        {
+            DichVu dichvu_tab = new DichVu();
+            dichvu_tab.Show();
+            this.Close();
+        }
+
+        private void nhanVien_Tab(object sender, RoutedEventArgs e)
+        {
+            NhanVien nhanvien_tab = new NhanVien();
+            nhanvien_tab.Show();
+            this.Close();
+        }
+
+        private void khoHang_Tab(object sender, RoutedEventArgs e)
+        {
+            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            khohang_tab.Show();
+            this.Close();
+        }
+
+        private void tuyChon_Tab(object sender, RoutedEventArgs e)
+        {
+            TuyChon tuychon_tab = new TuyChon();
+            tuychon_tab.Show();
+            this.Close();
+        }
+        #endregion
+
         private void LoadDataFromDatabaseNam()
         {
             string connectionString = "Server = DESKTOP-F5DEQJ7\\DIEMNGAN; Initial Catalog = QLGARAOTO; Integrated Security = True"; ; // Thay thế bằng chuỗi kết nối của bạn
