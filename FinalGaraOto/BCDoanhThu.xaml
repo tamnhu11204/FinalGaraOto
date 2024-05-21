@@ -120,14 +120,16 @@
                 Content="Xuất file báo cáo " FontSize="20" Background="#FF747778" Width="148" Height="50" BorderBrush="{x:Null}" Margin="850,0,0,0"/>
                 <Button x:Name="Bnt_dong"
                 Command="{Binding DongCommand}"
-                CommandParameter="{Binding ElementName= UCBaoCaoDoanhThu}"
-                Content="Thoát" FontSize="20" Background="#FF1D2850" Width="106" Height="50" BorderBrush="{x:Null}" Margin="850,-50,-300,0" />
+                
+                Content="Thoát" FontSize="20" Background="#FF1D2850" Width="106" 
+                Height="50" BorderBrush="{x:Null}" Margin="850,-50,-300,0"
+                 Click="Bnt_dong_Click"/>
 
             </StackPanel>
             <Button x:Name="Bnt_xembc"
             Command="{Binding XemBaoCaoCommand}"
-            CommandParameter="{Binding ElementName= UCBaoCaoDoanhThu}"
-            Content="Xem báo cáo" FontSize="20" Background="#FF258C1F" Width="170"  Height="50" BorderBrush="{x:Null}" Margin="328,53,1206,762"/>
+
+            Content="Xem báo cáo" FontSize="20" Background="#FF258C1F" Width="170"  Height="50" BorderBrush="{x:Null}" Margin="328,53,1206,762" Click="Bnt_xembc_Click"/>
             <ComboBox Name="NamCb"
 materialDesign:TextFieldAssist.PrefixText="Năm"
 IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
@@ -136,20 +138,23 @@ IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width
             <ComboBox
   Name="ThangCb"
 materialDesign:TextFieldAssist.PrefixText="Tháng "
-IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
+ HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
               
             </ComboBox>
 
 
-            <Label x:Name="Tb_tongdt" Content="Tổng doanh thu: " FontWeight="Bold" FontSize="20" Margin="984,551,39,143"/>
-            <DataGrid x:Name="Lv_Bcdoanhthu"   Margin="0,132,0,178" FontSize="20" >
+            <Label x:Name="Lb_tongdt" FontWeight="Bold" FontSize="20" Margin="984,551,39,143"/>
+            <DataGrid x:Name="Dg_Bcdoanhthu"   
+                      Margin="0,132,0,178" 
+                      FontSize="20" IsReadOnly="True"
+                      AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
-                <DataGridTextColumn Header="STT" Width="90"  />
-                <DataGridTextColumn Header="Hiệu xe" Width="200" />
-                <DataGridTextColumn Header="Số lượt sửa" Width="250"/>
-                <DataGridTextColumn Header="Thành tiền" Width="300"/>
-                <DataGridTextColumn Header="Tỉ lệ" Width="100"/>
+                <DataGridTextColumn Header="STT" Binding="{Binding stt}" Width="*"  />
+                    <DataGridTextColumn Header="Hiệu xe" Binding="{Binding hieuxe}" Width="*" />
+                    <DataGridTextColumn Header="Số lượt sửa" Binding="{Binding soluotxe}" Width="*"/>
+                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhtien}" Width="*"/>
+                    <DataGridTextColumn Header="Tỉ lệ" Binding="{Binding tile}" Width="*"/>
 
                 </DataGrid.Columns>
 
@@ -157,7 +162,10 @@ IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173
             <Button x:Name="Bnt_bcton"
                 Command="{Binding XemBaoCaoCommand}"
                 CommandParameter="{Binding ElementName=UCBaoCaoDoanhThu}"
-                Content="Hàng tồn" FontSize="20" Background="#FF1B76C6" Width="150"  Height="50" BorderBrush="{x:Null}" Margin="1058,45,492,770" Click="Bnt_bcton_Click"/>
+                Content="Hàng tồn" FontSize="20"
+                Background="#FF1B76C6" 
+                    Width="150"  Height="50" BorderBrush="{x:Null}" Margin="1058,45,492,770"
+                Click="Bnt_bcton_Click"/>
 
         </Grid>
     </Grid>

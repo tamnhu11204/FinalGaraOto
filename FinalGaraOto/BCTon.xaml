@@ -129,7 +129,10 @@
                 <Button x:Name="Bnt_dong" 
                         Command="{Binding DongCommand}"
                         CommandParameter="{Binding ElementName= UCBaoCaoTon}"
-                        Content="Thoát" FontSize="20" Background="#FF1D2850" Width="106" Height="50" BorderBrush="{x:Null}" Margin="850,-50,-300,0"/>
+                        Content="Thoát" FontSize="20" 
+                        Background="#FF1D2850" Width="106" Height="50" BorderBrush="{x:Null}" 
+                        Margin="850,-50,-300,0"
+                        Click="Bnt_dong_Click"/>
 
             </StackPanel>
             <StackPanel Margin="157,49,924,496">
@@ -159,13 +162,14 @@
 
             <DataGrid x:Name="Dg_BCTon"
                       ItemsSource="{Binding List}"
-                      Margin="0,132,0,178" FontSize="20" >
+                      Margin="0,132,0,178" FontSize="20"
+                      AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" Width="85"/>
-                    <DataGridTextColumn Header="Tên vật tư phụ tùng" Width="500"/>
-                    <DataGridTextColumn Header="Tồn đầu" Width="200"/>
-                    <DataGridTextColumn Header="Phát sinh" Width="200"/>
-                    <DataGridTextColumn Header="Tồn cuối" Width="200"/>
+                    <DataGridTextColumn Header="STT" Width="150" />
+                    <DataGridTextColumn Header="Tên vật tư phụ tùng" Width="*" Binding="{Binding tenvtpt}"/>
+                    <DataGridTextColumn Header="Tồn đầu" Width="*" Binding="{Binding tondau }"/>
+                    <DataGridTextColumn Header="Phát sinh" Width="*" Binding="{Binding phatsinh}"/>
+                    <DataGridTextColumn Header="Tồn cuối" Width="*" Binding="{Binding toncuoi}"/>
 
                 </DataGrid.Columns>
             </DataGrid>

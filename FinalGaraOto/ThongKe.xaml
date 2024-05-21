@@ -162,33 +162,37 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 </TabControl.RenderTransform>
                 <TabItem x:Name="lichsukinhdoanh" TabIndex="0"
                          Header="Lịch sử kinh doanh" Width="169" HorizontalAlignment="Left" FontSize="48" Background="#FF584CAE">
-                    <DataGrid Margin="1,-3,164,3" >
+                    <DataGrid 
+                        x:Name="LichSuKinhDoanh"
+                        AutoGenerateColumns="False"
+                        Margin="0,2,0,-2">
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding Mahoadon}"/>
-                            <DataGridTextColumn Header="Khách hàng" Binding="{Binding Khachhang}"/>
-                            <DataGridTextColumn Header="Biển số xe" Binding="{Binding Biensoxe}"/>
-                            <DataGridTextColumn Header="Ngày thanh toán" Binding="{Binding Ngaythanhtoan}"/>
-                            <DataGridTextColumn Header="Doanh thu" Binding="{Binding Doanhthu}"/>
+                            <DataGridTextColumn Header="Mã hóa đơn" IsReadOnly="True" Binding="{Binding Mahoadon}" Width="*"/>
+                            <DataGridTextColumn Header="Khách hàng" IsReadOnly="True" Binding="{Binding Khachhang}" Width="*"/>
+                            <DataGridTextColumn Header="Biển số xe" IsReadOnly="True" Binding="{Binding Biensoxe}" Width="*"/>
+                            <DataGridTextColumn Header="Ngày thanh toán" IsReadOnly="True" Binding="{Binding Ngaythanhtoan}" Width="*"/>
+                            <DataGridTextColumn Header="Doanh thu" IsReadOnly="True" Binding="{Binding Doanhthu}" Width="*"/>
 
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem x:Name="lichsunhaphang" TabIndex="1"
-                         Header="Lịch sử nhập hàng" HorizontalAlignment="Left" Margin="-680,0,0,0" Width="172" Background="#FF584CAE">
-                    <Grid  Background="#FFE5E5E5" Width="1700">
+                <TabItem x:Name="lichsunhaphang" TabIndex="0"
+                         Header="Lịch sử nhập hàng" HorizontalAlignment="Left" Margin="-680,0,0,0" Width="169" Background="#FF584CAE">
+                    <Grid  Background="#FFE5E5E5" Width="1526">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <DataGrid   Margin="1,-3,164,3" IsReadOnly="True" AutoGenerateColumns="False" >
+                        <DataGrid x:Name="Lichsunhaphang"   Margin="-87,0,54,0" IsReadOnly="True" AutoGenerateColumns="False" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Vật tư" Binding="{Binding Vattu}"/>
+                                <DataGridTextColumn Header="Vật tư" Binding="{Binding Vattu}" Width="*"/>
 
-                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Soluong}"/>
-                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding Dongia}"/>
-                                <DataGridTextColumn Header="Nhà cung cấp" Binding="{Binding Nhacungcap}"/>
-                                <DataGridTextColumn Header="Ngày nhập hàng" Binding="{Binding Ngaynhaphang}"/>
-                                <DataGridTextColumn Header="Mã đơn nhập" Binding="{Binding Madonnhap}"/>
-                                <DataGridTextColumn Header="Tổng chi phí" Binding="{Binding Tongchiphi}"/>
+                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Soluong}" Width="*"/>
+                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding Dongia}" Width="*"/>
+                                <DataGridTextColumn Header="Nhà cung cấp" Binding="{Binding Nhacungcap}" Width="*"/>
+                                <DataGridTextColumn Header="Ngày nhập hàng" Binding="{Binding Ngaynhaphang}" Width="*"/>
+                                <DataGridTextColumn Header="Mã đơn nhập" Binding="{Binding Madonnhap}" Width="*"/>
+                                <DataGridTextColumn Header="Tổng chi phí" Binding="{Binding Tongchiphi}" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

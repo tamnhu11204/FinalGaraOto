@@ -1,6 +1,7 @@
 ﻿using FinalGaraOto.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace FinalGaraOto
     /// </summary>
     public partial class BCTon : Window
     {
-       
+
         public BCTon()
         {
             InitializeComponent();
@@ -128,18 +129,51 @@ namespace FinalGaraOto
 
         private void Bnt_xembc_Click(object sender, RoutedEventArgs e)
         {
+            ObservableCollection<BaoCaoTon> bcton = new ObservableCollection<BaoCaoTon>();
 
-
-          
-            var List = DataProvider.Ins.DB.VATTUPHUTUNGs.Select(x => x.TenVTPT).ToList();
-            foreach(var item in List)
+            var List = DataProvider.Ins.DB.BAOCAOTONs.ToList();
+            int stt = 0;
+            foreach (var item in List)
             {
-                
+                BaoCaoTon baocaoton1 = new BaoCaoTon();
+                baocaoton1.tevtpt=DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
+                baocaoton1.tondau= item.TonDau;
+                baocaoton1.phatsinh= item.PhatSinh;
+                baocaoton1.toncuoi= item.TonCuoi;
+                baocaoton1.nam= item.NamBaoCaoTon;
+                baocaoton1.thang = item.ThangBaoCaoTon;
+                bcton.Add(baocaoton1);
+                if ((NamCb.Text== Convert.ToString(baocaoton1.nam.Year)) && ThangCb.Text== Convert.ToString(baocaoton1.thang.Month))
+                {
+                    Dg_BCTon.ItemsSource= bcton;
+                }
+
+
             }
-               
+
+
+
         }
 
-       
+        public class BaoCaoTon
+        {
+            public int stt { get; set; }
+            public string tevtpt { get; set; }
+            public int tondau { get; set; }
+            public int phatsinh { get; set; }
+            public int toncuoi { get; set; }
+            public DateTime thang { get; set; }
+            public DateTime nam { get; set; }
+        }
+
+        private void Bnt_dong_Click(object sender, RoutedEventArgs e)
+        {
+            ThongKe child= new ThongKe();
+            child.Show();
+            this.Close();
+        }
+
+
     }
 
 }
