@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace FinalGaraOto
 {
@@ -22,6 +25,7 @@ namespace FinalGaraOto
         public DichVu()
         {
             InitializeComponent();
+            LoaddsXeList();
         }
 
         #region scroll bar button
@@ -105,9 +109,49 @@ namespace FinalGaraOto
         #endregion
 
 
+        void LoaddsXeList() //Hien thi nhan vien len datagrid
+        {
+            ObservableCollection<Xes> Xe = new ObservableCollection<Xes>();
+            var List = DataProvider.Ins.DB.XEs.ToList();
+            foreach (var item in List)
+            {
+                Xes Xe1 = new Xes() ;
+                Xe1.BienSo = item.BienSoXe;
+                Xe1.HieuXe = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == item.MaHieuXe).Select(x => x.TenHieuXe).First();
+                Xe1.TenChu = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == item.MaChuXe).Select(x => x.TenChuXe).First();
+                Xe1.Ngay = item.NgayTiepNhan.ToString();
+                Xe1.No = item.TienNo.ToString();
+                Xe.Add(Xe1);
+                dtgdsXe.ItemsSource = Xe;
+            }
 
+        }
 
+        /*void LoadNhanVienList() //Hien thi nhan vien len datagrid
+        {
+            ObservableCollection<NhanViens> nhanViens = new ObservableCollection<NhanViens>();
+            var List = DataProvider.Ins.DB.NGUOIDUNGs.ToList();
+            foreach (var item in List)
+            {
+                NhanViens nhanViens1 = new NhanViens();
+                nhanViens1.Ma = item.MaNguoiDung;
+                nhanViens1.HoVaTen = item.TenNguoiDung;
+                nhanViens1.ChucVu = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == item.MaNhom).Select(x => x.TenNhom).First().ToString();
+                nhanViens.Add(nhanViens1);
+                dtgNhanVien.ItemsSource = nhanViens;
+            }
 
+        } */
+        public class Xes
+        {
+         
+            public string BienSo { get; set; }
+            public string HieuXe { get; set; }
+            public string TenChu { get; set; }
+            public string Ngay { get; set; }
+            public string No { get; set; }
+            
+        }
 
     }
 }
