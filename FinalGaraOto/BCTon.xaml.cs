@@ -79,10 +79,6 @@ namespace FinalGaraOto
             taikhoan_tab.Show();
             this.Close();
         }
-
-<<<<<<< HEAD
-        void LoadComboBoxNamBaoCao()
-=======
         private void dichVu_Tab(object sender, RoutedEventArgs e)
         {
             DichVu dichvu_tab = new DichVu();
@@ -112,8 +108,7 @@ namespace FinalGaraOto
         }
         #endregion
 
-        private void LoadDataFromDatabaseNam()
->>>>>>> 23e51462c5c2f91ab287f497287fa5a2087072b7
+        private void LoadComboBoxNamBaoCao()
         {
             var List = DataProvider.Ins.DB.BAOCAOTONs.Select(x => x.NamBaoCaoTon.Year).ToList();
             foreach (var item in List)

@@ -130,27 +130,28 @@ namespace FinalGaraOto
             this.Close();
         }
        
-        /*private void dtgNV_SelectionChanged(object sender, SelectionChangedEventArgs e) //Khi chon 1 hang thi se hien thi sang Groupbox Thong tin chi tiet
+
+        /*private void dtgNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e) //Khi chon 1 hang thi se hien thi sang Groupbox Thong tin chi tiet
         {
-            if(dtgNhanVien.SelectedIndex.ToString()!=null)
+            if (dtgNhanVien.SelectedIndex.ToString() != null)
             {
-                DataGridRow dtr = (DataGridRow)dtgNhanVien.SelectedItem;
+                DataRowView dtr = (DataRowView)dtgNhanVien.SelectedItem;
                 if (dtr != null)
                 {
-                    int Ma = int.Parse(dtr.ToString());
+                    int Ma = int.Parse(dtr[0].ToString());
                     var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == Ma).FirstOrDefault();
-                    txbHoVaTen.Text=l.TenNguoiDung;
-                    txbNgaySinh.Text=l.NgaySinhNguoiDung.ToString();
+                    txbHoVaTen.Text = l.TenNguoiDung;
+                    txbNgaySinh.Text = l.NgaySinhNguoiDung.ToString();
                     txbCCCD.Text = l.CCCDNguoiDung;
                     txbDiaChi.Text = l.DiaChiNguoiDung;
-                    txbSDT.Text=l.SDTNguoiDung;
-                    txbTenDangNhap.Text=l.TenDangNhap;
-                    txbMatKhau.Text=l.MatKhau;
+                    txbSDT.Text = l.SDTNguoiDung;
+                    txbTenDangNhap.Text = l.TenDangNhap;
+                    txbMatKhau.Text = l.MatKhau;
                 }
             }
         }*/
     }
-    public class NhanViens
+    public class NhanViens //Khong can cung duoc, tai co Class san ben EntityFramework
     {
         public int Ma {  get; set; }
         public string HoVaTen { get; set; }

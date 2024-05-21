@@ -133,7 +133,7 @@ x:Name="dtgdsXe" Margin="16,233,16,42" Height="600" FontSize="20">
                    
                     <DataGridTextColumn Header = "Biển số" IsReadOnly="True" Width="*"
                                                         Binding="{Binding BienSo}" />
-                    <DataGridCheckBoxColumn Header = "Hiệu xe" IsReadOnly="True" Width="*"
+                    <DataGridTextColumn Header = "Hiệu xe" IsReadOnly="True" Width="*"
                                                         Binding="{Binding HieuXe}"/>
                     <DataGridTextColumn Header = "Chủ xe" IsReadOnly="True" Width="*"
                                     Binding="{Binding ChuXe}" />

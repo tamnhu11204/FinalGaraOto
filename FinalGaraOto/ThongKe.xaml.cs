@@ -173,8 +173,6 @@ namespace FinalGaraOto
             else
             {
                 var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang.Value.Month).ToList();
-
-<<<<<<< HEAD
                 foreach (var item in List)
                 {
                   
@@ -182,17 +180,8 @@ namespace FinalGaraOto
                     ThangCb.Items.Add(item);
                 }
             }
+            /*ThangCb.ItemsSource = data;*/
         }
 
-
-        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
-=======
-            ThangCb.ItemsSource = data;
-        }
->>>>>>> 23e51462c5c2f91ab287f497287fa5a2087072b7
     }
 }

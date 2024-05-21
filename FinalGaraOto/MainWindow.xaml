@@ -154,7 +154,7 @@
                                              Height="40"
                                              
                                              />
-                            <TextBox
+                            <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Họ và tên"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10"
@@ -167,7 +167,7 @@
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                            <DatePicker
+                            <DatePicker Height="80" IsEnabled="False"
                         materialDesign:HintAssist.Hint="Ngày sinh"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
                         Margin="10"
@@ -181,7 +181,7 @@
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                            <TextBox
+                            <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Số CCCD"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -195,7 +195,7 @@
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                            <TextBox
+                            <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Địa chỉ"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -209,7 +209,7 @@
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                            <TextBox
+                            <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Số điện thoại"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -223,7 +223,7 @@
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                            <TextBox
+                            <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Tên đăng nhập"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -239,7 +239,7 @@
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                            <TextBox
+                            <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Mật khẩu"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 

@@ -118,7 +118,7 @@ namespace FinalGaraOto
                 Xes Xe1 = new Xes() ;
                 Xe1.BienSo = item.BienSoXe;
                 Xe1.HieuXe = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == item.MaHieuXe).Select(x => x.TenHieuXe).First();
-                Xe1.TenChu = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == item.MaChuXe).Select(x => x.TenChuXe).First();
+                Xe1.ChuXe = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == item.MaChuXe).Select(x => x.TenChuXe).First();
                 Xe1.Ngay = item.NgayTiepNhan.ToString();
                 Xe1.No = item.TienNo.ToString();
                 Xe.Add(Xe1);
@@ -147,7 +147,7 @@ namespace FinalGaraOto
          
             public string BienSo { get; set; }
             public string HieuXe { get; set; }
-            public string TenChu { get; set; }
+            public string ChuXe { get; set; }
             public string Ngay { get; set; }
             public string No { get; set; }
             
