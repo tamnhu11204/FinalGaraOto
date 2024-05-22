@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,16 +130,14 @@ namespace FinalGaraOto
             themNhanVien.ShowDialog();
             this.Close();
         }
-       
 
-        /*private void dtgNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e) //Khi chon 1 hang thi se hien thi sang Groupbox Thong tin chi tiet
+        private void dtgNhanVien_SelectionChanged_1(object sender, SelectionChangedEventArgs e) //Khi chon 1 hang thi se hien thi sang Groupbox Thong tin chi tiet
         {
             if (dtgNhanVien.SelectedIndex.ToString() != null)
             {
-                DataRowView dtr = (DataRowView)dtgNhanVien.SelectedItem;
-                if (dtr != null)
+                if ((DataRowView)dtgNhanVien.SelectedItem != null)
                 {
-                    int Ma = int.Parse(dtr[0].ToString());
+                    int Ma = int.Parse(((DataRowView)dtgNhanVien.SelectedItem)[0].ToString());
                     var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == Ma).FirstOrDefault();
                     txbHoVaTen.Text = l.TenNguoiDung;
                     txbNgaySinh.Text = l.NgaySinhNguoiDung.ToString();
@@ -149,7 +148,52 @@ namespace FinalGaraOto
                     txbMatKhau.Text = l.MatKhau;
                 }
             }
-        }*/
+        }
+
+        private void BtnCapNhap_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbCCCD.Text) || string.IsNullOrEmpty(txbDiaChi.Text) || string.IsNullOrEmpty(txbHoVaTen.Text)
+                || string.IsNullOrEmpty(txbMatKhau.Text) || string.IsNullOrEmpty(txbNgaySinh.Text) || string.IsNullOrEmpty(txbSDT.Text)
+                || string.IsNullOrEmpty(txbTenDangNhap.Text) )
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                int MaNV = int.Parse(txbMa.Text);
+                var TaiKhoan = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == MaNV).Count();
+
+                var n = new NGUOIDUNG();
+
+                n.MaNguoiDung = MaNV;
+                n.TenNguoiDung = txbHoVaTen.Text;
+
+                DateTime? ngaySinh = txbNgaySinh.SelectedDate;
+                if (ngaySinh.HasValue)
+                {
+
+                    n.NgaySinhNguoiDung = ngaySinh.Value;
+                }
+                else
+                {
+                    return;
+                }
+
+                n.CCCDNguoiDung = txbCCCD.Text;
+                n.DiaChiNguoiDung = txbDiaChi.Text;
+                n.SDTNguoiDung = txbSDT.Text;
+                n.TenDangNhap = txbTenDangNhap.Text;
+                n.MatKhau = txbMatKhau.Text;
+
+                DataProvider.Ins.DB.NGUOIDUNGs.AddOrUpdate(n);
+                DataProvider.Ins.DB.SaveChanges();
+
+                MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.Show();
+            }
+            return;
+        }
     }
     public class NhanViens //Khong can cung duoc, tai co Class san ben EntityFramework
     {

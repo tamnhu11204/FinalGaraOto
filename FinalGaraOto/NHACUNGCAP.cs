@@ -24,6 +24,7 @@ namespace FinalGaraOto
         public string SDTNhaCungCap { get; set; }
         public string EmailNhaCungCap { get; set; }
         public string DiachiNhaCungCap { get; set; }
+        public string TenNhaCungCap { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUNHAP> PHIEUNHAPs { get; set; }

@@ -123,7 +123,6 @@ namespace FinalGaraOto
 
         private void LoadDataFromDatabaseNam()
         {
-
             var List = DataProvider.Ins.DB.BAOCAODOANHTHUs.Select(x => x.NamBaoCao.Year).ToList();
             foreach (var item in List)
             {

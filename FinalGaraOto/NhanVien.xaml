@@ -60,7 +60,7 @@
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnDichVu" 
                             Click="dichVu_Tab"
                             ToolTip="Tiếp nhận sửa chữa xe">
@@ -69,7 +69,7 @@
                             <TextBlock Text="Dịch vụ" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnKhoHang" 
                             Click="khoHang_Tab"
                             ToolTip="Xem vật tư phụ tùng">
@@ -78,7 +78,7 @@
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnThongKe" 
                             Click="thongKe_Tab"
                             ToolTip="Xem thống kê tháng" >
@@ -87,7 +87,7 @@
                             <TextBlock Text="Thống kê" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnTuyChon" 
                             Click="tuyChon_Tab"
                             ToolTip="Follow me on Twitter">
@@ -96,7 +96,7 @@
                             <TextBlock Text="Tùy chọn" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnNhanVien" 
                             Click="nhanVien_Tab"
                             ToolTip="Quản lý nhân viên, chức vụ">
@@ -129,7 +129,7 @@
 
                             <DataGrid 
                                 AutoGenerateColumns="False"
-                                Height="599" FontSize="20" x:Name="dtgNhanVien" >
+                                Height="599" FontSize="20" x:Name="dtgNhanVien" SelectionChanged="dtgNhanVien_SelectionChanged_1" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header = "Mã" IsReadOnly="True" Width="*"
                                                         Binding="{Binding Ma}" />
@@ -146,10 +146,11 @@
                         </StackPanel>
 
                         <StackPanel Width="550" Height="813">
-                            <GroupBox Margin="0,11,0,0" Width="476" Height="654" 
+                            <GroupBox Margin="0,11,0,0" Width="476" Height="747" 
                                       Header="Chi tiết thông tin nhân viên" BorderBrush="{DynamicResource MaterialDesignPaper}">
-                                <StackPanel Width="455" Height="557" Orientation="Horizontal">
-                                    <Grid Margin="-50,-30,467,0" Width="127" Height="522" >
+                                <StackPanel Width="454" Orientation="Horizontal" Margin="0,-56,0,79">
+                                    <Grid Margin="-50,100,467,0" Width="127" Height="533" >
+                                        <materialDesign:PackIcon Kind="AccountKey" Margin="73,-50,0,0" Width="40" Height="40"/>
                                         <materialDesign:PackIcon Kind="Account" Margin="73,20,0,0" Width="40" Height="40"/>
                                         <materialDesign:PackIcon Kind="CakeVariantOutline" Margin="73,90,0,0" Width="40" Height="40"/>
                                         <materialDesign:PackIcon Kind="CardAccountDetailsOutline" Margin="73,160,0,0" Width="40" Height="40"/>
@@ -163,7 +164,10 @@
                                             <RowDefinition Height="245*"/>
                                             <RowDefinition Height="319*"/>
                                         </Grid.RowDefinitions>
-                                        <StackPanel Margin="19,0,0,0" Grid.RowSpan="2">
+                                        <StackPanel Margin="19,0,0,-87" Grid.RowSpan="2">
+                                            <TextBox x:Name="txbMa" 
+                                                     materialDesign:HintAssist.Hint="Mã"
+                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350"/>
                                             <TextBox x:Name="txbHoVaTen"
                                                 materialDesign:HintAssist.Hint="Họ và tên"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350"/>
@@ -187,7 +191,7 @@
                                                 materialDesign:HintAssist.Hint="Mật khau"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
 
-                                            <Button Content="Cập nhật" Background="#FF89BAD2"
+                                            <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhap_Click"
                                                     Margin="-380,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                             <Button Content="Xóa" Background="#FFB73E3A"
                                                     Margin="100,-45,0,0" Height="47" Width="119" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
