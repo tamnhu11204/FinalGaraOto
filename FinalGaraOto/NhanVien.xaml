@@ -166,34 +166,34 @@
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="19,0,0,-87" Grid.RowSpan="2">
                                             <TextBox x:Name="txbMa" 
-                                                     materialDesign:HintAssist.Hint="Mã"
+                                                     materialDesign:HintAssist.Hint="Mã nhân viên"
                                                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350"/>
-                                            <TextBox x:Name="txbHoVaTen"
+                                            <TextBox x:Name="txbHoVaTen" 
                                                 materialDesign:HintAssist.Hint="Họ và tên"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350"/>
                                             <DatePicker x:Name="txbNgaySinh"
                                                 Margin="-100,11,0,0" Width="350"
                                                         materialDesign:HintAssist.Hint="Ngày sinh"
                                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" Height="59" FontSize="18" />
-                                            <TextBox x:Name="txbCCCD"
+                                            <TextBox x:Name="txbCCCD" 
                                                 materialDesign:HintAssist.Hint="Số CCCD"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18" Width="350" />
-                                            <TextBox x:Name="txbDiaChi"
+                                            <TextBox x:Name="txbDiaChi" 
                                                 materialDesign:HintAssist.Hint="Địa chỉ"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                            <TextBox x:Name="txbSDT"
+                                            <TextBox x:Name="txbSDT" 
                                                 materialDesign:HintAssist.Hint="Số điện thoại"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                            <TextBox x:Name="txbTenDangNhap"
+                                            <TextBox x:Name="txbTenDangNhap" 
                                                 materialDesign:HintAssist.Hint="Tên đăng nhập"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                            <TextBox x:Name="txbMatKhau"
-                                                materialDesign:HintAssist.Hint="Mật khau"
+                                            <TextBox x:Name="txbMatKhau" 
+                                                materialDesign:HintAssist.Hint="Mật khẩu"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
 
                                             <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhap_Click"
                                                     Margin="-380,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                                            <Button Content="Xóa" Background="#FFB73E3A"
+                                            <Button Content="Xóa" Background="#FFB73E3A" Click="BtnXoa_Click"
                                                     Margin="100,-45,0,0" Height="47" Width="119" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                         </StackPanel>
                                     </Grid>

@@ -122,6 +122,9 @@
       <DependentUpon>DangNhap.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataProvider.cs" />
+    <Compile Include="DoiMatKhau.xaml.cs">
+      <DependentUpon>DoiMatKhau.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DONVITINH.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>
@@ -215,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DichVu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoiMatKhau.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

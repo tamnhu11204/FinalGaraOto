@@ -153,46 +153,79 @@ namespace FinalGaraOto
         private void BtnCapNhap_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txbCCCD.Text) || string.IsNullOrEmpty(txbDiaChi.Text) || string.IsNullOrEmpty(txbHoVaTen.Text)
-                || string.IsNullOrEmpty(txbMatKhau.Text) || string.IsNullOrEmpty(txbNgaySinh.Text) || string.IsNullOrEmpty(txbSDT.Text)
-                || string.IsNullOrEmpty(txbTenDangNhap.Text) )
+                    || string.IsNullOrEmpty(txbMatKhau.Text) || string.IsNullOrEmpty(txbNgaySinh.Text) || string.IsNullOrEmpty(txbSDT.Text)
+                    || string.IsNullOrEmpty(txbTenDangNhap.Text))
             {
                 MessageBox.Show("Hãy điền đầy đủ thông tin");
             }
             else
             {
                 int MaNV = int.Parse(txbMa.Text);
-                var TaiKhoan = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == MaNV).Count();
-
-                var n = new NGUOIDUNG();
+                var n = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == MaNV).SingleOrDefault();
 
                 n.MaNguoiDung = MaNV;
-                n.TenNguoiDung = txbHoVaTen.Text;
 
-                DateTime? ngaySinh = txbNgaySinh.SelectedDate;
-                if (ngaySinh.HasValue)
+                string _TenDangNhap = txbTenDangNhap.Text;
+                var TaiKhoan = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == _TenDangNhap).Count();
+                if (TaiKhoan > 0)
                 {
-
-                    n.NgaySinhNguoiDung = ngaySinh.Value;
+                    MessageBox.Show("Tên đăng nhập đã tồn tại! Hãy dùng tên khác.");
                 }
                 else
                 {
-                    return;
+                    n.TenNguoiDung = txbHoVaTen.Text;
+
+                    DateTime? ngaySinh = txbNgaySinh.SelectedDate;
+                    if (ngaySinh.HasValue)
+                    {
+
+                        n.NgaySinhNguoiDung = ngaySinh.Value;
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    n.CCCDNguoiDung = txbCCCD.Text;
+                    n.DiaChiNguoiDung = txbDiaChi.Text;
+                    n.SDTNguoiDung = txbSDT.Text;
+                    n.TenDangNhap = txbTenDangNhap.Text;
+                    n.MatKhau = txbMatKhau.Text;
+
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật thông tin nhân viên?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
+                        NhanVien nhanVien = new NhanVien();
+                        nhanVien.Show();
+                    }
+                    else return;
                 }
-
-                n.CCCDNguoiDung = txbCCCD.Text;
-                n.DiaChiNguoiDung = txbDiaChi.Text;
-                n.SDTNguoiDung = txbSDT.Text;
-                n.TenDangNhap = txbTenDangNhap.Text;
-                n.MatKhau = txbMatKhau.Text;
-
-                DataProvider.Ins.DB.NGUOIDUNGs.AddOrUpdate(n);
-                DataProvider.Ins.DB.SaveChanges();
-
-                MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
-                NhanVien nhanVien = new NhanVien();
-                nhanVien.Show();
             }
             return;
+        }
+
+        private void BtnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            int MaNV = int.Parse(txbMa.Text);
+            var n = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == MaNV).SingleOrDefault();
+            if (n != null)
+            {
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa nhân viên?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.NGUOIDUNGs.Remove(n);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Xóa nhân viên thành công!");
+                    NhanVien nhanVien = new NhanVien();
+                    this.Close();
+                    nhanVien.Show();
+                }
+                else return;
+            }
         }
     }
     public class NhanViens //Khong can cung duoc, tai co Class san ben EntityFramework

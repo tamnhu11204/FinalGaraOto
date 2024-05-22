@@ -114,6 +114,12 @@
         <Grid Grid.Row="2">
             <DockPanel Height="60" Background="#FFA8A8A8">
                 <TextBlock Margin="16,0,0,0" Text="Thông tin cá nhân" FontSize="35" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DD0C0202" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Đăng xuất" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <materialDesign:PackIcon Margin="11,0,0,0" Kind="AccountArrowRightOutline" Width="25" Height="25"/>
+                    </StackPanel>
+                </Button>
             </DockPanel>
         </Grid>
 
@@ -124,9 +130,13 @@
 
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
-                <GroupBox 
-           Margin="20"
+            <Grid Grid.Column="0" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto" ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <GroupBox 
            Width="600"
            materialDesign:ElevationAssist.Elevation="Dp6"
            Background="White"
@@ -134,122 +144,129 @@
            VerticalAlignment="Center"
            FontSize="25"
            Style="{StaticResource MaterialDesignGroupBox}">
-                    <Grid
+                        <Grid
                 Height="700"
                 Width="600">
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
 
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Account" 
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Account" 
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"
                                              
                                              />
-                            <TextBox IsReadOnly="true"
+                                <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Họ và tên"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10"
                         FontSize="20"  
                         Width="500"/>
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CakeVariantOutline" 
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CakeVariantOutline" 
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                            <DatePicker Height="80" IsEnabled="False"
+                                <DatePicker Height="80" IsEnabled="False"
                         materialDesign:HintAssist.Hint="Ngày sinh"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
                         Margin="10"
                         FontSize="20"  
                         Width="500"/>
 
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Row="2" Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CardAccountDetailsOutline" 
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CardAccountDetailsOutline" 
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                            <TextBox IsReadOnly="true"
+                                <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Số CCCD"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
                         FontSize="20" 
                         Width="500" />
 
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Row="3" Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="MapMarkerRadius" 
+                            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="MapMarkerRadius" 
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                            <TextBox IsReadOnly="true"
+                                <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Địa chỉ"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
                         FontSize="20"  
                         Width="500" />
 
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Row="4" Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Phone" 
+                            <StackPanel Grid.Row="4" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Phone" 
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                            <TextBox IsReadOnly="true"
+                                <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Số điện thoại"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
                         FontSize="20"  
                         Width="500" />
 
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Row="5" Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountBox" 
+                            <StackPanel Grid.Row="5" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="AccountBox" 
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                            <TextBox IsReadOnly="true"
+                                <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Tên đăng nhập"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
                         FontSize="20"  
                         Width="500" />
 
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel Grid.Row="6" Orientation="Horizontal">
-                            <materialDesign:PackIcon
+                            <StackPanel Grid.Row="6" Orientation="Horizontal">
+                                <materialDesign:PackIcon
                         x:Name="IconPass"
                         Kind="Password" 
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                            <TextBox IsReadOnly="true"
+                                <TextBox IsReadOnly="true"
                         materialDesign:HintAssist.Hint="Mật khẩu"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
                         FontSize="20"  
                         Width="500" />
 
-                        </StackPanel>
+                            </StackPanel>
 
-                    </Grid>
-                </GroupBox>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Button Content="Sửa" Background="#FF89BAD2"
+                            Margin="100,0,440,68" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                    <Button Content="Đổi mật khẩu" Background="#FF1D2850"
+                            Margin="500,0,132,68" Height="50" Width="200" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                </Grid>
 
             </Grid>
 

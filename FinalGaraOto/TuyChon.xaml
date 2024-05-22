@@ -112,50 +112,6 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             <TabControl Width="1680" HorizontalAlignment="Center" VerticalAlignment="Center" Height="798" >
                 <TabItem Header="Thông tin chung" Height="48" Width="212" FontSize="20" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}">
                     <StackPanel Width="1684" Margin="0,11,0,0" Orientation="Horizontal">
-                        <StackPanel Width="850" Height="806">
-                            <GroupBox Width="750" Height="700" 
-                                Header="Thông tin tài khoản" BorderBrush="{DynamicResource MaterialDesignPaper}">
-                                <StackPanel Width="555" Height="557" Orientation="Horizontal" Margin="0,17,0,17">
-                                    <Grid Margin="-70,-30,467,0" Width="124" Height="522" >
-                                        <materialDesign:PackIcon Kind="Account" Margin="73,20,0,0" Width="40" Height="40"/>
-                                        <materialDesign:PackIcon Kind="CakeVariantOutline" Margin="73,90,0,0" Width="40" Height="40"/>
-                                        <materialDesign:PackIcon Kind="CardAccountDetailsOutline" Margin="73,160,0,0" Width="40" Height="40"/>
-                                        <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="73,230,0,0" Width="40" Height="40"/>
-                                        <materialDesign:PackIcon Kind="Phone" Margin="73,298,0,0" Width="40" Height="40"/>
-                                        <materialDesign:PackIcon Kind="AccountBox" Margin="73,368,0,0" Width="40" Height="40"/>
-                                    </Grid>
-                                    <Grid Margin="-500,6,0,0" Height="564" Width="700">
-                                        <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742">
-                                            <TextBox
-                                                materialDesign:HintAssist.Hint="Họ và tên"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450                                                 "/>
-                                            <DatePicker Margin="-100,11,0,0" Width="450"
-                                                materialDesign:HintAssist.Hint="Ngày sinh"
-                                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" Height="59" FontSize="18" />
-                                            <TextBox
-                                                materialDesign:HintAssist.Hint="Số CCCD"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18" Width="450" />
-                                            <TextBox
-                                                materialDesign:HintAssist.Hint="Địa chỉ"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
-                                            <TextBox
-                                                materialDesign:HintAssist.Hint="Số điện thoại"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
-                                            <TextBox
-                                                materialDesign:HintAssist.Hint="Tên đăng nhập"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
-
-                                            <Button Content="Cập nhật" Background="#FF89BAD2"
-                                                Margin="-380,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                                            <Button Content="Hoàn tác" Background="#FF3AB73F"
-                                                Margin="100,-45,0,0" Height="47" Width="119" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                                            <Button Content="Đăng xuất" Background="#FF0D0E0E"
-    Margin="-140,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
 
                         <StackPanel Width="850" Height="806">
                             <GroupBox Width="750" Height="306" 

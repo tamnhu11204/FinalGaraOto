@@ -72,7 +72,7 @@
                 </Grid>
             </StackPanel>
             <Button Content="Thoát" Background="#FF1D2850" Click="BtnThoat_Click"
-            Margin="444,596,157,249" Height="50" Width="119" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+            Margin="462,662,139,279" Height="50" Width="119" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
         </Grid>
     </Grid>
 </Window>
