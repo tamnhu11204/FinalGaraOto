@@ -49,6 +49,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         </Grid>
 
         <Grid Grid.Row="1">
+            
             <ToolBarTray Height="60" Background="#FF1B76C6" >
                 <ToolBar ClipToBounds="False" Background="#FF1B76C6"
                          Style="{StaticResource MaterialDesignToolBar}" Margin="0,0,-1690,0">
@@ -184,46 +185,49 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 <TabItem Header="Thông tin tiền công" Height="48" Width="212" FontSize="20" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}">
                     <StackPanel Width="1684" Margin="0,11,0,108" Orientation="Horizontal">
                         <StackPanel Width="1684" Height="806">
-                            <TextBox Margin="0,11,0,0"
-       materialDesign:HintAssist.Hint="Tên tiền công"
-       Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="302" HorizontalAlignment="Left">
+                            <TextBox Margin="0,11,0,0" x:Name="txbTenTienCong"
+                                materialDesign:HintAssist.Hint="Tên tiền công"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="302" HorizontalAlignment="Left">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
 
                             <TextBox Margin="-700,-61,0,0"
-materialDesign:HintAssist.Hint="Giá tiền"
-Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="302" >
+                                materialDesign:HintAssist.Hint="Giá tiền"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="302" >
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
 
                             <Button Content="Tìm kiếm" FontSize="20"
-Margin="-100,-61,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                Margin="-100,-61,0,0" Width="150" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Làm mới" FontSize="20"
-Margin="400,-61,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="400,-61,0,0" Width="150" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Thêm vật tư" FontSize="20"
-Margin="-100,25,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="-100,25,0,0" Width="150" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Sửa" FontSize="20"
-Margin="400,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="400,-50,0,0" Width="150" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Xóa" FontSize="20"
-Margin="900,-210.5,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="900,-210.5,0,0" Width="150" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Xuất danh sách" FontSize="20"
-Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="900,-50,0,0" Width="170" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
-                            <DataGrid Height="600" FontSize="20" Width="1670" Margin="0,50,0,0" >
+                            <DataGrid AutoGenerateColumns="False"
+                                      Height="600" FontSize="20" Width="1670" Margin="0,50,0,0" x:Name="dtgTienCong">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header = "STT" Binding = "{Binding Name}" />
-                                    <DataGridTextColumn Header = "Mã vật tư" Binding = "{Binding Title}" />
-                                    <DataGridCheckBoxColumn Header = "Giá tiền" Binding = "{Binding WasReElected}"/>
-                                    <DataGridComboBoxColumn Header = "Đơn giá" SelectedItemBinding = "{Binding Affiliation}"/>
+                                    <DataGridTextColumn Header = "Mã tiền công" IsReadOnly="True" Width="*"
+                                        Binding="{Binding MaTienCong}" />
+                                    <DataGridTextColumn Header = "Tên tiền công" IsReadOnly="True" Width="*"
+                                        Binding = "{Binding TenTienCong}" />
+                                    <DataGridTextColumn Header = "Giá tiền" IsReadOnly="True" Width="*"
+                                        Binding = "{Binding GiaTienCong}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </StackPanel>
@@ -234,30 +238,30 @@ Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource Mater
                     <StackPanel Width="1684" Margin="0,11,0,-6" Orientation="Horizontal">
                         <StackPanel Width="1684" Height="806">
                             <TextBox Margin="150,11,0,0"
-       materialDesign:HintAssist.Hint="Tên tiền công"
-       Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="400" HorizontalAlignment="Left">
+                                materialDesign:HintAssist.Hint="Tên tiền công"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="400" HorizontalAlignment="Left">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
 
                             <Button Content="Tìm kiếm" FontSize="20"
-Margin="-100,-61,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="-100,-61,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Làm mới" FontSize="20"
-Margin="400,-61,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="400,-61,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Thêm hãng xe" FontSize="20"
-Margin="-100,25,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="-100,25,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Sửa" FontSize="20"
-Margin="400,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="400,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Xóa" FontSize="20"
-Margin="900,-210.5,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="900,-210.5,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Xuất danh sách" FontSize="20"
-Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
                             <DataGrid Height="600" FontSize="20" Width="1670" Margin="0,50,0,0" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header = "STT" Binding = "{Binding Name}" />
@@ -274,46 +278,46 @@ Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource Mater
                     <StackPanel Width="1684" Margin="0,11,0,-6" Orientation="Horizontal">
                         <StackPanel Width="1684" Height="806">
                             <TextBox Margin="10,11,0,0"
-       materialDesign:HintAssist.Hint="Tên nhà cung cấp"
-       Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
+                                materialDesign:HintAssist.Hint="Tên nhà cung cấp"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
 
                             <TextBox Margin="340,-61,0,0"
-materialDesign:HintAssist.Hint="Số điện thoại"
-Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
+                                     materialDesign:HintAssist.Hint="Số điện thoại"
+                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
 
                             <TextBox Margin="10,11,0,0"
-materialDesign:HintAssist.Hint="Email"
-Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
+                                     materialDesign:HintAssist.Hint="Email"
+                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
                                 <TextBox.Text>
                                     <Binding Path="Text2" />
                                 </TextBox.Text>
                             </TextBox>
 
                             <Button Content="Tìm kiếm" FontSize="20"
-Margin="-100,-200,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="-100,-200,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Làm mới" FontSize="20"
-Margin="400,-200,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="400,-200,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Thêm nhà cung cấp" FontSize="20"
-Margin="-100,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="-100,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Sửa" FontSize="20"
-Margin="400,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="400,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Xóa" FontSize="20"
-Margin="900,-210.5,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="900,-210.5,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Xuất danh sách" FontSize="20"
-Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
                             <DataGrid Height="600" FontSize="20" Width="1670" Margin="0,50,0,0" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header = "STT" Binding = "{Binding Name}" />

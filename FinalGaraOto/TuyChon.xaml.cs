@@ -26,6 +26,7 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadSoXeTiepNhan();
             LoadNhanVienList();
+            LoadTienCong();
         }
 
 
@@ -211,5 +212,62 @@ namespace FinalGaraOto
             this.Close();
         }
         #endregion
+        void LoadTienCong() //Hien thi tien cong len datagrid
+        {
+            ObservableCollection<TIENCONG> tiencong = new ObservableCollection<TIENCONG>();
+            var List = DataProvider.Ins.DB.TIENCONGs.ToList();
+            foreach (var item in List)
+            {
+                TIENCONG tIENCONG = new TIENCONG();
+                tIENCONG.MaTienCong = item.MaTienCong;
+                tIENCONG.TenTienCong = item.TenTienCong;
+                tIENCONG.GiaTienCong = item.GiaTienCong;
+                tiencong.Add(tIENCONG);
+                dtgTienCong.ItemsSource = tiencong;
+            }
+
+        }
+
+        private void txbTenTienCong_TextChanged(object sender, TextChangedEventArgs e) //tim kiem khi chu thay doi
+        {
+            string text = txbTenTienCong.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.TIENCONGs.ToList();
+            int test = 1;
+            foreach (var item in List)
+            {
+                string _tenTC = item.TenTienCong.ToLower();
+                if (_tenTC.Contains(text))
+                {
+                    test = 0;
+                    break;
+                }
+                else
+                {
+                    LoadTienCong();
+                }
+            }
+
+            /*foreach (DataRow row in dtgTienCong.Rows)
+            {
+                // Kiểm tra xem giá trị trong mỗi cột có chứa ký tự 'n' hay không
+                bool containsN = false;
+                foreach (DataColumn column in dtgTienCong.Columns)
+                {
+                    if (row[column].ToString().ToLower().Contains(text))
+                    {
+                        containsN = true;
+                        break;
+                    }
+                }
+
+                // Nếu có chứa ký tự 'n', thêm dòng dữ liệu vào danh sách lọc
+                if (containsN)
+                {
+                    filteredData.Add(row);
+                }
+            }*/
+        }
+
     }
 }
