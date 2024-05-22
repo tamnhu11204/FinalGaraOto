@@ -26,6 +26,7 @@ namespace FinalGaraOto
         {
             InitializeComponent();
             LoaddsXeList();
+            LoadComboBoxHieuXe();
         }
 
         #region scroll bar button
@@ -127,21 +128,14 @@ namespace FinalGaraOto
 
         }
 
-        /*void LoadNhanVienList() //Hien thi nhan vien len datagrid
+        void LoadComboBoxHieuXe() //Hien thi cac item trong combobox
         {
-            ObservableCollection<NhanViens> nhanViens = new ObservableCollection<NhanViens>();
-            var List = DataProvider.Ins.DB.NGUOIDUNGs.ToList();
+            var List = DataProvider.Ins.DB.HIEUXEs.Select(x => x.TenHieuXe).ToList();
             foreach (var item in List)
             {
-                NhanViens nhanViens1 = new NhanViens();
-                nhanViens1.Ma = item.MaNguoiDung;
-                nhanViens1.HoVaTen = item.TenNguoiDung;
-                nhanViens1.ChucVu = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == item.MaNhom).Select(x => x.TenNhom).First().ToString();
-                nhanViens.Add(nhanViens1);
-                dtgNhanVien.ItemsSource = nhanViens;
+                cbbHieuXe.Items.Add(item);
             }
-
-        } */
+        }
         public class Xes
         {
          

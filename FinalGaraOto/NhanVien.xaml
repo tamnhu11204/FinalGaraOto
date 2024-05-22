@@ -129,7 +129,7 @@
 
                             <DataGrid 
                                 AutoGenerateColumns="False"
-                                Height="599" FontSize="20" x:Name="dtgNhanVien" SelectionChanged="dtgNhanVien_SelectionChanged_1" >
+                                Height="599" FontSize="20" x:Name="dtgNhanVien" SelectionChanged="dtgNhanVien_SelectionChanged_1" SelectionMode="Single" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header = "Mã" IsReadOnly="True" Width="*"
                                                         Binding="{Binding Ma}" />

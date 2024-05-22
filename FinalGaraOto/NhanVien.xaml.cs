@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
+
 namespace FinalGaraOto
 {
     /// <summary>
@@ -74,6 +76,7 @@ namespace FinalGaraOto
                 nhanViens.Add(nhanViens1);
                 dtgNhanVien.ItemsSource = nhanViens;
             }
+           
 
         }
 
@@ -150,6 +153,8 @@ namespace FinalGaraOto
             }
         }
 
+       
+
         private void BtnCapNhap_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txbCCCD.Text) || string.IsNullOrEmpty(txbDiaChi.Text) || string.IsNullOrEmpty(txbHoVaTen.Text)
@@ -208,6 +213,7 @@ namespace FinalGaraOto
             return;
         }
 
+
         private void BtnXoa_Click(object sender, RoutedEventArgs e)
         {
             int MaNV = int.Parse(txbMa.Text);
@@ -228,6 +234,7 @@ namespace FinalGaraOto
                 else return;
             }
         }
+
     }
     public class NhanViens //Khong can cung duoc, tai co Class san ben EntityFramework
     {
