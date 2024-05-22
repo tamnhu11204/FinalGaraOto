@@ -133,20 +133,20 @@ namespace FinalGaraOto
 
         private void dtgNhanVien_SelectionChanged_1(object sender, SelectionChangedEventArgs e) //Khi chon 1 hang thi se hien thi sang Groupbox Thong tin chi tiet
         {
-            if (dtgNhanVien.SelectedIndex.ToString() != null)
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
             {
-                if ((DataRowView)dtgNhanVien.SelectedItem != null)
-                {
-                    int Ma = int.Parse(((DataRowView)dtgNhanVien.SelectedItem)[0].ToString());
-                    var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == Ma).FirstOrDefault();
-                    txbHoVaTen.Text = l.TenNguoiDung;
-                    txbNgaySinh.Text = l.NgaySinhNguoiDung.ToString();
-                    txbCCCD.Text = l.CCCDNguoiDung;
-                    txbDiaChi.Text = l.DiaChiNguoiDung;
-                    txbSDT.Text = l.SDTNguoiDung;
-                    txbTenDangNhap.Text = l.TenDangNhap;
-                    txbMatKhau.Text = l.MatKhau;
-                }
+                int Ma = selected_row.Ma;
+                txbMa.Text = selected_row.Ma.ToString();
+                var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == Ma).SingleOrDefault();
+                txbHoVaTen.Text = selected_row.HoVaTen;
+                txbNgaySinh.Text = l.NgaySinhNguoiDung.ToString();
+                txbCCCD.Text = l.CCCDNguoiDung;
+                txbDiaChi.Text = l.DiaChiNguoiDung;
+                txbSDT.Text = l.SDTNguoiDung;
+                txbTenDangNhap.Text = l.TenDangNhap;
+                txbMatKhau.Text = l.MatKhau;
             }
         }
 
@@ -200,6 +200,7 @@ namespace FinalGaraOto
                         MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
                         NhanVien nhanVien = new NhanVien();
                         nhanVien.Show();
+                        this.Close();
                     }
                     else return;
                 }
@@ -221,8 +222,8 @@ namespace FinalGaraOto
 
                     MessageBox.Show("Xóa nhân viên thành công!");
                     NhanVien nhanVien = new NhanVien();
-                    this.Close();
                     nhanVien.Show();
+                    this.Close();
                 }
                 else return;
             }

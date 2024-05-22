@@ -262,7 +262,7 @@
                     </GroupBox>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Content="Sửa" Background="#FF89BAD2"
+                    <Button Content="Cập nhật" Background="#FF89BAD2"
                             Margin="100,0,440,68" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                     <Button Content="Đổi mật khẩu" Background="#FF1D2850"
                             Margin="500,0,132,68" Height="50" Width="200" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>

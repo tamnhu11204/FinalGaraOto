@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,8 @@ namespace FinalGaraOto
         public TuyChon()
         {
             InitializeComponent();
+            LoadSoXeTiepNhan();
+            LoadNhanVienList();
         }
 
 
@@ -105,13 +109,107 @@ namespace FinalGaraOto
         }
         #endregion
 
+        #region ThongTinGara va DonViVTPT
+        void LoadSoXeTiepNhan() //Hien thi so xe tiep nhan
+        {
+            var S = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo=="X").SingleOrDefault();
+            txbSoXeTiepNhan.Text=S.GiaTri.ToString();
+        }
 
+        private void BtnCapNhatSoXe_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbSoXeTiepNhan.Text))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật số xe tiếp nhận trong ngày?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    var S = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "X").SingleOrDefault();
+                    S.GiaTri = int.Parse(txbSoXeTiepNhan.Text);
 
+                    DataProvider.Ins.DB.SaveChanges();
 
+                    MessageBox.Show("Cập nhật thành công!");
 
+                    TuyChon tuychon_=new TuyChon();
+                    tuychon_.Show();
+                    this.Close();
+                }
+                else return;
+            }
+        }
+        void LoadNhanVienList() //Hien thi don vi VTPT len datagrid
+        {
+            ObservableCollection<DONVITINH> donvi = new ObservableCollection<DONVITINH>();
+            var List = DataProvider.Ins.DB.DONVITINHs.ToList();
+            foreach (var item in List)
+            {
+                DONVITINH d = new DONVITINH();
+                d.MaDVT = item.MaDVT;
+                d.TenDVT = item.TenDVT;
+                donvi.Add(d);
+                dtgDonVi.ItemsSource = donvi;
+            }
+        }
 
+        private void BtnCapNhapDVT_Click(object sender, RoutedEventArgs e) //Cap nhat don vi tinh
+        {
+            if (string.IsNullOrEmpty(txbMaDVT.Text) || string.IsNullOrEmpty(txbTenDVT.Text))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                int MaDVT = int.Parse(txbMaDVT.Text);
+                var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
 
+                n.MaDVT = MaDVT;
+                n.TenDVT=txbTenDVT.Text;
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật đơn vị vật tư phụ tùng?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.SaveChanges();
 
+                    MessageBox.Show("Cập nhật thành công!");
 
+                    TuyChon tuychon_ = new TuyChon();
+                    tuychon_.Show();
+                    this.Close();
+                }
+                else return;
+            }
+        }
+
+        private void BtnXoaDVT_Click(object sender, RoutedEventArgs e) //Xoa don vi tinh
+        {
+            int MaDVT = int.Parse(txbMaDVT.Text);
+            var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
+            if (n != null)
+            {
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa đơn vị tính?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.DONVITINHs.Remove(n);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Xóa đơn vị tính thành công!");
+
+                    TuyChon tuychon_ = new TuyChon();
+                    tuychon_.Show();
+                    this.Close();
+                }
+                else return;
+            }
+        }
+        private void BtnThemDVT_Click(object sender, RoutedEventArgs e)
+        {
+            ThemDonVi themDonVi = new ThemDonVi();
+            themDonVi.ShowDialog();
+            this.Close();
+        }
+        #endregion
     }
 }

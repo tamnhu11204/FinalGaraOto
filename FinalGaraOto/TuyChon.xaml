@@ -110,13 +110,13 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         </Grid>
         <Grid Grid.Row="3">
             <TabControl Width="1680" HorizontalAlignment="Center" VerticalAlignment="Center" Height="798" >
-                <TabItem Header="Thông tin chung" Height="48" Width="212" FontSize="20" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}">
+                <TabItem Header="Thông tin gara và Đơn vị VTPT" Height="48" Width="231" FontSize="20" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}">
                     <StackPanel Width="1684" Margin="0,11,0,0" Orientation="Horizontal">
 
                         <StackPanel Width="850" Height="806">
-                            <GroupBox Width="750" Height="306" 
-                                Header="Thông tin Gara" BorderBrush="{DynamicResource MaterialDesignPaper}">
-                                <StackPanel Width="555" Height="557" Orientation="Horizontal" Margin="0,17,0,17">
+                            <GroupBox Margin="0,20,0,0" Width="750" Height="306" 
+                                Header="Thông tin Gara" BorderBrush="{DynamicResource MaterialDesignPaper}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <StackPanel Width="556" Orientation="Horizontal" Margin="0,17,0,-351">
                                     <Grid Margin="-70,-30,467,0" Width="124" Height="522" >
                                         <materialDesign:PackIcon Kind="Car" Margin="73,20,0,0" Width="40" Height="40"/>
 
@@ -127,44 +127,52 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                             <RowDefinition Height="127*"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
-                                            <TextBox
+                                            <TextBox x:Name="txbSoXeTiepNhan"
                                                 materialDesign:HintAssist.Hint="Số xe tiếp nhận tối đa"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
                                             <CheckBox Background="#FFEDEBF1" Width="18" Margin="-640,20,0,0" RenderTransformOrigin="-5.333,0.457" ClickMode="Hover" ></CheckBox>
                                             <TextBlock Text="Cho phép trả vượt tiền nợ" Width="250" Margin="-350,-25,0,0"/>
-                                            <Button Content="Cập nhật" Background="#FF89BAD2"
-                                                Margin="-380,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                                            <Button Content="Hoàn tác" Background="#FF3AB73F"
-                                                Margin="100,-46,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                                            <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhatSoXe_Click"
+                                                Margin="-150,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox Width="750" Height="374"  Margin="0,20,0,0"
-                                Header="Đổi mật khẩu" BorderBrush="{DynamicResource MaterialDesignPaper}">
-                                <StackPanel Width="555" Height="557" Orientation="Horizontal" Margin="0,17,0,17">
+                        </StackPanel>
+                        <StackPanel>
+                            <GroupBox Width="750" Height="683"  Margin="0,20,0,0"
+                                Header="Đơn vị vật tư phụ tùng" BorderBrush="{DynamicResource MaterialDesignPaper}">
+                                <StackPanel Width="682" Height="557" Orientation="Horizontal" Margin="0,32,0,31">
                                     <Grid Margin="-70,-30,467,0" Width="124" Height="522" >
-                                        <materialDesign:PackIcon Kind="LockMinus" Margin="73,20,0,0" Width="40" Height="40"/>
-                                        <materialDesign:PackIcon Kind="Lock" Margin="73,90,0,0" Width="40" Height="40" />
-                                        <materialDesign:PackIcon Kind="LockCheck" Margin="73,160,0,0" Width="40" Height="40" />
                                     </Grid>
-                                    <Grid Margin="-500,6,0,0" Height="564" Width="700">
+                                    <Grid Margin="-520,6,0,0" Height="564" Width="700">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="61*"/>
                                             <RowDefinition Height="127*"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
-                                            <TextBox
-                                                materialDesign:HintAssist.Hint="Nhập mật khẩu cũ"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
-                                            <TextBox
-                                                materialDesign:HintAssist.Hint="Nhập mật khẩu mới"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
-                                            <TextBox
-                                                materialDesign:HintAssist.Hint="Nhập lại mật khẩu mới"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
-                                            <Button Content="Cập nhật" Background="#FF89BAD2"
-                                                Margin="-120,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                                            <TextBox x:Name="txbMaDVT"
+                                                materialDesign:HintAssist.Hint="Mã đơn vị"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,11,0,0" FontSize="18"  Width="450" />
+                                            <TextBox x:Name="txbTenDVT"
+                                                materialDesign:HintAssist.Hint="Tên đơn vị"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,11,0,0" FontSize="18"  Width="450" />
+                                            <Button Content="Thêm" Background="#FF1B76C6" Click="BtnThemDVT_Click"
+                                                Margin="-310,20,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                                            <Button Content="Xóa" Background="#FFB73E3A" Click="BtnXoaDVT_Click"
+                                                Margin="310,-50,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                                            <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhapDVT_Click"
+                                                Margin="0,-50,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                                            <DataGrid 
+                                                AutoGenerateColumns="False" Margin="0,20,0,0"
+                                                Height="320" FontSize="20" x:Name="dtgDonVi" Width="600">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Header = "Mã đơn vị" IsReadOnly="True" Width="*"
+                                                        Binding="{Binding MaDVT}" />
+                                                    <DataGridTextColumn Header = "Tên đơn vị" IsReadOnly="True" Width="*"
+                                                        Binding = "{Binding TenDVT}" />
+                                                </DataGrid.Columns>
+                                            </DataGrid>
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>

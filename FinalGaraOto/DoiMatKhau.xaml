@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DoiMatKhau" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-Height="800" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen">
+Height="600" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -23,7 +23,7 @@ Height="800" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen"
                 </DockPanel>
             </materialDesign:ColorZone>
         </Grid>
-        <Grid Grid.Row="1" Margin="0,144,0,0">
+        <Grid Grid.Row="1" Margin="0,78,0,0">
             <StackPanel Width="555" Height="557" Orientation="Horizontal" Margin="0,17,0,17">
                 <Grid Margin="-70,-30,467,0" Width="124" Height="522" >
                     <materialDesign:PackIcon Kind="LockMinus" Margin="73,20,0,0" Width="40" Height="40"/>
@@ -31,11 +31,15 @@ Height="800" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen"
                     <materialDesign:PackIcon Kind="LockCheck" Margin="73,160,0,0" Width="40" Height="40" />
                 </Grid>
                 <Grid Margin="-500,6,0,0" Height="564" Width="700">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="83*"/>
+                        <ColumnDefinition Width="92*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="61*"/>
                         <RowDefinition Height="127*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Margin="-42,0,0,-85" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
+                    <StackPanel Margin="-42,0,0,-85" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2" Grid.ColumnSpan="2">
                         <TextBox
                 materialDesign:HintAssist.Hint="Nhập mật khẩu cũ"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,20,0,0" FontSize="20"  Width="450" />
@@ -53,6 +57,6 @@ Height="800" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen"
                 </Grid>
             </StackPanel>
         </Grid>
-        
+
     </Grid>
 </Window>
