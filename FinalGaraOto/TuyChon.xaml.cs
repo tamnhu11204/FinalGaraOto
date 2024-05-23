@@ -25,7 +25,7 @@ namespace FinalGaraOto
         {
             InitializeComponent();
             LoadSoXeTiepNhan();
-            LoadNhanVienList();
+            LoadDVT();
             LoadTienCong();
         }
 
@@ -111,13 +111,16 @@ namespace FinalGaraOto
         #endregion
 
         #region ThongTinGara va DonViVTPT
+
+        int Ma;
+        dynamic g;
         void LoadSoXeTiepNhan() //Hien thi so xe tiep nhan
         {
-            var S = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo=="X").SingleOrDefault();
-            txbSoXeTiepNhan.Text=S.GiaTri.ToString();
+            var S = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "X").SingleOrDefault();
+            txbSoXeTiepNhan.Text = S.GiaTri.ToString();
         }
 
-        private void BtnCapNhatSoXe_Click(object sender, RoutedEventArgs e)
+        private void BtnCapNhatSoXe_Click(object sender, RoutedEventArgs e) //cap nhat so xe
         {
             if (string.IsNullOrEmpty(txbSoXeTiepNhan.Text))
             {
@@ -135,14 +138,12 @@ namespace FinalGaraOto
 
                     MessageBox.Show("Cập nhật thành công!");
 
-                    TuyChon tuychon_=new TuyChon();
-                    tuychon_.Show();
-                    this.Close();
+                    LoadSoXeTiepNhan();
                 }
                 else return;
             }
         }
-        void LoadNhanVienList() //Hien thi don vi VTPT len datagrid
+        void LoadDVT() //Hien thi don vi VTPT len datagrid
         {
             ObservableCollection<DONVITINH> donvi = new ObservableCollection<DONVITINH>();
             var List = DataProvider.Ins.DB.DONVITINHs.ToList();
@@ -168,7 +169,7 @@ namespace FinalGaraOto
                 var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
 
                 n.MaDVT = MaDVT;
-                n.TenDVT=txbTenDVT.Text;
+                n.TenDVT = txbTenDVT.Text;
                 MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật đơn vị vật tư phụ tùng?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (r == MessageBoxResult.Yes)
                 {
@@ -176,9 +177,7 @@ namespace FinalGaraOto
 
                     MessageBox.Show("Cập nhật thành công!");
 
-                    TuyChon tuychon_ = new TuyChon();
-                    tuychon_.Show();
-                    this.Close();
+                    LoadDVT();
                 }
                 else return;
             }
@@ -186,32 +185,51 @@ namespace FinalGaraOto
 
         private void BtnXoaDVT_Click(object sender, RoutedEventArgs e) //Xoa don vi tinh
         {
-            int MaDVT = int.Parse(txbMaDVT.Text);
-            var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
-            if (n != null)
+            if (string.IsNullOrEmpty(txbMaDVT.Text) || string.IsNullOrEmpty(txbTenDVT.Text))
             {
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa đơn vị tính?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (r == MessageBoxResult.Yes)
-                {
-                    DataProvider.Ins.DB.DONVITINHs.Remove(n);
-                    DataProvider.Ins.DB.SaveChanges();
-
-                    MessageBox.Show("Xóa đơn vị tính thành công!");
-
-                    TuyChon tuychon_ = new TuyChon();
-                    tuychon_.Show();
-                    this.Close();
-                }
-                else return;
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
             }
+            else
+            {
+                int MaDVT = int.Parse(txbMaDVT.Text);
+                var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
+                if (n != null)
+                {
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa đơn vị tính?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.DONVITINHs.Remove(n);
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Xóa đơn vị tính thành công!");
+
+                        LoadDVT();
+                    }
+                    else return;
+                }
+            }
+               
         }
-        private void BtnThemDVT_Click(object sender, RoutedEventArgs e)
+        private void BtnThemDVT_Click(object sender, RoutedEventArgs e) //chuyen sang window ThemDVT
         {
             ThemDonVi themDonVi = new ThemDonVi();
             themDonVi.ShowDialog();
             this.Close();
         }
+        private void dtgDonVi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                txbMaDVT.Text = selected_row.MaDVT.ToString();
+                txbTenDVT.Text = selected_row.TenDVT.ToString();
+            }
+        }
         #endregion
+
+
+        #region TienCong
         void LoadTienCong() //Hien thi tien cong len datagrid
         {
             ObservableCollection<TIENCONG> tiencong = new ObservableCollection<TIENCONG>();
@@ -224,50 +242,120 @@ namespace FinalGaraOto
                 tIENCONG.GiaTienCong = item.GiaTienCong;
                 tiencong.Add(tIENCONG);
                 dtgTienCong.ItemsSource = tiencong;
+
             }
-
         }
-
-        private void txbTenTienCong_TextChanged(object sender, TextChangedEventArgs e) //tim kiem khi chu thay doi
+        private void txbTenTienCong_TextChanged(object sender, TextChangedEventArgs e) //tim kiem khi txbTenTC thay doi
         {
+            ObservableCollection<TIENCONG> tiencong = new ObservableCollection<TIENCONG>();
             string text = txbTenTienCong.Text.ToLower();
 
             var List = DataProvider.Ins.DB.TIENCONGs.ToList();
-            int test = 1;
             foreach (var item in List)
             {
                 string _tenTC = item.TenTienCong.ToLower();
                 if (_tenTC.Contains(text))
                 {
-                    test = 0;
-                    break;
-                }
-                else
-                {
-                    LoadTienCong();
+                    tiencong.Add(item);
                 }
             }
-
-            /*foreach (DataRow row in dtgTienCong.Rows)
-            {
-                // Kiểm tra xem giá trị trong mỗi cột có chứa ký tự 'n' hay không
-                bool containsN = false;
-                foreach (DataColumn column in dtgTienCong.Columns)
-                {
-                    if (row[column].ToString().ToLower().Contains(text))
-                    {
-                        containsN = true;
-                        break;
-                    }
-                }
-
-                // Nếu có chứa ký tự 'n', thêm dòng dữ liệu vào danh sách lọc
-                if (containsN)
-                {
-                    filteredData.Add(row);
-                }
-            }*/
+            dtgTienCong.ItemsSource = tiencong;
         }
 
+        private void BtnLamMoiTC_Click(object sender, RoutedEventArgs e) //Reset lai du lieu 
+        {
+            txbTenTienCong.Text = "";
+            txbGiaTienDuoi.Text = "";
+            txbGiaTienTren.Text = "";
+            LoadTienCong();
+        }
+
+        private void BtnThemTC_Click(object sender, RoutedEventArgs e) //chuyen sang window ThemTienCong
+        {
+            ThemTienCong themTienCong = new ThemTienCong();
+            themTienCong.ShowDialog();
+            this.Close();
+        }
+        private void BtnSuaTC_Click(object sender, RoutedEventArgs e) //cap nhat thong tin tien cong
+        {
+            DataGrid grid = (DataGrid)dtgTienCong;
+            dynamic t = grid.SelectedItem;
+            /*if (string.IsNullOrEmpty(t.MaTienCong) || string.IsNullOrEmpty(t.TenTienCong) || string.IsNullOrEmpty(t.GiaTienCong))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                int MaTC = t.MaTienCong;
+                var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
+
+                n.MaTienCong = MaTC;
+                n.TenTienCong = t.TenTienCong;
+                n.GiaTienCong=t.GiaTienCong;
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Cập nhật thành công!");
+
+                    LoadTienCong();
+                }
+                else return;
+            }*/
+            
+            /*MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (r == MessageBoxResult.Yes)
+            {
+                int MaTC = t.MaTienCong;
+                string TenTC= t.TenTienCong;
+                var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
+              
+                n.MaTienCong = MaTC;
+                n.TenTienCong = t.TenTienCong;
+                MessageBox.Show(MaTC.ToString()+TenTC.ToString());
+                n.GiaTienCong = t.GiaTienCong;
+                DataProvider.Ins.DB.SaveChanges();
+
+                MessageBox.Show("Cập nhật thành công!");
+
+                LoadTienCong();
+            }
+            else return;*/
+        }
+        private void BtnXoaTC_Click(object sender, RoutedEventArgs e) //xoa tien cong
+        {
+            DataGrid grid = (DataGrid)dtgTienCong;
+            dynamic t = grid.SelectedItem;
+            int MaTC = t.MaTienCong;
+            var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
+            if (n != null)
+            {
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.TIENCONGs.Remove(n);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Xóa tiền công thành công!");
+
+                    LoadTienCong();
+                }
+                else return;
+            }
+        }
+
+        /*private void dtgTienCong_SelectionChanged(object sender, SelectionChangedEventArgs e, string n)
+        {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                Ma = selected_row.MaTienCong;
+
+                g = selected_row as dynamic;
+            }
+        }*/
+        #endregion
     }
 }

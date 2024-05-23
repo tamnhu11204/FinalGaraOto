@@ -127,7 +127,7 @@ namespace FinalGaraOto
         }
         #endregion
 
-        private void Btn_ThemNhanVien(object sender, RoutedEventArgs e)
+        private void Btn_ThemNhanVien(object sender, RoutedEventArgs e) //chuyen sang window ThemNhanVien
         {
             ThemNhanVien themNhanVien = new ThemNhanVien();
             themNhanVien.ShowDialog();
@@ -155,7 +155,7 @@ namespace FinalGaraOto
 
        
 
-        private void BtnCapNhap_Click(object sender, RoutedEventArgs e)
+        private void BtnCapNhap_Click(object sender, RoutedEventArgs e) //cap nhat thong tin nhan vien
         {
             if (string.IsNullOrEmpty(txbCCCD.Text) || string.IsNullOrEmpty(txbDiaChi.Text) || string.IsNullOrEmpty(txbHoVaTen.Text)
                     || string.IsNullOrEmpty(txbMatKhau.Text) || string.IsNullOrEmpty(txbNgaySinh.Text) || string.IsNullOrEmpty(txbSDT.Text)
@@ -203,9 +203,7 @@ namespace FinalGaraOto
                         DataProvider.Ins.DB.SaveChanges();
 
                         MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
-                        NhanVien nhanVien = new NhanVien();
-                        nhanVien.Show();
-                        this.Close();
+                        LoadNhanVienList();
                     }
                     else return;
                 }
@@ -214,7 +212,7 @@ namespace FinalGaraOto
         }
 
 
-        private void BtnXoa_Click(object sender, RoutedEventArgs e)
+        private void BtnXoa_Click(object sender, RoutedEventArgs e) //xoa nhan vien
         {
             int MaNV = int.Parse(txbMa.Text);
             var n = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == MaNV).SingleOrDefault();
@@ -227,9 +225,7 @@ namespace FinalGaraOto
                     DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Xóa nhân viên thành công!");
-                    NhanVien nhanVien = new NhanVien();
-                    nhanVien.Show();
-                    this.Close();
+                    LoadNhanVienList();
                 }
                 else return;
             }

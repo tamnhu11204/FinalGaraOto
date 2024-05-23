@@ -165,7 +165,7 @@
                                             <RowDefinition Height="319*"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="19,0,0,-87" Grid.RowSpan="2">
-                                            <TextBox x:Name="txbMa" 
+                                            <TextBox x:Name="txbMa" IsReadOnly="True"
                                                      materialDesign:HintAssist.Hint="Mã nhân viên"
                                                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350"/>
                                             <TextBox x:Name="txbHoVaTen" 
