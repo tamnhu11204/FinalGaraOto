@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +29,34 @@ namespace FinalGaraOto
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+        private void BtnThem_Click(object sender, RoutedEventArgs e) //Them tien cong
+        {
+            if (string.IsNullOrEmpty(txbTenTienCong.Text) || string.IsNullOrEmpty(txbGiaTienCong.Text))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                var n = new TIENCONG();
+                n.TenTienCong = txbTenTienCong.Text;
+                n.GiaTienCong = Decimal.Parse(txbGiaTienCong.Text);
+
+                DataProvider.Ins.DB.TIENCONGs.Add(n);
+                DataProvider.Ins.DB.SaveChanges();
+
+                MessageBox.Show("Thêm tiền công thành công!");
+
+                TuyChon tuychon_ = new TuyChon();
+                this.Close();
+                tuychon_.Show();
+            }
+        }
+        private void BtnThoat_Click(object sender, RoutedEventArgs e)
+        {
+            TuyChon tuychon_ = new TuyChon();
+            this.Close();
+            tuychon_.Show();
         }
     }
 }

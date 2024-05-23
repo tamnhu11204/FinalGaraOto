@@ -110,7 +110,8 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             </DockPanel>
         </Grid>
         <Grid Grid.Row="3">
-            <TabControl Width="1680" HorizontalAlignment="Center" VerticalAlignment="Center" Height="798" >
+            <TabControl x:Name="tabcontrolTuyChon" 
+                Width="1680" HorizontalAlignment="Center" VerticalAlignment="Center" Height="798" >
                 <TabItem Header="Thông tin gara và Đơn vị VTPT" Height="48" Width="231" FontSize="20" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}">
                     <StackPanel Width="1684" Margin="0,11,0,0" Orientation="Horizontal">
 
@@ -152,17 +153,17 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                             <RowDefinition Height="127*"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
-                                            <TextBox x:Name="txbMaDVT" IsReadOnly="True"
+                                            <TextBox x:Name="txbTenDVT" 
                                                 materialDesign:HintAssist.Hint="Mã đơn vị"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,11,0,0" FontSize="18"  Width="450" />
-                                            <TextBox x:Name="txbTenDVT" 
+                                            <TextBox x:Name="txbMaDVT" 
                                                 materialDesign:HintAssist.Hint="Tên đơn vị"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,11,0,0" FontSize="18"  Width="450" />
-                                            <Button Content="Thêm" Background="#FF1B76C6" Click="BtnThemDVT_Click"
+                                            <Button Content="Thêm" Background="#FF89BAD2" Click="BtnThemDVT_Click"
                                                 Margin="-310,20,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                             <Button Content="Xóa" Background="#FFB73E3A" Click="BtnXoaDVT_Click"
                                                 Margin="310,-50,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                                            <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhapDVT_Click"
+                                            <Button Content="Cập nhật" Background="#FF1B76C6" Click="BtnCapNhapDVT_Click"
                                                 Margin="0,-50,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                             <DataGrid 
                                                 AutoGenerateColumns="False" Margin="0,20,0,0"
@@ -183,8 +184,8 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 </TabItem>
 
                 <TabItem Header="Thông tin tiền công" Height="48" Width="212" FontSize="20" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}">
-                    <StackPanel Width="1684" Margin="0,11,0,108" Orientation="Horizontal">
-                        <StackPanel Width="1684" Height="806">
+                    <StackPanel Width="1600" Margin="0,11,0,108" Orientation="Horizontal">
+                        <StackPanel Width="1600" Height="806">
                             <TextBox Margin="0,11,0,0" x:Name="txbTenTienCong" TextChanged="txbTenTienCong_TextChanged"
                                 materialDesign:HintAssist.Hint="Tên tiền công"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="302" HorizontalAlignment="Left">
@@ -193,7 +194,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 </TextBox.Text>
                             </TextBox>
 
-                            <TextBox Margin="-700,-61,0,0" x:Name="txbGiaTienDuoi"
+                            <TextBox Margin="-665,-61,0,0" x:Name="txbGiaTienDuoi"
                                 materialDesign:HintAssist.Hint="Giá tiền từ"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="240" >
                                 <TextBox.Text>
@@ -209,13 +210,13 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             </TextBox>
 
                             <Button Content="Làm mới" FontSize="20" Click="BtnLamMoiTC_Click"
-                                    Margin="800,-61,0,0" Width="150" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF2D8138" />
+                                    Margin="850,-61,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF2D8138" />
 
                             <Button Content="Thêm tiền công" FontSize="20" Click="BtnThemTC_Click"
                                     Margin="1300,-60,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <DataGrid AutoGenerateColumns="False" 
-                                      Height="594" FontSize="20" Width="1670" Margin="0,50,0,0" x:Name="dtgTienCong" >
+                                      Height="600" FontSize="20" Width="1600" Margin="0,50,0,0" x:Name="dtgTienCong" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header = "Mã tiền công" IsReadOnly="True" Width="*"
                                         Binding="{Binding MaTienCong}" />
@@ -243,40 +244,50 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     </StackPanel>
                 </TabItem>
 
-                <TabItem Header="Thông tin hãng xe" Height="48" Width="212" FontSize="20" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}">
-                    <StackPanel Width="1684" Margin="0,11,0,-6" Orientation="Horizontal">
-                        <StackPanel Width="1684" Height="806">
-                            <TextBox Margin="150,11,0,0"
-                                materialDesign:HintAssist.Hint="Tên tiền công"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="400" HorizontalAlignment="Left">
+                <TabItem Header="Thông tin hiệu xe" Height="48" Width="212" FontSize="20" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}">
+                    <StackPanel Width="1600" Margin="0,11,0,-6" Orientation="Horizontal">
+                        <StackPanel Width="1600" Height="806">
+                            <TextBox Margin="10,11,0,0" x:Name="txbMaHieuXe" IsReadOnly="True"
+                                    materialDesign:HintAssist.Hint="Mã hiệu xe"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbTenHangXe_TextChanged">
+                                <TextBox.Text>
+                                    <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox Margin="350,-62,0,0" x:Name="txbTenHieuXe"
+                                materialDesign:HintAssist.Hint="Tên hiệu xe"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbTenHangXe_TextChanged">
+                                <TextBox.Text>
+                                    <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox Margin="690,-60,0,0" x:Name="txbGhiChu"
+                                    materialDesign:HintAssist.Hint="Ghi chú"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbTenHangXe_TextChanged">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
 
-                            <Button Content="Tìm kiếm" FontSize="20"
-                                    Margin="-100,-61,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                            <Button Content="Làm mới" FontSize="20" Background="#FF2D8138" Click="BtnLamMoiHX_Click"
+                                    Margin="1000,-61,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" />
+                            <Button Content="Cập nhật" FontSize="20" Background="#FF1B76C6" Click="BtnSuaHX_Click"
+                                    Margin="1400,-61,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" />
+                            <Button Content="Xóa" FontSize="20" Background="#FFB73E3A" Click="BtnXoaHX_Click"
+                                    Margin="1000,10,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" />
 
-                            <Button Content="Làm mới" FontSize="20"
-                                    Margin="400,-61,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-
-                            <Button Content="Thêm hãng xe" FontSize="20"
-                                    Margin="-100,25,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-
-                            <Button Content="Sửa" FontSize="20"
-                                    Margin="400,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-
-                            <Button Content="Xóa" FontSize="20"
-                                    Margin="900,-210.5,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-
-                            <Button Content="Xuất danh sách" FontSize="20"
-                                    Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-                            <DataGrid Height="600" FontSize="20" Width="1670" Margin="0,50,0,0" >
+                            <Button Content="Thêm hiệu xe" FontSize="20" Click="BtnThemHieuXe_Click"
+                                    Margin="1400,-50,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                            <DataGrid AutoGenerateColumns="False" x:Name="dtgHieuXe"
+                                      Height="600" FontSize="20" Width="1600" Margin="0,50,0,0" SelectionChanged="dtgHieuXe_SelectionChanged" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header = "STT" Binding = "{Binding Name}" />
-                                    <DataGridTextColumn Header = "Mã hãng xe" Binding = "{Binding Title}" />
-                                    <DataGridCheckBoxColumn Header = "Hãng xe" Binding = "{Binding WasReElected}"/>
-                                    <DataGridComboBoxColumn Header = "Ghi chú" SelectedItemBinding = "{Binding Affiliation}"/>
+
+                                    <DataGridTextColumn Header = "Mã hiệu xe" IsReadOnly="True" Width="*"
+                                                        Binding = "{Binding MaHieuXe}" />
+                                    <DataGridTextColumn Header = "Hiệu xe" Width="*" IsReadOnly="True"
+                                                            Binding = "{Binding TenHieuXe}"/>
+                                    <DataGridTextColumn Header = "Ghi chú"  Width="*" IsReadOnly="True"
+                                                        Binding = "{Binding GhiChu}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </StackPanel>
@@ -284,9 +295,9 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 </TabItem>
 
                 <TabItem Header="Thông tin nhà cung cấp" Height="48" Width="212" FontSize="20" Background="#FF89BAD2">
-                    <StackPanel Width="1684" Margin="0,11,0,-6" Orientation="Horizontal">
-                        <StackPanel Width="1684" Height="806">
-                            <TextBox Margin="10,11,0,0"
+                    <StackPanel Width="1600" Margin="0,11,0,-6" Orientation="Horizontal">
+                        <StackPanel Width="1600" Height="806">
+                            <TextBox Margin="10,11,0,0" x:Name="txbTenNCC"
                                 materialDesign:HintAssist.Hint="Tên nhà cung cấp"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
                                 <TextBox.Text>
@@ -294,7 +305,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 </TextBox.Text>
                             </TextBox>
 
-                            <TextBox Margin="340,-61,0,0"
+                            <TextBox Margin="340,-61,0,0" x:Name="txbSDT"
                                      materialDesign:HintAssist.Hint="Số điện thoại"
                                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
                                 <TextBox.Text>
@@ -302,7 +313,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 </TextBox.Text>
                             </TextBox>
 
-                            <TextBox Margin="10,11,0,0"
+                            <TextBox Margin="10,11,0,0" x:Name="txbEmail"
                                      materialDesign:HintAssist.Hint="Email"
                                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
                                 <TextBox.Text>
@@ -310,24 +321,12 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 </TextBox.Text>
                             </TextBox>
 
-                            <Button Content="Tìm kiếm" FontSize="20"
-                                    Margin="-100,-200,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-
                             <Button Content="Làm mới" FontSize="20"
-                                    Margin="400,-200,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                                    Margin="400,-200,0,0" Width="230" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
 
                             <Button Content="Thêm nhà cung cấp" FontSize="20"
-                                    Margin="-100,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-
-                            <Button Content="Sửa" FontSize="20"
-                                    Margin="400,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-
-                            <Button Content="Xóa" FontSize="20"
-                                    Margin="900,-210.5,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-
-                            <Button Content="Xuất danh sách" FontSize="20"
-                                    Margin="900,-50,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-                            <DataGrid Height="600" FontSize="20" Width="1670" Margin="0,50,0,0" >
+                                    Margin="-100,-50,0,0" Width="230" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                            <DataGrid Height="600" FontSize="20" Width="1600" Margin="0,50,0,0" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header = "STT" Binding = "{Binding Name}" />
                                     <DataGridTextColumn Header = "Mã nhà cung cấp" Binding = "{Binding Title}" />

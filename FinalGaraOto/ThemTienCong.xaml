@@ -8,14 +8,14 @@
         Title="Thêm tiền công" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Height="600" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen" >
-    <Grid Height="432" VerticalAlignment="Center">
+    <Grid Height="600" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <DockPanel Height="80" Background="#FF1D2850">
+            <DockPanel Height="80" Background="#FF1D2850" Margin="0,0,-10,0">
                 <TextBlock Margin="16,0,0,0" Text="Thêm tiền công" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource MaterialDesignPaper}" />
             </DockPanel>
         </Grid>
@@ -29,16 +29,18 @@
                 <materialDesign:PackIcon Kind="Email" Margin="73,375,0,0" Width="40" Height="40"/>
                 <materialDesign:PackIcon Kind="CalendarRange" Margin="73,450,0,0" Width="40" Height="40"/>
             </Grid>
-            <StackPanel Margin="89,71,10,397">
-                <TextBox
+            <StackPanel Margin="89,68,10,397">
+                <TextBox x:Name="txbTenTienCong"
                 materialDesign:HintAssist.Hint="Loại tiền công"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
-                <TextBox  materialDesign:HintAssist.Hint="Giá tiền"
+                <TextBox  x:Name="txbGiaTienCong"
+                    materialDesign:HintAssist.Hint="Giá tiền"
  Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
 
-                <Button Content="Thêm" Background="#FF89BAD2"
+                <Button Content="Thêm" Background="#FF89BAD2" Click="BtnThem_Click"
                     Margin="-290,30,0,0" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                <Button Margin="150,-59,0,0" Content="Thoát" Background="#FF1D2850" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                <Button Click="BtnThoat_Click"
+                    Margin="150,-50,0,0" Content="Thoát" Background="#FF1D2850" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
             </StackPanel>
             <StackPanel Margin="114,92,566,526" >
                 <materialDesign:PackIcon Kind="Briefcase"  Width="40" Height="40"/>

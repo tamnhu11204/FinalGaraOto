@@ -27,6 +27,7 @@ namespace FinalGaraOto
             LoadSoXeTiepNhan();
             LoadDVT();
             LoadTienCong();
+            LoadHieuXe();
         }
 
 
@@ -357,5 +358,126 @@ namespace FinalGaraOto
             }
         }*/
         #endregion
+
+
+        #region HieuXe
+        void LoadHieuXe()
+        {
+            ObservableCollection<HIEUXE> h = new ObservableCollection<HIEUXE>();
+            var List = DataProvider.Ins.DB.HIEUXEs.ToList();
+            foreach (var item in List)
+            {
+                HIEUXE hieuxe = new HIEUXE();
+                hieuxe.MaHieuXe = item.MaHieuXe;
+                hieuxe.TenHieuXe = item.TenHieuXe;
+                hieuxe.GhiChu = item.GhiChu;
+                h.Add(hieuxe);
+                dtgHieuXe.ItemsSource = h;
+
+            }
+        }
+        private void txbTenHangXe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<HIEUXE> h = new ObservableCollection<HIEUXE>();
+            string text = txbTenHieuXe.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.HIEUXEs.ToList();
+            foreach (var item in List)
+            {
+                string _tenHX = item.TenHieuXe.ToLower();
+                if (_tenHX.Contains(text))
+                {
+                    h.Add(item);
+                }
+            }
+            dtgHieuXe.ItemsSource = h;
+        }
+
+        private void BtnLamMoiHX_Click(object sender, RoutedEventArgs e)
+        {
+            txbTenHieuXe.Text = "";
+            txbGhiChu.Text = "";
+            txbMaHieuXe.Text = "";
+            LoadHieuXe();
+        }
+
+        private void BtnThemHieuXe_Click(object sender, RoutedEventArgs e)
+        {
+            ThemHangXe themHangXe = new ThemHangXe();
+            themHangXe.ShowDialog();
+            this.Close();
+        }
+        private void BtnXoaHX_Click(object sender, RoutedEventArgs e) //xoa hieu xe
+        {
+            if (string.IsNullOrEmpty(txbMaHieuXe.Text) )
+            {
+                MessageBox.Show("Hãy chọn mã xe muốn xóa!");
+            }
+            else
+            {
+                int MaHX = int.Parse(txbMaHieuXe.Text);
+                var n = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == MaHX).SingleOrDefault();
+                if (n != null)
+                {
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa hiệu xe?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.HIEUXEs.Remove(n);
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Xóa hiệu xe thành công!");
+
+                        LoadHieuXe();
+                    }
+                    else return;
+                }
+            }
+        }
+        private void BtnSuaHX_Click(object sender, RoutedEventArgs e) //sua hieu xe
+        {
+            if (string.IsNullOrEmpty(txbMaHieuXe.Text) || string.IsNullOrEmpty(txbTenHieuXe.Text))
+            {
+                MessageBox.Show("Hãy điền đầy đủ mã và tên hiệu xe");
+            }
+            else
+            {
+                int MaHX = int.Parse(txbMaHieuXe.Text);
+                var n = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == MaHX).SingleOrDefault();
+
+                n.MaHieuXe = MaHX;
+                n.TenHieuXe = txbTenHieuXe.Text;
+                if (string.IsNullOrEmpty(txbGhiChu.Text))
+                {
+                    n.GhiChu = "Không có";
+                }
+                else
+                {
+                    n.GhiChu = txbGhiChu.Text;
+                }
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật hiệu xe?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Cập nhật thành công!");
+
+                    LoadHieuXe();
+                }
+                else return;
+            }
+        }
+        private void dtgHieuXe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                txbMaHieuXe.Text = selected_row.MaHieuXe.ToString();
+                txbTenHieuXe.Text = selected_row.TenHieuXe.ToString();
+                txbGhiChu.Text=selected_row.GhiChu.ToString();
+            }
+        }
+        #endregion
+
     }
 }
