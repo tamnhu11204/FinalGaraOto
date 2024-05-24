@@ -25,9 +25,9 @@ namespace FinalGaraOto
         public int MaVatTuPhuTung { get; set; }
         public string TenVTPT { get; set; }
         public int MaDVT { get; set; }
-        public decimal DonGiaNhap { get; set; }
-        public decimal DonGiaBan { get; set; }
-        public int SoLuongTon { get; set; }
+        public Nullable<decimal> DonGiaNhap { get; set; }
+        public Nullable<decimal> DonGiaBan { get; set; }
+        public Nullable<int> SoLuongTon { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BAOCAOTON> BAOCAOTONs { get; set; }

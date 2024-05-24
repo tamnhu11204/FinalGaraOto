@@ -102,7 +102,7 @@
           </Key>
           <Property Name="MaHieuXe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenHieuXe" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="GhiChu" Type="varchar" MaxLength="100" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="NGUOIDUNG">
           <Key>
@@ -192,9 +192,9 @@
           <Property Name="MaVatTuPhuTung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenVTPT" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MaDVT" Type="int" Nullable="false" />
-          <Property Name="DonGiaNhap" Type="money" Nullable="false" />
-          <Property Name="DonGiaBan" Type="money" Nullable="false" />
-          <Property Name="SoLuongTon" Type="int" Nullable="false" />
+          <Property Name="DonGiaNhap" Type="money" />
+          <Property Name="DonGiaBan" Type="money" />
+          <Property Name="SoLuongTon" Type="int" />
         </EntityType>
         <EntityType Name="XE">
           <Key>
@@ -723,7 +723,7 @@
           </Key>
           <Property Name="MaHieuXe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenHieuXe" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="GhiChu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CTBAOCAODOANHTHUs" Relationship="QLGARAOTOModel.fk_CTBaoCaoDoanhThu2" FromRole="HIEUXE" ToRole="CTBAOCAODOANHTHU" />
           <NavigationProperty Name="XEs" Relationship="QLGARAOTOModel.fk_Xe2" FromRole="HIEUXE" ToRole="XE" />
         </EntityType>
@@ -817,9 +817,9 @@
           <Property Name="MaVatTuPhuTung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenVTPT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MaDVT" Type="Int32" Nullable="false" />
-          <Property Name="DonGiaNhap" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="DonGiaBan" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="SoLuongTon" Type="Int32" Nullable="false" />
+          <Property Name="DonGiaNhap" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DonGiaBan" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SoLuongTon" Type="Int32" />
           <NavigationProperty Name="BAOCAOTONs" Relationship="QLGARAOTOModel.fk_BaoCaoTon" FromRole="VATTUPHUTUNG" ToRole="BAOCAOTON" />
           <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="QLGARAOTOModel.fk_CTPhieuNhap2" FromRole="VATTUPHUTUNG" ToRole="CHITIETPHIEUNHAP" />
           <NavigationProperty Name="CT_SUDUNGVTPT" Relationship="QLGARAOTOModel.fk_CTSuDungVTPT2" FromRole="VATTUPHUTUNG" ToRole="CT_SUDUNGVTPT" />
@@ -1036,7 +1036,7 @@
           <End Type="QLGARAOTOModel.NHOMNGUOIDUNG" Role="NHOMNGUOIDUNG" Multiplicity="*" />
           <End Type="QLGARAOTOModel.CHUCNANG" Role="CHUCNANG" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

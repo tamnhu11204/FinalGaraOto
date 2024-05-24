@@ -5,26 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4d619a3525c64b7d83e08e305b552eeb" Name="Diagram1" ZoomLevel="52">
-        <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAODOANHTHU" Width="1.5" PointX="3.75" PointY="11.5" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAOTON" Width="1.5" PointX="9.75" PointY="17.125" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.CHITIETPHIEUNHAP" Width="1.5" PointX="12.25" PointY="12.75" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.CHITIETSUACHUA" Width="1.5" PointX="7.5" PointY="0.75" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.CHUCNANG" Width="1.5" PointX="14" PointY="4.75" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.CHUXE" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.CT_SUDUNGVTPT" Width="1.5" PointX="9.75" PointY="1" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.CTBAOCAODOANHTHU" Width="1.5" PointX="6" PointY="4.375" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.DONVITINH" Width="1.5" PointX="5.25" PointY="17.5" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.HIEUXE" Width="1.5" PointX="0.75" PointY="4.5" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.NGUOIDUNG" Width="1.5" PointX="14" PointY="1.125" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.NHACUNGCAP" Width="1.5" PointX="7.75" PointY="8" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.NHOMNGUOIDUNG" Width="1.5" PointX="11.75" PointY="3" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUNHAP" Width="1.5" PointX="10" PointY="8" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUSUACHUA" Width="1.5" PointX="5.25" PointY="1.125" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUTHUTIEN" Width="1.5" PointX="5.25" PointY="8" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.THAMSO" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.TIENCONG" Width="1.5" PointX="5.25" PointY="14.25" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.VATTUPHUTUNG" Width="1.5" PointX="7.5" PointY="16.875" />
-        <EntityTypeShape EntityType="QLGARAOTOModel.XE" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAODOANHTHU" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAOTON" Width="1.5" PointX="12.75" PointY="14" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHITIETPHIEUNHAP" Width="1.5" PointX="15.25" PointY="7.875" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHITIETSUACHUA" Width="1.5" PointX="10.5" PointY="5.875" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHUCNANG" Width="1.5" PointX="3" PointY="9.375" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHUXE" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CT_SUDUNGVTPT" Width="1.5" PointX="12.75" PointY="6" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CTBAOCAODOANHTHU" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.DONVITINH" Width="1.5" PointX="8.25" PointY="14.375" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.HIEUXE" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NGUOIDUNG" Width="1.5" PointX="3" PointY="11.875" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NHACUNGCAP" Width="1.5" PointX="10.75" PointY="1.375" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NHOMNGUOIDUNG" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUNHAP" Width="1.5" PointX="13" PointY="1.375" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUSUACHUA" Width="1.5" PointX="8.25" PointY="6.125" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUTHUTIEN" Width="1.5" PointX="8.25" PointY="3.375" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.THAMSO" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.TIENCONG" Width="1.5" PointX="8.25" PointY="9.25" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.VATTUPHUTUNG" Width="1.5" PointX="10.5" PointY="13.75" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.XE" Width="1.5" PointX="6" PointY="4.375" />
         <AssociationConnector Association="QLGARAOTOModel.fk_CTBaoCaoDoanhThu1" />
         <AssociationConnector Association="QLGARAOTOModel.fk_BaoCaoTon" />
         <AssociationConnector Association="QLGARAOTOModel.fk_CTPhieuNhap1" />
