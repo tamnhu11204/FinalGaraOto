@@ -28,6 +28,7 @@ namespace FinalGaraOto
             LoadDVT();
             LoadTienCong();
             LoadHieuXe();
+            LoadNCC();
         }
 
 
@@ -477,7 +478,201 @@ namespace FinalGaraOto
                 txbGhiChu.Text=selected_row.GhiChu.ToString();
             }
         }
+        private void txbGhiChu_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<HIEUXE> h = new ObservableCollection<HIEUXE>();
+            string text = txbGhiChu.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.HIEUXEs.ToList();
+            foreach (var item in List)
+            {
+                string gc = item.GhiChu.ToLower();
+                if (gc.Contains(text))
+                {
+                    h.Add(item);
+                }
+            }
+            dtgHieuXe.ItemsSource = h;
+        }
         #endregion
+
+
+        #region NCC
+        void LoadNCC()
+        {
+            ObservableCollection<NHACUNGCAP> h = new ObservableCollection<NHACUNGCAP>();
+            var List = DataProvider.Ins.DB.NHACUNGCAPs.ToList();
+            foreach (var item in List)
+            {
+                NHACUNGCAP ncc = new NHACUNGCAP();
+                ncc.MaNhaCungCap = item.MaNhaCungCap;
+                ncc.TenNhaCungCap = item.TenNhaCungCap;
+                ncc.SDTNhaCungCap = item.SDTNhaCungCap;
+                ncc.EmailNhaCungCap = item.EmailNhaCungCap;
+                ncc.DiachiNhaCungCap = item.DiachiNhaCungCap;
+                h.Add(ncc);
+                dtgNCC.ItemsSource = h;
+
+            }
+        }
+        private void dtgNCC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                txbMaNCC.Text = selected_row.MaNhaCungCap.ToString();
+                txbTenNCC.Text = selected_row.TenNhaCungCap.ToString();
+                txbSDT.Text = selected_row.SDTNhaCungCap.ToString();
+                txbEmail.Text = selected_row.EmailNhaCungCap.ToString();
+                txbDiaChi.Text = selected_row.DiachiNhaCungCap.ToString();
+            }
+        }
+
+        private void BtnLamMoiNCC_Click(object sender, RoutedEventArgs e)
+        {
+            txbMaNCC.Text = "";
+            txbTenNCC.Text = "";
+            txbSDT.Text = "";
+            txbEmail.Text = "";
+            txbDiaChi.Text = "";
+            LoadNCC();
+        }
+
+        private void BtnThemNCC_Click(object sender, RoutedEventArgs e)
+        {
+            ThemNhaCungCap themNCC = new ThemNhaCungCap();
+            themNCC.ShowDialog();
+            this.Close();
+        }
+
+        private void BtnXoaNCC_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbMaNCC.Text))
+            {
+                MessageBox.Show("Hãy chọn mã nhà cung cấp muốn xóa!");
+            }
+            else
+            {
+                int MaNCC = int.Parse(txbMaNCC.Text);
+                var n = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == MaNCC).SingleOrDefault();
+                if (n != null)
+                {
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa nhà cung cấp?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.NHACUNGCAPs.Remove(n);
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Xóa nhà cung cấp thành công!");
+
+                        LoadNCC();
+                    }
+                    else return;
+                }
+            }
+        }
+
+        private void BtnSuaNCC_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbMaNCC.Text) || string.IsNullOrEmpty(txbTenNCC.Text) || string.IsNullOrEmpty(txbSDT.Text)
+                || string.IsNullOrEmpty(txbEmail.Text)
+                || string.IsNullOrEmpty(txbDiaChi.Text))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin!");
+            }
+            else
+            {
+                int MaNCC = int.Parse(txbMaNCC.Text);
+                var n = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == MaNCC).SingleOrDefault();
+
+                n.MaNhaCungCap = MaNCC;
+                n.TenNhaCungCap = txbTenNCC.Text;
+                n.SDTNhaCungCap = txbSDT.Text;
+                n.EmailNhaCungCap = txbEmail.Text;
+                n.DiachiNhaCungCap = txbDiaChi.Text;
+
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật nhà cung cấp?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Cập nhật thành công!");
+
+                    LoadNCC();
+                }
+                else return;
+            }
+        }
+        private void txbTenNCC_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<NHACUNGCAP> h = new ObservableCollection<NHACUNGCAP>();
+            string text = txbTenNCC.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.NHACUNGCAPs.ToList();
+            foreach (var item in List)
+            {
+                string gc = item.TenNhaCungCap.ToLower();
+                if (gc.Contains(text))
+                {
+                    h.Add(item);
+                }
+            }
+            dtgNCC.ItemsSource = h;
+        }
+
+        private void txbSDT_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<NHACUNGCAP> h = new ObservableCollection<NHACUNGCAP>();
+            string text = txbSDT.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.NHACUNGCAPs.ToList();
+            foreach (var item in List)
+            {
+                string gc = item.SDTNhaCungCap.ToLower();
+                if (gc.Contains(text))
+                {
+                    h.Add(item);
+                }
+            }
+            dtgNCC.ItemsSource = h;
+        }
+
+        private void txbEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<NHACUNGCAP> h = new ObservableCollection<NHACUNGCAP>();
+            string text = txbEmail.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.NHACUNGCAPs.ToList();
+            foreach (var item in List)
+            {
+                string gc = item.EmailNhaCungCap.ToLower();
+                if (gc.Contains(text))
+                {
+                    h.Add(item);
+                }
+            }
+            dtgNCC.ItemsSource = h;
+        }
+
+        private void txbDiaChi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<NHACUNGCAP> h = new ObservableCollection<NHACUNGCAP>();
+            string text = txbDiaChi.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.NHACUNGCAPs.ToList();
+            foreach (var item in List)
+            {
+                string gc = item.DiachiNhaCungCap.ToLower();
+                if (gc.Contains(text))
+                {
+                    h.Add(item);
+                }
+            }
+            dtgNCC.ItemsSource = h;
+        }
+        #endregion
+
 
     }
 }

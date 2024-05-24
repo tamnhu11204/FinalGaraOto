@@ -169,44 +169,35 @@ namespace FinalGaraOto
                 var n = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == MaNV).SingleOrDefault();
 
                 n.MaNguoiDung = MaNV;
+                n.TenNguoiDung = txbHoVaTen.Text;
 
-                string _TenDangNhap = txbTenDangNhap.Text;
-                var TaiKhoan = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == _TenDangNhap).Count();
-                if (TaiKhoan > 0)
+                DateTime? ngaySinh = txbNgaySinh.SelectedDate;
+                if (ngaySinh.HasValue)
                 {
-                    MessageBox.Show("Tên đăng nhập đã tồn tại! Hãy dùng tên khác.");
+
+                    n.NgaySinhNguoiDung = ngaySinh.Value;
                 }
                 else
                 {
-                    n.TenNguoiDung = txbHoVaTen.Text;
-
-                    DateTime? ngaySinh = txbNgaySinh.SelectedDate;
-                    if (ngaySinh.HasValue)
-                    {
-
-                        n.NgaySinhNguoiDung = ngaySinh.Value;
-                    }
-                    else
-                    {
-                        return;
-                    }
-
-                    n.CCCDNguoiDung = txbCCCD.Text;
-                    n.DiaChiNguoiDung = txbDiaChi.Text;
-                    n.SDTNguoiDung = txbSDT.Text;
-                    n.TenDangNhap = txbTenDangNhap.Text;
-                    n.MatKhau = txbMatKhau.Text;
-
-                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật thông tin nhân viên?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (r == MessageBoxResult.Yes)
-                    {
-                        DataProvider.Ins.DB.SaveChanges();
-
-                        MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
-                        LoadNhanVienList();
-                    }
-                    else return;
+                    return;
                 }
+
+                n.CCCDNguoiDung = txbCCCD.Text;
+                n.DiaChiNguoiDung = txbDiaChi.Text;
+                n.SDTNguoiDung = txbSDT.Text;
+                n.TenDangNhap = txbTenDangNhap.Text;
+                n.MatKhau = txbMatKhau.Text;
+
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật thông tin nhân viên?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
+                    LoadNhanVienList();
+                }
+                else return;
+
             }
             return;
         }
@@ -231,6 +222,26 @@ namespace FinalGaraOto
             }
         }
 
+        private void txbTimKiem_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<NhanViens> nhanViens = new ObservableCollection<NhanViens>();
+            string text = txbTimKiem.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.NGUOIDUNGs.ToList();
+            foreach (var item in List)
+            {
+                string _tenND = item.TenNguoiDung.ToLower();
+                if (_tenND.Contains(text))
+                {
+                    NhanViens nhanViens1 = new NhanViens();
+                    nhanViens1.Ma = item.MaNguoiDung;
+                    nhanViens1.HoVaTen = item.TenNguoiDung;
+                    nhanViens1.ChucVu = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == item.MaNhom).Select(x => x.TenNhom).First().ToString();
+                    nhanViens.Add(nhanViens1);
+                }
+            }
+            dtgNhanVien.ItemsSource = nhanViens;
+        }
     }
     public class NhanViens //Khong can cung duoc, tai co Class san ben EntityFramework
     {
