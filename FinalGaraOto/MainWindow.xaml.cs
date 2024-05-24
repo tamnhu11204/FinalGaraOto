@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static FinalGaraOto.DangNhap;
 
 
 
@@ -27,6 +28,7 @@ namespace FinalGaraOto
         {
             InitializeComponent();
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == tenDN).SingleOrDefault();
+
             txbTenDangNhap.Text = l.TenDangNhap;
             txbCCCD.Text = l.CCCDNguoiDung;
             txbDiaChi.Text = l.DiaChiNguoiDung;
@@ -74,7 +76,7 @@ namespace FinalGaraOto
         #region button tab
         private void thongKe_Tab(object sender, RoutedEventArgs e)
         {
-            ThongKe thongke_tab = new ThongKe();
+            ThongKe thongke_tab = new ThongKe(txbTenDangNhap.Text);
             thongke_tab.Show();
             this.Close();
         }
@@ -82,35 +84,35 @@ namespace FinalGaraOto
 
         private void taiKhoan_Tab(object sender, RoutedEventArgs e)
         {
-            MainWindow taikhoan_tab = new MainWindow(null);
+            MainWindow taikhoan_tab = new MainWindow(txbTenDangNhap.Text);
             taikhoan_tab.Show();
             this.Close();
         }
 
         private void dichVu_Tab(object sender, RoutedEventArgs e)
         {
-            DichVu dichvu_tab = new DichVu();
+            DichVu dichvu_tab = new DichVu(txbTenDangNhap.Text);
             dichvu_tab.Show();
             this.Close();
         }
 
         private void nhanVien_Tab(object sender, RoutedEventArgs e)
         {
-            NhanVien nhanvien_tab = new NhanVien();
+            NhanVien nhanvien_tab = new NhanVien(txbTenDangNhap.Text);
             nhanvien_tab.Show();
             this.Close();
         }
 
         private void khoHang_Tab(object sender, RoutedEventArgs e)
         {
-            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            VatTuPhuTung khohang_tab = new VatTuPhuTung(txbTenDangNhap.Text);
             khohang_tab.Show();
             this.Close();
         }
 
         private void tuyChon_Tab(object sender, RoutedEventArgs e)
         {
-            TuyChon tuychon_tab = new TuyChon();
+            TuyChon tuychon_tab = new TuyChon(txbTenDangNhap.Text);
             tuychon_tab.Show();
             this.Close();
         }

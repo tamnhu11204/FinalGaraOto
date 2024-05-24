@@ -19,9 +19,11 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemThongTinSuaChua : Window
     {
-        public ThemThongTinSuaChua()
+        public ThemThongTinSuaChua(string n)
         {
             InitializeComponent();
+            tbUserName.Text = n;
+
         }
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

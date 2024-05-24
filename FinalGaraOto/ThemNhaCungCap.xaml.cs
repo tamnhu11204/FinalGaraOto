@@ -20,9 +20,10 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemNhaCungCap : Window
     {
-        public ThemNhaCungCap()
+        public ThemNhaCungCap(string n)
         {
             InitializeComponent();
+            tbUserName.Text = n;
         }
 
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -50,7 +51,7 @@ namespace FinalGaraOto
 
                 MessageBox.Show("Thêm nhà cung cấp thành công!");
 
-                TuyChon tuyChon = new TuyChon();
+                TuyChon tuyChon = new TuyChon(tbUserName.Text);
                 tuyChon.Show();
                 this.Close();
 
@@ -58,7 +59,7 @@ namespace FinalGaraOto
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e)
         {
-            TuyChon tuychon_ = new TuyChon();
+            TuyChon tuychon_ = new TuyChon(tbUserName.Text);
             this.Close();
             tuychon_.Show();
         }

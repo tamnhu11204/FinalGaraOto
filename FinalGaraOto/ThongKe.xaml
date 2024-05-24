@@ -17,6 +17,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <TextBlock x:Name="tbUserName" Visibility="Hidden"/>
         <Grid Grid.Row="0">
             <materialDesign:ColorZone Mode="PrimaryLight" Background="#FF1D2850">
                 <DockPanel Height="80">
@@ -151,7 +152,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
 
 
 
-            <TabControl x:Name="Bangthongke" Width="1700" Height="608" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Margin="-1,128,-163,0">
+            <TabControl x:Name="Bangthongke" Width="1700" Height="608" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Margin="-150,128,-163,0">
                 <TabControl.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

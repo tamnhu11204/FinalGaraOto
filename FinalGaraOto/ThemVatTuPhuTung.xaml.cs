@@ -21,10 +21,11 @@ namespace FinalGaraOto
     public partial class ThemVatTuPhuTung : Window
     {
         VatTuPhuTung vatTuPhuTung;
-        public ThemVatTuPhuTung()
+        public ThemVatTuPhuTung(string n)
         {
             InitializeComponent();
             LoadComboBoxDonViTinh();
+            tbUserName.Text = n;
         }
 
         void LoadComboBoxDonViTinh() //Hien thi cac item trong combobox
@@ -67,7 +68,7 @@ namespace FinalGaraOto
                     DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Thêm vật tư phụ tùng thành công!");
-                    VatTuPhuTung vatTuPhuTung = new VatTuPhuTung();
+                    VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
                     vatTuPhuTung.Visibility = Visibility.Visible;
                     this.Close();
                 }
@@ -79,7 +80,7 @@ namespace FinalGaraOto
         {
 
             this.Visibility= Visibility.Collapsed;
-            vatTuPhuTung = new VatTuPhuTung();
+            vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
             vatTuPhuTung.Visibility= Visibility.Visible;
 
             

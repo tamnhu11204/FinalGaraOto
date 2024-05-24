@@ -13,7 +13,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
+        <TextBlock x:Name="tbUserName" Visibility="Hidden"/>
         <Grid Grid.Row="0">
             <DockPanel Height="80" Background="#FF1D2850">
                 <TextBlock Margin="16,0,0,0" Text="Thêm hiệu xe" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource MaterialDesignPaper}" />

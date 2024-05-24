@@ -17,6 +17,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <TextBlock x:Name="tbUserName" Visibility="Hidden"/>
         <Grid Grid.Row="0">
             <materialDesign:ColorZone Mode="PrimaryLight" Background="#FF1D2850">
                 <DockPanel Height="80">
@@ -223,9 +224,6 @@
 
                                 </DataGrid.Columns>
                             </DataGrid>
-
-                            <Button Content="Thêm chức vụ" FontSize="20"
-                                    Margin="0,11,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
                         </StackPanel>
 
                         <StackPanel Width="582">

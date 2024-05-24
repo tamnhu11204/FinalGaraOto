@@ -13,7 +13,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-
+        <TextBlock x:Name="tbUserName" Visibility="Hidden"/>
         <Grid Grid.Row="0">
             <materialDesign:ColorZone Mode="PrimaryLight" Background="#FF1D2850">
                 <DockPanel Height="80">

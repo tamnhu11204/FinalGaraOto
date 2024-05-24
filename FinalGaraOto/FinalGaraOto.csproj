@@ -171,9 +171,6 @@
     <Compile Include="THAMSO.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>
-    <Compile Include="ThemChucVu.xaml.cs">
-      <DependentUpon>ThemChucVu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ThemDonVi.xaml.cs">
       <DependentUpon>ThemDonVi.xaml</DependentUpon>
     </Compile>
@@ -297,10 +294,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Style\IOStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ThemChucVu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

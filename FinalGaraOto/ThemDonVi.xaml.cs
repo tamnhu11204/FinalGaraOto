@@ -20,9 +20,10 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemDonVi : Window
     {
-        public ThemDonVi()
+        public ThemDonVi(string n)
         {
             InitializeComponent();
+            tbUserName.Text = n;
         }
 
         private void BtnThem_Click(object sender, RoutedEventArgs e) //Them don vi tinh
@@ -41,14 +42,14 @@ namespace FinalGaraOto
 
                 MessageBox.Show("Thêm đơn vị tính thành công!");
 
-                TuyChon tuychon_ = new TuyChon();
+                TuyChon tuychon_ = new TuyChon(tbUserName.Text);
                 tuychon_.Show();
                 this.Close();
             }
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e)
         {
-            TuyChon tuychon_ = new TuyChon();
+            TuyChon tuychon_ = new TuyChon(tbUserName.Text);
             this.Close();
             tuychon_.Show();
         }

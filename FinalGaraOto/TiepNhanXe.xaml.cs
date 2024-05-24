@@ -20,10 +20,11 @@ namespace FinalGaraOto
     /// </summary>
     public partial class TiepNhanXe : Window
     {
-        public TiepNhanXe()
+        public TiepNhanXe(string n)
         {
             InitializeComponent();
             LoadComboBoxHieuXe();
+            tbUserName.Text = n;
         }
 
         int demo;
@@ -68,7 +69,7 @@ namespace FinalGaraOto
 
                 MessageBox.Show("Tiếp nhận xe thành công!");
 
-                TuyChon tuychon_ = new TuyChon();
+                TuyChon tuychon_ = new TuyChon(tbUserName.Text);
                 this.Close();
                 tuychon_.Show();
             }
@@ -78,7 +79,7 @@ namespace FinalGaraOto
         #region Thoat va di chuyen
         private void btnThoat_Click(object sender, RoutedEventArgs e) // Thoát cửa sổ
         {
-            DichVu dv_ = new DichVu();
+            DichVu dv_ = new DichVu(tbUserName.Text);
             this.Close();
             dv_.Show();
         }
