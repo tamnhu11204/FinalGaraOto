@@ -62,7 +62,7 @@
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" Height="59" FontSize="20" />
                 <Button Content="Xác nhận" Background="#FF89BAD2"
                     Margin="-290,30,0,0" Height="59" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                <Button Margin="190,-59,0,0" Content="Thoát" Background="#FF1D2850" Height="59" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                <Button Margin="190,-59,0,0" Content="Thoát" Background="#FF1D2850" Height="59" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="Button_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

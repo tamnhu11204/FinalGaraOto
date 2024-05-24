@@ -147,5 +147,11 @@ namespace FinalGaraOto
             
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TiepNhanXe tiepnhan = new TiepNhanXe();
+            tiepnhan.ShowDialog();
+            this.Close();
+        }
     }
 }
