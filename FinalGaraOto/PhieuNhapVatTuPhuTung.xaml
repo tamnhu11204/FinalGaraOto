@@ -74,27 +74,29 @@
                 </Grid.ColumnDefinitions>
             </Grid>
             <Grid Grid.Column="0">
-                <Button
-Width="150"
-Height="50"
-Content="Xác nhận"
-Margin="30"
-IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-Style="{StaticResource MaterialDesignRaisedButton}"
-ToolTip="Resource name: Lưu thông tin phiếu lập" Background="#FF89BAD2" HorizontalAlignment="Right" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" />
+                <Button x:Name="btnXacNhanLapPhieuNhapVTPT"
+                        Click="btnXacNhanLapPhieuNhapVTPT_Click"
+                        Width="150"
+                        Height="50"
+                        Content="Xác nhận"
+                        Margin="30"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Resource name: Lưu thông tin phiếu lập" Background="#FF89BAD2" HorizontalAlignment="Right" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" />
             </Grid>
 
             <Grid Grid.Column="1">
-                <Button 
-Width="150"
-Height="50"
-Content="Thoát"
-Margin="30"
-        Background="#FF1D2850"
-IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-Style="{StaticResource MaterialDesignPaperLightButton}"
-ToolTip="Resource name: MaterialDesignPaperLightButton" 
-HorizontalAlignment="Left" Foreground="{DynamicResource MaterialDesignPaper}" FontSize="20" />
+                <Button x:Name="btnThoatLapPhieuNhapVTPT"
+                        Click="btnThoatLapPhieuNhapVTPT_Click"
+                        Width="150"
+                        Height="50"
+                        Content="Thoát"
+                        Margin="30"
+                        Background="#FF1D2850"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignPaperLightButton}"
+                        ToolTip="Resource name: MaterialDesignPaperLightButton" 
+                        HorizontalAlignment="Left" Foreground="{DynamicResource MaterialDesignPaper}" FontSize="20" />
 
 
             </Grid>

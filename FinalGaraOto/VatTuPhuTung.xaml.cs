@@ -19,6 +19,7 @@ namespace FinalGaraOto
     /// </summary>
     public partial class VatTuPhuTung : Window
     {
+        public VatTuPhuTung vatTuPhuTung;
         public VatTuPhuTung()
         {
             InitializeComponent();
@@ -102,11 +103,45 @@ namespace FinalGaraOto
             tuychon_tab.Show();
             this.Close();
         }
+
+
+
+
         #endregion
 
 
+        #region popUp chuyen tab
+        private void btnNhapVTPT_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+            PhieuNhapVatTuPhuTung phieuNhapVatTuPhuTung = new PhieuNhapVatTuPhuTung();
+            phieuNhapVatTuPhuTung.Visibility=Visibility.Visible;
+        }
 
+        private void btnLichSuNhapVTPT_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility= Visibility.Collapsed;
+            LichSuNhapVatTuPhuTung lichSuNhapVatTuPhuTung = new LichSuNhapVatTuPhuTung();
+            lichSuNhapVatTuPhuTung.Visibility = Visibility.Visible;
+        }
 
+        private void btnDVT_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+            ThemDonVi themDonVi = new ThemDonVi();
+            themDonVi.Visibility=Visibility.Visible;
+        }
 
+        #endregion
+
+        #region btn xu ly 
+        private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+            ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung();
+            themVatTuPhuTung.Visibility =(Visibility) Visibility.Visible;
+        }
+
+        #endregion
     }
 }

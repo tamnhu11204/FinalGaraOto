@@ -19,6 +19,7 @@ namespace FinalGaraOto
     /// </summary>
     public partial class PhieuNhapVatTuPhuTung : Window
     {
+        VatTuPhuTung vatTuPhuTung;
         public PhieuNhapVatTuPhuTung()
         {
             InitializeComponent();
@@ -26,6 +27,20 @@ namespace FinalGaraOto
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void btnThoatLapPhieuNhapVTPT_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            vatTuPhuTung = new VatTuPhuTung();
+            vatTuPhuTung.Visibility = Visibility.Visible;
+        }
+
+        private void btnXacNhanLapPhieuNhapVTPT_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            ChiTietPhieuNhapVTPT chiTietPhieuNhapVTPT = new ChiTietPhieuNhapVTPT();
+            chiTietPhieuNhapVTPT.Show();
         }
     }
 }
