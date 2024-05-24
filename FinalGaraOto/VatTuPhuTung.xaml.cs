@@ -1,6 +1,9 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,12 +22,66 @@ namespace FinalGaraOto
     /// </summary>
     public partial class VatTuPhuTung : Window
     {
-        public VatTuPhuTung vatTuPhuTung;
+        
         public VatTuPhuTung()
         {
             InitializeComponent();
+            LoadVatTuPhuTungList();
         }
 
+        #region Hien thi du lieu len datagrid
+
+        public class VatTuPhuTungs //Khong can cung duoc, tai co Class san ben EntityFramework
+        {
+            public int MaVTPT { get; set; }
+            public string TenVT { get; set; }
+            public Nullable<int> SLTon { get; set; }
+            public string DVT { get; set; }
+            public Nullable<decimal> GiaNhap { get; set; }
+            public Nullable<decimal> GiaBan { get; set; }
+        }
+
+        void LoadVatTuPhuTungList() //Hien thi nhan vien len datagrid
+        {
+            ObservableCollection<VatTuPhuTungs> vatTuPhuTungs = new ObservableCollection<VatTuPhuTungs>();
+            var List = DataProvider.Ins.DB.VATTUPHUTUNGs.ToList();
+            foreach (var item in List)
+            {
+                VatTuPhuTungs vATTUPHUTUNG = new VatTuPhuTungs();
+                vATTUPHUTUNG.MaVTPT = item.MaVatTuPhuTung;
+                vATTUPHUTUNG.TenVT = item.TenVTPT;
+                int Madvt = item.MaDVT;
+                var dVT = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == Madvt).SingleOrDefault();
+                vATTUPHUTUNG.DVT = dVT.TenDVT;
+                vATTUPHUTUNG.GiaNhap = item.DonGiaNhap;
+                vATTUPHUTUNG.GiaBan = item.DonGiaBan; 
+                vATTUPHUTUNG.SLTon = item.SoLuongTon;
+                vatTuPhuTungs.Add(vATTUPHUTUNG);
+                BangVTPT.ItemsSource = vatTuPhuTungs;
+            }
+
+
+        }
+
+        #endregion
+
+        private void BangVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                int MaVatTu = selected_row.MaVTPT;
+                txbMaVT.Text = selected_row.MaVTPT.ToString();
+                var l = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVatTu).SingleOrDefault();
+                txbTenVatTu.Text = selected_row.TenVT;
+                txbSLTon.Text = l.SoLuongTon.ToString();
+                txbDonViTinh.Text = l.DONVITINH.TenDVT;
+                txbGiaNhap.Text = l.DonGiaNhap.ToString();
+                txbGiaBan.Text = l.DonGiaBan.ToString();
+
+            }
+        }
 
         #region scroll bar button
         public void btnClosing_Click(object sender, RoutedEventArgs e)
@@ -125,12 +182,6 @@ namespace FinalGaraOto
             lichSuNhapVatTuPhuTung.Visibility = Visibility.Visible;
         }
 
-        private void btnDVT_Click(object sender, RoutedEventArgs e)
-        {
-            this.Visibility = Visibility.Collapsed;
-            ThemDonVi themDonVi = new ThemDonVi();
-            themDonVi.Visibility=Visibility.Visible;
-        }
 
         #endregion
 
@@ -140,6 +191,44 @@ namespace FinalGaraOto
             this.Visibility = Visibility.Hidden;
             ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung();
             themVatTuPhuTung.Visibility =(Visibility) Visibility.Visible;
+        }
+
+
+
+
+
+        #endregion
+
+        #region Sua xoa thong tin tren datagrid
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)BangVTPT;
+            dynamic t = grid.SelectedItem;
+            int MaVT = t.MaVTPT;
+            var n = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
+            if (n != null)
+            {
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Xóa vật tư thành công!");
+                    LoadVatTuPhuTungList();
+                }
+                else return;
+            }
+        }
+
+        private void btnXuatFile_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #endregion

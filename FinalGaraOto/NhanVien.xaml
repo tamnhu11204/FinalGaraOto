@@ -137,7 +137,7 @@
                                     <DataGridTextColumn Header = "Họ và tên" IsReadOnly="True" Width="*"
                                                         Binding = "{Binding HoVaTen}" />
                                     <DataGridTextColumn Header = "Chức vụ" IsReadOnly="True" Width="*"
-                                                            Binding = "{Binding ChucVu}"/>
+                                                        Binding = "{Binding ChucVu}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
 

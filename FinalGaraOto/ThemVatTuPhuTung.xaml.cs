@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,16 @@ namespace FinalGaraOto
         public ThemVatTuPhuTung()
         {
             InitializeComponent();
-            
+            LoadComboBoxDonViTinh();
+        }
+
+        void LoadComboBoxDonViTinh() //Hien thi cac item trong combobox
+        {
+            var List = DataProvider.Ins.DB.DONVITINHs.Select(x => x.TenDVT).ToList();
+            foreach (var item in List)
+            {
+                cbbDVT.Items.Add(item);
+            }
         }
 
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -33,11 +43,41 @@ namespace FinalGaraOto
 
         private void btnLuuVTPT_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(tbxTenPT.Text) || string.IsNullOrEmpty(cbbDVT.Text))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                string _TenVTPT = tbxTenPT.Text;
+                var VatTu = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == _TenVTPT).Count();
+                if (VatTu > 0)
+                {
+                    MessageBox.Show("Tên phụ tùng đã tồn tại! Hãy dùng tên khác.");
+                }
+                else
+                {
+                    var n = new VATTUPHUTUNG();
 
+                    n.TenVTPT = tbxTenPT.Text;
+                    
+                    string selectedValue = cbbDVT.SelectedItem as string;
+
+                    DataProvider.Ins.DB.VATTUPHUTUNGs.Add(n);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Thêm vật tư phụ tùng thành công!");
+                    VatTuPhuTung vatTuPhuTung = new VatTuPhuTung();
+                    vatTuPhuTung.Visibility = Visibility.Visible;
+                    this.Close();
+                }
+            }
+            return;
         }
 
         private void btnThoatThemVTPT_Click(object sender, RoutedEventArgs e)
         {
+
             this.Visibility= Visibility.Collapsed;
             vatTuPhuTung = new VatTuPhuTung();
             vatTuPhuTung.Visibility= Visibility.Visible;

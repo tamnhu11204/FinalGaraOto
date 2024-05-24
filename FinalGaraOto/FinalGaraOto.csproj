@@ -296,6 +296,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Style\IOStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ThemChucVu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
