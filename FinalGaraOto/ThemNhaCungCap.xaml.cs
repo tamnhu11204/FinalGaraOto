@@ -50,9 +50,10 @@ namespace FinalGaraOto
 
                 MessageBox.Show("Thêm nhà cung cấp thành công!");
 
-                TuyChon tuychon_ = new TuyChon();
+                TuyChon tuyChon = new TuyChon();
+                tuyChon.Show();
                 this.Close();
-                tuychon_.Show();
+
             }
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e)

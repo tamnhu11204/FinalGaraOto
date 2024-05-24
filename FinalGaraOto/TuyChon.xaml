@@ -194,16 +194,18 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 </TextBox.Text>
                             </TextBox>
 
-                            <TextBox Margin="-665,-61,0,0" x:Name="txbGiaTienDuoi"
+                            <TextBox 
+                                Margin="-665,-61,0,0" x:Name="txbGiaTienDuoi"
                                 materialDesign:HintAssist.Hint="Giá tiền từ"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="240" >
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="240" TextChanged="txbGiaTienDuoi_TextChanged" >
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox Margin="-100,-61,0,0" x:Name="txbGiaTienTren"
+                            <TextBox
+                                Margin="-100,-61,0,0" x:Name="txbGiaTienTren"
                                 materialDesign:HintAssist.Hint="đến"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="240" >
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="240" TextChanged="txbGiaTienTren_TextChanged" >
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>

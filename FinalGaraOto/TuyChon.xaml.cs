@@ -1,4 +1,5 @@
-﻿using FinalGaraOto.Model;
+﻿
+using FinalGaraOto.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -358,6 +359,37 @@ namespace FinalGaraOto
                 g = selected_row as dynamic;
             }
         }*/
+        private void txbGiaTienDuoi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<TIENCONG> tiencong = new ObservableCollection<TIENCONG>();
+            decimal tien1=decimal.Parse(txbGiaTienDuoi.Text);
+            var List = DataProvider.Ins.DB.TIENCONGs.ToList();
+            foreach (var item in List)
+            {
+                decimal _TC = item.GiaTienCong;
+                if (_TC>=tien1)
+                {
+                    tiencong.Add(item);
+                }
+            }
+            dtgTienCong.ItemsSource = tiencong;
+        }
+
+        private void txbGiaTienTren_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<TIENCONG> tiencong = new ObservableCollection<TIENCONG>();
+            decimal tien2 = decimal.Parse(txbGiaTienTren.Text);
+            var List = DataProvider.Ins.DB.TIENCONGs.ToList();
+            foreach (var item in List)
+            {
+                decimal _TC = item.GiaTienCong;
+                if (_TC <= tien2)
+                {
+                    tiencong.Add(item);
+                }
+            }
+            dtgTienCong.ItemsSource = tiencong;
+        }
         #endregion
 
 
@@ -543,7 +575,7 @@ namespace FinalGaraOto
         {
             ThemNhaCungCap themNCC = new ThemNhaCungCap();
             themNCC.ShowDialog();
-            this.Close();
+            this.Show();
         }
 
         private void BtnXoaNCC_Click(object sender, RoutedEventArgs e)
@@ -671,8 +703,8 @@ namespace FinalGaraOto
             }
             dtgNCC.ItemsSource = h;
         }
-        #endregion
 
+        #endregion
 
     }
 }
