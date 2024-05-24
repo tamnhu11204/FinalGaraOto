@@ -143,18 +143,22 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Horizontal"
-                                Width="auto">
+                                Width="800">
                         <!-- Chứa cái thanh tìm kiếm-->
                         <TextBox Grid.Column="0"
                                  Margin="10"
+                                 Height="50"
+                                 FontSize="18"
                                  VerticalAlignment="Center"
-                                 Width="150"
+                                 Width="250"
                                  materialDesign:HintAssist.Hint="Tên vật tư"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                         </TextBox>
 
                         <TextBox Grid.Column="1" 
-                                 Width="150"
+                                 Width="250"
+                                 Height="50"
+                                 FontSize="18"
                                  VerticalAlignment="Center"
                                  materialDesign:HintAssist.Hint="Giá vật tư"
                                  Margin="5"
@@ -164,9 +168,11 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
 
                         <TextBox Grid.Column="2"
                                  Margin="5"
+                                 Height="50"
                                  VerticalAlignment="Center"
-                                 HorizontalAlignment="Stretch"
+                                 Width="250"
                                  materialDesign:HintAssist.Hint="Tìm kiếm số lượng vật tư"
+                                 FontSize="18"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                         </TextBox>
                     </StackPanel>
@@ -176,10 +182,10 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     <!-- Chứa button thêm và mở rộng -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                         <Button
-                            Width="170"
-                            Height="50"
+                            Width="150"
+                            Height="40"
                             Content="Tìm kiếm"
-                            FontSize="25"
+                            FontSize="20"
                             Margin="20"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
@@ -187,10 +193,10 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
 
                         <Button x:Name="btnThemVTPT"
                                 Click="btnThemVTPT_Click"
-                            Width="170"
-                            Height="50"
+                            Width="150"
+                            Height="40"
                             Content="Thêm vật tư"
-                            FontSize="25"                           
+                            FontSize="20"                           
                             Margin="20"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
@@ -203,9 +209,9 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"         
                             PlacementMode="BottomAndAlignCentres"
                             Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-                            ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
+                            ToolTip="Mở rộng"
                             ToolTipService.Placement="Right">
-                            
+                         
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
@@ -218,29 +224,29 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                     <StackPanel>
                                         <Button x:Name="btnNhapVTPT"
                                                 Click="btnNhapVTPT_Click"
-                                            Grid.Row="0" 
-                                            Content="Nhập vật tư"           
-                                            ToolTip="Lập phiếu nhập vật tư"
-                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                Grid.Row="0" 
+                                                Content="Nhập vật tư"           
+                                                ToolTip="Lập phiếu nhập vật tư"
+                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         />
                                         <Button x:Name="btnLichSuNhapVTPT"
                                                 Click="btnLichSuNhapVTPT_Click"
-                                            Grid.Row="1"
-                                            Content="Lịch sử nhập"
-                                            ToolTip="Lịch sử nhập vật tư phụ tùng" 
-                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                Grid.Row="1"
+                                                Content="Lịch sử nhập"
+                                                ToolTip="Lịch sử nhập vật tư phụ tùng" 
+                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
  
-                                            />
-                                        <Button x:Name="btnDVT"
-                                                Click="btnDVT_Click"
-                                            Grid.Row="2"
-                                            Content="Đơn vị tính"
-                                            ToolTip="Thêm đơn vị tính" 
-                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-  
-    
-                                            />
-                                    </StackPanel>
+                                        />
+                                        <Button x:Name="btnXuatFile"
+                                                Click="btnXuatFile_Click"
+                                                Grid.Row="1"
+                                                Content="Lịch sử nhập"
+                                                ToolTip="Lịch sử nhập vật tư phụ tùng" 
+                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+ 
+                                        />
+
+                                </StackPanel>
                             </Grid>
                             
                         </materialDesign:PopupBox>
@@ -254,124 +260,85 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             CornerRadius="10"
                             VerticalAlignment="Top">
                         <DataGrid x:Name="BangVTPT"
-                                  ItemsSource="{Binding DanhSachVTPT, Mode=TwoWay}"
-                                  VerticalAlignment="Top">
+                                  FontSize="25"
+                                  
+                                  Foreground="White"
+                                  Background="#FF1D2850"
+                                  HorizontalAlignment="Stretch"
+                                  AutoGenerateColumns="False"
+                                  VerticalAlignment="Top"
+                                  SelectionMode="Single">
 
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Width="Auto">
-                                    <DataGridTemplateColumn.Header>
-                                        <CheckBox x:Name="HeaderCheckBox"
-                                                  Style="{StaticResource MaterialDesignActionCheckBox}"
-                                                  IsChecked="{Binding DataContext.isAllChecked, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}"
-                                                  Command="{Binding DataContext.UpdateIsAllSelectedCommand,  RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                  CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                                    </DataGridTemplateColumn.Header>
+ 
+                                <DataGridTextColumn Header="Mã vật tư" Width="2*"
+                                                    
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding MaVTPT}"/>
 
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <CheckBox IsChecked="{Binding isChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                      Style="{StaticResource MaterialDesignActionCheckBox}"
-                                                      Command="{Binding DataContext.UpdateIsAllSelectedCommand,  RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
 
-                                <DataGridTemplateColumn Header="Vật tư phụ tùng" Width="3*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox Text="{Binding tenVTPT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                     IsReadOnly="{Binding isReadOnly}" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Vật tư phụ tùng" Width="2*"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding TenVT}"/>
 
-                                <DataGridTextColumn Header="Tồn" IsReadOnly="True" Width="*" Binding="{Binding soLuongTon}"/>
 
-                                <DataGridTemplateColumn Header="Đơn vị" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox
-                                                Style="{StaticResource MaterialDesignTextBox}"
 
-                                                IsEnabled="{Binding isReadOnly}"
-            
-        />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Tồn" Width="*" 
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding SLTon}"/>
 
-                                <DataGridTemplateColumn Header="Giá nhập" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox Text="{Binding giaNhap,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                     IsReadOnly="{Binding isReadOnly}">
-                                            </TextBox>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Đơn vị tính" Width="*" 
+                                                    Binding="{Binding DVT}"/>
 
-                                <DataGridTextColumn Header="Giá bán" IsReadOnly="True" Width="*" />
+
+
+                                <DataGridTextColumn Header="Giá nhập" Width="*"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding GiaNhap}"/>
+
+
+                                <DataGridTextColumn Header="Giá bán" Width="*"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding GiaBan}"/>
+
+
 
                                 <DataGridTemplateColumn Width="*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Button 
+                                                <Button x:Name="btnSua"
+                                                        Click="btnSua_Click"
                                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                                     Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                                     ToolTip="MaterialDesignFloatingActionMiniDarkButton" 
-                                                    Margin="30"
-                                                    Width="70"
-                                                    Height="70" HorizontalAlignment="Center" >
+                                                    Margin="5"
+                                                    Width="20"
+                                                    Height="20" HorizontalAlignment="Center" >
                                                     <materialDesign:PackIcon
-                                                        Width="70"
-                                                        Height="70"
+                                                        Width="20"
+                                                        Height="20"
                                                         Kind="Edit" 
                                                         HorizontalAlignment="Center"
                                                     />
                                                 </Button>
 
-                                                <Button 
+                                                <Button x:Name="btnXoa"
+                                                        Click="btnXoa_Click"
                                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                                     Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                                     ToolTip="MaterialDesignFloatingActionMiniDarkButton" 
-                                                    Margin="30"
-                                                    Width="70"
-                                                    Height="70" HorizontalAlignment="Center" >
+                                                    Margin="5"
+                                                    Width="20"
+                                                    Height="20" HorizontalAlignment="Center" >
                                                     <materialDesign:PackIcon
-                                                        Width="70"
-                                                        Height="70"
+                                                        Width="20"
+                                                        Height="20"
                                                         Kind="Delete" 
                                                         HorizontalAlignment="Center"
                                                     />
                                                 </Button>
-
-                                                <Button Style="{StaticResource MaterialDesignFlatButton}"
-                        Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                        CommandParameter="{Binding}"
-                        Padding="4"
-                        Visibility="{Binding isReadOnly}">
-                                                    <materialDesign:PackIcon
-                    Width="70"
-                    Height="70"
-                    Kind="Check" 
-                    HorizontalAlignment="Center"
-                />
-                                                </Button>
-
-                                                <Button Style="{StaticResource MaterialDesignFlatButton}"
-                        Command="{Binding DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                        CommandParameter="{Binding}"
-                        Padding="4"
-                        Visibility="{Binding isReadOnly}">
-                                                    <materialDesign:PackIcon
-                    Width="70"
-                    Height="70"
-                    Kind="Apps" 
-                    HorizontalAlignment="Center"
-                />
-                                                </Button>
+             
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
