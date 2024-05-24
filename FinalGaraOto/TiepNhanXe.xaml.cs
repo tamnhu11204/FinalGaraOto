@@ -28,5 +28,12 @@ namespace FinalGaraOto
         {
             this.DragMove();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DichVu dv_ = new DichVu();
+            this.Close();
+            dv_.Show();
+        }
     }
 }
