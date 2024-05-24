@@ -261,9 +261,9 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox Margin="690,-60,0,0" x:Name="txbGhiChu"
+                            <TextBox Margin="690,-60,0,0" x:Name="txbGhiChu" 
                                     materialDesign:HintAssist.Hint="Ghi chú"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbTenHangXe_TextChanged">
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbGhiChu_TextChanged" >
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
@@ -297,43 +297,65 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 <TabItem Header="Thông tin nhà cung cấp" Height="48" Width="212" FontSize="20" Background="#FF89BAD2">
                     <StackPanel Width="1600" Margin="0,11,0,-6" Orientation="Horizontal">
                         <StackPanel Width="1600" Height="806">
-                            <TextBox Margin="10,11,0,0" x:Name="txbTenNCC"
-                                materialDesign:HintAssist.Hint="Tên nhà cung cấp"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
+                            <TextBox Margin="10,11,0,0" x:Name="txbMaNCC" IsReadOnly="True"
+                                    materialDesign:HintAssist.Hint="Mã"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbTenHangXe_TextChanged">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
-
-                            <TextBox Margin="340,-61,0,0" x:Name="txbSDT"
-                                     materialDesign:HintAssist.Hint="Số điện thoại"
-                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
+                            <TextBox Margin="350,-62,0,0" x:Name="txbTenNCC"
+                                    materialDesign:HintAssist.Hint="Tên nhà cung cấp"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbTenNCC_TextChanged">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
-
-                            <TextBox Margin="10,11,0,0" x:Name="txbEmail"
+                            <TextBox Margin="690,-60,0,0" x:Name="txbSDT"
+                                    materialDesign:HintAssist.Hint="Số điện thoại"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbSDT_TextChanged">
+                                <TextBox.Text>
+                                    <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox Margin="350,10,0,0" x:Name="txbEmail"
                                      materialDesign:HintAssist.Hint="Email"
-                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left">
+                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbEmail_TextChanged">
                                 <TextBox.Text>
-                                    <Binding Path="Text2" />
+                                    <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox Margin="690,-60,0,0" x:Name="txbDiaChi"
+                                     materialDesign:HintAssist.Hint="Địa chỉ"
+                                       Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbDiaChi_TextChanged">
+                                <TextBox.Text>
+                                    <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
                             </TextBox>
 
-                            <Button Content="Làm mới" FontSize="20"
-                                    Margin="400,-200,0,0" Width="230" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                            <Button Content="Làm mới" FontSize="20" Background="#FF2D8138" Click="BtnLamMoiNCC_Click"
+                                    Margin="1000,-210,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" />
+                            <Button Content="Cập nhật" FontSize="20" Background="#FF1B76C6" Click="BtnSuaNCC_Click"
+                                    Margin="1400,-80,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" />
+                            <Button Content="Xóa" FontSize="20" Background="#FFB73E3A" Click="BtnXoaNCC_Click"
+                                    Margin="1000,-80,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" />
 
-                            <Button Content="Thêm nhà cung cấp" FontSize="20"
-                                    Margin="-100,-50,0,0" Width="230" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
-                            <DataGrid Height="600" FontSize="20" Width="1600" Margin="0,50,0,0" >
+                            <Button Content="Thêm NCC" FontSize="20" Click="BtnThemNCC_Click"
+                                    Margin="1400,-210,0,0" Width="175" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
+                            <DataGrid AutoGenerateColumns="False" x:Name="dtgNCC"
+                                    Height="600" FontSize="20" Width="1600" Margin="0,50,0,0" SelectionChanged="dtgNCC_SelectionChanged"  >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header = "STT" Binding = "{Binding Name}" />
-                                    <DataGridTextColumn Header = "Mã nhà cung cấp" Binding = "{Binding Title}" />
-                                    <DataGridCheckBoxColumn Header = "Tên nhà cung cấp" Binding = "{Binding WasReElected}"/>
-                                    <DataGridComboBoxColumn Header = "Số điện thoại" SelectedItemBinding = "{Binding Affiliation}"/>
-                                    <DataGridComboBoxColumn Header = "Email" SelectedItemBinding = "{Binding Affiliation}"/>
-                                    <DataGridComboBoxColumn Header = "Địa chỉ" SelectedItemBinding = "{Binding Affiliation}"/>
+
+                                    <DataGridTextColumn Header = "Mã " IsReadOnly="True" Width="*"
+                                        Binding = "{Binding MaNhaCungCap}" />
+                                    <DataGridTextColumn Header = "Tên nhà cung cấp" Width="*" IsReadOnly="True"
+                                        Binding = "{Binding TenNhaCungCap}"/>
+                                    <DataGridTextColumn Header = "Số điện thoại"  Width="*" IsReadOnly="True"
+                                        Binding = "{Binding SDTNhaCungCap}"/>
+                                    <DataGridTextColumn Header = "Email" IsReadOnly="True" Width="*"
+                                        Binding = "{Binding EmailNhaCungCap}" />
+                                    <DataGridTextColumn Header = "Địa chỉ" IsReadOnly="True" Width="*"
+                                        Binding = "{Binding DiachiNhaCungCap}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </StackPanel>
