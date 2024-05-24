@@ -141,9 +141,6 @@
       <DependentUpon>DangNhap.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataProvider.cs" />
-    <Compile Include="DoiMatKhau.xaml.cs">
-      <DependentUpon>DoiMatKhau.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DONVITINH.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>
@@ -240,10 +237,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DichVu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DoiMatKhau.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -456,6 +449,9 @@
       <DependentUpon>CSDL.edmx</DependentUpon>
       <LastGenOutput>CSDL.cs</LastGenOutput>
     </Content>
+    <Resource Include="OIG2.ico" />
+    <Resource Include="OIG2.jpg" />
+    <Resource Include="Screenshot-2024-05-24-145708.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

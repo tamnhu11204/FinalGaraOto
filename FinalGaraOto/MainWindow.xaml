@@ -10,7 +10,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Height="1065" 
         Width="1700"
-        WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown"
+        WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" Icon="/OIG2.ico"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -114,7 +114,8 @@
         <Grid Grid.Row="2">
             <DockPanel Height="60" Background="#FFA8A8A8">
                 <TextBlock Margin="16,0,0,0" Text="Thông tin cá nhân" FontSize="35" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Button Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DD0C0202" HorizontalAlignment="Right">
+                <Button Click="BtnDangXuat_Click"
+                    Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DD0C0202" HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Đăng xuất" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
                         <materialDesign:PackIcon Margin="11,0,0,0" Kind="AccountArrowRightOutline" Width="25" Height="25"/>
@@ -136,7 +137,7 @@
                     <RowDefinition Height="auto" ></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <GroupBox 
+                    <GroupBox BorderBrush="{DynamicResource MaterialDesignPaper}"
            Width="600"
            materialDesign:ElevationAssist.Elevation="Dp6"
            Background="White"
@@ -164,7 +165,7 @@
                                              Height="40"
                                              
                                              />
-                                <TextBox IsReadOnly="true"
+                                <TextBox x:Name="txbHoVaTen"
                         materialDesign:HintAssist.Hint="Họ và tên"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10"
@@ -177,7 +178,7 @@
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                                <DatePicker Height="80" IsEnabled="False"
+                                <DatePicker Height="80" x:Name="dpNgaySinh"
                         materialDesign:HintAssist.Hint="Ngày sinh"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
                         Margin="10"
@@ -191,7 +192,7 @@
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                                <TextBox IsReadOnly="true"
+                                <TextBox x:Name="txbCCCD"
                         materialDesign:HintAssist.Hint="Số CCCD"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -205,7 +206,7 @@
                                              Margin="10 30" 
                                              Width="40" 
                                              Height="40"/>
-                                <TextBox IsReadOnly="true"
+                                <TextBox x:Name="txbDiaChi"
                         materialDesign:HintAssist.Hint="Địa chỉ"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -219,7 +220,7 @@
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                                <TextBox IsReadOnly="true"
+                                <TextBox x:Name="txbSDT"
                         materialDesign:HintAssist.Hint="Số điện thoại"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -233,7 +234,7 @@
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                                <TextBox IsReadOnly="true"
+                                <TextBox IsReadOnly="true" x:Name="txbTenDangNhap"
                         materialDesign:HintAssist.Hint="Tên đăng nhập"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -249,7 +250,7 @@
                          Margin="10 30" 
                          Width="40" 
                          Height="40"/>
-                                <TextBox IsReadOnly="true"
+                                <TextBox x:Name="txbMatKhau"
                         materialDesign:HintAssist.Hint="Mật khẩu"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                         Margin="10" 
@@ -262,21 +263,19 @@
                     </GroupBox>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Content="Cập nhật" Background="#FF89BAD2"
-                            Margin="100,0,440,68" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                    <Button Content="Đổi mật khẩu" Background="#FF1D2850"
-                            Margin="500,0,132,68" Height="50" Width="200" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                    <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhat_Click"
+                            Margin="350,0,350,68" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                 </Grid>
 
             </Grid>
 
-            <Grid Grid.Column="1">
-                <GroupBox 
-           Margin="20"
+            <Grid Grid.Column="1" >
+                <GroupBox BorderBrush="{DynamicResource MaterialDesignPaper}"
+           Margin="20,-70,0,0"
            Width="600"
            materialDesign:ElevationAssist.Elevation="Dp6"
            Background="White"
-           Header="Quyên truy cập"
+           Header="Quyền truy cập"
            VerticalAlignment="Center"
            FontSize="25"
            Style="{StaticResource MaterialDesignGroupBox}">

@@ -68,7 +68,7 @@ namespace FinalGaraOto
                 var acc = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == _TenDangNhap && x.MatKhau == _MatKhau).Count();
                 if (acc > 0)
                 {
-                    MainWindow mainWindow = new MainWindow();
+                    MainWindow mainWindow = new MainWindow(_TenDangNhap);
                     mainWindow.Show();
                     this.Close();
                 }

@@ -71,7 +71,7 @@ namespace FinalGaraOto
 
         private void taiKhoan_Tab(object sender, RoutedEventArgs e)
         {
-            MainWindow taikhoan_tab = new MainWindow();
+            MainWindow taikhoan_tab = new MainWindow(null);
             taikhoan_tab.Show();
             this.Close();
         }

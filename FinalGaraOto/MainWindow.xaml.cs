@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+
 namespace FinalGaraOto
 {
     /// <summary>
@@ -20,9 +23,17 @@ namespace FinalGaraOto
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(string tenDN)
         {
             InitializeComponent();
+            var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == tenDN).SingleOrDefault();
+            txbTenDangNhap.Text = l.TenDangNhap;
+            txbCCCD.Text = l.CCCDNguoiDung;
+            txbDiaChi.Text = l.DiaChiNguoiDung;
+            txbHoVaTen.Text = l.TenNguoiDung;
+            txbMatKhau.Text = l.MatKhau;
+            txbSDT.Text = l.SDTNguoiDung;
+            dpNgaySinh.Text = l.NgaySinhNguoiDung.ToString();
         }
 
         #region scroll button
@@ -71,7 +82,7 @@ namespace FinalGaraOto
 
         private void taiKhoan_Tab(object sender, RoutedEventArgs e)
         {
-            MainWindow taikhoan_tab = new MainWindow();
+            MainWindow taikhoan_tab = new MainWindow(null);
             taikhoan_tab.Show();
             this.Close();
         }
@@ -105,5 +116,56 @@ namespace FinalGaraOto
         }
 
         #endregion
+
+        private void BtnCapNhat_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbCCCD.Text) || string.IsNullOrEmpty(txbDiaChi.Text) || string.IsNullOrEmpty(txbHoVaTen.Text)
+                    || string.IsNullOrEmpty(txbMatKhau.Text) || string.IsNullOrEmpty(dpNgaySinh.Text) || string.IsNullOrEmpty(txbSDT.Text)
+                    || string.IsNullOrEmpty(txbTenDangNhap.Text))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                string tdn = txbTenDangNhap.Text;
+                var n = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == tdn).SingleOrDefault();
+                n.MaNguoiDung = n.MaNguoiDung;
+                n.TenDangNhap = txbTenDangNhap.Text;
+                n.TenNguoiDung = txbHoVaTen.Text;
+
+                DateTime? ngaySinh = dpNgaySinh.SelectedDate;
+                if (ngaySinh.HasValue)
+                {
+                    n.NgaySinhNguoiDung = ngaySinh.Value;
+                }
+                else
+                {
+                    return;
+                }
+
+                n.CCCDNguoiDung = txbCCCD.Text;
+                n.DiaChiNguoiDung = txbDiaChi.Text;
+                n.SDTNguoiDung = txbSDT.Text;
+                n.MatKhau = txbMatKhau.Text;
+
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật thông tin cá nhân?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Cập nhật thông tin thành công!");
+                }
+                else return;
+
+            }
+            return;
+        }
+
+        private void BtnDangXuat_Click(object sender, RoutedEventArgs e)
+        {
+            DangNhap dangnhap=new DangNhap();
+            dangnhap.Show();
+            this.Close();
+        }
     }
 }

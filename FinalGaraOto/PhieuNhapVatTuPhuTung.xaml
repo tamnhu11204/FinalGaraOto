@@ -10,7 +10,7 @@
         Width="720"
         ResizeMode="NoResize"
         WindowStyle="None"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown" Icon="/OIG2.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
