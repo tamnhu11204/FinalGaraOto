@@ -49,14 +49,6 @@
           <Property Name="TongTienVTPT" Type="money" />
           <Property Name="TongCong" Type="money" />
         </EntityType>
-        <EntityType Name="CHUCNANG">
-          <Key>
-            <PropertyRef Name="MaChucNang" />
-          </Key>
-          <Property Name="MaChucNang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenChucNang" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TenManHinhDuocLoad" Type="nvarchar" MaxLength="100" />
-        </EntityType>
         <EntityType Name="CHUXE">
           <Key>
             <PropertyRef Name="MaChuXe" />
@@ -134,14 +126,6 @@
           </Key>
           <Property Name="MaNhom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenNhom" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PHANQUYEN">
-          <Key>
-            <PropertyRef Name="MaNhom" />
-            <PropertyRef Name="MaChucNang" />
-          </Key>
-          <Property Name="MaNhom" Type="int" Nullable="false" />
-          <Property Name="MaChucNang" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PHIEUNHAP">
           <Key>
@@ -327,30 +311,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_PhanQuyen1">
-          <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
-          <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NHOMNGUOIDUNG">
-              <PropertyRef Name="MaNhom" />
-            </Principal>
-            <Dependent Role="PHANQUYEN">
-              <PropertyRef Name="MaNhom" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_PhanQuyen2">
-          <End Role="CHUCNANG" Type="Self.CHUCNANG" Multiplicity="1" />
-          <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CHUCNANG">
-              <PropertyRef Name="MaChucNang" />
-            </Principal>
-            <Dependent Role="PHANQUYEN">
-              <PropertyRef Name="MaChucNang" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_PhieuNhap">
           <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
           <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
@@ -428,7 +388,6 @@
           <EntitySet Name="BAOCAOTON" EntityType="Self.BAOCAOTON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHITIETPHIEUNHAP" EntityType="Self.CHITIETPHIEUNHAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHITIETSUACHUA" EntityType="Self.CHITIETSUACHUA" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CHUCNANG" EntityType="Self.CHUCNANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHUXE" EntityType="Self.CHUXE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CT_SUDUNGVTPT" EntityType="Self.CT_SUDUNGVTPT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTBAOCAODOANHTHU" EntityType="Self.CTBAOCAODOANHTHU" Schema="dbo" store:Type="Tables" />
@@ -437,7 +396,6 @@
           <EntitySet Name="NGUOIDUNG" EntityType="Self.NGUOIDUNG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHOMNGUOIDUNG" EntityType="Self.NHOMNGUOIDUNG" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PHANQUYEN" EntityType="Self.PHANQUYEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUNHAP" EntityType="Self.PHIEUNHAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUSUACHUA" EntityType="Self.PHIEUSUACHUA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUTHUTIEN" EntityType="Self.PHIEUTHUTIEN" Schema="dbo" store:Type="Tables" />
@@ -485,14 +443,6 @@
             <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
             <End Role="NGUOIDUNG" EntitySet="NGUOIDUNG" />
           </AssociationSet>
-          <AssociationSet Name="fk_PhanQuyen1" Association="Self.fk_PhanQuyen1">
-            <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNG" />
-            <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
-          </AssociationSet>
-          <AssociationSet Name="fk_PhanQuyen2" Association="Self.fk_PhanQuyen2">
-            <End Role="CHUCNANG" EntitySet="CHUCNANG" />
-            <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
-          </AssociationSet>
           <AssociationSet Name="fk_PhieuNhap" Association="Self.fk_PhieuNhap">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
             <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
@@ -527,7 +477,6 @@
           <EntitySet Name="BAOCAOTONs" EntityType="QLGARAOTOModel.BAOCAOTON" />
           <EntitySet Name="CHITIETPHIEUNHAPs" EntityType="QLGARAOTOModel.CHITIETPHIEUNHAP" />
           <EntitySet Name="CHITIETSUACHUAs" EntityType="QLGARAOTOModel.CHITIETSUACHUA" />
-          <EntitySet Name="CHUCNANGs" EntityType="QLGARAOTOModel.CHUCNANG" />
           <EntitySet Name="CHUXEs" EntityType="QLGARAOTOModel.CHUXE" />
           <EntitySet Name="CT_SUDUNGVTPT" EntityType="QLGARAOTOModel.CT_SUDUNGVTPT" />
           <EntitySet Name="CTBAOCAODOANHTHUs" EntityType="QLGARAOTOModel.CTBAOCAODOANHTHU" />
@@ -607,10 +556,6 @@
             <End Role="XE" EntitySet="XEs" />
             <End Role="PHIEUTHUTIEN" EntitySet="PHIEUTHUTIENs" />
           </AssociationSet>
-          <AssociationSet Name="PHANQUYEN" Association="QLGARAOTOModel.PHANQUYEN">
-            <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNGs" />
-            <End Role="CHUCNANG" EntitySet="CHUCNANGs" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BAOCAODOANHTHU">
           <Key>
@@ -662,15 +607,6 @@
           <NavigationProperty Name="PHIEUSUACHUA" Relationship="QLGARAOTOModel.fk_CTSC1" FromRole="CHITIETSUACHUA" ToRole="PHIEUSUACHUA" />
           <NavigationProperty Name="TIENCONG" Relationship="QLGARAOTOModel.fk_CTSC2" FromRole="CHITIETSUACHUA" ToRole="TIENCONG" />
           <NavigationProperty Name="CT_SUDUNGVTPT" Relationship="QLGARAOTOModel.fk_CTSuDungVTPT1" FromRole="CHITIETSUACHUA" ToRole="CT_SUDUNGVTPT" />
-        </EntityType>
-        <EntityType Name="CHUCNANG">
-          <Key>
-            <PropertyRef Name="MaChucNang" />
-          </Key>
-          <Property Name="MaChucNang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenChucNang" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TenManHinhDuocLoad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NHOMNGUOIDUNGs" Relationship="QLGARAOTOModel.PHANQUYEN" FromRole="CHUCNANG" ToRole="NHOMNGUOIDUNG" />
         </EntityType>
         <EntityType Name="CHUXE">
           <Key>
@@ -760,7 +696,6 @@
           <Property Name="MaNhom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenNhom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="NGUOIDUNGs" Relationship="QLGARAOTOModel.fk_NguoiDung" FromRole="NHOMNGUOIDUNG" ToRole="NGUOIDUNG" />
-          <NavigationProperty Name="CHUCNANGs" Relationship="QLGARAOTOModel.PHANQUYEN" FromRole="NHOMNGUOIDUNG" ToRole="CHUCNANG" />
         </EntityType>
         <EntityType Name="PHIEUNHAP">
           <Key>
@@ -1032,10 +967,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PHANQUYEN">
-          <End Type="QLGARAOTOModel.NHOMNGUOIDUNG" Role="NHOMNGUOIDUNG" Multiplicity="*" />
-          <End Type="QLGARAOTOModel.CHUCNANG" Role="CHUCNANG" Multiplicity="*" />
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1084,15 +1015,6 @@
                 <ScalarProperty Name="MaTienCong" ColumnName="MaTienCong" />
                 <ScalarProperty Name="MaSuaChua" ColumnName="MaSuaChua" />
                 <ScalarProperty Name="MaChiTietSuaChua" ColumnName="MaChiTietSuaChua" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CHUCNANGs">
-            <EntityTypeMapping TypeName="QLGARAOTOModel.CHUCNANG">
-              <MappingFragment StoreEntitySet="CHUCNANG">
-                <ScalarProperty Name="TenManHinhDuocLoad" ColumnName="TenManHinhDuocLoad" />
-                <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
-                <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1251,14 +1173,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="PHANQUYEN" TypeName="QLGARAOTOModel.PHANQUYEN" StoreEntitySet="PHANQUYEN">
-            <EndProperty Name="CHUCNANG">
-              <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
-            </EndProperty>
-            <EndProperty Name="NHOMNGUOIDUNG">
-              <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

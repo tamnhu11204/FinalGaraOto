@@ -29,7 +29,6 @@ namespace FinalGaraOto
         public virtual DbSet<BAOCAOTON> BAOCAOTONs { get; set; }
         public virtual DbSet<CHITIETPHIEUNHAP> CHITIETPHIEUNHAPs { get; set; }
         public virtual DbSet<CHITIETSUACHUA> CHITIETSUACHUAs { get; set; }
-        public virtual DbSet<CHUCNANG> CHUCNANGs { get; set; }
         public virtual DbSet<CHUXE> CHUXEs { get; set; }
         public virtual DbSet<CT_SUDUNGVTPT> CT_SUDUNGVTPT { get; set; }
         public virtual DbSet<CTBAOCAODOANHTHU> CTBAOCAODOANHTHUs { get; set; }

@@ -36,6 +36,8 @@ namespace FinalGaraOto
             txbMatKhau.Text = l.MatKhau;
             txbSDT.Text = l.SDTNguoiDung;
             dpNgaySinh.Text = l.NgaySinhNguoiDung.ToString();
+
+            LoadPhanQuyen();
         }
 
         #region scroll button
@@ -161,6 +163,41 @@ namespace FinalGaraOto
 
             }
             return;
+        }
+
+        void LoadPhanQuyen()
+        {
+            string tdn = txbTenDangNhap.Text;
+            var n = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == tdn).SingleOrDefault();
+            int MaND = n.MaNhom;
+            if (MaND == 1)
+            {
+                ck1.IsChecked = true;
+                ck2.IsChecked = true;
+                ck3.IsChecked = true;
+                ck4.IsChecked = true;
+                ck5.IsChecked = true;
+                ck6.IsChecked = true;
+                ck7.IsChecked = true;
+                ck8.IsChecked = true;
+                ck9.IsChecked = true;
+                ck10.IsChecked = true;
+                ck11.IsChecked = true;
+            }
+            else
+            {
+                ck1.IsChecked = true;
+                ck2.IsChecked = true;
+                ck3.IsChecked = true;
+                ck4.IsChecked = false;
+                ck5.IsChecked = false;
+                ck6.IsChecked = true;
+                ck7.IsChecked = true;
+                ck8.IsChecked = true;
+                ck9.IsChecked = true;
+                ck10.IsChecked = true;
+                ck11.IsChecked = true;
+            }
         }
 
         private void BtnDangXuat_Click(object sender, RoutedEventArgs e)
