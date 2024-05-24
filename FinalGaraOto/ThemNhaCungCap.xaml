@@ -35,17 +35,7 @@
             <StackPanel Margin="0,85,-119,291">
                 <TextBox x:Name="txbTen"
                       materialDesign:HintAssist.Hint="Tên nhà cung cấp"
-<<<<<<< HEAD
-                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
-                <TextBox  materialDesign:HintAssist.Hint="SĐT"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" />
-                <TextBox  materialDesign:HintAssist.Hint="Email"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" />
-                <TextBox  materialDesign:HintAssist.Hint="Địa chỉ"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" />
-                <Button Content="Thêm" Background="#FF89BAD2"
-=======
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
                 <TextBox  x:Name="txbSDT"
                     materialDesign:HintAssist.Hint="SĐT"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" />
@@ -56,7 +46,7 @@
                           materialDesign:HintAssist.Hint="Địa chỉ"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" />
                 <Button Content="Thêm" Background="#FF89BAD2" Click="BtnThem_Click"
->>>>>>> 328c35d47dde64fff0465853b7af29e28e8f64d2
+
                     Margin="-290,50,0,0" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                 <Button Click="BtnThoat_Click"
                     Margin="150,-59,0,0" Content="Thoát" Background="#FF1D2850" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>

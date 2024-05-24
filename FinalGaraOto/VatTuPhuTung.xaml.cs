@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -66,7 +67,20 @@ namespace FinalGaraOto
 
         private void BangVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                int MaVatTu = selected_row.MaVTPT;
+                txbMaVT.Text = selected_row.MaVTPT.ToString();
+                var l = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVatTu).SingleOrDefault();
+                txbTenVatTu.Text = selected_row.TenVT;
+                txbSLTon.Text = l.SoLuongTon.ToString();
+                txbDonViTinh.Text = l.DONVITINH.TenDVT;
+                txbGiaNhap.Text = l.DonGiaNhap.ToString();
+                txbGiaBan.Text = l.DonGiaBan.ToString();
 
+            }
         }
 
         #region scroll bar button
@@ -188,23 +202,25 @@ namespace FinalGaraOto
         #region Sua xoa thong tin tren datagrid
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            int MaVTPT = int.Parse(txbMa.Text);
-            var n = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.MaNguoiDung == MaNV).SingleOrDefault();
+            DataGrid grid = (DataGrid)BangVTPT;
+            dynamic t = grid.SelectedItem;
+            int MaVT = t.MaVTPT;
+            var n = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
             if (n != null)
             {
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa nhân viên?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (r == MessageBoxResult.Yes)
                 {
-                    DataProvider.Ins.DB.NGUOIDUNGs.Remove(n);
+                    DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
                     DataProvider.Ins.DB.SaveChanges();
 
-                    MessageBox.Show("Xóa nhân viên thành công!");
-                    LoadNhanVienList();
+                    MessageBox.Show("Xóa vật tư thành công!");
+                    LoadVatTuPhuTungList();
                 }
                 else return;
             }
@@ -214,5 +230,7 @@ namespace FinalGaraOto
         {
 
         }
+
+        #endregion
     }
 }
