@@ -77,9 +77,9 @@ namespace FinalGaraOto
 
                 MessageBox.Show("Tiếp nhận xe thành công!");
 
-                TuyChon tuychon_ = new TuyChon(tbUserName.Text);
+                DichVu dv_ = new DichVu(tbUserName.Text);
                 this.Close();
-                tuychon_.Show();
+                dv_.Show();
             }
         }
         #endregion

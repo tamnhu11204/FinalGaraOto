@@ -28,14 +28,14 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 Content="{materialDesign:PackIcon Kind=MinusCircle}"
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
-                        
+
                         <Button x:Name="btnMaximize"
                                 Click="btnMaximize_Click"
                                 Background="{x:Null}"
                                 Content="{materialDesign:PackIcon Kind=CropSquare}"
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
-                       
+
                         <Button x:Name="btnClosing" 
                                 Click="btnClosing_Click"
                                 Background="{x:Null}"
@@ -43,7 +43,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
                Text="Quản lý gara ô tô" FontSize="50" FontFamily="Cooper Black" Foreground="{DynamicResource MaterialDesignPaper}" />
@@ -64,7 +64,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnDichVu" 
                             Click="dichVu_Tab"
                             ToolTip="Tiếp nhận sửa chữa xe">
@@ -73,7 +73,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Dịch vụ" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnKhoHang" 
                             Click="khoHang_Tab"
                             ToolTip="Xem vật tư phụ tùng">
@@ -82,7 +82,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnThongKe" 
                             Click="thongKe_Tab"
                             ToolTip="Xem thống kê tháng" >
@@ -91,7 +91,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Thống kê" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnTuyChon" 
                             Click="tuyChon_Tab"
                             ToolTip="Follow me on Twitter">
@@ -100,7 +100,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Tùy chọn" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnNhanVien" 
                             Click="nhanVien_Tab"
                             ToolTip="Quản lý nhân viên, chức vụ">
@@ -112,7 +112,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 </ToolBar>
             </ToolBarTray>
         </Grid>
-        
+
         <Grid Grid.Row="2">
             <DockPanel Height="60" Background="#FFA8A8A8">
                 <TextBlock Margin="16,0,0,0" Text="Dịch vụ" FontSize="35" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -122,15 +122,28 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="167*"/>
-                <ColumnDefinition Width="1024*"/>
+                <ColumnDefinition Width="944*"/>
+                <ColumnDefinition Width="80*"/>
                 <ColumnDefinition Width="509*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="BackButton" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="63" Background="#FFF4F3F7" BorderBrush="#FFF2EEFB"/>
-            <TextBlock HorizontalAlignment="Left" Margin="333,15,0,0" TextWrapping="Wrap" Text="Hóa đơn thanh toán sửa chữa" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.615,2.406" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,15,0,0" TextWrapping="Wrap" Text="Hóa đơn thanh toán sửa chữa" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.615,2.406" Grid.Column="1"/>
             <materialDesign:PackIcon Kind="ArrowLeft" Height="36" Width="74" Margin="4,8,0,0" RenderTransformOrigin="0.5,0.804" />
             <TextBlock HorizontalAlignment="Left" Margin="10,49,0,0" TextWrapping="Wrap" Text="Chi tiết sửa chữa" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2" Width="277"/>
-            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,73,18,10" FontSize="20" Grid.ColumnSpan="2"/>
-            <GroupBox Margin="10,26,10,341" Header="Thông tin khách hàng" BorderBrush="{DynamicResource MaterialDesignPaper}" Grid.Column="2" FontSize="20" Height="400">
+            <DataGrid AutoGenerateColumns="False"
+                    x:Name="dtgChiTiet"  Margin="10,80,11,85" BorderBrush="Black" FontSize="20" Width="1100" Height="700" Grid.ColumnSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header = "STT" Binding = "{Binding STT}" />
+                    <DataGridTextColumn Header = "Nội dung" Binding = "{Binding NoiDung}" Width="*" />
+                    <DataGridTextColumn Header = "Vật tư" Binding = "{Binding TenVT}" Width="*"/>
+                    <DataGridTextColumn Header = "Số lượng" Binding = "{Binding SL}"/>
+                    <DataGridTextColumn Header = "Đơn giá" Binding = "{Binding Gia}" Width="*"/>
+                    <DataGridTextColumn Header = "Loại tiền công" Binding = "{Binding TenTC}" Width="*"/>
+                    <DataGridTextColumn Header = "Tiền công" Binding = "{Binding TC}"  Width="*"/>
+                    <DataGridTextColumn Header = "Thành tiền" Binding = "{Binding ThanhTien}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <GroupBox Margin="10,75,10,390" Header="Thông tin khách hàng" BorderBrush="{DynamicResource MaterialDesignPaper}" Grid.Column="3" FontSize="20" Height="400">
                 <StackPanel Width="455" Height="557" Orientation="Horizontal">
                     <Grid Margin="-50,-30,467,0" Width="133" Height="516" >
                         <materialDesign:PackIcon Kind="Account" Margin="73,20,0,0" Width="40" Height="40"/>
@@ -162,12 +175,12 @@ Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" Font
                 </StackPanel>
             </GroupBox>
             <DatePicker materialDesign:HintAssist.Hint="Ngày thu tiền"
-      Grid.Column="2" HorizontalAlignment="Left" Margin="150,502,0,0" Height="40" Width="250" FontSize="20" VerticalAlignment="Top"/>
-            <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="74,604,0,0" TextWrapping="Wrap" Text="Tổng tiền : " VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
-            <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="0,527,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
-            <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="387,604,0,0" TextWrapping="Wrap" Text="đồng" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
-            <Button Grid.Column="2"  Content="Thanh toán" HorizontalAlignment="Left" Margin="306,717,0,0" VerticalAlignment="Top" Background="#FF3AB73F" FontSize="20" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7"/>
-            <Button Grid.Column="2" Content="Xuất hóa đơn" HorizontalAlignment="Left" Margin="68,717,0,0" VerticalAlignment="Top" Background="#FF89BAD2" FontSize="20" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.527,3.339"/>
+      Grid.Column="3" HorizontalAlignment="Left" Margin="150,502,0,0" Height="40" Width="250" FontSize="20" VerticalAlignment="Top"/>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="74,604,0,0" TextWrapping="Wrap" Text="Tổng tiền : " VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Center" Margin="0,527,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="387,604,0,0" TextWrapping="Wrap" Text="đồng" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+            <Button Grid.Column="3"  Content="Thanh toán" HorizontalAlignment="Left" Margin="306,717,0,0" VerticalAlignment="Top" Background="#FF3AB73F" FontSize="20" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7"/>
+            <Button Grid.Column="3" Content="Xuất hóa đơn" HorizontalAlignment="Left" Margin="68,717,0,0" VerticalAlignment="Top" Background="#FF89BAD2" FontSize="20" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.527,3.339"/>
         </Grid>
     </Grid>
 </Window>

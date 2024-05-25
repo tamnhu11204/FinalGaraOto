@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+
 
 namespace FinalGaraOto
 {
@@ -20,6 +22,7 @@ namespace FinalGaraOto
     /// </summary>
     public partial class HoaDonThanhToan : Window
     {
+        string MaXe_;
         public HoaDonThanhToan(string n, string MaCX)
         {
             InitializeComponent();
@@ -27,6 +30,8 @@ namespace FinalGaraOto
 
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
+            MaXe_ = MaCX;
+            LoadChiTietSuaChua();
         }
 
         #region scroll bar button
@@ -108,7 +113,62 @@ namespace FinalGaraOto
         }
         #endregion
 
+        public class CHITIET
+        {
+            public int STT { get; set; }
 
+            public string NoiDung { get; set; }
+            public string TenVT { get; set; }
+            public int SL { get; set; }
+            public string Gia { get; set; }
+            public string TenTC { get; set; }
+            public string TC { get; set; }
+            public string ThanhTien { get; set; }
+
+        }
+
+         void LoadChiTietSuaChua()
+        {
+            ObservableCollection<CHITIET> ChiTiets = new ObservableCollection<CHITIET>();
+            var l = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
+            var List = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == l.MaSuaChua).ToList();
+            int i = 1;
+            foreach (var item in List)
+            {
+                CHITIET ct1 = new CHITIET();
+                ct1.STT = i;
+               ct1.NoiDung = item.NoiDung;
+               ct1.TenTC = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.TenTienCong).First();
+                ct1.TC = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong.ToString()).First();
+                ct1.Gia = item.TongTienVTPT.ToString();
+                ct1.TenVT = "";
+                ct1.Gia = "";
+                decimal ThanhTien = 0 ;
+                var List2 = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).ToList();
+                int SL = 0;
+                foreach (var item2 in List2)
+                {
+                   
+                    string ten = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item2.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
+                    ct1.TenVT = ct1.TenVT + item2.SoLuong.ToString() + " " + ten + " , " ;
+                    SL = SL + item2.SoLuong;
+                    item2.DonGia = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung).Select(x => x.DonGiaBan).First() ;
+                    
+                    decimal Tien = (item2.SoLuong) * decimal.Parse(item2.DonGia.ToString());
+                    item2.ThanhTien = Tien;
+                    ThanhTien = ThanhTien + decimal.Parse(item2.ThanhTien.ToString());
+                   
+                }
+                
+                i++;
+                ct1.SL = SL;
+                ct1.Gia = ThanhTien.ToString();
+                ct1.ThanhTien = (decimal.Parse(ct1.Gia) + decimal.Parse( ct1.TC)).ToString();
+                ChiTiets.Add(ct1);
+                dtgChiTiet.ItemsSource = ChiTiets;
+            }
+
+        }
 
 
 

@@ -222,16 +222,34 @@ namespace FinalGaraOto
                 ct1.TC = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong.ToString()).First();
                 ct1.Gia = item.TongTienVTPT.ToString();
                 ct1.TenVT = "";
+                ct1.Gia = "";
+                decimal ThanhTien = 0 ;
                 var List2 = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).ToList();
                 int SL = 0;
                 foreach (var item2 in List2)
                 {
+                   
                     string ten = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item2.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
                     ct1.TenVT = ct1.TenVT + item2.SoLuong.ToString() + " " + ten + " , " ;
                     SL = SL + item2.SoLuong;
+                    item2.DonGia = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung).Select(x => x.DonGiaBan).First() ;
+                    
+                    decimal Tien = (item2.SoLuong) * decimal.Parse(item2.DonGia.ToString());
+                    item2.ThanhTien = Tien;
+                    ThanhTien = ThanhTien + decimal.Parse(item2.ThanhTien.ToString());
+                    var c = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung && x.MaChiTietSuaChua == item2.MaChiTietSuaChua).First();
+                    c.ThanhTien = item2.ThanhTien;
+                    c.DonGia = item2.DonGia;
+                    DataProvider.Ins.DB.SaveChanges();
                 }
+                var d = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).First();
+                d.TongTienVTPT = ThanhTien;
+                d.TongCong =ThanhTien + DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == d.MaTienCong).Select(x => x.GiaTienCong).First();
+                DataProvider.Ins.DB.SaveChanges(); 
                 i++;
                 ct1.SL = SL;
+                ct1.Gia = ThanhTien.ToString();
+                ct1.ThanhTien = (decimal.Parse(ct1.Gia) + decimal.Parse( ct1.TC)).ToString();
                 ChiTiets.Add(ct1);
                 dtgChiTiet.ItemsSource = ChiTiets;
             }
@@ -250,6 +268,18 @@ namespace FinalGaraOto
             public string TC { get; set; }
             public string ThanhTien { get; set; }
 
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnThanhToan_Click(object sender, RoutedEventArgs e)
+        {
+            HoaDonThanhToan hd_ = new HoaDonThanhToan(tbUserName.Text, MaXe_);
+            this.Close();
+            hd_.Show();
         }
     }
 }

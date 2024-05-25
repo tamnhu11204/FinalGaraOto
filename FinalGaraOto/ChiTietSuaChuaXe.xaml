@@ -166,7 +166,7 @@ Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" Font
                         </StackPanel>
                     </GroupBox>
                     <TextBlock Margin="40,650,0,0" TextWrapping="Wrap" Text="Tổng tiền: " FontSize="30" Foreground="#FFE92713" Height="49" Width="171"/>
-                    <TextBox TextWrapping="Wrap"  Width="224" Height="35" Margin="0,650,0,0" FontSize="30" Foreground="#FFE92713"/>
+                    <TextBox x:Name="txbTongTien" TextWrapping="Wrap"  Width="224" Height="35" Margin="0,650,0,0" FontSize="30" Foreground="#FFE92713"/>
                 </StackPanel>
                 <DataGrid AutoGenerateColumns="False"
                     x:Name="dtgChiTiet"  Margin="428,20,10,280" BorderBrush="Black" FontSize="20">
@@ -181,10 +181,10 @@ Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" Font
                         <DataGridTextColumn Header = "Thành tiền" Binding = "{Binding ThanhTien}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content="Thêm" Margin="912,719,688,96" Height="50" Background="#FF89BAD2" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                <Button Content="Xóa" Margin="1059,719,541,96" Height="50" Background="#FFB73E3A" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="1.27,0.56"/>
-                <Button Content="Sửa" Margin="1193,719,407,96" Height="50" Background="#FF1D2850" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="2.63,-1.68"/>
-                <Button Content="Thanh toán" Margin="1326,716,194,99" Height="50" Width="180" Background="#FF2D8138" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" />
+                <Button x:Name="btnThem" Content="Thêm" Margin="912,719,688,96" Height="50" Background="#FF89BAD2" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThem_Click"/>
+                <Button x:Name="btnXoa" Content="Xóa" Margin="1059,719,541,96" Height="50" Background="#FFB73E3A" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="1.27,0.56"/>
+                <Button x:Name="btnSua" Content="Sửa" Margin="1193,719,407,96" Height="50" Background="#FF1D2850" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="2.63,-1.68"/>
+                <Button x:Name="btnThanhToan" Content="Thanh toán" Margin="428,-50,1092,865" Height="50" Width="180" Background="#FF2D8138" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThanhToan_Click" RenderTransformOrigin="-1.619,-1.067" />
                 <Button x:Name="btnThoat" Content="Thoát" Margin="1490,650,10,33" Height="50" Width="100" Background="#FF1D2850" FontSize="18" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThoat_Click"  />
             </Grid>
         </Grid>
