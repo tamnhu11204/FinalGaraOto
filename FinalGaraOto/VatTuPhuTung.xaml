@@ -190,17 +190,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
  
                                         />
-                        <Button x:Name="btnXuatFile"
-                                Click="btnXuatFile_Click"
-                                Width="150"
-                                Height="40"
-                                FontSize="20"                           
-                                Margin="20"
-                                Content="Xuất file"
-                                ToolTip="Xuất thành file" 
-                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
- 
-                         />
+                        
 
 
                     </StackPanel>

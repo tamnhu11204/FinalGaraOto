@@ -58,43 +58,14 @@ namespace FinalGaraOto
                 var dVT = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == Madvt).SingleOrDefault();
                 vATTUPHUTUNG.DVT = dVT.TenDVT;
                 vATTUPHUTUNG.GiaNhap = item.DonGiaNhap;
-                vATTUPHUTUNG.GiaBan = item.DonGiaBan; 
+                vATTUPHUTUNG.GiaBan = item.DonGiaBan;
+
                 vATTUPHUTUNG.SLTon = item.SoLuongTon;
                 vatTuPhuTungs.Add(vATTUPHUTUNG);
                 BangVTPT.ItemsSource = vatTuPhuTungs;
             }
 
-            /*void LoadDataBCDT()
-            {
-                ObservableCollection<BCDT> doanhthu = new ObservableCollection<BCDT>();
-
-                var List = DataProvider.Ins.DB.BAOCAODOANHTHUs.ToList();
-                int stt = 1;
-                float sum = 0;
-                foreach (var item in List)
-                {
-                    BCDT doanhthu1 = new BCDT();
-                    doanhthu1.stt = stt++;
-                    var mahieuxe = DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu == item.MaBaoCaoDoanhThu).Select(x => x.MaHieuXe).First();
-                    doanhthu1.hieuxe = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == mahieuxe).Select(x => x.TenHieuXe).First();
-                    doanhthu1.soluotxe = (int)DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu == item.MaBaoCaoDoanhThu).Select(x => x.SoLuotSua).First();
-                    doanhthu1.thanhtien = (float)DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu == item.MaBaoCaoDoanhThu).Select(x => x.ThanhTien).First();
-                    doanhthu1.tile = (float)DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu == item.MaBaoCaoDoanhThu).Select(x => x.TiLe).First();
-                    doanhthu1.thang = item.ThangBaoCao;
-                    doanhthu1.nam = Convert.ToDateTime(item.NamBaoCao);
-                    doanhthu.Add(doanhthu1);
-                    if ((NamCb.Text == Convert.ToString(doanhthu1.nam.Year)) && (ThangCb.Text == Convert.ToString(doanhthu1.thang.Month)))
-                    {
-                        Dg_Bcdoanhthu.ItemsSource = doanhthu;
-
-                        sum = (float)DataProvider.Ins.DB.BAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu == item.MaBaoCaoDoanhThu).Select(x => x.TongDoanhThu).First();
-
-                        Lb_tongdt.Content = "Tổng doanh thu: " + sum + "VND";
-
-
-                    }
-                }*/
-            }
+        }
 
         #endregion
 
@@ -295,16 +266,25 @@ namespace FinalGaraOto
             var n = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
             if (n != null)
             {
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (r == MessageBoxResult.Yes)
+                if (n.DonGiaNhap != null || n.DonGiaBan != null || n.SoLuongTon != null)
                 {
-                    DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
-                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBoxResult r0 = MessageBox.Show("Bạn không thể xóa vật tư này!", "Thông báo", MessageBoxButton.OK);
 
-                    MessageBox.Show("Xóa vật tư thành công!");
-                    LoadVatTuPhuTungList();
                 }
-                else return;
+                else
+                {
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Xóa vật tư thành công!");
+                        LoadVatTuPhuTungList();
+                    }
+                    else return;
+                }
+
             }
         }
 

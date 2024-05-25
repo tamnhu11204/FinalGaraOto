@@ -161,7 +161,44 @@ namespace FinalGaraOto
             }
         }
 
-        private void btnLamMoi_Click(object sender, RoutedEventArgs e)
+        void LoadGiaNhap()
+        {
+
+            int Maa = 0;
+
+
+
+            string selectedValue = cbbChonVTPT.SelectedItem as string;
+
+            //decimal giaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+            var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedValue).FirstOrDefault();
+            if (gnh != null)
+            {
+                Maa = gnh.MaVatTuPhuTung;
+            }
+            var gnh1 = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == Maa).FirstOrDefault();
+
+            gnh.DonGiaNhap = gnh1.GiaNhap;
+
+        }
+
+        void LoadSoLuongTon()
+        {
+            int Maa = 0;
+            string selectedValue = cbbChonVTPT.SelectedItem as string;
+            //decimal giaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+            //var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == Maa).SingleOrDefault();
+            var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedValue).FirstOrDefault();
+            if (gnh != null)
+            {
+                Maa = gnh.MaVatTuPhuTung;
+            }
+            var gnh1 = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == Maa).FirstOrDefault();
+
+            gnh.SoLuongTon = gnh1.SoLuong;
+        }
+
+        void LamMoi()
         {
             cbbChonVTPT.Text = null;
             txbNhapSLVT.Clear();
@@ -169,6 +206,7 @@ namespace FinalGaraOto
             txbNhapGiaNhap.Clear();
 
         }
+
 
         #region hien thi thanh tien mot dong
         private void txbNhapSLVT_TextChanged(object sender, TextChangedEventArgs e)
@@ -230,6 +268,8 @@ namespace FinalGaraOto
                 var n = new CHITIETPHIEUNHAP();
 
                 string selectedTenVT = cbbChonVTPT.SelectedItem as string;
+
+
                 var tenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedTenVT).SingleOrDefault();
                 n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
 
@@ -241,18 +281,23 @@ namespace FinalGaraOto
                 DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
                 DataProvider.Ins.DB.SaveChanges();
 
-                var m=DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang==n.MaNhapHang).SingleOrDefault();
+                var m = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == n.MaNhapHang).SingleOrDefault();
                 m.TongTienNhapHang = m.TongTienNhapHang + n.ThanhTien;
                 DataProvider.Ins.DB.SaveChanges();
                 LoadTongTien();
 
                 var slg = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
                 slg.SoLuongTon += n.SoLuong;
+                DataProvider.Ins.DB.SaveChanges();
+                LoadSoLuongTon();
 
                 var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
-                gnh.DonGiaBan += n.GiaNhap;
+                gnh.DonGiaNhap = n.GiaNhap;
+                DataProvider.Ins.DB.SaveChanges();
+                LoadGiaNhap();
 
                 MessageBox.Show("Thêm thành công!");
+                LamMoi();
             }
             LoadLichSuNhapVatTuPhuTungList();
             return;
@@ -281,6 +326,9 @@ namespace FinalGaraOto
             int MaVT = t.MaVTPT;
             int MaNH = int.Parse(tbMa.Text);
 
+            int SL1 = t.SL;
+            decimal T1 = t.ThanhTien;
+
             var n = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == MaVT && x.MaNhapHang == MaNH).SingleOrDefault();
             if (n != null)
             {
@@ -291,11 +339,21 @@ namespace FinalGaraOto
                     DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Xóa vật tư thành công!");
+
+
+                    var vtpt = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
+                    vtpt.SoLuongTon = vtpt.SoLuongTon - SL1;
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    var pn = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == MaNH).SingleOrDefault();
+                    pn.TongTienNhapHang = pn.TongTienNhapHang - T1;
+                    DataProvider.Ins.DB.SaveChanges();
+                    LoadTongTien();
                     LoadLichSuNhapVatTuPhuTungList();
                 }
                 else return;
             }
-            LoadLichSuNhapVatTuPhuTungList();
+            //LoadLichSuNhapVatTuPhuTungList();
             return;
         }
 
@@ -341,6 +399,35 @@ namespace FinalGaraOto
 
         #endregion
 
+        private void cbbChonVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            // Lấy tên vật tư đã chọn
+            string selectedVatTu = cbbChonVTPT.SelectedItem as string;
+
+            if (!string.IsNullOrEmpty(selectedVatTu))
+            {
+                // Truy vấn cơ sở dữ liệu để lấy giá của vật tư
+                var vatTu = DataProvider.Ins.DB.VATTUPHUTUNGs.FirstOrDefault(x => x.TenVTPT == selectedVatTu);
+
+                if (vatTu != null && vatTu.DonGiaNhap != null)
+                {
+                    // Hiển thị giá trong textBox NhapGiaNhap
+                    txbNhapGiaNhap.Text = vatTu.DonGiaNhap.ToString();
+                    txbNhapGiaNhap.IsReadOnly = true;
+                }
+                else
+                {
+                    // Cho phép người dùng nhập giá
+                    txbNhapGiaNhap.Text = string.Empty;
+                    txbNhapGiaNhap.IsReadOnly = false;
+                }
+            }
+
+        }
+
     }
+
+
 
 }
