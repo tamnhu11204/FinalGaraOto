@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static FinalGaraOto.VatTuPhuTung;
 
 namespace FinalGaraOto
 {
@@ -20,7 +21,7 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemVatTuPhuTung : Window
     {
-        VatTuPhuTung vatTuPhuTung;
+        
         public ThemVatTuPhuTung()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace FinalGaraOto
             this.DragMove();
         }
 
+        #region Luu vật tư lên datagrid
         private void btnLuuVTPT_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(tbxTenPT.Text) || string.IsNullOrEmpty(cbbDVT.Text))
@@ -60,29 +62,40 @@ namespace FinalGaraOto
                     var n = new VATTUPHUTUNG();
 
                     n.TenVTPT = tbxTenPT.Text;
-                    
+
                     string selectedValue = cbbDVT.SelectedItem as string;
+                    var donVT = DataProvider.Ins.DB.DONVITINHs.Where(x => x.TenDVT == selectedValue).SingleOrDefault();
+                    if(donVT != null)
+                    {
+                        n.MaDVT = donVT.MaDVT;
+                        
+                    }    
 
                     DataProvider.Ins.DB.VATTUPHUTUNGs.Add(n);
                     DataProvider.Ins.DB.SaveChanges();
 
-                    MessageBox.Show("Thêm vật tư phụ tùng thành công!");
-                    VatTuPhuTung vatTuPhuTung = new VatTuPhuTung();
-                    vatTuPhuTung.Visibility = Visibility.Visible;
+                    MessageBox.Show("Thêm vật tư phụ tùng thành công!");                  
                     this.Close();
+                    VatTuPhuTung vatTuPhuTung = new VatTuPhuTung();
+                    vatTuPhuTung.Show();
+
+                    
                 }
             }
             return;
         }
 
+        #endregion
+
         private void btnThoatThemVTPT_Click(object sender, RoutedEventArgs e)
         {
 
-            this.Visibility= Visibility.Collapsed;
-            vatTuPhuTung = new VatTuPhuTung();
-            vatTuPhuTung.Visibility= Visibility.Visible;
+            this.Close();
 
             
         }
+
+
+
     }
 }

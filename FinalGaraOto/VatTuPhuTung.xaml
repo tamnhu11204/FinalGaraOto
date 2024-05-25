@@ -240,8 +240,8 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <Button x:Name="btnXuatFile"
                                                 Click="btnXuatFile_Click"
                                                 Grid.Row="1"
-                                                Content="Lịch sử nhập"
-                                                ToolTip="Lịch sử nhập vật tư phụ tùng" 
+                                                Content="Xuất file"
+                                                ToolTip="Xuất thành file" 
                                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
  
                                         />
@@ -285,7 +285,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 <DataGridTextColumn Header="Mã vật tư" 
                                                     
                                                     IsReadOnly="True"
-                                                    Binding="{Binding MaVTPT}" Foreground="White"/>
+                                                    Binding="{Binding MaVTPT}"/>
 
 
                                 <DataGridTextColumn Header="Vật tư phụ tùng" Width="2*"
@@ -372,7 +372,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <TextBox x:Name="txbSLTon" 
                                                 materialDesign:HintAssist.Hint="Số lượng tồn kho"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18" Width="350" />
-                                        <TextBox x:Name="txbDonViTinh" 
+                                        <TextBox x:Name="txbDonViTinh" IsReadOnly="True"
                                                 materialDesign:HintAssist.Hint="Đơn vị tính"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
                                         <TextBox x:Name="txbGiaNhap" 

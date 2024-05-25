@@ -22,50 +22,47 @@
         <materialDesign:Card Grid.Row="0">
             <StackPanel Background="#FF1D2850">
                 <TextBlock Text="Lập phiếu nhập phụ tùng" 
-               FontSize="50" 
-               Foreground="White"
-               Margin="25"
-               HorizontalAlignment="Center"
-               FontWeight="Bold" FontFamily="Segoe UI">
+                   FontSize="50" 
+                   Foreground="White"
+                   Margin="25"
+                   HorizontalAlignment="Center"
+                   FontWeight="Bold" FontFamily="Segoe UI">
                 </TextBlock>
             </StackPanel>
         </materialDesign:Card>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <DatePicker
-            Width="400"
-            Height="120"
-            Margin="30"
-            materialDesign:HintAssist.Hint="Ngày nhập hàng"
-            FontSize="35"
-            materialDesign:TextFieldAssist.HasClearButton="True"
-            Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+            <DatePicker x:Name="dtpNgayNhapHang"
+                Width="400"
+                Height="120"
+                Margin="30"
+                materialDesign:HintAssist.Hint="Ngày nhập hàng"
+                FontSize="35"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
             />
         </StackPanel>
 
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="2" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center">
 
-            <ComboBox
-            Width="400"
-            Height="120"
-            FontSize="35"
-            Margin="20"
-            IsEditable="True"
-            materialDesign:HintAssist.Hint="Đơn vị cung cấp"
-            >
-                <ComboBoxItem
-                Content="A" />
-                <ComboBoxItem
-                Content="B" />
-                <ComboBoxItem
-                Content="C" />
-            </ComboBox>
+            <ComboBox x:Name="cbbDVCC"
+                Width="400"
+                Height="120"
+                FontSize="35"
+                Margin="20"
+                IsEditable="True"
+                materialDesign:HintAssist.Hint="Đơn vị cung cấp"
+            />
+
+
         </StackPanel>
 
         <StackPanel 
-        Grid.Row="3"            
-        Orientation="Horizontal" 
-        Width="400" Height="120">
+            Grid.Row="3"            
+            Orientation="Horizontal" 
+            Width="400" Height="120">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>

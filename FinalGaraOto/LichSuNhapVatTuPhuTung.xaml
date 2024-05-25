@@ -125,30 +125,30 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
 
             <StackPanel Width="650" Grid.Column="0" Orientation="Horizontal">
                 <TextBox    
-        Width="222"
-        Height="58"
-        Margin="10"
-        materialDesign:HintAssist.Hint="Mã đơn nhập vật tư" FontSize="20"
-        />
+                    Width="222"
+                    Height="58"
+                    Margin="10"
+                    materialDesign:HintAssist.Hint="Mã đơn nhập vật tư" FontSize="20"
+                />
 
                 <DatePicker
-        Width="194"
-        Height="58"
-        Margin="10"
-        materialDesign:HintAssist.Hint="Ngày nhập hàng"
-        FontSize="20"
-        materialDesign:TextFieldAssist.HasClearButton="True"
-        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-    />
+                    Width="194"
+                    Height="58"
+                    Margin="10"
+                    materialDesign:HintAssist.Hint="Ngày nhập hàng"
+                    FontSize="20"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                />
 
                 <ComboBox
-        Width="171"
-        Height="58"
-        FontSize="20"
-        Margin="10"
-        IsEditable="True"
-        materialDesign:HintAssist.Hint="Đơn vị cung cấp"
-    >
+                    Width="171"
+                    Height="58"
+                    FontSize="20"
+                    Margin="10"
+                    IsEditable="True"
+                    materialDesign:HintAssist.Hint="Đơn vị cung cấp"
+                >
                     <ComboBoxItem
         Content="A" />
                     <ComboBoxItem

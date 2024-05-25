@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace FinalGaraOto
         public ChiTietPhieuNhapVTPT()
         {
             InitializeComponent();
+            LoadNgayNhap(); //Load lấy dữ liệu của window thêm trong phiếu nhập VTPT
+            LoadTenPhuTung();
         }
 
         #region scroll bar button
@@ -101,8 +104,49 @@ namespace FinalGaraOto
             tuychon_tab.Show();
             this.Close();
         }
+
         #endregion
 
+        void LoadNgayNhap()
+        {
+            var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang).ToList();
+            foreach (var item in List)
+            {
+                
+            }
+        }
 
+        void LoadTenPhuTung()
+        {
+            var List = DataProvider.Ins.DB.VATTUPHUTUNGs.Select(x => x.TenVTPT).ToList();
+            foreach (var item in List)
+            {
+                cbbChonVTPT.Items.Add(item);
+            }
+        }
+
+        private void btnLamMoi_Click(object sender, RoutedEventArgs e)
+        {
+            cbbChonVTPT.Text = null;
+            txbNhapSLVT.Clear();
+            txbTongTien.Clear();
+            txbNhapGiaNhap.Clear();
+
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnThanhToan_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

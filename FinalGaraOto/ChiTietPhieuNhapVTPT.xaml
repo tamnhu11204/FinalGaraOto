@@ -16,6 +16,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             <RowDefinition Height="auto" ></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -114,11 +115,41 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         </Grid>
         <Grid Grid.Row="2">
             <DockPanel Height="60" Background="#FFA8A8A8">
-                <TextBlock Margin="16,0,0,0" Text="Phiếu nhập vật tư phụ tùng" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Margin="16,0,0,0" Text="Phiếu nhập vật tư phụ tùng" 
+                           FontSize="35" 
+                           FontWeight="Bold" 
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center" />
             </DockPanel>
         </Grid>
 
         <Grid Grid.Row="3">
+            <StackPanel Orientation="Horizontal" Height="70">
+                <DatePicker x:Name="dtpNgayNhapHang"
+                           
+                    Width="200"
+                    Height="60"
+                    Margin="20"
+                    
+                    materialDesign:HintAssist.Hint="Ngày nhập hàng"
+                    FontSize="20"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+
+
+                <TextBox x:Name="txbDVCC"
+                         IsReadOnly="True"
+                    Width="200"
+                    Height="60"
+                    FontSize="20"
+                    Margin="20"
+               
+                    materialDesign:HintAssist.Hint="Đơn vị cung cấp"
+                />
+            </StackPanel>
+        </Grid> 
+            
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -143,78 +174,91 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
+
+                   
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Text="Tên vật tư"
-                           Margin="20" VerticalAlignment="Center"/>
-                        <ComboBox
-                   Width="300"
-                  materialDesign:HintAssist.Hint="Chọn phụ tùng"
-                  IsEditable="True" VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                            <ComboBoxItem
-                        Content="Apple" />
-                            <ComboBoxItem
-                        Content="Banana" />
-                            <ComboBoxItem
-                        Content="Pear" />
-                            <ComboBoxItem
-                        Content="Orange" />
-                        </ComboBox>
+                        <TextBlock 
+                            
+                            Text="Tên vật tư"
+                            
+                            Margin="20" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="cbbChonVTPT"
+                            Height="80"
+                            Width="300"
+                            
+                            materialDesign:HintAssist.Hint="Chọn phụ tùng"
+                            IsEditable="True" 
+                            VerticalAlignment="Stretch" 
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                            />
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
-                        <TextBlock Text="Giá vật tư"
-                           
-                   Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <TextBox
-                    Width="300"
-                  materialDesign:HintAssist.Hint="1/2/3..."
-                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalAlignment="Right" />
+                        <TextBlock  
+                            
+                            Text="Số lượng"
+                            Margin="24" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txbNhapSLVT"
+                            Height="80"
+                            Width="300"
+                            
+                            materialDesign:HintAssist.Hint="1/2/3..."
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Stretch" />
                     </StackPanel>
 
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
-                        <TextBlock Text="Giá vật tư"
-                           
-                   Margin="20" VerticalAlignment="Center"/>
-                        <TextBox
-                    Width="300"
-                  materialDesign:HintAssist.Hint="Giá nhập"
-                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBlock 
+                            
+                            Text="Giá vật tư"
+                            Margin="21" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txbNhapGiaNhap"
+                            Height="80"
+                            Width="300"
+                            materialDesign:HintAssist.Hint="Giá nhập"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                     </StackPanel>
 
                     <StackPanel Grid.Row="3" Orientation="Horizontal">
-                        <TextBlock Text="Tổng tiền"
-       
-                   Margin="20" VerticalAlignment="Center"/>
-                        <TextBox
-                    Width="300"
-                       materialDesign:HintAssist.Hint="vnđ"
-
-                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBlock 
+                            
+                            
+                            Text="Tổng tiền"
+                            Margin="21" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txbTongTien"
+                            Height="80"
+                            Width="300"
+                            materialDesign:HintAssist.Hint="vnđ"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                     </StackPanel>
 
                     <StackPanel 
-                Grid.Row="4"            
-                HorizontalAlignment="Center" 
-                Orientation="Horizontal" 
-                Width="400" Height="120">
-                        <Button
-                    Width="150"
-                    Height="50"
-                    Content="Làm mới"
-                    Margin="20"
-                    Background="#FF89BAD2"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignPaperLightButton}"
-                    ToolTip="Resource name: MaterialDesignPaperLightButton" 
-                    HorizontalAlignment="Left" FontSize="20" />
-                        <Button
-                    Width="150"
-                    Height="50"
-                    Content="Thêm"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    ToolTip="Resource name: MaterialDesignRaisedButton" Background="#FF0041AF" 
-                    HorizontalAlignment="Right" FontSize="20" />
+                        Grid.Row="4"            
+                        HorizontalAlignment="Center" 
+                        Orientation="Horizontal" 
+                        Width="400" Height="120">
+                        <Button x:Name="btnLamMoi"
+                                Click="btnLamMoi_Click"
+                            Width="150"
+                            Height="50"
+                            Content="Làm mới"
+                            Margin="20"
+                            Background="#FF89BAD2"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignPaperLightButton}"
+                            ToolTip="Resource name: MaterialDesignPaperLightButton" 
+                            HorizontalAlignment="Left" FontSize="20" />
+                        <Button x:Name="btnThem"
+                                Click="btnThem_Click"
+                            Width="150"
+                            Height="50"
+                            Content="Thêm"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            ToolTip="Resource name: MaterialDesignRaisedButton" Background="#FF0041AF" 
+                            HorizontalAlignment="Right" FontSize="20" />
                     </StackPanel>
 
                 </Grid>
@@ -357,7 +401,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
 
         </Grid>
 
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition ></ColumnDefinition>
                 <ColumnDefinition ></ColumnDefinition>
@@ -366,38 +410,41 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <TextBlock Text="Thành tiền"
                            FontSize="25"
-                   Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                           Foreground="Red"
+                           Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBox
-                Margin="20"
+                    Margin="20"
                     Width="500"
-                FontSize="25"
-                  materialDesign:HintAssist.Hint="vnđ"
-                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    FontSize="40"
+                    materialDesign:HintAssist.Hint="vnđ"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
             </StackPanel>
 
             <StackPanel 
-            Grid.Column="1"            
-            Orientation="Horizontal" 
-            HorizontalAlignment="Right">
-                <Button
-            Width="150"
-            Height="60"
-            Content="Xóa"
-            Margin="20"
-            Background="#FFB73E3A"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-            Style="{StaticResource MaterialDesignPaperLightButton}"
-            ToolTip="Resource name: MaterialDesignPaperLightButton" 
-            HorizontalAlignment="Left" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Foreground="{DynamicResource MaterialDesignPaper}" />
-                <Button
-            Width="150"
-            Height="50"
-            Content="Thanh toán"
-            Margin="100"
-            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            ToolTip="Resource name: MaterialDesignRaisedButton" Background="#FF2D8138"  
-            HorizontalAlignment="Right" FontSize="20" />
+                Grid.Column="1"            
+                Orientation="Horizontal" 
+                HorizontalAlignment="Right">
+                <Button x:Name="btnXoa"
+                        Click="btnXoa_Click"
+                    Width="150"
+                    Height="60"
+                    Content="Xóa"
+                    Margin="20"
+                    Background="#FFB73E3A"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignPaperLightButton}"
+                    ToolTip="Resource name: MaterialDesignPaperLightButton" 
+                    HorizontalAlignment="Left" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Foreground="{DynamicResource MaterialDesignPaper}" />
+                <Button x:Name="btnThanhToan"
+                        Click="btnThanhToan_Click"
+                    Width="150"
+                    Height="50"
+                    Content="Thanh toán"
+                    Margin="100"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="Resource name: MaterialDesignRaisedButton" Background="#FF2D8138"  
+                    HorizontalAlignment="Right" FontSize="20" />
             </StackPanel>
 
         </Grid>

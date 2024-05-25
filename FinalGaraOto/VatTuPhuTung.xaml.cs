@@ -65,6 +65,8 @@ namespace FinalGaraOto
 
         #endregion
 
+        #region Hien thi du lieu len textbox
+
         private void BangVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid grid = (DataGrid)sender;
@@ -82,6 +84,8 @@ namespace FinalGaraOto
 
             }
         }
+
+        #endregion
 
         #region scroll bar button
         public void btnClosing_Click(object sender, RoutedEventArgs e)
@@ -188,13 +192,10 @@ namespace FinalGaraOto
         #region btn xu ly 
         private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
+            this.Visibility=Visibility.Collapsed;
             ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung();
-            themVatTuPhuTung.Visibility =(Visibility) Visibility.Visible;
+            themVatTuPhuTung.Show();
         }
-
-
-
 
 
         #endregion
@@ -202,7 +203,53 @@ namespace FinalGaraOto
         #region Sua xoa thong tin tren datagrid
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(txbMaVT.Text) || string.IsNullOrEmpty(txbTenVatTu.Text)
+                || string.IsNullOrEmpty(txbSLTon.Text) || string.IsNullOrEmpty(txbDonViTinh.Text)
+                || string.IsNullOrEmpty(txbGiaNhap.Text) || string.IsNullOrEmpty(txbGiaBan.Text))
+
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                try
+                {
+                    int MaVT = int.Parse(txbMaVT.Text);
+                    var n = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
+
+                    if (n != null)
+                    {
+                        n.MaVatTuPhuTung = MaVT;
+                        n.TenVTPT = txbTenVatTu.Text;
+                        n.SoLuongTon = int.Parse(txbSLTon.Text);
+                        n.DonGiaNhap = decimal.Parse(txbGiaNhap.Text);
+                        n.DonGiaBan = decimal.Parse(txbGiaBan.Text);
+
+                        MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật thông tin vật tư phụ tùng?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (r == MessageBoxResult.Yes)
+                        {
+                            DataProvider.Ins.DB.SaveChanges();
+
+                            MessageBox.Show("Cập nhật thông tin vật tư phụ tùng thành công!");
+                            LoadVatTuPhuTungList();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy vật tư phụ tùng với mã cung cấp.");
+                    }    
+                }
+                catch (FormatException fe)
+                {
+                    MessageBox.Show("Định dạng nhập vào không hợp lệ: " + fe.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+                }
+
+            }
+            return;
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
