@@ -28,6 +28,9 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadVatTuPhuTungList();
             tbUserName.Text = n;
+
+            var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
+            if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
         }
 
         #region Hien thi du lieu len datagrid
@@ -175,27 +178,28 @@ namespace FinalGaraOto
         #region popUp chuyen tab
         private void btnNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
             PhieuNhapVatTuPhuTung phieuNhapVatTuPhuTung = new PhieuNhapVatTuPhuTung(tbUserName.Text);
-            phieuNhapVatTuPhuTung.Visibility=Visibility.Visible;
+            phieuNhapVatTuPhuTung.Show();
+            this.Close();
         }
 
         private void btnLichSuNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility= Visibility.Collapsed;
             LichSuNhapVatTuPhuTung lichSuNhapVatTuPhuTung = new LichSuNhapVatTuPhuTung(tbUserName.Text);
-            lichSuNhapVatTuPhuTung.Visibility = Visibility.Visible;
+            lichSuNhapVatTuPhuTung.Show();
+            this.Close();
         }
 
+            #endregion
 
-        #endregion
-
-        #region btn xu ly 
-        private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
+            #region btn xu ly 
+            private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility=Visibility.Collapsed;
+
+
             ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung(tbUserName.Text);
-            themVatTuPhuTung.Show();
+            themVatTuPhuTung.ShowDialog();
+            this.Close();
 
         }
 
@@ -281,5 +285,31 @@ namespace FinalGaraOto
         }
 
         #endregion
+        private void txbTimKiem_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ObservableCollection<VatTuPhuTungs> vtpt = new ObservableCollection<VatTuPhuTungs>();
+            string text = txbTimKiem.Text.ToLower();
+
+            var List = DataProvider.Ins.DB.VATTUPHUTUNGs.ToList();
+            foreach (var item in List)
+            {
+                string _vtpt = item.TenVTPT.ToLower();
+                if (_vtpt.Contains(text))
+                {
+                    VatTuPhuTungs vt = new VatTuPhuTungs();
+                    vt.MaVTPT = item.MaVatTuPhuTung;
+                    vt.TenVT = item.TenVTPT;
+                    int Madvt = item.MaDVT;
+                    var dVT = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == Madvt).SingleOrDefault();
+                    vt.DVT = dVT.TenDVT;
+                    vt.GiaNhap = item.DonGiaNhap;
+                    vt.GiaBan = item.DonGiaBan;
+                    vt.SLTon = item.SoLuongTon;
+
+                    vtpt.Add(vt);
+                }
+            }
+            BangVTPT.ItemsSource = vtpt;
+        }
     }
 }

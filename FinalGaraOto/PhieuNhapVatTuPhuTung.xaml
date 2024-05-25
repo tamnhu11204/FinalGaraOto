@@ -40,6 +40,7 @@
                 FontSize="35"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+               
             />
         </StackPanel>
 

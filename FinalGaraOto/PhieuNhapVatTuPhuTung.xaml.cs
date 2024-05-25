@@ -20,7 +20,6 @@ namespace FinalGaraOto
     /// </summary>
     public partial class PhieuNhapVatTuPhuTung : Window
     {
-        
         public PhieuNhapVatTuPhuTung(string n)
         {
             InitializeComponent();
@@ -45,10 +44,12 @@ namespace FinalGaraOto
 
         private void btnThoatLapPhieuNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+
             VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
-            vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
-            vatTuPhuTung.Visibility = Visibility.Visible;
+
+            vatTuPhuTung.Show();
+            this.Close();
+
         }
 
         private void btnXacNhanLapPhieuNhapVTPT_Click(object sender, RoutedEventArgs e)
@@ -61,6 +62,14 @@ namespace FinalGaraOto
             {
                 var n = new PHIEUNHAP();
 
+                string selectedValue = cbbDVCC.SelectedItem as string;
+                var nhaCC = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.TenNhaCungCap == selectedValue).SingleOrDefault();
+                if (nhaCC != null)
+                {
+                    n.MaNhaCungCap = nhaCC.MaNhaCungCap;
+
+                }
+
                 DateTime? ngayNhap = dtpNgayNhapHang.SelectedDate;
                 if (ngayNhap.HasValue)
                 {
@@ -72,18 +81,11 @@ namespace FinalGaraOto
                     return;
                 }
 
-                string selectedValue = cbbDVCC.SelectedItem as string;
-                var nhaCC = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.TenNhaCungCap == selectedValue).SingleOrDefault();
-                if (nhaCC != null)
-                {
-                    n.MaNhaCungCap = nhaCC.MaNhaCungCap;
-
-                }
-
+               
                 DataProvider.Ins.DB.PHIEUNHAPs.Add(n);
                 DataProvider.Ins.DB.SaveChanges();
 
-                //MessageBox.Show("Lập phiếu nhập thành công!");
+                MessageBox.Show("Lập phiếu nhập thành công!");
                
 
                 this.Close();

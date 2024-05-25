@@ -24,6 +24,8 @@ namespace FinalGaraOto
         {
             InitializeComponent();
             tbUserName.Text = n;
+
+           
         }
 
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
