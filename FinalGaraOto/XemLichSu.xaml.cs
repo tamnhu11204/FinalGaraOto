@@ -27,12 +27,13 @@ namespace FinalGaraOto
             InitializeComponent();
             tbUserName.Text = n;
             tbMa.Text = MaNH.ToString();
-            LoadTongTien();
-            LoadLichSuNhapVatTuPhuTungList();
-
-
+            MessageBox.Show("Đến tab xem lịch sử nhập hàng!");
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
+
+            LoadTongTien();
+            LoadLichSuNhapVatTuPhuTungList(MaNH);
+
         }
         #region scroll bar button
         public void btnClosing_Click(object sender, RoutedEventArgs e)
@@ -113,9 +114,9 @@ namespace FinalGaraOto
         }
 
         #endregion
-        void LoadLichSuNhapVatTuPhuTungList() //Hien thi nhan vien len datagrid
+        void LoadLichSuNhapVatTuPhuTungList(int Maa) //Hien thi nhan vien len datagrid
         {
-            int Ma1 = int.Parse(tbMa.Text);
+            int Ma1 = Maa;
             ObservableCollection<ChiTietNhapVatTuPhuTungs> chiTietNhapVatTuPhuTungs = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
             var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == Ma1).ToList();
             foreach (var item in List)
@@ -125,6 +126,7 @@ namespace FinalGaraOto
                 chiTietNhapVatTuPhuTungs1.TenVT = item.VATTUPHUTUNG.TenVTPT;
                 chiTietNhapVatTuPhuTungs1.GiaNhap = item.GiaNhap;
                 chiTietNhapVatTuPhuTungs1.SL = item.SoLuong;
+                chiTietNhapVatTuPhuTungs1.ThanhTien = item.ThanhTien;
                 chiTietNhapVatTuPhuTungs.Add(chiTietNhapVatTuPhuTungs1);
                 dtgLSNVTPT.ItemsSource = chiTietNhapVatTuPhuTungs;
             }
