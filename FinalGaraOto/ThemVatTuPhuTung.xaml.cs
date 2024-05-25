@@ -27,6 +27,7 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadComboBoxDonViTinh();
             tbUserName.Text = n;
+
         }
 
         void LoadComboBoxDonViTinh() //Hien thi cac item trong combobox
@@ -76,9 +77,9 @@ namespace FinalGaraOto
                     DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Thêm vật tư phụ tùng thành công!");                  
-                    MessageBox.Show("Thêm vật tư phụ tùng thành công!");
+
                     VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
-                    vatTuPhuTung.Visibility = Visibility.Visible;
+                    vatTuPhuTung.Show();
                     this.Close();
                 }
             }
@@ -90,10 +91,9 @@ namespace FinalGaraOto
         private void btnThoatThemVTPT_Click(object sender, RoutedEventArgs e)
         {
 
+            VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
+            vatTuPhuTung.Show();
             this.Close();
-            this.Visibility= Visibility.Collapsed;
-            vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
-            vatTuPhuTung.Visibility= Visibility.Visible;
         }
 
 

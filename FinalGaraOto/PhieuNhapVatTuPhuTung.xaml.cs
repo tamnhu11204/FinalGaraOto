@@ -27,6 +27,8 @@ namespace FinalGaraOto
             LoadComboBoxDonViCungCap();
             InitializeComponent();
             tbUserName.Text = n;
+
+          
         }
 
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,7 +50,6 @@ namespace FinalGaraOto
             this.Close();
             VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
             vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
-            vatTuPhuTung.Visibility = Visibility.Visible;
         }
 
         private void btnXacNhanLapPhieuNhapVTPT_Click(object sender, RoutedEventArgs e)

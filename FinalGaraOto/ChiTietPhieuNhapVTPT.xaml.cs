@@ -26,6 +26,9 @@ namespace FinalGaraOto
             LoadNgayNhap(); //Load lấy dữ liệu của window thêm trong phiếu nhập VTPT
             LoadTenPhuTung();
             tbUserName.Text = n;
+
+            var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
+            if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
         }
 
         #region scroll bar button

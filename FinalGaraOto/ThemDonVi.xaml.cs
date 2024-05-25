@@ -24,6 +24,8 @@ namespace FinalGaraOto
         {
             InitializeComponent();
             tbUserName.Text = n;
+
+            
         }
 
         private void BtnThem_Click(object sender, RoutedEventArgs e) //Them don vi tinh

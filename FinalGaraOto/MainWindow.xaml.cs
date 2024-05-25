@@ -28,6 +28,7 @@ namespace FinalGaraOto
         {
             InitializeComponent();
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == tenDN).SingleOrDefault();
+            if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
 
             txbTenDangNhap.Text = l.TenDangNhap;
             txbCCCD.Text = l.CCCDNguoiDung;
@@ -36,6 +37,8 @@ namespace FinalGaraOto
             txbMatKhau.Text = l.MatKhau;
             txbSDT.Text = l.SDTNguoiDung;
             dpNgaySinh.Text = l.NgaySinhNguoiDung.ToString();
+
+            
 
             LoadPhanQuyen();
         }
@@ -98,11 +101,13 @@ namespace FinalGaraOto
             this.Close();
         }
 
+        
         private void nhanVien_Tab(object sender, RoutedEventArgs e)
         {
-            NhanVien nhanvien_tab = new NhanVien(txbTenDangNhap.Text);
-            nhanvien_tab.Show();
-            this.Close();
+            
+                NhanVien nhanvien_tab = new NhanVien(txbTenDangNhap.Text);
+                nhanvien_tab.Show();
+                this.Close();
         }
 
         private void khoHang_Tab(object sender, RoutedEventArgs e)

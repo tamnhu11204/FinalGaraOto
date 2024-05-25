@@ -28,6 +28,9 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadVatTuPhuTungList();
             tbUserName.Text = n;
+
+            var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
+            if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
         }
 
         #region Hien thi du lieu len datagrid
@@ -193,9 +196,9 @@ namespace FinalGaraOto
         #region btn xu ly 
         private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility=Visibility.Collapsed;
             ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung(tbUserName.Text);
-            themVatTuPhuTung.Show();
+            themVatTuPhuTung.ShowDialog();
+            this.Close();
 
         }
 
