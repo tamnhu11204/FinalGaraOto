@@ -210,7 +210,7 @@ namespace FinalGaraOto
         {
             if (MaNhapHang1 != 0)
             {
-                ChiTietPhieuNhapVTPT ct_ = new ChiTietPhieuNhapVTPT(tbUserName.Text, MaNhapHang1);
+                XemLichSu ct_ = new XemLichSu(tbUserName.Text, MaNhapHang1);
                 ct_.Show();
                 this.Close();
             }

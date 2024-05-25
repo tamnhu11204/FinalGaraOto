@@ -27,7 +27,7 @@ namespace FinalGaraOto
             InitializeComponent();
             LoadTenPhuTung();
             tbUserName.Text = n;
-            tbMa.Text = MaNH.ToString();;
+            tbMa.Text = MaNH.ToString();
             LoadTongTien();
 
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
