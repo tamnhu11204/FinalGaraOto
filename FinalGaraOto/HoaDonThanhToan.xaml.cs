@@ -170,10 +170,18 @@ namespace FinalGaraOto
 
         }
 
+        private void btnThoat_Click(object sender, RoutedEventArgs e)
+        {
+            ChiTietSuaChuaXe ct_ = new ChiTietSuaChuaXe(tbUserName.Text, MaXe_);
+            this.Close();
+            ct_.Show();
+        }
 
-
-
-
-
+        void LoadThongTinChuXe ()
+        {
+            string y = DataProvider.Ins.DB.XEs.Where(x => x.NgayTiepNhan.ToString() == MaXe_).Select(x => x.MaChuXe).First().ToString();
+            var c = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe.ToString() == y).First();
+            
+        }
     }
 }

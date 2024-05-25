@@ -27,7 +27,7 @@ namespace FinalGaraOto
             tbUserName.Text = n;
         }
 
-        int demo;
+        
 
         #region Load Hieu xe
         void LoadComboBoxHieuXe() //Hien thi cac item trong combobox

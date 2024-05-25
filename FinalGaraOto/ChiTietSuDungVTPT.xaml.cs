@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalGaraOto.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,23 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ChiTietSuDungVTPT : Window
     {
-        public ChiTietSuDungVTPT()
+        string n, MaXe_;
+        public ChiTietSuDungVTPT(string maUser, string MaXe)
         {
             InitializeComponent();
+            LoadComboBox();
+            n = maUser;
+            MaXe_ = MaXe;
+
+        }
+
+        void LoadComboBox()
+        {
+            var List = DataProvider.Ins.DB.TIENCONGs.Select(x => x.TenTienCong).ToList();
+            foreach (var item in List)
+            {
+                cbLoaiTC.Items.Add(item);
+            }
         }
     }
 }
