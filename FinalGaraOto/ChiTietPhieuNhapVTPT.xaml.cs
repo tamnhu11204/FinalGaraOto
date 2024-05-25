@@ -25,10 +25,10 @@ namespace FinalGaraOto
         public ChiTietPhieuNhapVTPT(string n, int MaNH)
         {
             InitializeComponent();
-            LoadNgayNhap(); //Load lấy dữ liệu của window thêm trong phiếu nhập VTPT
             LoadTenPhuTung();
             tbUserName.Text = n;
-            tbMa.Text = MaNH.ToString();
+            tbMa.Text = MaNH.ToString();;
+            LoadTongTien();
 
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
@@ -125,7 +125,7 @@ namespace FinalGaraOto
             public Nullable<decimal> TongTien => SoLuong * GiaNhap;
         }*/
 
-        private void BangLSNVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*private void BangLSNVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             DataGrid grid = (DataGrid)sender;
@@ -144,22 +144,14 @@ namespace FinalGaraOto
 
             }
 
-        }
+        }*/
 
-
-        void LoadNgayNhap()
+        void LoadTongTien()
         {
-
-
-            var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang).ToList();
-            foreach (var item in List)
-            {
-                dtpNgayNhapHang.Text = item.ToString();
-
-                txbDVCC.Text = item.ToString(); 
-            }
+            int Maa = int.Parse(tbMa.Text);
+            var m1 = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == Maa).SingleOrDefault();
+            txbTongTienNhapHang.Text = m1.TongTienNhapHang.ToString();
         }
-
         void LoadTenPhuTung()
         {
             var List = DataProvider.Ins.DB.VATTUPHUTUNGs.Select(x => x.TenVTPT).ToList();
@@ -224,70 +216,69 @@ namespace FinalGaraOto
 
         }*/
 
-            #endregion
-            private void btnThem_Click(object sender, RoutedEventArgs e)
+        #endregion
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(cbbChonVTPT.Text) || string.IsNullOrEmpty(txbNhapGiaNhap.Text)
+                || string.IsNullOrEmpty(txbNhapSLVT.Text))
+
             {
-                if (string.IsNullOrEmpty(cbbChonVTPT.Text) || string.IsNullOrEmpty(txbNhapGiaNhap.Text)
-                    || string.IsNullOrEmpty(txbNhapSLVT.Text))
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                var n = new CHITIETPHIEUNHAP();
 
-                {
-                    MessageBox.Show("Hãy điền đầy đủ thông tin");
-                }
-                else
-                {
+                string selectedTenVT = cbbChonVTPT.SelectedItem as string;
+                var tenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedTenVT).SingleOrDefault();
+                n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
 
-                    var n = new CHITIETPHIEUNHAP();
+                n.MaNhapHang = int.Parse(tbMa.Text);
+                n.SoLuong = int.Parse(txbNhapSLVT.Text);
+                n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+                n.ThanhTien = decimal.Parse(txbThanhTien.Text);
+                DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
+                DataProvider.Ins.DB.SaveChanges();
 
-                    string selectedTenVT = cbbChonVTPT.SelectedItem as string;
-                    var tenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedTenVT).SingleOrDefault();
-                    if (tenVT != null)
-                    {
-                        n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
-                    }
+                var m=DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang==n.MaNhapHang).SingleOrDefault();
+                m.TongTienNhapHang = m.TongTienNhapHang + n.ThanhTien;
+                DataProvider.Ins.DB.SaveChanges();
+                LoadTongTien();
 
-                    n.MaNhapHang=int.Parse(tbMa.Text);
-                    n.SoLuong = int.Parse(txbNhapSLVT.Text);
-                    n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
-                    n.ThanhTien = decimal.Parse(txbThanhTien.Text);
-
-                    DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
-                    DataProvider.Ins.DB.SaveChanges();
-
-
-                    MessageBox.Show("Thêm thành công!");
-                }
+                MessageBox.Show("Thêm thành công!");
+            }
             LoadLichSuNhapVatTuPhuTungList();
-                return;
-            }
+            return;
+        }
 
 
 
-            private void btnDong_Click(object sender, RoutedEventArgs e)
-            {
-                this.Close();
-                VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
-                vatTuPhuTung.Show();
-            }
+        private void btnDong_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
+            vatTuPhuTung.Show();
+        }
 
-            private void btnThanhToan_Click(object sender, RoutedEventArgs e)
-            {
-                this.Close();
-                HoaDonThanhToanPhuTung hoaDonThanhToan = new HoaDonThanhToanPhuTung(tbUserName.Text);
-                hoaDonThanhToan.Show();
-            }
+        private void btnThanhToan_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            HoaDonThanhToanPhuTung hoaDonThanhToan = new HoaDonThanhToanPhuTung(tbUserName.Text);
+            hoaDonThanhToan.Show();
+        }
 
-        private void btnSua_Click(object sender, RoutedEventArgs e)
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             DataGrid grid = (DataGrid)BangLSNVTPT;
             dynamic t = grid.SelectedItem;
             int MaVT = t.MaVTPT;
-            var n = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
+            var n = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == MaVT && x.MaNhapHang == int.Parse(tbMa.Text)).SingleOrDefault();
             if (n != null)
             {
                 MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (r == MessageBoxResult.Yes)
                 {
-                    DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
+                    DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Remove(n);
                     DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Xóa vật tư thành công!");
@@ -311,8 +302,9 @@ namespace FinalGaraOto
 
         void LoadLichSuNhapVatTuPhuTungList() //Hien thi nhan vien len datagrid
         {
+            int Ma1 = int.Parse(tbMa.Text);
             ObservableCollection<ChiTietNhapVatTuPhuTungs> chiTietNhapVatTuPhuTungs = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
-            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.ToList();
+            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x=>x.MaNhapHang== Ma1).ToList();
             foreach (var item in List)
             {
                 ChiTietNhapVatTuPhuTungs chiTietNhapVatTuPhuTungs1 = new ChiTietNhapVatTuPhuTungs();

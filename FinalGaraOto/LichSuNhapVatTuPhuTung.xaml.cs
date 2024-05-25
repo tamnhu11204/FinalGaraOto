@@ -195,5 +195,29 @@ namespace FinalGaraOto
             cbbDonViCC.Text = "";
             LoadDonViCC();
         }
+        int MaNhapHang1 = 0;
+        private void dtgLS_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                MaNhapHang1 = selected_row.MaNH;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (MaNhapHang1 != 0)
+            {
+                ChiTietPhieuNhapVTPT ct_ = new ChiTietPhieuNhapVTPT(tbUserName.Text, MaNhapHang1);
+                ct_.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn lịch sử nhập hàng");
+            }
+        }
     }
 }

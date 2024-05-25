@@ -177,13 +177,13 @@
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     ToolTip="Xuất file" 
-                    HorizontalAlignment="Right" BorderBrush="{DynamicResource MaterialDesignPaper}" />
+                    HorizontalAlignment="Right" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="Button_Click" />
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="4">
 
-            <DataGrid AutoGenerateColumns="False" x:Name="dtgLS" FontSize="20" Width="1600" Margin="50,38,50,87" >
+            <DataGrid AutoGenerateColumns="False" x:Name="dtgLS" FontSize="20" Width="1600" Margin="50,38,50,87" SelectionChanged="dtgLS_SelectionChanged" >
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header = "Mã nhập hàng" IsReadOnly="True" Width="*"
