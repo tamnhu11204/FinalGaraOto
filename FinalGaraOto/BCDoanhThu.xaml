@@ -113,7 +113,7 @@
         </Grid>
 
         <Grid Grid.Row="3">
-            <StackPanel Margin="10,724,-10,-287" >
+            <StackPanel Margin="45,781,-45,-344" >
 
                 <Button x:Name="Bnt_xuatfilebc"
                 Command="{Binding XuatFileBaoCaoCommand}"
@@ -148,7 +148,7 @@
                    FontSize="20" Margin="100,250,0,146" Height="176" Width="auto"/>
             </StackPanel>
             <DataGrid x:Name="Dg_Bcdoanhthu"   
-                      Margin="0,132,0,314" 
+                      Margin="0,132,0,221" 
                       FontSize="20" IsReadOnly="True"
                       AutoGenerateColumns="False">
 

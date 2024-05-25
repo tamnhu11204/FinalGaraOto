@@ -142,49 +142,62 @@ namespace FinalGaraOto
         {
             if (lichsukinhdoanh.TabIndex==0)
             {
-                var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Year).ToList();
+                HashSet<int> uniqueYears = new HashSet<int>();
 
+                var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Year).ToList();
                 foreach (var item in List)
                 {
-
-
-                    NamCb.Items.Add(item);
+                    if (!uniqueYears.Contains(item))
+                    {
+                        uniqueYears.Add(item);
+                        NamCb.Items.Add(item);
+                    }
                 }
             }
-            if (lichsunhaphang.TabIndex==0)
+            if (lichsunhaphang.TabIndex==1)
             {
+                HashSet<int> uniqueYears = new HashSet<int>();
 
                 var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang.Value.Year).ToList();
-
                 foreach (var item in List)
                 {
-
-
-                    NamCb.Items.Add(item);
+                    if (!uniqueYears.Contains(item))
+                    {
+                        uniqueYears.Add(item);
+                        NamCb.Items.Add(item);
+                    }
                 }
             }
         }
 
         void LoadComboBoxThangBaoCao()
         {
-            if (lichsukinhdoanh.IsSelected== true)
+            if (lichsukinhdoanh.TabIndex==0)
             {
-                var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Month).ToList();
+                HashSet<int> uniqueYears = new HashSet<int>();
 
+                var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Month).ToList();
                 foreach (var item in List)
                 {
-
-
-                    ThangCb.Items.Add(item);
+                    if (!uniqueYears.Contains(item))
+                    {
+                        uniqueYears.Add(item);
+                        ThangCb.Items.Add(item);
+                    }
                 }
             }
-             if(lichsunhaphang.IsSelected)
+             if(lichsunhaphang.TabIndex==1)
             {
+                HashSet<int> uniqueYears = new HashSet<int>();
+
                 var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang.Value.Month).ToList();
                 foreach (var item in List)
                 {
-
-                    ThangCb.Items.Add(item);
+                    if (!uniqueYears.Contains(item))
+                    {
+                        uniqueYears.Add(item);
+                        ThangCb.Items.Add(item);
+                    }
                 }
             }
 
@@ -199,17 +212,20 @@ namespace FinalGaraOto
             foreach (var item in List)
             {
                 LichSuKD kinhdoanh1 = new LichSuKD();
-                kinhdoanh1.Mahoadon = item.MaPhieuThuTien;
+                kinhdoanh1.Mahoadon = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.MaPhieuThuTien).First();
                 var makh = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.MaTiepNhan == item.MaTiepNhan).Select(x => x.XE.MaChuXe).First();
                 kinhdoanh1.Khachhang= DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe== makh).Select(x => x.TenChuXe).First();
                 kinhdoanh1.Biensoxe = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan== item.MaTiepNhan).Select(x => x.BienSoXe).First();
                 kinhdoanh1.Ngaythanhtoan= DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.MaPhieuThuTien == item.MaPhieuThuTien).Select(x => x.NgayThuTien).First();
                 kinhdoanh1.Doanhthu= DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.MaPhieuThuTien== item.MaPhieuThuTien).Select(x => x.SoTienThu).First();
-                kinhdoanh.Add(kinhdoanh1);
+                
                 if ((NamCb.Text== Convert.ToString(kinhdoanh1.Ngaythanhtoan.Year)) && (ThangCb.Text== Convert.ToString(kinhdoanh1.Ngaythanhtoan.Month)))
                 {
-                    LichSuKinhDoanh.ItemsSource=kinhdoanh;
+                    kinhdoanh.Add(kinhdoanh1);
+
                 }
+                LichSuKinhDoanh.ItemsSource=kinhdoanh;
+
             }
 
         }
@@ -230,11 +246,13 @@ namespace FinalGaraOto
                 nhaphang1.Dongia = (decimal)DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang== item.MaNhapHang).Select(x => x.GiaNhap).First();
                 nhaphang1.Ngaynhaphang= Convert.ToDateTime(item.NgayNhapHang);
                 nhaphang1.Tongchiphi= (decimal)DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang== item.MaNhapHang).Select(x => x.ThanhTien).First();
-                nhaphang.Add(nhaphang1);
+               
                 if (((NamCb.Text== Convert.ToString(nhaphang1.Ngaynhaphang.Year)) && (ThangCb.Text== Convert.ToString(nhaphang1.Ngaynhaphang.Month))))
                 {
-                   Lichsunhaphang.ItemsSource=nhaphang;
+                    nhaphang.Add(nhaphang1);
+                  
                 }
+                Lichsunhaphang.ItemsSource=nhaphang;
             }
 
         }

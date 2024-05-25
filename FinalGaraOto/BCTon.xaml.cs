@@ -27,6 +27,7 @@ namespace FinalGaraOto
         public BCTon(string n)
         {
             InitializeComponent();
+
             LoadComboBoxNamBaoCao();
             LoadComboBoxThangBaoCao();
             tbUserName.Text = n;
@@ -115,19 +116,31 @@ namespace FinalGaraOto
 
         private void LoadComboBoxNamBaoCao()
         {
-            var List = DataProvider.Ins.DB.BAOCAOTONs.Select(x => x.NamBaoCaoTon.Year).ToList();
+            HashSet<int> uniqueYears = new HashSet<int>();
+
+            var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Month).ToList();
             foreach (var item in List)
             {
-                NamCb.Items.Add(item);
+                if (!uniqueYears.Contains(item))
+                {
+                    uniqueYears.Add(item);
+                    NamCb.Items.Add(item);
+                }
             }
         }
 
         void LoadComboBoxThangBaoCao()
         {
-            var List = DataProvider.Ins.DB.BAOCAOTONs.Select(x => x.ThangBaoCaoTon.Month).ToList();
+            HashSet<int> uniqueYears = new HashSet<int>();
+
+            var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Month).ToList();
             foreach (var item in List)
             {
-                ThangCb.Items.Add(item);
+                if (!uniqueYears.Contains(item))
+                {
+                    uniqueYears.Add(item);
+                    ThangCb.Items.Add(item);
+                }
             }
         }
 
@@ -143,21 +156,27 @@ namespace FinalGaraOto
                 baocaoton1.tevtpt=(string)DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
                 baocaoton1.tondau= item.TonDau;
                 baocaoton1.phatsinh= item.PhatSinh;
-                baocaoton1.toncuoi= item.TonCuoi;
+                baocaoton1.toncuoi= baocaoton1.tondau- baocaoton1.phatsinh;
+                var tc = DataProvider.Ins.DB.BAOCAOTONs.Where(x => x.MaVatTuPhuTung== item.MaVatTuPhuTung && x.ThangBaoCaoTon== item.ThangBaoCaoTon && x.NamBaoCaoTon== item.NamBaoCaoTon).SingleOrDefault();
+                tc.TonCuoi=baocaoton1.toncuoi;
+                DataProvider.Ins.DB.SaveChanges();
                 baocaoton1.nam= item.NamBaoCaoTon;
                 baocaoton1.thang = item.ThangBaoCaoTon;
-                bcton.Add(baocaoton1);
+
                 if ((NamCb.Text== Convert.ToString(baocaoton1.nam.Year)) && ThangCb.Text== Convert.ToString(baocaoton1.thang.Month))
                 {
-                    Dg_BCTon.ItemsSource= bcton;
+                    bcton.Add(baocaoton1);
                 }
-
+                    Dg_BCTon.ItemsSource= bcton;
+                
 
             }
 
 
 
         }
+
+        
 
         public class BaoCaoTon
         { 
@@ -179,7 +198,7 @@ namespace FinalGaraOto
 
         private void Bnt_xuatfilebc_Click(object sender, RoutedEventArgs e)
         {
-            ExportToExcel_BCTon export= new ExportToExcel_BCTon(Dg_BCTon, DateTime.Now);
+            ExportToExcel_BCTon export = new ExportToExcel_BCTon(Dg_BCTon, DateTime.Now);
         }
     }
 

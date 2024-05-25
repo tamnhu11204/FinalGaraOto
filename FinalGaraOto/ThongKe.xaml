@@ -178,7 +178,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                <TabItem x:Name="lichsunhaphang" TabIndex="0"
+                <TabItem x:Name="lichsunhaphang" TabIndex="1"
                          Header="Lịch sử nhập hàng" HorizontalAlignment="Left" Margin="-680,0,0,0" Width="169" Background="#FF584CAE">
                     <Grid  Background="#FFE5E5E5" Width="1526">
                         <Grid.ColumnDefinitions>
