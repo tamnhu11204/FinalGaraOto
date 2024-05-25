@@ -20,7 +20,7 @@ namespace FinalGaraOto
     /// </summary>
     public partial class HoaDonThanhToan : Window
     {
-        public HoaDonThanhToan(string n)
+        public HoaDonThanhToan(string n, string MaCX)
         {
             InitializeComponent();
             tbUserName.Text = n;

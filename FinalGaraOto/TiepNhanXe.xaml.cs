@@ -64,7 +64,15 @@ namespace FinalGaraOto
                 m.MaHieuXe = l.MaHieuXe;
                 m.BienSoXe = txbBienSo.Text;
                 m.NgayTiepNhan = DateTime.Parse(dpNgayTiepNhan.Text);
+
                 DataProvider.Ins.DB.XEs.Add(m);
+
+                var p = new PHIEUSUACHUA();
+                p.NgaySuaChua = m.NgayTiepNhan;
+                p.MaTiepNhan = m.MaTiepNhan;
+
+                DataProvider.Ins.DB.PHIEUSUACHUAs.Add(p);
+
                 DataProvider.Ins.DB.SaveChanges();
 
                 MessageBox.Show("Tiếp nhận xe thành công!");

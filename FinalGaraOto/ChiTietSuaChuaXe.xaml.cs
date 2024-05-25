@@ -1,6 +1,7 @@
 ﻿using FinalGaraOto.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static FinalGaraOto.DichVu;
 
 namespace FinalGaraOto
 {
@@ -20,13 +22,22 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ChiTietSuaChuaXe : Window
     {
-        public ChiTietSuaChuaXe(string n)
+        string MaXe_;
+        public ChiTietSuaChuaXe(string n, string MaXe)
+
         {
             InitializeComponent();
             tbUserName.Text = n;
 
+
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
+
+            MaXe_ = MaXe;
+            LoadChiTietTT();
+            LoadComboBoxHieuXe();
+            LoadChiTietSuaChua();
+
         }
 
         #region scroll bar button
@@ -107,17 +118,138 @@ namespace FinalGaraOto
             tuychon_tab.Show();
             this.Close();
         }
+
+
+
+
+
+
+
+
+
+
         #endregion
 
+        void LoadChiTietTT ()
+        {
+            var l = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
+            txbBSX.Text = l.BienSoXe.ToString();
+            var c = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe.ToString() == l.MaChuXe.ToString()).SingleOrDefault();
+            txbTenChuXe.Text = c.TenChuXe;
+            txbDiaChi.Text = c.DiaChiChuXe;
+            txbSDT.Text = c.SDTChuXe;
+            dpNgay.Text = l.NgayTiepNhan.ToString();
+            txbEmail.Text = c.EmailChuXe;
+            var h = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == l.MaHieuXe).SingleOrDefault();
+            cbbHieuXe.SelectedItem = h.TenHieuXe;
 
+        }
 
+        void LoadComboBoxHieuXe() //Hien thi cac item trong combobox
+        {
+            var List = DataProvider.Ins.DB.HIEUXEs.Select(x => x.TenHieuXe).ToList();
+            foreach (var item in List)
+            {
+                cbbHieuXe.Items.Add(item);
+            }
+        }
 
+        private void btnThoat_Click(object sender, RoutedEventArgs e)
+        {
+            DichVu dv_ = new DichVu(tbUserName.Text);
+            this.Close();
+            dv_.Show();
+        }
 
+        private void btnSuaThongTin_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbBSX.Text) || string.IsNullOrEmpty(txbDiaChi.Text) || string.IsNullOrEmpty(txbTenChuXe.Text)
+                   || string.IsNullOrEmpty(txbSDT.Text) || dpNgay.SelectedDate == null )
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                int MaXe = int.Parse(MaXe_);
+                var n = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan == MaXe).SingleOrDefault();
+                var m = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == n.MaChuXe).SingleOrDefault();
+                n.MaTiepNhan = MaXe;
+                m.TenChuXe = txbTenChuXe.Text;
+                n.BienSoXe = txbBSX.Text;
+                m.DiaChiChuXe = txbDiaChi.Text;
+                m.SDTChuXe = txbSDT.Text;
+                m.EmailChuXe = txbEmail.Text;
 
+                DateTime? ngay = dpNgay.SelectedDate;
+                if (ngay.HasValue)
+                {
 
+                    n.NgayTiepNhan = ngay.Value;
+                }
+                else
+                {
+                    return;
+                }
 
+              
 
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật thông tin ?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.SaveChanges();
 
+                    MessageBox.Show("Cập nhật thông tin thành công!");
+                    LoadChiTietTT();
+                }
+                else return;
 
+            }
+            return;
+        }
+
+        void LoadChiTietSuaChua()
+        {
+            ObservableCollection<CHITIET> ChiTiets = new ObservableCollection<CHITIET>();
+            var l = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
+            var List = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == l.MaSuaChua).ToList();
+            int i = 1;
+            foreach (var item in List)
+            {
+                CHITIET ct1 = new CHITIET();
+                ct1.STT = i;
+               ct1.NoiDung = item.NoiDung;
+               ct1.TenTC = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.TenTienCong).First();
+                ct1.TC = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong.ToString()).First();
+                ct1.Gia = item.TongTienVTPT.ToString();
+                ct1.TenVT = "";
+                var List2 = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).ToList();
+                int SL = 0;
+                foreach (var item2 in List2)
+                {
+                    string ten = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item2.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
+                    ct1.TenVT = ct1.TenVT + item2.SoLuong.ToString() + " " + ten + " , " ;
+                    SL = SL + item2.SoLuong;
+                }
+                i++;
+                ct1.SL = SL;
+                ChiTiets.Add(ct1);
+                dtgChiTiet.ItemsSource = ChiTiets;
+            }
+
+        }
+
+        public class CHITIET
+        {
+            public int STT { get; set; }
+
+            public string NoiDung { get; set; }
+            public string TenVT { get; set; }
+            public int SL { get; set; }
+            public string Gia { get; set; }
+            public string TenTC { get; set; }
+            public string TC { get; set; }
+            public string ThanhTien { get; set; }
+
+        }
     }
 }

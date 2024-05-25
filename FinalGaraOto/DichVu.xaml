@@ -28,7 +28,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 Content="{materialDesign:PackIcon Kind=MinusCircle}"
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
-                            <Button x:Name="btnMaximize"
+                        <Button x:Name="btnMaximize"
                                 Click="btnMaximize_Click"
                                 Background="{x:Null}"
                                 Content="{materialDesign:PackIcon Kind=CropSquare}"
@@ -41,7 +41,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
                                    Text="Quản lý gara ô tô" FontSize="50" FontFamily="Cooper Black" Foreground="{DynamicResource MaterialDesignPaper}" />
@@ -62,7 +62,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnDichVu" 
                             Click="dichVu_Tab"
                             ToolTip="Tiếp nhận sửa chữa xe">
@@ -79,7 +79,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnThongKe" 
                             Click="thongKe_Tab"
                             ToolTip="Xem thống kê tháng" >
@@ -133,9 +133,9 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
         HorizontalAlignment="Left" Margin="773,91,0,0" VerticalAlignment="Top" FontSize="20" SelectedDateChanged="dpNgay_SelectedDateChanged"/>
             <DataGrid  AutoGenerateColumns="False"
-x:Name="dtgdsXe" Margin="16,233,16,42" Height="600" FontSize="20">
+x:Name="dtgdsXe" Margin="16,233,16,42" Height="600" FontSize="20" SelectionChanged="dtgdsXe_SelectionChanged">
                 <DataGrid.Columns>
-                   
+
                     <DataGridTextColumn Header = "Biển số" IsReadOnly="True" Width="*"
                                                         Binding="{Binding BienSo}" />
                     <DataGridTextColumn Header = "Hiệu xe" IsReadOnly="True" Width="*"
@@ -150,11 +150,10 @@ x:Name="dtgdsXe" Margin="16,233,16,42" Height="600" FontSize="20">
             </DataGrid>
 
             <Button x:Name="btnTiepNhanXe" Content="Tiếp nhận xe" HorizontalAlignment="Left" Margin="400,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.213,-0.5" Background="#FF89BAD2" Width="auto" FontSize="20" Height="47" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnTiepNhanXe_Click"/>
-            <Button Content="Tìm" HorizontalAlignment="Left" Margin="1282,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.213,-0.5" Background="#FF89BAD2" Width="110" FontSize="20" Height="47" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
             <Button x:Name="btnLamMoi" Content="Làm mới" HorizontalAlignment="Left" Margin="1105,85,0,0" VerticalAlignment="Top" Background="#FF89BAD2" FontSize="20" Height="46" BorderBrush="{DynamicResource MaterialDesignPaper}" Width="110" Click="btnLamMoi_Click"/>
-            <Button Content="Xuất" HorizontalAlignment="Left" Margin="1282,158,0,0" VerticalAlignment="Top" Background="#FF2D8138" Width="110" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Height="47"/>
-            <Button Content="Chi tiết" HorizontalAlignment="Left" Margin="1105,158,0,0" VerticalAlignment="Top" Background="#FF1D2850" Width="110" FontSize="20" Height="47" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-            <Button Content="Xóa" HorizontalAlignment="Left" Margin="1459,85,0,0" VerticalAlignment="Top" Background="#FFB73E3A" Width="110" FontSize="20" Height="47" RenderTransformOrigin="0.891,0.461"/>
+            <Button x:Name="btnXuat" Content="Xuất" HorizontalAlignment="Left" Margin="1282,158,0,0" VerticalAlignment="Top" Background="#FF2D8138" Width="110" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Height="47"/>
+            <Button x:Name="btnChiTiet" Content="Chi tiết" HorizontalAlignment="Left" Margin="1105,158,0,0" VerticalAlignment="Top" Background="#FF1D2850" Width="110" FontSize="20" Height="47" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnChiTiet_Click"/>
+            <Button x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" Margin="1282,84,0,0" VerticalAlignment="Top" Background="#FFB73E3A" Width="110" FontSize="20" Height="47" RenderTransformOrigin="0.891,0.461" Click="btnXoa_Click"/>
         </Grid>
     </Grid>
 </Window>

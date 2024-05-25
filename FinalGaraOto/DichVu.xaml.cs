@@ -116,20 +116,23 @@ namespace FinalGaraOto
         #endregion
 
         #region Load du lieu
-        void LoaddsXeList() //Hien thi nhan vien len datagrid
+        void LoaddsXeList() //Hien thi  xe len datagrid
         {
             ObservableCollection<Xes> Xe = new ObservableCollection<Xes>();
             var List = DataProvider.Ins.DB.XEs.ToList();
-            foreach (var item in List)
+            foreach (var item in List )
             {
-                Xes Xe1 = new Xes() ;
-                Xe1.BienSo = item.BienSoXe;
-                Xe1.HieuXe = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == item.MaHieuXe).Select(x => x.TenHieuXe).First();
-                Xe1.ChuXe = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == item.MaChuXe).Select(x => x.TenChuXe).First();
-                Xe1.Ngay = item.NgayTiepNhan.ToString();
-                Xe1.No = item.TienNo.ToString();
-                Xe.Add(Xe1);
-                dtgdsXe.ItemsSource = Xe;
+                if (item.BienSoXe != null)
+                {
+                    Xes Xe1 = new Xes() ;
+                    Xe1.BienSo = item.BienSoXe;
+                    Xe1.HieuXe = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == item.MaHieuXe).Select(x => x.TenHieuXe).First();
+                    Xe1.ChuXe = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == item.MaChuXe).Select(x => x.TenChuXe).First();
+                    Xe1.Ngay = item.NgayTiepNhan.ToString();
+                    Xe1.No = item.TienNo.ToString();
+                    Xe.Add(Xe1);
+                    dtgdsXe.ItemsSource = Xe;
+                }
             }
 
         }
@@ -165,6 +168,8 @@ namespace FinalGaraOto
         }
         #endregion
 
+        string MaXe = null;
+        #region Tim kiem
         private void btnLamMoi_Click(object sender, RoutedEventArgs e)
         {
             txbBienSo.Text = "";
@@ -237,7 +242,61 @@ namespace FinalGaraOto
 
             dtgdsXe.ItemsSource = xe;
         }
+        #endregion
 
-        
+        private void dtgdsXe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null && selected_row.BienSo != null)
+            {
+                string b = selected_row.BienSo.ToString();
+                var m = DataProvider.Ins.DB.XEs.Where(x => x.BienSoXe.ToString() == b).SingleOrDefault();
+                MaXe = m.MaTiepNhan.ToString();
+            }    
+        }
+
+        private void btnChiTiet_Click(object sender, RoutedEventArgs e)
+        {
+            if(MaXe != null)
+            {
+                ChiTietSuaChuaXe ct_ = new ChiTietSuaChuaXe(tbUserName.Text,MaXe);
+                this.Close();
+                ct_.Show();
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn xe muốn xem chi tiết");
+            }
+
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            if (MaXe != null)
+            {
+                DataGrid grid = (DataGrid)dtgdsXe;
+                dynamic t = grid.SelectedItem;
+                string BS = t.BienSo.ToString();
+                var n = DataProvider.Ins.DB.XEs.Where(x => x.BienSoXe.ToString() == BS).SingleOrDefault();
+                if (n != null)
+                {
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.XEs.Remove(n);
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Xóa xe thành công!");
+                        LoaddsXeList();
+                    }
+                    else return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn xe muốn xóa");
+            }
+        }
     }
 }

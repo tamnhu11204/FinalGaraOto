@@ -28,14 +28,14 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 Content="{materialDesign:PackIcon Kind=MinusCircle}"
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Thoát" Foreground="White" Height="47" BorderBrush="{x:Null}" FontSize="20" />
-                        
+
                         <Button x:Name="btnMaximize"
                                 Click="btnMaximize_Click"
                                 Background="{x:Null}"
                                 Content="{materialDesign:PackIcon Kind=CropSquare}"
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Thu nhỏ" Foreground="White" Height="47" BorderBrush="{x:Null}" />
-                        
+
                         <Button x:Name="btnClosing" 
                                 Click="btnClosing_Click"
                                 Background="{x:Null}"
@@ -43,7 +43,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 ToolBar.OverflowMode="AsNeeded"
                                 ToolTip="Đóng" Foreground="White" Height="47" BorderBrush="{x:Null}" />
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="16,0,0,0" VerticalAlignment="Center"
                                    Text="Quản lý gara ô tô" FontSize="50" FontFamily="Cooper Black" Foreground="{DynamicResource MaterialDesignPaper}" />
@@ -64,7 +64,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnDichVu" 
                             Click="dichVu_Tab"
                             ToolTip="Tiếp nhận sửa chữa xe">
@@ -73,7 +73,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Dịch vụ" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnKhoHang" 
                             Click="khoHang_Tab"
                             ToolTip="Xem vật tư phụ tùng">
@@ -90,7 +90,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Thống kê" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnTuyChon" 
                             Click="tuyChon_Tab"
                             ToolTip="Follow me on Twitter">
@@ -99,7 +99,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Tùy chọn" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnNhanVien" 
                             Click="nhanVien_Tab"
                             ToolTip="Quản lý nhân viên, chức vụ">
@@ -125,63 +125,67 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         <Grid Grid.Row="3">
             <Grid>
                 <StackPanel Orientation="Horizontal" >
-                    <GroupBox Margin="11,20,0,0" Width="380" Height="651" Header="Chi tiết thông tin" 
+                    <GroupBox Margin="11,20,0,0" Width="380" Height="670" Header="Chi tiết thông tin" 
               BorderBrush="{DynamicResource MaterialDesignColumnHeader}" FontSize="20" VerticalAlignment="Top">
-                        <StackPanel Width="455" Height="557" Orientation="Horizontal">
+                        <StackPanel Width="455" Height="600" Orientation="Horizontal">
                             <Grid Margin="-50,-30,467,0" Width="127" Height="522" >
-                                <materialDesign:PackIcon Kind="Account" Margin="50,28,0,0" Width="40" Height="40"/>
-                                <materialDesign:PackIcon Kind="CardTextOutline" Margin="50,98,0,0" Width="40" Height="40"/>
-                                <materialDesign:PackIcon Kind="Car" Margin="50,169,0,0" Width="40" Height="40"/>
-                                <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="50,0,0,0" Width="40" Height="40" VerticalAlignment="Center"/>
-                                <materialDesign:PackIcon Kind="Phone" Margin="50,313,0,0" Width="40" Height="40"/>
-                                <materialDesign:PackIcon Kind="CalendarRange" Margin="50,381,0,0" Width="40" Height="40"/>
+                                <materialDesign:PackIcon Kind="Account" Margin="50,10,0,0" Width="40" Height="40"/>
+                                <materialDesign:PackIcon Kind="CardTextOutline" Margin="50,80,0,0" Width="40" Height="40"/>
+                                <materialDesign:PackIcon Kind="Car" Margin="50,148,0,0" Width="40" Height="40"/>
+                                <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="50,-30,0,0" Width="40" Height="40" VerticalAlignment="Center"/>
+                                <materialDesign:PackIcon Kind="Phone" Margin="50,300,0,0" Width="40" Height="40"/>
+                                <materialDesign:PackIcon Kind="CalendarRange" Margin="50,440,0,0" Width="40" Height="40"/>
+                                <materialDesign:PackIcon Kind="Email" Margin="50,365,0,0" Width="40" Height="40"/>
                             </Grid>
-                            <Grid Margin="-500,6,0,0" Height="564" Width="795">
+                            <Grid Margin="-500,6,0,0" Height="600" Width="795">
                                 <StackPanel Margin="19,0,301,0" >
-                                    <TextBox
+                                    <TextBox x:Name="txbTenChuXe"
                         materialDesign:HintAssist.Hint="Tên chủ xe"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" FontSize="20"  Width="300"/>
-                                    <TextBox
+                                    <TextBox x:Name="txbBSX"
                         materialDesign:HintAssist.Hint="Biển số xe"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" FontSize="20" Width="300" />
-                                    <TextBox
-                        materialDesign:HintAssist.Hint="Hiệu xe"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" FontSize="20"  Width="300" />
-                                    <TextBox
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" FontSize="20" Width="300" IsReadOnlyCaretVisible="True" />
+                                    <ComboBox Name="cbbHieuXe" Width =" 300" Margin="-200,11,0,0" FontSize="20"  materialDesign:HintAssist.Hint="Hiệu xe"
+ Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                                    <TextBox x:Name="txbDiaChi"
                         materialDesign:HintAssist.Hint="Địa chỉ"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" FontSize="20"  Width="300" />
-                                    <TextBox
+                                    <TextBox x:Name="txbSDT"
                         materialDesign:HintAssist.Hint="Số điện thoại"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" FontSize="20"  Width="300" />
-                                    <DatePicker Margin="-200,11,0,0" Width="300"
+                                    <TextBox x:Name="txbEmail"
+materialDesign:HintAssist.Hint="Email"
+Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" FontSize="20"  Width="300" />
+                                    <DatePicker x:Name="dpNgay" Margin="-200,11,0,0" Width="300"
                                 materialDesign:HintAssist.Hint="Ngày tiếp nhận"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" Height="59" FontSize="20" />
                                 </StackPanel>
                             </Grid>
-                            <Button Content="Sửa thông tin" Background="#FF89BAD2"
-                    Margin="-1320,500,0,0" Height="50" Width="206" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                            <Button x:Name="btnSuaThongTin" Content="Sửa thông tin" Background="#FF89BAD2"
+                    Margin="-1320,530,0,0" Height="50" Width="206" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnSuaThongTin_Click" RenderTransformOrigin="0.529,1.143"/>
                         </StackPanel>
                     </GroupBox>
                     <TextBlock Margin="40,650,0,0" TextWrapping="Wrap" Text="Tổng tiền: " FontSize="30" Foreground="#FFE92713" Height="49" Width="171"/>
                     <TextBox TextWrapping="Wrap"  Width="224" Height="35" Margin="0,650,0,0" FontSize="30" Foreground="#FFE92713"/>
                 </StackPanel>
-                <DataGrid  Margin="428,20,10,298" BorderBrush="Black" FontSize="20" Height="651">
+                <DataGrid AutoGenerateColumns="False"
+                    x:Name="dtgChiTiet"  Margin="428,20,10,280" BorderBrush="Black" FontSize="20">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header = "STT" Binding = "{Binding Name}" />
-                        <DataGridTextColumn Header = "Nội dung" Binding = "{Binding Title}" />
-                        <DataGridCheckBoxColumn Header = "Vật tư" Binding = "{Binding WasReElected}"/>
-                        <DataGridComboBoxColumn Header = "Số lượng" SelectedItemBinding = "{Binding Affiliation}"/>
-                        <DataGridComboBoxColumn Header = "Đơn giá" SelectedItemBinding = "{Binding Affiliation}"/>
-                        <DataGridComboBoxColumn Header = "Loại tiền công" SelectedItemBinding = "{Binding Affiliation}"/>
-                        <DataGridComboBoxColumn Header = "Tiền công" SelectedItemBinding = "{Binding Affiliation}"/>
-                        <DataGridComboBoxColumn Header = "Thành tiền" SelectedItemBinding = "{Binding Affiliation}"/>
+                        <DataGridTextColumn Header = "STT" Binding = "{Binding STT}" />
+                        <DataGridTextColumn Header = "Nội dung" Binding = "{Binding NoiDung}" Width="*" />
+                        <DataGridTextColumn Header = "Vật tư" Binding = "{Binding TenVT}" Width="*"/>
+                        <DataGridTextColumn Header = "Số lượng" Binding = "{Binding SL}"/>
+                        <DataGridTextColumn Header = "Đơn giá" Binding = "{Binding Gia}" Width="*"/>
+                        <DataGridTextColumn Header = "Loại tiền công" Binding = "{Binding TenTC}" Width="*"/>
+                        <DataGridTextColumn Header = "Tiền công" Binding = "{Binding TC}"  Width="*"/>
+                        <DataGridTextColumn Header = "Thành tiền" Binding = "{Binding ThanhTien}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content="Thêm" Margin="428,706,1172,215" Height="50" Background="#FF89BAD2" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                <Button Content="Xóa" Margin="593,706,1007,215" Height="50" Background="#FFB73E3A" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                <Button Content="Sửa" Margin="750,706,830,215" Height="50" Background="#FF1D2850" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                <Button Content="Thanh toán" Margin="1222,650,198,33" Height="50" Width="180" Background="#FF2D8138" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" />
-                <Button Content="Thoát" Margin="1490,650,10,33" Height="50" Width="100" Background="#FF1D2850" FontSize="18" BorderBrush="{DynamicResource MaterialDesignPaper}"  />
+                <Button Content="Thêm" Margin="912,719,688,96" Height="50" Background="#FF89BAD2" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                <Button Content="Xóa" Margin="1059,719,541,96" Height="50" Background="#FFB73E3A" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="1.27,0.56"/>
+                <Button Content="Sửa" Margin="1193,719,407,96" Height="50" Background="#FF1D2850" Width="100" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="2.63,-1.68"/>
+                <Button Content="Thanh toán" Margin="1326,716,194,99" Height="50" Width="180" Background="#FF2D8138" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" />
+                <Button x:Name="btnThoat" Content="Thoát" Margin="1490,650,10,33" Height="50" Width="100" Background="#FF1D2850" FontSize="18" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThoat_Click"  />
             </Grid>
         </Grid>
     </Grid>
