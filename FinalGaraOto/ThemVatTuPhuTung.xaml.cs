@@ -21,15 +21,21 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemVatTuPhuTung : Window
     {
+<<<<<<< HEAD
 
         
         VatTuPhuTung vatTuPhuTung;
         public ThemVatTuPhuTung(string n)
 
+=======
+        VatTuPhuTung vatTuPhuTung;
+        public ThemVatTuPhuTung(string n)
+>>>>>>> 67ffc36b11d636d8cf3bf062e784a0b135212a7e
         {
             InitializeComponent();
             LoadComboBoxDonViTinh();
             tbUserName.Text = n;
+
         }
 
         void LoadComboBoxDonViTinh() //Hien thi cac item trong combobox
@@ -78,6 +84,7 @@ namespace FinalGaraOto
                     DataProvider.Ins.DB.VATTUPHUTUNGs.Add(n);
                     DataProvider.Ins.DB.SaveChanges();
 
+<<<<<<< HEAD
 
                     MessageBox.Show("Thêm vật tư phụ tùng thành công!");                  
 
@@ -86,8 +93,13 @@ namespace FinalGaraOto
                     this.Close();
                     VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
                     vatTuPhuTung.Show();
+=======
+                    MessageBox.Show("Thêm vật tư phụ tùng thành công!");                  
+>>>>>>> 67ffc36b11d636d8cf3bf062e784a0b135212a7e
 
-                    
+                    VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
+                    vatTuPhuTung.Show();
+                    this.Close();
                 }
             }
             return;
@@ -98,6 +110,7 @@ namespace FinalGaraOto
         private void btnThoatThemVTPT_Click(object sender, RoutedEventArgs e)
         {
 
+<<<<<<< HEAD
 
             this.Close();
             this.Visibility= Visibility.Collapsed;
@@ -106,6 +119,11 @@ namespace FinalGaraOto
 
 
             
+=======
+            VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
+            vatTuPhuTung.Show();
+            this.Close();
+>>>>>>> 67ffc36b11d636d8cf3bf062e784a0b135212a7e
         }
 
 

@@ -28,6 +28,11 @@ namespace FinalGaraOto
             LoadTenPhuTung();
             tbUserName.Text = n;
 
+<<<<<<< HEAD
+=======
+            var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
+            if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
+>>>>>>> 67ffc36b11d636d8cf3bf062e784a0b135212a7e
         }
 
         #region scroll bar button

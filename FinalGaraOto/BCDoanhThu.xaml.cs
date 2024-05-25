@@ -31,6 +31,9 @@ namespace FinalGaraOto
             LoadDataFromDatabaseNam();
             LoadDataFromDatabaseThang();
             tbUserName.Text = n;
+
+            var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
+            if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
         }
 
         #region scroll bar button
