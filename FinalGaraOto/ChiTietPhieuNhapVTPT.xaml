@@ -259,7 +259,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="STT" Width="*"
-                                                    
+                                                    Binding="{Binding STT}"
                                 />
                                 
                                 <DataGridTextColumn Header="Mã vật tư" Width="*" 

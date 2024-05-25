@@ -272,7 +272,9 @@ namespace FinalGaraOto
             DataGrid grid = (DataGrid)BangLSNVTPT;
             dynamic t = grid.SelectedItem;
             int MaVT = t.MaVTPT;
-            var n = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == MaVT && x.MaNhapHang == int.Parse(tbMa.Text)).SingleOrDefault();
+            int MaNH = int.Parse(tbMa.Text);
+
+            var n = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == MaVT && x.MaNhapHang == MaNH).SingleOrDefault();
             if (n != null)
             {
                 MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -286,16 +288,19 @@ namespace FinalGaraOto
                 }
                 else return;
             }
+            LoadLichSuNhapVatTuPhuTungList();
+            return;
         }
 
         #region Hien thi du lieu len datagrid
 
         public class ChiTietNhapVatTuPhuTungs //Khong can cung duoc, tai co Class san ben EntityFramework
         {
+            public int STT { get; set; }
             public int MaVTPT { get; set; }
             public string TenVT { get; set; }
             public Nullable<int> SL { get; set; }
-            
+            public int MaNhapHang { get; set; }
             public Nullable<decimal> GiaNhap { get; set; }
             public Nullable<decimal> ThanhTien { get; set; }
         }
@@ -304,14 +309,22 @@ namespace FinalGaraOto
         {
             int Ma1 = int.Parse(tbMa.Text);
             ObservableCollection<ChiTietNhapVatTuPhuTungs> chiTietNhapVatTuPhuTungs = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
-            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x=>x.MaNhapHang== Ma1).ToList();
+            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == Ma1).ToList();
+
+            int stt = 1;
+
             foreach (var item in List)
             {
+
                 ChiTietNhapVatTuPhuTungs chiTietNhapVatTuPhuTungs1 = new ChiTietNhapVatTuPhuTungs();
+
+                chiTietNhapVatTuPhuTungs1.STT = stt++;
                 chiTietNhapVatTuPhuTungs1.MaVTPT = item.MaVatTuPhuTung;
+                chiTietNhapVatTuPhuTungs1.MaNhapHang = item.MaNhapHang;
                 chiTietNhapVatTuPhuTungs1.TenVT = item.VATTUPHUTUNG.TenVTPT;
                 chiTietNhapVatTuPhuTungs1.GiaNhap = item.GiaNhap;
                 chiTietNhapVatTuPhuTungs1.SL = item.SoLuong;
+                chiTietNhapVatTuPhuTungs1.ThanhTien = item.ThanhTien;
                 chiTietNhapVatTuPhuTungs.Add(chiTietNhapVatTuPhuTungs1);
                 BangLSNVTPT.ItemsSource = chiTietNhapVatTuPhuTungs;
             }

@@ -179,7 +179,7 @@ namespace FinalGaraOto
         private void btnNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
             PhieuNhapVatTuPhuTung phieuNhapVatTuPhuTung = new PhieuNhapVatTuPhuTung(tbUserName.Text);
-            phieuNhapVatTuPhuTung.Show();
+            phieuNhapVatTuPhuTung.ShowDialog();
             this.Close();
         }
 
@@ -193,7 +193,7 @@ namespace FinalGaraOto
             #endregion
 
             #region btn xu ly 
-            private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
+        private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
         {
 
 
