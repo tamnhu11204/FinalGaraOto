@@ -125,31 +125,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             </DockPanel>
         </Grid>
 
-        <Grid Grid.Row="3">
-            <StackPanel Orientation="Horizontal" Height="70">
-                <DatePicker x:Name="dtpNgayNhapHang"
-                           
-                    Width="200"
-                    Height="60"
-                    Margin="20"
-                    
-                    materialDesign:HintAssist.Hint="Ngày nhập hàng"
-                    FontSize="20"
-                    materialDesign:TextFieldAssist.HasClearButton="True"
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
-
-
-                <TextBox x:Name="txbDVCC"
-                         IsReadOnly="True"
-                    Width="200"
-                    Height="60"
-                    FontSize="20"
-                    Margin="20"
-               
-                    materialDesign:HintAssist.Hint="Đơn vị cung cấp"
-                />
-            </StackPanel>
-        </Grid>
+        <Grid Grid.Row="3"/>
 
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -187,7 +163,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                         <ComboBox x:Name="cbbChonVTPT"
                             Height="80"
                             Width="300"
-                            
+                            SelectionChanged="cbbChonVTPT_SelectionChanged"
                             materialDesign:HintAssist.Hint="Chọn phụ tùng"
                             IsEditable="True" 
                             VerticalAlignment="Stretch" 
@@ -245,26 +221,18 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                         HorizontalAlignment="Center" 
                         Orientation="Horizontal" 
                         Width="400" Height="120">
-                        <Button x:Name="btnLamMoi"
-                                Click="btnLamMoi_Click"
-                            Width="150"
-                            Height="50"
-                            Content="Làm mới"
-                            Margin="20"
-                            Background="#FF89BAD2"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignPaperLightButton}"
-                            ToolTip="Resource name: MaterialDesignPaperLightButton" 
-                            HorizontalAlignment="Left" FontSize="20" />
                         <Button x:Name="btnThem"
                                 Click="btnThem_Click"
-                            Width="150"
-                            Height="50"
-                            Content="Thêm"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            ToolTip="Resource name: MaterialDesignRaisedButton" Background="#FF0041AF" 
-                            HorizontalAlignment="Right" FontSize="20" />
+                                Width="150"
+                                Height="50"
+                                Margin="120 0 0 0"
+                                Content="Thêm"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Background="#FF0041AF" 
+                                HorizontalAlignment="Center"
+                                FontSize="20" 
+                                VerticalAlignment="Center"/>
                     </StackPanel>
 
                 </Grid>
@@ -276,27 +244,27 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     <Border Background="Blue"
                             CornerRadius="10"
                             VerticalAlignment="Top">
-                        <DataGrid x:Name="BangLSNVTPT"
-                                  SelectionChanged="BangLSNVTPT_SelectionChanged"
+                        <DataGrid x:Name="BangLSNVTPT" AutoGenerateColumns="False"
+                                
                                 ItemsSource="{Binding DanhSachVTPT, Mode=TwoWay}"
                                 VerticalAlignment="Center" FontSize="20">
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="STT" Width="*"
-                                                    
+                                                    Binding="{Binding STT}"
                                 />
                                 
                                 <DataGridTextColumn Header="Mã vật tư" Width="*" 
-                                                        Binding="{Binding MaVatTu}"
+                                                        Binding="{Binding MaVTPT}"
 
                                 />
 
                                 <DataGridTextColumn Header="Tên vật tư" Width="2*"
-                                                    Binding="{Binding TenVatTu}"
+                                                    Binding="{Binding TenVT}"
                                 />
 
                                 <DataGridTextColumn Header="Số lượng" Width="*"
-                                                    Binding="{Binding SoLuong}"
+                                                    Binding="{Binding SL}"
                                 />
 
                                 <DataGridTextColumn Header="Giá nhập" Width="*"
@@ -311,8 +279,8 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
 
-                                                <Button x:Name="btnSua"
-                                                        Click="btnSua_Click"        
+                                                <Button x:Name="btnXoa"
+                                                        Click="btnXoa_Click"        
                                                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                                     Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                                     ToolTip="MaterialDesignFloatingActionMiniDarkButton" 
@@ -357,7 +325,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     Width="500"
                     FontSize="40"
                     materialDesign:HintAssist.Hint="vnđ"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Height="105" />
             </StackPanel>
 
             <StackPanel 

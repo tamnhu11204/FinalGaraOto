@@ -58,12 +58,12 @@ namespace FinalGaraOto
                 var dVT = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == Madvt).SingleOrDefault();
                 vATTUPHUTUNG.DVT = dVT.TenDVT;
                 vATTUPHUTUNG.GiaNhap = item.DonGiaNhap;
-                vATTUPHUTUNG.GiaBan = item.DonGiaBan; 
+                vATTUPHUTUNG.GiaBan = item.DonGiaBan;
+
                 vATTUPHUTUNG.SLTon = item.SoLuongTon;
                 vatTuPhuTungs.Add(vATTUPHUTUNG);
                 BangVTPT.ItemsSource = vatTuPhuTungs;
             }
-
 
         }
 
@@ -179,7 +179,7 @@ namespace FinalGaraOto
         private void btnNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
             PhieuNhapVatTuPhuTung phieuNhapVatTuPhuTung = new PhieuNhapVatTuPhuTung(tbUserName.Text);
-            phieuNhapVatTuPhuTung.Show();
+            phieuNhapVatTuPhuTung.ShowDialog();
             this.Close();
         }
 
@@ -193,7 +193,7 @@ namespace FinalGaraOto
             #endregion
 
             #region btn xu ly 
-            private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
+        private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
         {
 
 
@@ -266,16 +266,25 @@ namespace FinalGaraOto
             var n = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
             if (n != null)
             {
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (r == MessageBoxResult.Yes)
+                if (n.DonGiaNhap != null || n.DonGiaBan != null || n.SoLuongTon != null)
                 {
-                    DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
-                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBoxResult r0 = MessageBox.Show("Bạn không thể xóa vật tư này!", "Thông báo", MessageBoxButton.OK);
 
-                    MessageBox.Show("Xóa vật tư thành công!");
-                    LoadVatTuPhuTungList();
                 }
-                else return;
+                else
+                {
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Xóa vật tư thành công!");
+                        LoadVatTuPhuTungList();
+                    }
+                    else return;
+                }
+
             }
         }
 

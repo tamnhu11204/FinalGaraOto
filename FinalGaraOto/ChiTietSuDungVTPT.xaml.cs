@@ -16,48 +16,46 @@ using System.Windows.Shapes;
 namespace FinalGaraOto
 {
     /// <summary>
-    /// Interaction logic for ThemThongTinSuaChua.xaml
+    /// Interaction logic for ChiTietSuDungVTPT.xaml
     /// </summary>
-    public partial class ThemThongTinSuaChua : Window
+    public partial class ChiTietSuDungVTPT : Window
     {
-        string MaCT_;
-        public ThemThongTinSuaChua(string n, string MaCT)
+        string n, MaCT_;
+        public ChiTietSuDungVTPT(string maUser, string MaCT)
         {
             InitializeComponent();
-            tbUserName.Text = n;
-            MaCT_= MaCT;
             LoadComboBox();
+            n = maUser;
+            MaCT_ = MaCT;
 
-        }
-        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
         }
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
         {
-        
             this.Close();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
+            if(cbLoaiTC.SelectedValue == null || txbSL.Text == null)
+            {
+                MessageBox.Show("Chưa điền đầy đủ thông tin");
 
+            }
+            else
+            {
+                
+            }   
+            
         }
 
-        void LoadComboBox ()
+        void LoadComboBox()
         {
             var List = DataProvider.Ins.DB.TIENCONGs.Select(x => x.TenTienCong).ToList();
             foreach (var item in List)
             {
                 cbLoaiTC.Items.Add(item);
             }
-        }
-
-        private void btnThemVT_Click(object sender, RoutedEventArgs e)
-        {
-            ChiTietSuDungVTPT ct = new ChiTietSuDungVTPT(tbUserName.Text, MaCT_);
-            ct.Show();
         }
     }
 }

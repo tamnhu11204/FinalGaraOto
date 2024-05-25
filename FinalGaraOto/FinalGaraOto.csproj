@@ -116,6 +116,9 @@
     <Compile Include="CHITIETSUACHUA.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChiTietSuDungVTPT.xaml.cs">
+      <DependentUpon>ChiTietSuDungVTPT.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CHUXE.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>
@@ -219,6 +222,10 @@
     <Compile Include="XE.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>
+    <Compile Include="XemLichSu.xaml.cs">
+      <DependentUpon>XemLichSu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XuatFileHoaDonThanhToan.cs" />
     <Page Include="BCDoanhThu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChiTietSuaChuaXe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChiTietSuDungVTPT.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -344,6 +355,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VatTuPhuTung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XemLichSu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

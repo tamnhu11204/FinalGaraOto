@@ -168,7 +168,7 @@ namespace FinalGaraOto
         }
         #endregion
 
-        string MaXe = null;
+       
         #region Tim kiem
         private void btnLamMoi_Click(object sender, RoutedEventArgs e)
         {
@@ -243,7 +243,7 @@ namespace FinalGaraOto
             dtgdsXe.ItemsSource = xe;
         }
         #endregion
-
+        string MaXe = null;
         private void dtgdsXe_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid grid = (DataGrid)sender;

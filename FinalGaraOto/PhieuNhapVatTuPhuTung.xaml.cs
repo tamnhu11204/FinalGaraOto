@@ -80,7 +80,7 @@ namespace FinalGaraOto
                 {
                     return;
                 }
-
+                n.TongTienNhapHang = 0;
                
                 DataProvider.Ins.DB.PHIEUNHAPs.Add(n);
                 DataProvider.Ins.DB.SaveChanges();

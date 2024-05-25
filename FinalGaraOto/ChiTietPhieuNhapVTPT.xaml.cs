@@ -25,10 +25,10 @@ namespace FinalGaraOto
         public ChiTietPhieuNhapVTPT(string n, int MaNH)
         {
             InitializeComponent();
-            LoadNgayNhap(); //Load lấy dữ liệu của window thêm trong phiếu nhập VTPT
             LoadTenPhuTung();
             tbUserName.Text = n;
             tbMa.Text = MaNH.ToString();
+            LoadTongTien();
 
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
@@ -125,7 +125,7 @@ namespace FinalGaraOto
             public Nullable<decimal> TongTien => SoLuong * GiaNhap;
         }*/
 
-        private void BangLSNVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*private void BangLSNVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             DataGrid grid = (DataGrid)sender;
@@ -144,22 +144,14 @@ namespace FinalGaraOto
 
             }
 
-        }
+        }*/
 
-
-        void LoadNgayNhap()
+        void LoadTongTien()
         {
-
-
-            var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang).ToList();
-            foreach (var item in List)
-            {
-                dtpNgayNhapHang.Text = item.ToString();
-
-                txbDVCC.Text = item.ToString(); 
-            }
+            int Maa = int.Parse(tbMa.Text);
+            var m1 = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == Maa).SingleOrDefault();
+            txbTongTienNhapHang.Text = m1.TongTienNhapHang.ToString();
         }
-
         void LoadTenPhuTung()
         {
             var List = DataProvider.Ins.DB.VATTUPHUTUNGs.Select(x => x.TenVTPT).ToList();
@@ -169,7 +161,44 @@ namespace FinalGaraOto
             }
         }
 
-        private void btnLamMoi_Click(object sender, RoutedEventArgs e)
+        void LoadGiaNhap()
+        {
+
+            int Maa = 0;
+
+
+
+            string selectedValue = cbbChonVTPT.SelectedItem as string;
+
+            //decimal giaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+            var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedValue).FirstOrDefault();
+            if (gnh != null)
+            {
+                Maa = gnh.MaVatTuPhuTung;
+            }
+            var gnh1 = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == Maa).FirstOrDefault();
+
+            gnh.DonGiaNhap = gnh1.GiaNhap;
+
+        }
+
+        void LoadSoLuongTon()
+        {
+            int Maa = 0;
+            string selectedValue = cbbChonVTPT.SelectedItem as string;
+            //decimal giaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+            //var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == Maa).SingleOrDefault();
+            var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedValue).FirstOrDefault();
+            if (gnh != null)
+            {
+                Maa = gnh.MaVatTuPhuTung;
+            }
+            var gnh1 = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == Maa).FirstOrDefault();
+
+            gnh.SoLuongTon = gnh1.SoLuong;
+        }
+
+        void LamMoi()
         {
             cbbChonVTPT.Text = null;
             txbNhapSLVT.Clear();
@@ -177,6 +206,7 @@ namespace FinalGaraOto
             txbNhapGiaNhap.Clear();
 
         }
+
 
         #region hien thi thanh tien mot dong
         private void txbNhapSLVT_TextChanged(object sender, TextChangedEventArgs e)
@@ -224,102 +254,142 @@ namespace FinalGaraOto
 
         }*/
 
-            #endregion
-            private void btnThem_Click(object sender, RoutedEventArgs e)
+        #endregion
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(cbbChonVTPT.Text) || string.IsNullOrEmpty(txbNhapGiaNhap.Text)
+                || string.IsNullOrEmpty(txbNhapSLVT.Text))
+
             {
-                if (string.IsNullOrEmpty(cbbChonVTPT.Text) || string.IsNullOrEmpty(txbNhapGiaNhap.Text)
-                    || string.IsNullOrEmpty(txbNhapSLVT.Text))
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                var n = new CHITIETPHIEUNHAP();
 
-                {
-                    MessageBox.Show("Hãy điền đầy đủ thông tin");
-                }
-                else
-                {
-
-                    var n = new CHITIETPHIEUNHAP();
-
-                    string selectedTenVT = cbbChonVTPT.SelectedItem as string;
-                    var tenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedTenVT).SingleOrDefault();
-                    if (tenVT != null)
-                    {
-                        n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
-                    }
-
-                    n.MaNhapHang=int.Parse(tbMa.Text);
-                    n.SoLuong = int.Parse(txbNhapSLVT.Text);
-                    n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
-                    n.ThanhTien = decimal.Parse(txbThanhTien.Text);
-
-                    DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
-                    DataProvider.Ins.DB.SaveChanges();
+                string selectedTenVT = cbbChonVTPT.SelectedItem as string;
 
 
-                    MessageBox.Show("Thêm thành công!");
-                }
+                var tenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedTenVT).SingleOrDefault();
+                n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
+
+                n.MaNhapHang = int.Parse(tbMa.Text);
+                n.SoLuong = int.Parse(txbNhapSLVT.Text);
+
+                n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+                n.ThanhTien = decimal.Parse(txbThanhTien.Text);
+                DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
+                DataProvider.Ins.DB.SaveChanges();
+
+                var m = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == n.MaNhapHang).SingleOrDefault();
+                m.TongTienNhapHang = m.TongTienNhapHang + n.ThanhTien;
+                DataProvider.Ins.DB.SaveChanges();
+                LoadTongTien();
+
+                var slg = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
+                slg.SoLuongTon += n.SoLuong;
+                DataProvider.Ins.DB.SaveChanges();
+                LoadSoLuongTon();
+
+                var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
+                gnh.DonGiaNhap = n.GiaNhap;
+                DataProvider.Ins.DB.SaveChanges();
+                LoadGiaNhap();
+
+                MessageBox.Show("Thêm thành công!");
+                LamMoi();
+            }
             LoadLichSuNhapVatTuPhuTungList();
-                return;
-            }
+            return;
+        }
 
 
 
-            private void btnDong_Click(object sender, RoutedEventArgs e)
-            {
-                this.Close();
-                VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
-                vatTuPhuTung.Show();
-            }
+        private void btnDong_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
+            vatTuPhuTung.Show();
+        }
 
-            private void btnThanhToan_Click(object sender, RoutedEventArgs e)
-            {
-                this.Close();
-                HoaDonThanhToanPhuTung hoaDonThanhToan = new HoaDonThanhToanPhuTung(tbUserName.Text);
-                hoaDonThanhToan.Show();
-            }
+        private void btnThanhToan_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            HoaDonThanhToanPhuTung hoaDonThanhToan = new HoaDonThanhToanPhuTung(tbUserName.Text);
+            hoaDonThanhToan.Show();
+        }
 
-        private void btnSua_Click(object sender, RoutedEventArgs e)
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             DataGrid grid = (DataGrid)BangLSNVTPT;
             dynamic t = grid.SelectedItem;
             int MaVT = t.MaVTPT;
-            var n = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
+            int MaNH = int.Parse(tbMa.Text);
+
+            int SL1 = t.SL;
+            decimal T1 = t.ThanhTien;
+
+            var n = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == MaVT && x.MaNhapHang == MaNH).SingleOrDefault();
             if (n != null)
             {
                 MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (r == MessageBoxResult.Yes)
                 {
-                    DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
+                    DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Remove(n);
                     DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Xóa vật tư thành công!");
+
+
+                    var vtpt = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
+                    vtpt.SoLuongTon = vtpt.SoLuongTon - SL1;
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    var pn = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == MaNH).SingleOrDefault();
+                    pn.TongTienNhapHang = pn.TongTienNhapHang - T1;
+                    DataProvider.Ins.DB.SaveChanges();
+                    LoadTongTien();
                     LoadLichSuNhapVatTuPhuTungList();
                 }
                 else return;
             }
+            //LoadLichSuNhapVatTuPhuTungList();
+            return;
         }
 
         #region Hien thi du lieu len datagrid
 
         public class ChiTietNhapVatTuPhuTungs //Khong can cung duoc, tai co Class san ben EntityFramework
         {
+            public int STT { get; set; }
             public int MaVTPT { get; set; }
             public string TenVT { get; set; }
             public Nullable<int> SL { get; set; }
-            
+            public int MaNhapHang { get; set; }
             public Nullable<decimal> GiaNhap { get; set; }
             public Nullable<decimal> ThanhTien { get; set; }
         }
 
         void LoadLichSuNhapVatTuPhuTungList() //Hien thi nhan vien len datagrid
         {
+            int Ma1 = int.Parse(tbMa.Text);
             ObservableCollection<ChiTietNhapVatTuPhuTungs> chiTietNhapVatTuPhuTungs = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
-            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.ToList();
+            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == Ma1).ToList();
+
+            int stt = 1;
+
             foreach (var item in List)
             {
+
                 ChiTietNhapVatTuPhuTungs chiTietNhapVatTuPhuTungs1 = new ChiTietNhapVatTuPhuTungs();
+
+                chiTietNhapVatTuPhuTungs1.STT = stt++;
                 chiTietNhapVatTuPhuTungs1.MaVTPT = item.MaVatTuPhuTung;
+                chiTietNhapVatTuPhuTungs1.MaNhapHang = item.MaNhapHang;
                 chiTietNhapVatTuPhuTungs1.TenVT = item.VATTUPHUTUNG.TenVTPT;
                 chiTietNhapVatTuPhuTungs1.GiaNhap = item.GiaNhap;
                 chiTietNhapVatTuPhuTungs1.SL = item.SoLuong;
+                chiTietNhapVatTuPhuTungs1.ThanhTien = item.ThanhTien;
                 chiTietNhapVatTuPhuTungs.Add(chiTietNhapVatTuPhuTungs1);
                 BangLSNVTPT.ItemsSource = chiTietNhapVatTuPhuTungs;
             }
@@ -329,6 +399,35 @@ namespace FinalGaraOto
 
         #endregion
 
+        private void cbbChonVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            // Lấy tên vật tư đã chọn
+            string selectedVatTu = cbbChonVTPT.SelectedItem as string;
+
+            if (!string.IsNullOrEmpty(selectedVatTu))
+            {
+                // Truy vấn cơ sở dữ liệu để lấy giá của vật tư
+                var vatTu = DataProvider.Ins.DB.VATTUPHUTUNGs.FirstOrDefault(x => x.TenVTPT == selectedVatTu);
+
+                if (vatTu != null && vatTu.DonGiaNhap != null)
+                {
+                    // Hiển thị giá trong textBox NhapGiaNhap
+                    txbNhapGiaNhap.Text = vatTu.DonGiaNhap.ToString();
+                    txbNhapGiaNhap.IsReadOnly = true;
+                }
+                else
+                {
+                    // Cho phép người dùng nhập giá
+                    txbNhapGiaNhap.Text = string.Empty;
+                    txbNhapGiaNhap.IsReadOnly = false;
+                }
+            }
+
+        }
+
     }
+
+
 
 }
