@@ -225,6 +225,7 @@
     <Compile Include="XemLichSu.xaml.cs">
       <DependentUpon>XemLichSu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XuatFileHoaDonThanhToan.cs" />
     <Page Include="BCDoanhThu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
