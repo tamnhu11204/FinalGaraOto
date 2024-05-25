@@ -20,12 +20,12 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemThongTinSuaChua : Window
     {
-        string MaXe_;
-        public ThemThongTinSuaChua(string n, string MaXe)
+        string MaCT_;
+        public ThemThongTinSuaChua(string n, string MaCT)
         {
             InitializeComponent();
             tbUserName.Text = n;
-            MaXe_ = MaXe;
+            MaCT_= MaCT;
             LoadComboBox();
 
         }
@@ -36,9 +36,8 @@ namespace FinalGaraOto
 
         private void btnThoat_Click(object sender, RoutedEventArgs e)
         {
-            ChiTietSuaChuaXe ct_ = new ChiTietSuaChuaXe(tbUserName.Text, MaXe_);
+        
             this.Close();
-            ct_.Show();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -57,7 +56,7 @@ namespace FinalGaraOto
 
         private void btnThemVT_Click(object sender, RoutedEventArgs e)
         {
-            ChiTietSuDungVTPT ct = new ChiTietSuDungVTPT(tbUserName.Text, MaXe_);
+            ChiTietSuDungVTPT ct = new ChiTietSuDungVTPT(tbUserName.Text, MaCT_);
             ct.Show();
         }
     }

@@ -20,14 +20,33 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ChiTietSuDungVTPT : Window
     {
-        string n, MaXe_;
-        public ChiTietSuDungVTPT(string maUser, string MaXe)
+        string n, MaCT_;
+        public ChiTietSuDungVTPT(string maUser, string MaCT)
         {
             InitializeComponent();
             LoadComboBox();
             n = maUser;
-            MaXe_ = MaXe;
+            MaCT_ = MaCT;
 
+        }
+
+        private void btnThoat_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbLoaiTC.SelectedValue == null || txbSL.Text == null)
+            {
+                MessageBox.Show("Chưa điền đầy đủ thông tin");
+
+            }
+            else
+            {
+                
+            }   
+            
         }
 
         void LoadComboBox()

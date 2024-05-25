@@ -23,6 +23,7 @@ namespace FinalGaraOto
     public partial class ChiTietSuaChuaXe : Window
     {
         string MaXe_;
+        string MaCT;
         public ChiTietSuaChuaXe(string n, string MaXe)
 
         {
@@ -211,6 +212,7 @@ namespace FinalGaraOto
         {
             ObservableCollection<CHITIET> ChiTiets = new ObservableCollection<CHITIET>();
             var l = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
+            MaCT = l.MaSuaChua.ToString();
             var List = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == l.MaSuaChua).ToList();
             int i = 1;
             decimal TongTien = 0;
@@ -274,8 +276,8 @@ namespace FinalGaraOto
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            ThemThongTinSuaChua them = new ThemThongTinSuaChua(tbUserName.Text,MaXe_);
-            this.Close();
+
+            ThemThongTinSuaChua them = new ThemThongTinSuaChua(tbUserName.Text,MaCT);
             them.Show();
         }
 

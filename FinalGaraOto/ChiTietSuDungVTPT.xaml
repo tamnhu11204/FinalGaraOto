@@ -41,10 +41,10 @@
                         <TextBox x:Name="txbSL"
                             materialDesign:HintAssist.Hint="Tên đơn vị"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,20,0,0" FontSize="20"  Width="450" />
-                        <Button Content="Thêm" Background="#FF89BAD2"
-                    Margin="-410,20,0,0" Height="50" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                        <Button Content="Thoát" Background="#FF1D2850" 
-                        Margin="220,-50,0,0" Height="50" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                        <Button x:Name="btnThem" Content="Thêm" Background="#FF89BAD2"
+                    Margin="-410,20,0,0" Height="50" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThem_Click"/>
+                        <Button x:Name="btnThoat" Content="Thoát" Background="#FF1D2850" 
+                        Margin="220,-50,0,0" Height="50" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThoat_Click"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
