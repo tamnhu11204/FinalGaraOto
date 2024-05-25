@@ -1,6 +1,7 @@
 ﻿using FinalGaraOto.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,10 @@ namespace FinalGaraOto
         public ChiTietPhieuNhapVTPT(string n)
         {
             InitializeComponent();
-<<<<<<< HEAD
             LoadNgayNhap(); //Load lấy dữ liệu của window thêm trong phiếu nhập VTPT
             LoadTenPhuTung();
-=======
             tbUserName.Text = n;
->>>>>>> e9ac6bcbb8120c00268e80150ea02ed8f53704b5
+
         }
 
         #region scroll bar button
@@ -111,12 +110,48 @@ namespace FinalGaraOto
 
         #endregion
 
+/*        public class ChiTietPhieuNhapVatTus
+        {
+            public int STT {  get; set; }
+            public int MaVatTu { get; set; }
+            public int MaNhapHang { get; set; }
+            public Nullable<int> SoLuong {  get; set; } 
+            public Nullable<decimal> GiaNhap { get; set; }
+            public Nullable<decimal> TongTien => SoLuong * GiaNhap;
+        }*/
+
+        private void BangLSNVTPT_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                int maVattu = selected_row.MaVatTu;
+                cbbChonVTPT.IsReadOnly = true;
+                var l = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == maVattu).SingleOrDefault();
+
+                cbbChonVTPT.Text = l.VATTUPHUTUNG.TenVTPT;
+                txbNhapSLVT.Text = l.SoLuong.ToString();
+                txbNhapGiaNhap.Text = l.GiaNhap.ToString();
+                txbTongTien.Text = l.ThanhTien.ToString();
+                
+
+            }
+
+        }
+
+
         void LoadNgayNhap()
         {
+
+
             var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang).ToList();
             foreach (var item in List)
             {
-                
+                dtpNgayNhapHang.Text = item.ToString();
+
+                txbDVCC.Text = item.ToString(); //
             }
         }
 
@@ -138,10 +173,67 @@ namespace FinalGaraOto
 
         }
 
-        private void btnThem_Click(object sender, RoutedEventArgs e)
+        #region hien thi tong tien mot san pham
+        private void txbNhapSLVT_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateTongTien();
+        }
+
+        private void txbNhapGiaNhap_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateTongTien();
+        }
+
+        // Khi dữ liệu thay đổi (ví dụ: sau khi người dùng nhập số lượng và giá nhập):
+        private void UpdateTongTien()
         {
 
+            if (decimal.TryParse(txbNhapGiaNhap.Text, out decimal giaTien) &&
+            int.TryParse(txbNhapSLVT.Text, out int soLuong))
+            {
+                decimal tongTien = giaTien * soLuong;
+                txbTongTien.Text = tongTien.ToString();
+            }
+
+
         }
+
+        #endregion
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(cbbChonVTPT.Text) || string.IsNullOrEmpty(txbNhapGiaNhap.Text) 
+                || string.IsNullOrEmpty(txbNhapSLVT.Text))
+                
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+
+                var n = new CHITIETPHIEUNHAP();
+
+                string selectedTenVT = cbbChonVTPT.SelectedItem as string;
+                var tenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedTenVT).SingleOrDefault();
+                if(tenVT != null)
+                {
+                    n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
+                }    
+                   
+                n.SoLuong = int.Parse(txbNhapSLVT.Text);
+                n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+                n.ThanhTien = decimal.Parse(txbTongTien.Text);
+
+                DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
+                DataProvider.Ins.DB.SaveChanges();
+
+                MessageBox.Show("Thêm thành công!");
+                  
+                
+            }
+            return;
+        }
+
+
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
@@ -152,5 +244,7 @@ namespace FinalGaraOto
         {
 
         }
+
+
     }
 }

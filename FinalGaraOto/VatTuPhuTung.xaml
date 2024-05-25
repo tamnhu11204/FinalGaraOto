@@ -353,10 +353,10 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                 <Grid Margin="-50,100,467,0" Width="127" Height="533" >
                                     <materialDesign:PackIcon Kind="AccountKey" Margin="73,-50,0,0" Width="40" Height="40"/>
                                     <materialDesign:PackIcon Kind="Account" Margin="73,20,0,0" Width="40" Height="40"/>
-                                    <materialDesign:PackIcon Kind="CakeVariantOutline" Margin="73,90,0,0" Width="40" Height="40"/>
+                                    <materialDesign:PackIcon Kind="Counter" Margin="73,90,0,0" Width="40" Height="40"/>
                                     <materialDesign:PackIcon Kind="CardAccountDetailsOutline" Margin="73,160,0,0" Width="40" Height="40"/>
-                                    <materialDesign:PackIcon Kind="MapMarkerRadius" Margin="73,230,0,0" Width="40" Height="40"/>
-                                    <materialDesign:PackIcon Kind="Phone" Margin="73,298,0,0" Width="40" Height="40"/>
+                                    <materialDesign:PackIcon Kind="Cash" Margin="73,230,0,0" Width="40" Height="40"/>
+                                    <materialDesign:PackIcon Kind="Cash" Margin="73,298,0,0" Width="40" Height="40"/>
                                 </Grid>
                                 <Grid Margin="-500,6,0,0" Height="564">
                                     <Grid.RowDefinitions>
@@ -379,7 +379,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <TextBox x:Name="txbGiaNhap" 
                                                 materialDesign:HintAssist.Hint="Giá nhập"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                        <TextBox x:Name="txbGiaBan" IsReadOnly="True"
+                                        <TextBox x:Name="txbGiaBan" 
                                                 materialDesign:HintAssist.Hint="Giá bán"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
                                         
