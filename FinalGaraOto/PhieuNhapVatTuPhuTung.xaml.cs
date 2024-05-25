@@ -88,9 +88,10 @@ namespace FinalGaraOto
                 MessageBox.Show("Lập phiếu nhập thành công!");
                
 
-                this.Close();
+                
                 ChiTietPhieuNhapVTPT chiTietPhieuNhapVTPT = new ChiTietPhieuNhapVTPT(tbUserName.Text);
                 chiTietPhieuNhapVTPT.Show();
+                this.Close();
             }
         }
     }

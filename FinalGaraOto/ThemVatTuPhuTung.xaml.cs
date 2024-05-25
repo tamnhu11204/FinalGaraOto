@@ -79,13 +79,15 @@ namespace FinalGaraOto
                     DataProvider.Ins.DB.SaveChanges();
 
 
-                    MessageBox.Show("Thêm vật tư phụ tùng thành công!");                  
+                    MessageBox.Show("Thêm vật tư phụ tùng thành công!");
 
-                    
 
-                    this.Close();
+                    tbxTenPT.Clear();
+                    cbbDVT.Text = null;
+
+                    /*this.Close();
                     VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
-                    vatTuPhuTung.Show();
+                    vatTuPhuTung.Show();*/
 
                 }
             }

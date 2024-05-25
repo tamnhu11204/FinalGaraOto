@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,8 @@ namespace FinalGaraOto
             LoadTenPhuTung();
             tbUserName.Text = n;
 
-
+            var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
+            if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
 
         }
 
@@ -136,7 +138,7 @@ namespace FinalGaraOto
                 cbbChonVTPT.Text = l.VATTUPHUTUNG.TenVTPT;
                 txbNhapSLVT.Text = l.SoLuong.ToString();
                 txbNhapGiaNhap.Text = l.GiaNhap.ToString();
-                txbTongTien.Text = l.ThanhTien.ToString();
+                txbThanhTien.Text = l.ThanhTien.ToString();
                 
 
             }
@@ -170,83 +172,162 @@ namespace FinalGaraOto
         {
             cbbChonVTPT.Text = null;
             txbNhapSLVT.Clear();
-            txbTongTien.Clear();
+            txbThanhTien.Clear();
             txbNhapGiaNhap.Clear();
 
         }
 
-        #region hien thi tong tien mot san pham
+        #region hien thi thanh tien mot dong
         private void txbNhapSLVT_TextChanged(object sender, TextChangedEventArgs e)
         {
-            UpdateTongTien();
+            UpdateThanhTien();
         }
 
         private void txbNhapGiaNhap_TextChanged(object sender, TextChangedEventArgs e)
         {
-            UpdateTongTien();
+            UpdateThanhTien();
         }
 
         // Khi dữ liệu thay đổi (ví dụ: sau khi người dùng nhập số lượng và giá nhập):
-        private void UpdateTongTien()
+        private void UpdateThanhTien()
         {
 
             if (decimal.TryParse(txbNhapGiaNhap.Text, out decimal giaTien) &&
             int.TryParse(txbNhapSLVT.Text, out int soLuong))
             {
                 decimal tongTien = giaTien * soLuong;
-                txbTongTien.Text = tongTien.ToString();
+                txbThanhTien.Text = tongTien.ToString();
+            }
+
+
+        }
+
+/*        private void UpdateTongTienThanhToan()
+        {
+            decimal tongTien = 0;
+
+            // Lấy chỉ số của cột "Thành tiền"
+            DataGridColumn column = BangLSNVTPT.Columns.FirstOrDefault(c => c.Header.ToString() == "Thành tiền");
+            int columnIndex = column != null ? BangLSNVTPT.Columns.IndexOf(column) : -1;
+
+            if (columnIndex >= 0)
+            {
+                foreach (var dataItem in BangLSNVTPT.Items)
+                {
+                    tongTien += dataItem.ThanhTien.Value;
+                    
+                }
+            }
+
+            // Hiển thị tổng tiền hoặc thực hiện các thao tác khác với giá trị này
+            txbTongTienNhapHang.Text = tongTien.ToString();
+
+        }*/
+
+            #endregion
+            private void btnThem_Click(object sender, RoutedEventArgs e)
+            {
+                if (string.IsNullOrEmpty(cbbChonVTPT.Text) || string.IsNullOrEmpty(txbNhapGiaNhap.Text)
+                    || string.IsNullOrEmpty(txbNhapSLVT.Text))
+
+                {
+                    MessageBox.Show("Hãy điền đầy đủ thông tin");
+                }
+                else
+                {
+
+                    var n = new CHITIETPHIEUNHAP();
+
+                    string selectedTenVT = cbbChonVTPT.SelectedItem as string;
+                    var tenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedTenVT).SingleOrDefault();
+                    if (tenVT != null)
+                    {
+                        n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
+                    }
+
+                    n.SoLuong = int.Parse(txbNhapSLVT.Text);
+                    n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+                    n.ThanhTien = decimal.Parse(txbThanhTien.Text);
+
+                    DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Thêm thành công!");
+
+
+                }
+                return;
+            }
+
+
+
+            private void btnDong_Click(object sender, RoutedEventArgs e)
+            {
+                this.Close();
+                VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
+                vatTuPhuTung.Show();
+            }
+
+            private void btnThanhToan_Click(object sender, RoutedEventArgs e)
+            {
+                this.Close();
+                HoaDonThanhToanPhuTung hoaDonThanhToan = new HoaDonThanhToanPhuTung(tbUserName.Text);
+                hoaDonThanhToan.Show();
+            }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)BangLSNVTPT;
+            dynamic t = grid.SelectedItem;
+            int MaVT = t.MaVTPT;
+            var n = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == MaVT).SingleOrDefault();
+            if (n != null)
+            {
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    DataProvider.Ins.DB.VATTUPHUTUNGs.Remove(n);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Xóa vật tư thành công!");
+                    LoadLichSuNhapVatTuPhuTungList();
+                }
+                else return;
+            }
+        }
+
+        #region Hien thi du lieu len datagrid
+
+        public class ChiTietNhapVatTuPhuTungs //Khong can cung duoc, tai co Class san ben EntityFramework
+        {
+            public int MaVTPT { get; set; }
+            public string TenVT { get; set; }
+            public Nullable<int> SL { get; set; }
+            
+            public Nullable<decimal> GiaNhap { get; set; }
+            public Nullable<decimal> ThanhTien { get; set; }
+        }
+
+        void LoadLichSuNhapVatTuPhuTungList() //Hien thi nhan vien len datagrid
+        {
+            ObservableCollection<ChiTietNhapVatTuPhuTungs> chiTietNhapVatTuPhuTungs = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
+            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.ToList();
+            foreach (var item in List)
+            {
+                ChiTietNhapVatTuPhuTungs chiTietNhapVatTuPhuTungs1 = new ChiTietNhapVatTuPhuTungs();
+                chiTietNhapVatTuPhuTungs1.MaVTPT = item.MaVatTuPhuTung;
+                chiTietNhapVatTuPhuTungs1.TenVT = item.VATTUPHUTUNG.TenVTPT;
+                chiTietNhapVatTuPhuTungs1.GiaNhap = item.GiaNhap;
+                chiTietNhapVatTuPhuTungs1.SL = item.SoLuong;
+                chiTietNhapVatTuPhuTungs.Add(chiTietNhapVatTuPhuTungs1);
+                BangLSNVTPT.ItemsSource = chiTietNhapVatTuPhuTungs;
             }
 
 
         }
 
         #endregion
-        private void btnThem_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(cbbChonVTPT.Text) || string.IsNullOrEmpty(txbNhapGiaNhap.Text) 
-                || string.IsNullOrEmpty(txbNhapSLVT.Text))
-                
-            {
-                MessageBox.Show("Hãy điền đầy đủ thông tin");
-            }
-            else
-            {
-
-                var n = new CHITIETPHIEUNHAP();
-
-                string selectedTenVT = cbbChonVTPT.SelectedItem as string;
-                var tenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedTenVT).SingleOrDefault();
-                if(tenVT != null)
-                {
-                    n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
-                }    
-                   
-                n.SoLuong = int.Parse(txbNhapSLVT.Text);
-                n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
-                n.ThanhTien = decimal.Parse(txbTongTien.Text);
-
-                DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
-                DataProvider.Ins.DB.SaveChanges();
-
-                MessageBox.Show("Thêm thành công!");
-                  
-                
-            }
-            return;
-        }
-
-
-
-        private void btnXoa_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnThanhToan_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
 
     }
+
 }
