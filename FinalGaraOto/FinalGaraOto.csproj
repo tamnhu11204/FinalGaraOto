@@ -116,6 +116,9 @@
     <Compile Include="CHITIETSUACHUA.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChiTietSuDungVTPT.xaml.cs">
+      <DependentUpon>ChiTietSuDungVTPT.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CHUXE.cs">
       <DependentUpon>CSDL.tt</DependentUpon>
     </Compile>
@@ -235,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChiTietSuaChuaXe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChiTietSuDungVTPT.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
