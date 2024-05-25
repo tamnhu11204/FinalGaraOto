@@ -235,6 +235,7 @@ namespace FinalGaraOto
 
                 n.MaNhapHang = int.Parse(tbMa.Text);
                 n.SoLuong = int.Parse(txbNhapSLVT.Text);
+
                 n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
                 n.ThanhTien = decimal.Parse(txbThanhTien.Text);
                 DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
@@ -244,6 +245,12 @@ namespace FinalGaraOto
                 m.TongTienNhapHang = m.TongTienNhapHang + n.ThanhTien;
                 DataProvider.Ins.DB.SaveChanges();
                 LoadTongTien();
+
+                var slg = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
+                slg.SoLuongTon += n.SoLuong;
+
+                var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
+                gnh.DonGiaBan += n.GiaNhap;
 
                 MessageBox.Show("Thêm thành công!");
             }

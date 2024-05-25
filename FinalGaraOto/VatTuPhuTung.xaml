@@ -61,7 +61,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnDichVu" 
                             Click="dichVu_Tab"
                             ToolTip="Tiếp nhận sửa chữa xe">
@@ -132,29 +132,25 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Horizontal"
                                 Width="800">
                         <!-- Chứa cái thanh tìm kiếm-->
                         <TextBox Grid.Column="0"
-         x:Name="txbTimKiem"
-         Margin="10"
-         Height="50"
-         FontSize="18"
-         VerticalAlignment="Center"
-         Width="250"
-         materialDesign:HintAssist.Hint="Tên vật tư"
-         Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="txbTimKiem_TextChanged">
+                                 x:Name="txbTimKiem"
+                                 Margin="15"
+                                 Height="60"
+                                 FontSize="20"
+                                 
+                                 VerticalAlignment="Center"
+                                 Width="250"
+                                 materialDesign:HintAssist.Hint="Tên vật tư"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="txbTimKiem_TextChanged">
                         </TextBox>
                     </StackPanel>
                 </Grid>
@@ -162,75 +158,51 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 <Grid Grid.Column="1">
                     <!-- Chứa button thêm và mở rộng -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <Button
-                            Width="150"
-                            Height="40"
-                            Content="Tìm kiếm"
-                            FontSize="20"
-                            Margin="20"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" HorizontalAlignment="Left" />
-
                         <Button x:Name="btnThemVTPT"
                                 Click="btnThemVTPT_Click"
-                            Width="150"
-                            Height="40"
-                            Content="Thêm vật tư"
-                            FontSize="20"                           
-                            Margin="20"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+                                Width="150"
+                                Height="40"
+                                Content="Thêm vật tư"
+                                FontSize="20"                           
+                                Margin="20"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        />
+                        
+                        <Button x:Name="btnNhapVTPT"
+                                Click="btnNhapVTPT_Click"
+                                Width="150"
+                                Height="40"
+                                FontSize="20"                           
+                                Margin="20"
+                                Content="Nhập vật tư"           
+                                ToolTip="Lập phiếu nhập vật tư"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        />
 
-
-                        <materialDesign:PopupBox  
-                            x:Name="popUpchuyentab"
-                            Margin="5"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"         
-                            PlacementMode="BottomAndAlignCentres"
-                            Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-                            ToolTip="Mở rộng"
-                            ToolTipService.Placement="Right">
-                         
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <StackPanel>
-                                        <Button x:Name="btnNhapVTPT"
-                                                Click="btnNhapVTPT_Click"
-                                                Grid.Row="0" 
-                                                Content="Nhập vật tư"           
-                                                ToolTip="Lập phiếu nhập vật tư"
-                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        />
-                                        <Button x:Name="btnLichSuNhapVTPT"
-                                                Click="btnLichSuNhapVTPT_Click"
-                                                Grid.Row="1"
-                                                Content="Lịch sử nhập"
-                                                ToolTip="Lịch sử nhập vật tư phụ tùng" 
-                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        <Button x:Name="btnLichSuNhapVTPT"
+                                Click="btnLichSuNhapVTPT_Click"
+                                Width="150"
+                                Height="40"
+                                FontSize="20"                           
+                                Margin="20"
+                                Content="Lịch sử nhập"
+                                ToolTip="Lịch sử nhập vật tư phụ tùng" 
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
  
                                         />
-                                        <Button x:Name="btnXuatFile"
-                                                Click="btnXuatFile_Click"
-                                                Grid.Row="1"
-                                                Content="Xuất file"
-                                                ToolTip="Xuất thành file" 
-                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        <Button x:Name="btnXuatFile"
+                                Click="btnXuatFile_Click"
+                                Width="150"
+                                Height="40"
+                                FontSize="20"                           
+                                Margin="20"
+                                Content="Xuất file"
+                                ToolTip="Xuất thành file" 
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
  
-                                        />
+                         />
 
-                                </StackPanel>
-                            </Grid>
-                            
-                        </materialDesign:PopupBox>
+
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -238,9 +210,11 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="168.406"/>
+                    <ColumnDefinition Width="63.793"/>
+                    <ColumnDefinition Width="317.801"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               >
                     <Border 
@@ -262,7 +236,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
- 
+
                                 <DataGridTextColumn Header="Mã vật tư" 
                                                     
                                                     IsReadOnly="True"
@@ -299,7 +273,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                       
+
 
                                                 <Button x:Name="btnXoa"
                                                         Click="btnXoa_Click"
@@ -316,7 +290,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                                         HorizontalAlignment="Center"
                                                     />
                                                 </Button>
-             
+
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -325,7 +299,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                         </DataGrid>
                     </Border>
                 </ScrollViewer>
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="1" Grid.ColumnSpan="3">
                     <StackPanel Width="550" Height="813">
                         <GroupBox Margin="10" Width="476" Height="747" 
                                   Header="Chi tiết thông tin vật tư phụ tùng" BorderBrush="{DynamicResource MaterialDesignPaper}">
@@ -350,7 +324,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <TextBox x:Name="txbTenVatTu" 
                                                 materialDesign:HintAssist.Hint="Tên vật tư"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350"/>
-                                        <TextBox x:Name="txbSLTon" 
+                                        <TextBox x:Name="txbSLTon" IsReadOnly="True"
                                                 materialDesign:HintAssist.Hint="Số lượng tồn kho"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18" Width="350" />
                                         <TextBox x:Name="txbDonViTinh" IsReadOnly="True"
@@ -362,9 +336,9 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <TextBox x:Name="txbGiaBan" 
                                                 materialDesign:HintAssist.Hint="Giá bán"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                        
+
                                         <Button Content="Cập nhật" Background="#FF89BAD2" Click="btnSua_Click"
-                                                Margin=" 0 40 -100 0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                                                Margin=" 0 40 100 0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
