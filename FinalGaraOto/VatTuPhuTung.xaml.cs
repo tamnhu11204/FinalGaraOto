@@ -196,17 +196,12 @@ namespace FinalGaraOto
         #region btn xu ly 
         private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
 
-            this.Visibility=Visibility.Collapsed;
-            ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung(tbUserName.Text);
-            themVatTuPhuTung.Show();
-=======
+
             ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung(tbUserName.Text);
             themVatTuPhuTung.ShowDialog();
             this.Close();
 
->>>>>>> 67ffc36b11d636d8cf3bf062e784a0b135212a7e
         }
 
 
