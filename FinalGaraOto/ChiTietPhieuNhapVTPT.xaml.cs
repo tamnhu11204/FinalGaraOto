@@ -23,12 +23,9 @@ namespace FinalGaraOto
         public ChiTietPhieuNhapVTPT(string n)
         {
             InitializeComponent();
-<<<<<<< HEAD
             LoadNgayNhap(); //Load lấy dữ liệu của window thêm trong phiếu nhập VTPT
             LoadTenPhuTung();
-=======
             tbUserName.Text = n;
->>>>>>> e9ac6bcbb8120c00268e80150ea02ed8f53704b5
         }
 
         #region scroll bar button
