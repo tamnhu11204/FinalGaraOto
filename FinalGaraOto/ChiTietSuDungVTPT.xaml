@@ -34,7 +34,7 @@
                         <RowDefinition Height="127*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Margin="-42,50,0,0" HorizontalAlignment="Left" Width="742"  Grid.RowSpan="2">
-                        <ComboBox Margin="-100,11,0,0" Width="450"
+                        <ComboBox x:Name="cbLoaiTC" Margin="-100,11,0,0" Width="450"
                                 materialDesign:HintAssist.Hint="Loại tiền công"
                                  Style="{StaticResource MaterialDesignOutlinedComboBox}" Height="65" FontSize="20"/>
 

@@ -213,6 +213,7 @@ namespace FinalGaraOto
             var l = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
             var List = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == l.MaSuaChua).ToList();
             int i = 1;
+            decimal TongTien = 0;
             foreach (var item in List)
             {
                 CHITIET ct1 = new CHITIET();
@@ -252,8 +253,9 @@ namespace FinalGaraOto
                 ct1.ThanhTien = (decimal.Parse(ct1.Gia) + decimal.Parse( ct1.TC)).ToString();
                 ChiTiets.Add(ct1);
                 dtgChiTiet.ItemsSource = ChiTiets;
+                TongTien = TongTien + decimal.Parse(ct1.Gia) + decimal.Parse(ct1.TC);
             }
-
+            txbTongTien.Text = TongTien.ToString();
         }
 
         public class CHITIET
@@ -272,14 +274,35 @@ namespace FinalGaraOto
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-
+            ThemThongTinSuaChua them = new ThemThongTinSuaChua(tbUserName.Text,MaXe_);
+            this.Close();
+            them.Show();
         }
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
             HoaDonThanhToan hd_ = new HoaDonThanhToan(tbUserName.Text, MaXe_);
-            this.Close();
+          
             hd_.Show();
         }
+
+      
+
+        private void dtgChiTiet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        
     }
 }
