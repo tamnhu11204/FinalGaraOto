@@ -131,13 +131,13 @@ namespace FinalGaraOto
         private void Bnt_xembc_Click(object sender, RoutedEventArgs e)
         {
             ObservableCollection<BaoCaoTon> bcton = new ObservableCollection<BaoCaoTon>();
-
+            int stt = 1;
             var List = DataProvider.Ins.DB.BAOCAOTONs.ToList();
-            int stt = 0;
             foreach (var item in List)
             {
                 BaoCaoTon baocaoton1 = new BaoCaoTon();
-                baocaoton1.tevtpt=DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
+                baocaoton1.stt= stt++;
+                baocaoton1.tevtpt=(string)DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
                 baocaoton1.tondau= item.TonDau;
                 baocaoton1.phatsinh= item.PhatSinh;
                 baocaoton1.toncuoi= item.TonCuoi;
@@ -157,8 +157,8 @@ namespace FinalGaraOto
         }
 
         public class BaoCaoTon
-        {
-            public int stt { get; set; }
+        { 
+            public int stt {  get; set; }
             public string tevtpt { get; set; }
             public int tondau { get; set; }
             public int phatsinh { get; set; }
@@ -174,7 +174,10 @@ namespace FinalGaraOto
             this.Close();
         }
 
-
+        private void Bnt_xuatfilebc_Click(object sender, RoutedEventArgs e)
+        {
+            ExportToExcel_BCTon export= new ExportToExcel_BCTon(Dg_BCTon, DateTime.Now);
+        }
     }
 
 }

@@ -113,12 +113,15 @@
         </Grid>
 
         <Grid Grid.Row="3">
-            <StackPanel Margin="0,605,0,50" >
+            <StackPanel Margin="10,724,-10,-287" >
 
                 <Button x:Name="Bnt_xuatfilebc"
                 Command="{Binding XuatFileBaoCaoCommand}"
                 CommandParameter="{Binding ElementName= UCBaoCaoDoanhThu}"
-                Content="Xuất file báo cáo " FontSize="20" Background="#FF747778" Width="148" Height="50" BorderBrush="{x:Null}" Margin="850,0,0,0"/>
+                Content="Xuất file báo cáo " FontSize="20" Background="#FF747778" Width="148" 
+                Height="50" BorderBrush="{x:Null}" 
+                Margin="850,0,0,0"
+                Click="Bnt_xuatfilebc_Click"/>
                 <Button x:Name="Bnt_dong"
                 Command="{Binding DongCommand}"
                 
@@ -127,31 +130,30 @@
                  Click="Bnt_dong_Click"/>
 
             </StackPanel>
-            <Button x:Name="Bnt_xembc"
-            Command="{Binding XemBaoCaoCommand}"
 
-            Content="Xem báo cáo" FontSize="20" Background="#FF258C1F" Width="170"  Height="50" BorderBrush="{x:Null}" Margin="328,53,1206,762" Click="Bnt_xembc_Click"/>
             <ComboBox Name="NamCb"
-materialDesign:TextFieldAssist.PrefixText="Năm"
-IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
-         
+                materialDesign:TextFieldAssist.PrefixText="Năm"
+                IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
+
             </ComboBox>
             <ComboBox
-  Name="ThangCb"
-materialDesign:TextFieldAssist.PrefixText="Tháng "
- HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
-              
+                Name="ThangCb"
+                materialDesign:TextFieldAssist.PrefixText="Tháng "
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
             </ComboBox>
-
-
-            <Label x:Name="Lb_tongdt" FontWeight="Bold" FontSize="20" Margin="984,551,39,143"/>
+            
+            <StackPanel Width=" 500" Height="500" Margin="1058,310,142,55">
+                <Label x:Name="Lb_tongdt" FontWeight="Bold" 
+                   FontSize="20" Margin="100,250,0,146" Height="176" Width="auto"/>
+            </StackPanel>
             <DataGrid x:Name="Dg_Bcdoanhthu"   
-                      Margin="0,132,0,178" 
+                      Margin="0,132,0,314" 
                       FontSize="20" IsReadOnly="True"
                       AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
-                <DataGridTextColumn Header="STT" Binding="{Binding stt}" Width="*"  />
+                    <DataGridTextColumn Header="STT" Binding="{Binding stt}" Width="*"  />
                     <DataGridTextColumn Header="Hiệu xe" Binding="{Binding hieuxe}" Width="*" />
                     <DataGridTextColumn Header="Số lượt sửa" Binding="{Binding soluotxe}" Width="*"/>
                     <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhtien}" Width="*"/>
@@ -160,6 +162,15 @@ materialDesign:TextFieldAssist.PrefixText="Tháng "
                 </DataGrid.Columns>
 
             </DataGrid>
+            <StackPanel Margin="254,10,687,380">
+                <Button x:Name="Bnt_xembc"
+                    Command="{Binding XemBaoCaoCommand}"
+                    Content="Xem báo cáo" FontSize="20" 
+                    Background="#FF258C1F" Width="170"  Height="50" 
+                    BorderBrush="{x:Null}" 
+                    Margin="100,35, 430,0"
+                    Click="Bnt_xembc_Click"/>
+            </StackPanel>
             <Button x:Name="Bnt_bcton"
                 Command="{Binding XemBaoCaoCommand}"
                 CommandParameter="{Binding ElementName=UCBaoCaoDoanhThu}"

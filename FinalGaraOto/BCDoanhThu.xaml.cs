@@ -146,8 +146,8 @@ namespace FinalGaraOto
             ObservableCollection<BCDT> doanhthu = new ObservableCollection<BCDT>();
             
             var List = DataProvider.Ins.DB.BAOCAODOANHTHUs.ToList();
-            
-            decimal sum = 0;
+            int stt = 1;
+            float sum = 0;
             foreach (var item in List)
             {   
                 BCDT doanhthu1 = new BCDT();
@@ -155,7 +155,7 @@ namespace FinalGaraOto
                 var mahieuxe = DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu == item.MaBaoCaoDoanhThu).Select(x => x.MaHieuXe).First();
                 doanhthu1.hieuxe= DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe== mahieuxe).Select(x => x.TenHieuXe).First();
                 doanhthu1.soluotxe =(int) DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu== item.MaBaoCaoDoanhThu).Select(x => x.SoLuotSua).First();
-                doanhthu1.thanhtien= (decimal)DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu== item.MaBaoCaoDoanhThu).Select(x => x.ThanhTien).First();
+                doanhthu1.thanhtien= (float)DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu== item.MaBaoCaoDoanhThu).Select(x => x.ThanhTien).First();
                 doanhthu1.tile= (float)DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu== item.MaBaoCaoDoanhThu).Select(x => x.TiLe).First();
                 doanhthu1.thang= item.ThangBaoCao;
                 doanhthu1.nam= Convert.ToDateTime( item.NamBaoCao);
@@ -163,12 +163,12 @@ namespace FinalGaraOto
                 if ((NamCb.Text== Convert.ToString(doanhthu1.nam.Year)) && (ThangCb.Text== Convert.ToString(doanhthu1.thang.Month)))
                 {
                     Dg_Bcdoanhthu.ItemsSource=doanhthu;
-                    int dem = doanhthu1.stt;
-                    while (dem>0)
-                    {
-                        sum+= doanhthu1.thanhtien;
-                        Lb_tongdt.Content= "Tổng doanh thu: "+ sum + "VND";
-                    }
+
+                    sum= (float)DataProvider.Ins.DB.BAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu== item.MaBaoCaoDoanhThu).Select(x => x.TongDoanhThu).First();
+                   
+                    Lb_tongdt.Content= "Tổng doanh thu: "+ sum + "VND";
+                    
+                   
                 }
             }
 
@@ -186,7 +186,10 @@ namespace FinalGaraOto
             this.Close();
         }
 
-        
+        private void Bnt_xuatfilebc_Click(object sender, RoutedEventArgs e)
+        {
+            ExportToExcel_BCDoanhThu export= new ExportToExcel_BCDoanhThu(Dg_Bcdoanhthu, DateTime.Now);
+        }
     }
 
     public class BCDT
@@ -194,7 +197,7 @@ namespace FinalGaraOto
         public int stt { get; set; }
         public string hieuxe { get; set; }
         public int soluotxe { get; set; }
-        public decimal thanhtien { get; set; }
+        public float thanhtien { get; set; }
         public float tile { get; set; }
 
         public DateTime thang { get; set; }

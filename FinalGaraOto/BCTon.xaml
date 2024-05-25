@@ -120,12 +120,14 @@
             </DockPanel>
         </Grid>
         <Grid Grid.Row="3">
-            <StackPanel Margin="0,605,0,50" >
+            <StackPanel Margin="0,768,0,-113" >
 
                 <Button x:Name="Bnt_xuatfilebc"
                         Command="{Binding XuatFileBaoCaoCommand}"
                         CommandParameter="{Binding ElementName= UCBaoCaoDoanhThu}"
-                        Content="Xuất file báo cáo " FontSize="20" Background="#FF747778" Width="184" Height="50" 
+                        Content="Xuất file báo cáo " FontSize="20" 
+                        Background="#FF747778" Width="184" Height="50" 
+                        Click="Bnt_xuatfilebc_Click"
                         BorderBrush="{x:Null}" Margin="800,0,0,0"/>
                 <Button x:Name="Bnt_dong" 
                         Command="{Binding DongCommand}"
@@ -138,12 +140,12 @@
             </StackPanel>
             <StackPanel Margin="157,49,924,496">
                 <Button x:Name="Bnt_xembc"
- Width="150"
- Height="50"
- Content="Xem báo cáo" FontSize="20" 
- Background="#FF258C1F" BorderBrush="{x:Null}" 
- RenderTransformOrigin="1.001,0.513"
- Margin="20,10,00,0" Click="Bnt_xembc_Click" />
+                    Width="150"
+                                        Height="50"
+                    Content="Xem báo cáo" FontSize="20" 
+                    Background="#FF258C1F" BorderBrush="{x:Null}" 
+                    RenderTransformOrigin="1.001,0.513"
+                    Margin="20,10,00,0" Click="Bnt_xembc_Click" />
             </StackPanel>
 
             <ComboBox Name="NamCb" 
@@ -163,10 +165,10 @@
 
             <DataGrid x:Name="Dg_BCTon"
                       ItemsSource="{Binding List}"
-                      Margin="0,132,0,178" FontSize="20"
+                      Margin="0,132,0,139" FontSize="20"
                       AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" Width="150" />
+                    <DataGridTextColumn Header="STT" Width="*" Binding="{Binding stt}"/>
                     <DataGridTextColumn Header="Tên vật tư phụ tùng" Width="*" Binding="{Binding tenvtpt}"/>
                     <DataGridTextColumn Header="Tồn đầu" Width="*" Binding="{Binding tondau }"/>
                     <DataGridTextColumn Header="Phát sinh" Width="*" Binding="{Binding phatsinh}"/>
