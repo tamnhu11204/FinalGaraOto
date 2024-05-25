@@ -87,9 +87,9 @@ namespace FinalGaraOto
 
                 MessageBox.Show("Lập phiếu nhập thành công!");
                
-
+                var GetMa=DataProvider.Ins.DB.PHIEUNHAPs.Where(x=>x.MaNhapHang==n.MaNhapHang).SingleOrDefault();
                 
-                ChiTietPhieuNhapVTPT chiTietPhieuNhapVTPT = new ChiTietPhieuNhapVTPT(tbUserName.Text);
+                ChiTietPhieuNhapVTPT chiTietPhieuNhapVTPT = new ChiTietPhieuNhapVTPT(tbUserName.Text,GetMa.MaNhapHang);
                 chiTietPhieuNhapVTPT.Show();
                 this.Close();
             }

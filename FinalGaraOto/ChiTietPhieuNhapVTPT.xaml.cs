@@ -22,12 +22,13 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ChiTietPhieuNhapVTPT : Window
     {
-        public ChiTietPhieuNhapVTPT(string n)
+        public ChiTietPhieuNhapVTPT(string n, int MaNH)
         {
             InitializeComponent();
             LoadNgayNhap(); //Load lấy dữ liệu của window thêm trong phiếu nhập VTPT
             LoadTenPhuTung();
             tbUserName.Text = n;
+            tbMa.Text = MaNH.ToString();
 
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
@@ -155,7 +156,7 @@ namespace FinalGaraOto
             {
                 dtpNgayNhapHang.Text = item.ToString();
 
-                txbDVCC.Text = item.ToString(); //
+                txbDVCC.Text = item.ToString(); 
             }
         }
 
@@ -201,8 +202,7 @@ namespace FinalGaraOto
 
 
         }
-
-/*        private void UpdateTongTienThanhToan()
+        /*private void UpdateTongTienThanhToan()
         {
             decimal tongTien = 0;
 
@@ -245,6 +245,7 @@ namespace FinalGaraOto
                         n.MaVatTuPhuTung = tenVT.MaVatTuPhuTung;
                     }
 
+                    n.MaNhapHang=int.Parse(tbMa.Text);
                     n.SoLuong = int.Parse(txbNhapSLVT.Text);
                     n.GiaNhap = decimal.Parse(txbNhapGiaNhap.Text);
                     n.ThanhTien = decimal.Parse(txbThanhTien.Text);
@@ -252,10 +253,10 @@ namespace FinalGaraOto
                     DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Add(n);
                     DataProvider.Ins.DB.SaveChanges();
 
+
                     MessageBox.Show("Thêm thành công!");
-
-
                 }
+            LoadLichSuNhapVatTuPhuTungList();
                 return;
             }
 
