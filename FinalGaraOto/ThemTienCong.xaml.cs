@@ -21,9 +21,10 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemTienCong : Window
     {
-        public ThemTienCong()
+        public ThemTienCong(string n)
         {
             InitializeComponent();
+            tbUserName.Text = n;
         }
 
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -47,14 +48,14 @@ namespace FinalGaraOto
 
                 MessageBox.Show("Thêm tiền công thành công!");
 
-                TuyChon tuychon_ = new TuyChon();
+                TuyChon tuychon_ = new TuyChon(tbUserName.Text);
                 this.Close();
                 tuychon_.Show();
             }
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e)
         {
-            TuyChon tuychon_ = new TuyChon();
+            TuyChon tuychon_ = new TuyChon(tbUserName.Text);
             this.Close();
             tuychon_.Show();
         }

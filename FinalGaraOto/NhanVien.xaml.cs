@@ -25,10 +25,12 @@ namespace FinalGaraOto
     /// </summary>
     public partial class NhanVien : Window
     {
-        public NhanVien()
+        public NhanVien(string n)
         {
             InitializeComponent();
             LoadNhanVienList();
+            LoadChucVu();
+            tbUserName.Text = n;
         }
 
 
@@ -85,7 +87,7 @@ namespace FinalGaraOto
 
         private void thongKe_Tab(object sender, RoutedEventArgs e)
         {
-            ThongKe thongke_tab = new ThongKe();
+            ThongKe thongke_tab = new ThongKe(tbUserName.Text);
             thongke_tab.Show();
             this.Close();
         }
@@ -93,43 +95,45 @@ namespace FinalGaraOto
 
         private void taiKhoan_Tab(object sender, RoutedEventArgs e)
         {
-            MainWindow taikhoan_tab = new MainWindow(null);
+            MainWindow taikhoan_tab = new MainWindow(tbUserName.Text);
             taikhoan_tab.Show();
             this.Close();
         }
 
         private void dichVu_Tab(object sender, RoutedEventArgs e)
         {
-            DichVu dichvu_tab = new DichVu();
+            DichVu dichvu_tab = new DichVu(tbUserName.Text);
             dichvu_tab.Show();
             this.Close();
         }
 
         private void nhanVien_Tab(object sender, RoutedEventArgs e)
         {
-            NhanVien nhanvien_tab = new NhanVien();
+            NhanVien nhanvien_tab = new NhanVien(tbUserName.Text);
             nhanvien_tab.Show();
             this.Close();
         }
 
         private void khoHang_Tab(object sender, RoutedEventArgs e)
         {
-            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            VatTuPhuTung khohang_tab = new VatTuPhuTung(tbUserName.Text);
             khohang_tab.Show();
             this.Close();
         }
 
         private void tuyChon_Tab(object sender, RoutedEventArgs e)
         {
-            TuyChon tuychon_tab = new TuyChon();
+            TuyChon tuychon_tab = new TuyChon(tbUserName.Text);
             tuychon_tab.Show();
             this.Close();
         }
         #endregion
 
+
+        #region NhanVien
         private void Btn_ThemNhanVien(object sender, RoutedEventArgs e) //chuyen sang window ThemNhanVien
         {
-            ThemNhanVien themNhanVien = new ThemNhanVien();
+            ThemNhanVien themNhanVien = new ThemNhanVien(tbUserName.Text);
             themNhanVien.ShowDialog();
             this.Close();
         }
@@ -242,6 +246,63 @@ namespace FinalGaraOto
             }
             dtgNhanVien.ItemsSource = nhanViens;
         }
+        #endregion
+
+        #region ChucVu
+        void LoadChucVu() //Hien thi chucvu len datagrid
+        {
+            ObservableCollection<NHOMNGUOIDUNG> nnd = new ObservableCollection<NHOMNGUOIDUNG>();
+            var List = DataProvider.Ins.DB.NHOMNGUOIDUNGs.ToList();
+            foreach (var item in List)
+            {
+                NHOMNGUOIDUNG nnds = new NHOMNGUOIDUNG();
+                nnds.MaNhom = item.MaNhom;
+                nnds.TenNhom = item.TenNhom;
+                nnd.Add(nnds);
+                dtgChucVu.ItemsSource = nnd;
+            }
+        }
+
+        private void dtgChucVu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null)
+            {
+                int Ma = selected_row.MaNhom;
+                var l = DataProvider.Ins.DB.NHOMNGUOIDUNGs.Where(x => x.MaNhom == Ma).SingleOrDefault();
+                txbChucVuNV.Text=l.TenNhom.ToString();
+                if (Ma == 1)
+                {
+                    ck1.IsChecked = true;
+                    ck2.IsChecked = true;
+                    ck3.IsChecked = true;
+                    ck4.IsChecked = true;
+                    ck5.IsChecked = true;
+                    ck6.IsChecked = true;
+                    ck7.IsChecked = true;
+                    ck8.IsChecked = true;
+                    ck9.IsChecked = true;
+                    ck10.IsChecked = true;
+                    ck11.IsChecked = true;
+                }
+                else
+                {
+                    ck1.IsChecked = true;
+                    ck2.IsChecked = true;
+                    ck3.IsChecked = true;
+                    ck4.IsChecked = false;
+                    ck5.IsChecked = false;
+                    ck6.IsChecked = true;
+                    ck7.IsChecked = true;
+                    ck8.IsChecked = true;
+                    ck9.IsChecked = true;
+                    ck10.IsChecked = true;
+                    ck11.IsChecked = true;
+                }
+            }
+        }
+        #endregion
     }
     public class NhanViens //Khong can cung duoc, tai co Class san ben EntityFramework
     {

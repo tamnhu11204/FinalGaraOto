@@ -20,9 +20,10 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemHangXe : Window
     {
-        public ThemHangXe()
+        public ThemHangXe(string n)
         {
             InitializeComponent();
+            tbUserName.Text = n;
         }
 
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -53,14 +54,14 @@ namespace FinalGaraOto
 
                 MessageBox.Show("Thêm hiệu xe thành công!");
 
-                TuyChon tuychon_ = new TuyChon();
+                TuyChon tuychon_ = new TuyChon(tbUserName.Text);
                 this.Close();
                 tuychon_.Show();
             }
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e)
         {
-            TuyChon tuychon_ = new TuyChon();
+            TuyChon tuychon_ = new TuyChon(tbUserName.Text);
             this.Close();
             tuychon_.Show();
         }

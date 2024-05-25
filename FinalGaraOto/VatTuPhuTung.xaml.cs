@@ -23,10 +23,11 @@ namespace FinalGaraOto
     public partial class VatTuPhuTung : Window
     {
         
-        public VatTuPhuTung()
+        public VatTuPhuTung(string n)
         {
             InitializeComponent();
             LoadVatTuPhuTungList();
+            tbUserName.Text = n;
         }
 
         #region Hien thi du lieu len datagrid
@@ -124,7 +125,7 @@ namespace FinalGaraOto
 
         private void thongKe_Tab(object sender, RoutedEventArgs e)
         {
-            ThongKe thongke_tab = new ThongKe();
+            ThongKe thongke_tab = new ThongKe(tbUserName.Text);
             thongke_tab.Show();
             this.Close();
         }
@@ -132,35 +133,35 @@ namespace FinalGaraOto
 
         private void taiKhoan_Tab(object sender, RoutedEventArgs e)
         {
-            MainWindow taikhoan_tab = new MainWindow(null);
+            MainWindow taikhoan_tab = new MainWindow(tbUserName.Text);
             taikhoan_tab.Show();
             this.Close();
         }
 
         private void dichVu_Tab(object sender, RoutedEventArgs e)
         {
-            DichVu dichvu_tab = new DichVu();
+            DichVu dichvu_tab = new DichVu(tbUserName.Text);
             dichvu_tab.Show();
             this.Close();
         }
 
         private void nhanVien_Tab(object sender, RoutedEventArgs e)
         {
-            NhanVien nhanvien_tab = new NhanVien();
+            NhanVien nhanvien_tab = new NhanVien(tbUserName.Text);
             nhanvien_tab.Show();
             this.Close();
         }
 
         private void khoHang_Tab(object sender, RoutedEventArgs e)
         {
-            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            VatTuPhuTung khohang_tab = new VatTuPhuTung(tbUserName.Text);
             khohang_tab.Show();
             this.Close();
         }
 
         private void tuyChon_Tab(object sender, RoutedEventArgs e)
         {
-            TuyChon tuychon_tab = new TuyChon();
+            TuyChon tuychon_tab = new TuyChon(tbUserName.Text);
             tuychon_tab.Show();
             this.Close();
         }
@@ -175,14 +176,14 @@ namespace FinalGaraOto
         private void btnNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
-            PhieuNhapVatTuPhuTung phieuNhapVatTuPhuTung = new PhieuNhapVatTuPhuTung();
+            PhieuNhapVatTuPhuTung phieuNhapVatTuPhuTung = new PhieuNhapVatTuPhuTung(tbUserName.Text);
             phieuNhapVatTuPhuTung.Visibility=Visibility.Visible;
         }
 
         private void btnLichSuNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility= Visibility.Collapsed;
-            LichSuNhapVatTuPhuTung lichSuNhapVatTuPhuTung = new LichSuNhapVatTuPhuTung();
+            LichSuNhapVatTuPhuTung lichSuNhapVatTuPhuTung = new LichSuNhapVatTuPhuTung(tbUserName.Text);
             lichSuNhapVatTuPhuTung.Visibility = Visibility.Visible;
         }
 
@@ -192,9 +193,15 @@ namespace FinalGaraOto
         #region btn xu ly 
         private void btnThemVTPT_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             this.Visibility=Visibility.Collapsed;
             ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung();
             themVatTuPhuTung.Show();
+=======
+            this.Visibility = Visibility.Hidden;
+            ThemVatTuPhuTung themVatTuPhuTung = new ThemVatTuPhuTung(tbUserName.Text);
+            themVatTuPhuTung.Visibility =(Visibility) Visibility.Visible;
+>>>>>>> e9ac6bcbb8120c00268e80150ea02ed8f53704b5
         }
 
 

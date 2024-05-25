@@ -20,10 +20,11 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ThemNhanVien : Window
     {
-        public ThemNhanVien()
+        public ThemNhanVien(string n)
         {
             InitializeComponent();
             LoadComboBoxChucVu();
+            tbUserName.Text = n;
         }
         void LoadComboBoxChucVu() //Hien thi cac item trong combobox
         {
@@ -35,7 +36,7 @@ namespace FinalGaraOto
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e) //Thoat va chuyen qua Window NhanVien
         {
-            NhanVien nhanVien = new NhanVien();
+            NhanVien nhanVien = new NhanVien(tbUserName.Text);
             nhanVien.Show();
             this.Close();
         }
@@ -87,7 +88,7 @@ namespace FinalGaraOto
                     DataProvider.Ins.DB.SaveChanges();
 
                     MessageBox.Show("Thêm nhân viên thành công!");
-                    NhanVien nhanVien = new NhanVien();
+                    NhanVien nhanVien = new NhanVien(tbUserName.Text);
                     nhanVien.Show();
                     this.Close();
                 }

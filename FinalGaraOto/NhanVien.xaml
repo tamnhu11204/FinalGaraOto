@@ -17,6 +17,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <TextBlock x:Name="tbUserName" Visibility="Hidden"/>
         <Grid Grid.Row="0">
             <materialDesign:ColorZone Mode="PrimaryLight" Background="#FF1D2850">
                 <DockPanel Height="80">
@@ -207,75 +208,66 @@
                 <TabItem Header="Danh sách chức vụ" Height="48" Width="212" FontSize="20" Background="#FF89BAD2">
                     <StackPanel Width="1674" Margin="0,11,0,0" Orientation="Horizontal">
                         <StackPanel Width="1130" Height="803">
-                            <TextBox Margin="0,11,0,0"
-                                     materialDesign:HintAssist.Hint="Tìm kiếm chức vụ"
-                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="302" HorizontalAlignment="Left">
-                                <TextBox.Text>
-                                    <Binding Path="Text2"
-                                             UpdateSourceTrigger="PropertyChanged"/>
-                                </TextBox.Text>
-                            </TextBox>
 
-                            <DataGrid Height="619" FontSize="20" x:Name="dtgChucVu">
+                            <DataGrid AutoGenerateColumns="False" Height="619" FontSize="20" x:Name="dtgChucVu" Margin="0,10,0,0" SelectionChanged="dtgChucVu_SelectionChanged">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header = "Mã" Binding = "{Binding Name}" />
-                                    <DataGridCheckBoxColumn Header = "Chức vụ" Binding = "{Binding WasReElected}"/>
+                                    <DataGridTextColumn Header = "Mã" Binding = "{Binding MaNhom}" 
+                                                        IsReadOnly="True" Width="*"/>
+                                    <DataGridTextColumn Header = "Chức vụ" Binding = "{Binding TenNhom}"
+                                                            IsReadOnly="True" Width="*"/>
 
                                 </DataGrid.Columns>
                             </DataGrid>
-
-                            <Button Content="Thêm chức vụ" FontSize="20"
-                                    Margin="0,11,0,0" Width="200" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" Background="#FF89BAD2" />
                         </StackPanel>
 
                         <StackPanel Width="582">
                             <GroupBox Margin="0,11,0,0" Width="450" Height="706" Header="Chi tiết phân quyền" BorderBrush="Black">
                                 <StackPanel Width="455" Margin="0,10,0,25">
                                     <materialDesign:PackIcon Kind="CardAccountDetailsStarOutline" Margin="25,25,0,0" Width="40" Height="40"/>
-                                    <TextBox
+                                    <TextBox x:Name="txbChucVuNV"
                                         materialDesign:HintAssist.Hint="Chức vụ"
                                         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="50,-50,0,0" FontSize="20"  Width="350" Height="61"/>
                                     <StackPanel Margin="0,11,0,0" Width="430" Height="500">
-                                        <CheckBox Margin="30,0,0,0">
+                                        <CheckBox x:Name="ck1" IsHitTestVisible="False" Margin="30,0,0,0">
                                             Truy cập dịch vụ
                                         </CheckBox>
                                         <TextBlock Margin="30,8,0,0">
                                             Truy cập kho hàng
                                         </TextBlock>
-                                        <CheckBox Margin="60,8,0,0">
+                                        <CheckBox x:Name="ck2" IsHitTestVisible="False" Margin="60,8,0,0">
                                             Quyền nhập hàng
                                         </CheckBox>
-                                        <CheckBox Margin="60,8,0,0">
+                                        <CheckBox x:Name="ck3" IsHitTestVisible="False" Margin="60,8,0,0">
                                             Quyền thêm/xóa/sửa vật tư, phụ tùng
                                         </CheckBox>
                                         <TextBlock Margin="30,8,0,0">
                                             Truy cập nhân viên
                                         </TextBlock>
-                                        <CheckBox Margin="60,8,0,0">
+                                        <CheckBox x:Name="ck4" IsHitTestVisible="False" Margin="60,8,0,0">
                                             Quyền thêm/xóa/sửa nhân viên
                                         </CheckBox>
-                                        <CheckBox Margin="60,8,0,0">
+                                        <CheckBox x:Name="ck5" IsHitTestVisible="False" Margin="60,8,0,0">
                                             Quyền thêm/xóa/sửa chức vụ
                                         </CheckBox>
                                         <TextBlock Margin="30,8,0,0">
                                             Truy cập thống kê
                                         </TextBlock>
-                                        <CheckBox Margin="60,8,0,0">
+                                        <CheckBox x:Name="ck6" IsHitTestVisible="False" Margin="60,8,0,0">
                                             Quyền xem báo cáo tồn
                                         </CheckBox>
-                                        <CheckBox Margin="60,8,0,0">
+                                        <CheckBox x:Name="ck7" IsHitTestVisible="False" Margin="60,8,0,0">
                                             Quyền xem báo cáo kinh doanh
                                         </CheckBox>
-                                        <CheckBox Margin="30,8,0,0">
+                                        <CheckBox x:Name="ck8" IsHitTestVisible="False" Margin="30,8,0,0">
                                             Quyền thay đổi thông tin gara
                                         </CheckBox>
-                                        <CheckBox Margin="30,8,0,0">
+                                        <CheckBox x:Name="ck9" IsHitTestVisible="False" Margin="30,8,0,0">
                                             Quyền thêm/xóa/sửa tiền công
                                         </CheckBox>
-                                        <CheckBox Margin="30,8,0,0">
+                                        <CheckBox x:Name="ck10" IsHitTestVisible="False" Margin="30,8,0,0">
                                             Quyền thêm/xóa/sửa hãng xe
                                         </CheckBox>
-                                        <CheckBox Margin="30,8,0,0">
+                                        <CheckBox x:Name="ck11" IsHitTestVisible="False" Margin="30,8,0,0">
                                             Quyền thêm/xóa/sửa nhà cung cấp
                                         </CheckBox>
                                     </StackPanel>

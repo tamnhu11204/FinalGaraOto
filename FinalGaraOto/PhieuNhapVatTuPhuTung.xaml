@@ -18,7 +18,7 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-
+        <TextBlock x:Name="tbUserName" Visibility="Hidden"/>
         <materialDesign:Card Grid.Row="0">
             <StackPanel Background="#FF1D2850">
                 <TextBlock Text="Lập phiếu nhập phụ tùng" 

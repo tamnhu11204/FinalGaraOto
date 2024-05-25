@@ -20,11 +20,19 @@ namespace FinalGaraOto
     /// </summary>
     public partial class PhieuNhapVatTuPhuTung : Window
     {
+<<<<<<< HEAD
         
         public PhieuNhapVatTuPhuTung()
         {
             InitializeComponent();
             LoadComboBoxDonViCungCap();
+=======
+        VatTuPhuTung vatTuPhuTung;
+        public PhieuNhapVatTuPhuTung(string n)
+        {
+            InitializeComponent();
+            tbUserName.Text = n;
+>>>>>>> e9ac6bcbb8120c00268e80150ea02ed8f53704b5
         }
 
         public void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -44,12 +52,17 @@ namespace FinalGaraOto
         private void btnThoatLapPhieuNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+<<<<<<< HEAD
             VatTuPhuTung vatTuPhuTung = new VatTuPhuTung();
+=======
+            vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
+>>>>>>> e9ac6bcbb8120c00268e80150ea02ed8f53704b5
             vatTuPhuTung.Visibility = Visibility.Visible;
         }
 
         private void btnXacNhanLapPhieuNhapVTPT_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             if (string.IsNullOrEmpty(dtpNgayNhapHang.Text) || string.IsNullOrEmpty(cbbDVCC.Text))
             {
                 MessageBox.Show("Hãy điền đầy đủ thông tin");
@@ -87,6 +100,11 @@ namespace FinalGaraOto
                 ChiTietPhieuNhapVTPT chiTietPhieuNhapVTPT = new ChiTietPhieuNhapVTPT();
                 chiTietPhieuNhapVTPT.Show();
             }
+=======
+            this.Close();
+            ChiTietPhieuNhapVTPT chiTietPhieuNhapVTPT = new ChiTietPhieuNhapVTPT(tbUserName.Text);
+            chiTietPhieuNhapVTPT.Show();
+>>>>>>> e9ac6bcbb8120c00268e80150ea02ed8f53704b5
         }
     }
 }

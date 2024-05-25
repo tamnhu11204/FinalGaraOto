@@ -20,6 +20,7 @@ namespace FinalGaraOto
     /// </summary>
     public partial class DangNhap : Window
     {
+
         public DangNhap()
         {
             InitializeComponent();
@@ -68,7 +69,7 @@ namespace FinalGaraOto
                 var acc = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == _TenDangNhap && x.MatKhau == _MatKhau).Count();
                 if (acc > 0)
                 {
-                    MainWindow mainWindow = new MainWindow(_TenDangNhap);
+                    MainWindow mainWindow = new MainWindow(txtTenDangNhap.Text);
                     mainWindow.Show();
                     this.Close();
                 }
@@ -78,5 +79,6 @@ namespace FinalGaraOto
                 }
             }
         }
+        
     }
 }

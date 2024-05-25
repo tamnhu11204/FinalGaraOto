@@ -22,12 +22,15 @@ namespace FinalGaraOto
     /// </summary>
     public partial class DichVu : Window
     {
-        public DichVu()
+        public DichVu(string n)
         {
             InitializeComponent();
             LoaddsXeList();
             LoadComboBoxHieuXe();
+            tbUserName.Text = n;
+
         }
+        
 
         #region scroll bar button
         public void btnClosing_Click(object sender, RoutedEventArgs e)
@@ -67,7 +70,7 @@ namespace FinalGaraOto
 
         private void thongKe_Tab(object sender, RoutedEventArgs e)
         {
-            ThongKe thongke_tab = new ThongKe();
+            ThongKe thongke_tab = new ThongKe(tbUserName.Text);
             thongke_tab.Show();
             this.Close();
         }
@@ -75,41 +78,41 @@ namespace FinalGaraOto
 
         private void taiKhoan_Tab(object sender, RoutedEventArgs e)
         {
-            MainWindow taikhoan_tab = new MainWindow(null);
+            MainWindow taikhoan_tab = new MainWindow(tbUserName.Text);
             taikhoan_tab.Show();
             this.Close();
         }
 
         private void dichVu_Tab(object sender, RoutedEventArgs e)
         {
-            DichVu dichvu_tab = new DichVu();
+            DichVu dichvu_tab = new DichVu(tbUserName.Text);
             dichvu_tab.Show();
             this.Close();
         }
 
         private void nhanVien_Tab(object sender, RoutedEventArgs e)
         {
-            NhanVien nhanvien_tab = new NhanVien();
+            NhanVien nhanvien_tab = new NhanVien(tbUserName.Text);
             nhanvien_tab.Show();
             this.Close();
         }
 
         private void khoHang_Tab(object sender, RoutedEventArgs e)
         {
-            VatTuPhuTung khohang_tab = new VatTuPhuTung();
+            VatTuPhuTung khohang_tab = new VatTuPhuTung(tbUserName.Text);
             khohang_tab.Show();
             this.Close();
         }
 
         private void tuyChon_Tab(object sender, RoutedEventArgs e)
         {
-            TuyChon tuychon_tab = new TuyChon();
+            TuyChon tuychon_tab = new TuyChon(tbUserName.Text);
             tuychon_tab.Show();
             this.Close();
         }
         #endregion
 
-
+        #region Load du lieu
         void LoaddsXeList() //Hien thi nhan vien len datagrid
         {
             ObservableCollection<Xes> Xe = new ObservableCollection<Xes>();
@@ -134,7 +137,9 @@ namespace FinalGaraOto
             foreach (var item in List)
             {
                 cbbHieuXe.Items.Add(item);
+                
             }
+
         }
         public class Xes
         {
@@ -146,12 +151,90 @@ namespace FinalGaraOto
             public string No { get; set; }
             
         }
+        #endregion
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        #region btn TiepNhan
+        private void btnTiepNhanXe_Click(object sender, RoutedEventArgs e)
         {
-            TiepNhanXe tiepnhan = new TiepNhanXe();
+            TiepNhanXe tiepnhan = new TiepNhanXe(tbUserName.Text);
             tiepnhan.ShowDialog();
             this.Close();
         }
+        #endregion
+
+        private void btnLamMoi_Click(object sender, RoutedEventArgs e)
+        {
+            txbBienSo.Text = "";
+            txbChuXe.Text = "";
+            txbTienNo.Text = "";
+            cbbHieuXe.Text = "";
+            dpNgay.Text = "";
+            LoaddsXeList();
+        }
+
+        private void txbBienSo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TimKiem();
+        }
+
+        private void cbbHieuXe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TimKiem();
+        }
+
+        private void txbChuXe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TimKiem();
+        }
+
+        private void txbTienNo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TimKiem();
+        }
+
+        private void dpNgay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TimKiem();
+        }
+        void TimKiem()
+        {
+            ObservableCollection<Xes> xe = new ObservableCollection<Xes>();
+            string tenCX = txbChuXe.Text.ToLower();
+            string BSX = txbBienSo.Text.ToLower();
+            string t = "";
+            if (cbbHieuXe.SelectedItem != null)
+            {
+                t = cbbHieuXe.SelectedItem.ToString();
+            }
+            string HieuXe = t.ToLower();
+            string TienNo = txbTienNo.Text.ToLower();
+            string NgayTN = dpNgay.Text.ToLower();
+
+
+            var List = DataProvider.Ins.DB.XEs.ToList();
+            foreach (var item in List)
+            {
+                string tenCX_ = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == item.MaChuXe).Select(x => x.TenChuXe.ToLower()).First();
+                string BSX_ = item.BienSoXe.ToLower();
+                string TienNo_ = item.TienNo.ToString().ToLower();
+                string HieuXe_ = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == item.MaHieuXe).Select(x => x.TenHieuXe.ToLower()).First();
+                string NgayTN_ = item.NgayTiepNhan.ToString().ToLower();
+                if (tenCX_.Contains(tenCX) && BSX_.Contains(BSX) && HieuXe_.Contains(HieuXe) && HieuXe_.Contains(HieuXe_) && TienNo_.Contains(TienNo) 
+                    && NgayTN_.Contains(NgayTN) )
+                {
+                    Xes Xe1 = new Xes();
+                    Xe1.BienSo = item.BienSoXe;
+                    Xe1.HieuXe = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == item.MaHieuXe).Select(x => x.TenHieuXe).First();
+                    Xe1.ChuXe = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == item.MaChuXe).Select(x => x.TenChuXe).First();
+                    Xe1.Ngay = item.NgayTiepNhan.ToString();
+                    Xe1.No = item.TienNo.ToString();
+                    xe.Add(Xe1);
+                }
+            }
+
+            dtgdsXe.ItemsSource = xe;
+        }
+
+        
     }
 }

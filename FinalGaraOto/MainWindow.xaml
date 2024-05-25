@@ -283,46 +283,46 @@
                 Height="700"
                 Width="600">
                         <StackPanel Margin="46,10,46,70">
-                            <CheckBox Margin="30,0,0,0">
+                            <CheckBox x:Name="ck1" IsHitTestVisible="False" Margin="30,0,0,0">
                                 Truy cập dịch vụ
                             </CheckBox>
                             <TextBlock Margin="30,8,0,0">
                         Truy cập kho hàng
                             </TextBlock>
-                            <CheckBox Margin="60,8,0,0">
+                            <CheckBox x:Name="ck2" IsHitTestVisible="False" Margin="60,8,0,0">
                                 Quyền nhập hàng
                             </CheckBox>
-                            <CheckBox Margin="60,8,0,0">
+                            <CheckBox x:Name="ck3" IsHitTestVisible="False" Margin="60,8,0,0">
                                 Quyền thêm/xóa/sửa vật tư, phụ tùng
                             </CheckBox>
                             <TextBlock Margin="30,8,0,0">
                         Truy cập nhân viên
                             </TextBlock>
-                            <CheckBox Margin="60,8,0,0">
+                            <CheckBox x:Name="ck4" IsHitTestVisible="False" Margin="60,8,0,0">
                                 Quyền thêm/xóa/sửa nhân viên
                             </CheckBox>
-                            <CheckBox Margin="60,8,0,0">
+                            <CheckBox x:Name="ck5" IsHitTestVisible="False" Margin="60,8,0,0">
                                 Quyền thêm/xóa/sửa chức vụ
                             </CheckBox>
                             <TextBlock Margin="30,8,0,0">
                         Truy cập thống kê
                             </TextBlock>
-                            <CheckBox Margin="60,8,0,0">
+                            <CheckBox x:Name="ck6" IsHitTestVisible="False" Margin="60,8,0,0">
                                 Quyền xem báo cáo tồn
                             </CheckBox>
-                            <CheckBox Margin="60,8,0,0">
+                            <CheckBox x:Name="ck7" IsHitTestVisible="False" Margin="60,8,0,0">
                                 Quyền xem báo cáo kinh doanh
                             </CheckBox>
-                            <CheckBox Margin="30,8,0,0">
+                            <CheckBox x:Name="ck8" IsHitTestVisible="False" Margin="30,8,0,0">
                                 Quyền thay đổi thông tin gara
                             </CheckBox>
-                            <CheckBox Margin="30,8,0,0">
+                            <CheckBox x:Name="ck9" IsHitTestVisible="False" Margin="30,8,0,0">
                                 Quyền thêm/xóa/sửa tiền công
                             </CheckBox>
-                            <CheckBox Margin="30,8,0,0">
+                            <CheckBox x:Name="ck10" IsHitTestVisible="False" Margin="30,8,0,0">
                                 Quyền thêm/xóa/sửa hãng xe
                             </CheckBox>
-                            <CheckBox Margin="30,8,0,0">
+                            <CheckBox x:Name="ck11" IsHitTestVisible="False" Margin="30,8,0,0">
                                 Quyền thêm/xóa/sửa nhà cung cấp
                             </CheckBox>
                         </StackPanel>
