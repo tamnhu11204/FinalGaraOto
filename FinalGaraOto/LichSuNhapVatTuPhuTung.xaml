@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="LichSuNhapVatTuPhuTung"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-Height="1065" 
-Width="1700"
-WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" Icon="/OIG2.ico">
+        Height="1065" 
+        Width="1700"
+        WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" Icon="/OIG2.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -62,7 +62,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnDichVu" 
                             Click="dichVu_Tab"
                             ToolTip="Tiếp nhận sửa chữa xe">
@@ -71,7 +71,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Dịch vụ" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnKhoHang" 
                             Click="khoHang_Tab"
                             ToolTip="Xem vật tư phụ tùng">
@@ -80,7 +80,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnThongKe" 
                             Click="thongKe_Tab"
                             ToolTip="Xem thống kê tháng" >
@@ -89,7 +89,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Thống kê" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnTuyChon" 
                             Click="tuyChon_Tab"
                             ToolTip="Follow me on Twitter">
@@ -125,223 +125,77 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             </Grid.ColumnDefinitions>
 
             <StackPanel Width="650" Grid.Column="0" Orientation="Horizontal">
-                <TextBox    
-                    Width="222"
-                    Height="58"
-                    Margin="10"
-                    materialDesign:HintAssist.Hint="Mã đơn nhập vật tư" FontSize="20"
-                />
 
-                <DatePicker
+                <DatePicker x:Name="dpNgayNH"
                     Width="194"
                     Height="58"
                     Margin="10"
                     materialDesign:HintAssist.Hint="Ngày nhập hàng"
                     FontSize="20"
                     materialDesign:TextFieldAssist.HasClearButton="True"
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" SelectedDateChanged="dpNgayNH_SelectedDateChanged"
                 />
 
-                <ComboBox
+                <ComboBox x:Name="cbbDonViCC"
                     Width="171"
                     Height="58"
                     FontSize="20"
                     Margin="10"
                     IsEditable="True"
-                    materialDesign:HintAssist.Hint="Đơn vị cung cấp"
-                >
-                    <ComboBoxItem
-        Content="A" />
-                    <ComboBoxItem
-        Content="B" />
-                    <ComboBoxItem
-        Content="C" />
-                </ComboBox>
+                    materialDesign:HintAssist.Hint="Đơn vị cung cấp" SelectionChanged="cbbDonViCC_SelectionChanged"
+                />
+
             </StackPanel>
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3" Margin="10,0,420,0">
-                <Button
-        Width="150"
-        Height="50"
-        Content="Tìm kiếm"
-        FontSize="20"
-        Margin="20"
-            Background="#FF89BAD2" 
-        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-        ToolTip="Tìm kiếm lịch sử nhập vật tư" 
-        HorizontalAlignment="Left" BorderBrush="{DynamicResource MaterialDesignPaper}" 
-    />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3" Margin="100,0,420,0">
 
                 <Button
-        Width="150"
-        Height="50"
-        Content="Làm mới"
-        FontSize="20"
-        Margin="20"
-            Background="#FF89BAD2"
-        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-        ToolTip="Làm mới lịch sử tìm kiếm" 
-        HorizontalAlignment="Left" BorderBrush="{DynamicResource MaterialDesignPaper}" 
-    />
+                    Width="150"
+                    Height="50"
+                    Content="Làm mới"
+                    Click="BtnLamMoi_Click"
+                    FontSize="20"
+                    Margin="20"
+                    Background="#FF89BAD2"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    ToolTip="Làm mới lịch sử tìm kiếm" 
+                    HorizontalAlignment="Left" BorderBrush="{DynamicResource MaterialDesignPaper}" />
 
-                <Button
-        Width="150"
-        Height="50"
-        Content="Xuất"
-        FontSize="20"
-        Margin="20"
-            Background="#FFA8A8A8"
-            Foreground="Black"
-        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-        ToolTip="Xuất file" 
-        HorizontalAlignment="Left" BorderBrush="{DynamicResource MaterialDesignPaper}" 
-    />
+
 
             </StackPanel>
 
             <StackPanel Grid.Column="3" Margin="148,0,0,0">
                 <Button
-        Width="150"
-        Height="50"
-        Content="Xem"
-        FontSize="20"
-        Margin="20"
-            Background="#FF2D8138"
-        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-        ToolTip="Xuất file" 
-        HorizontalAlignment="Right" BorderBrush="{DynamicResource MaterialDesignPaper}" 
-    />
+                    Width="150"
+                    Height="50"
+                    Content="Xem"
+                    FontSize="20"
+                    Margin="20"
+                    Background="#FF2D8138"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    ToolTip="Xuất file" 
+                    HorizontalAlignment="Right" BorderBrush="{DynamicResource MaterialDesignPaper}" />
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="4">
 
-            <materialDesign:Card  Margin="5" VerticalAlignment="Stretch" >
-                <!-- chứa list view-->
-                <ScrollViewer VerticalScrollBarVisibility="Auto" FontSize="20">
-                    <Border Background="DeepSkyBlue"
-    CornerRadius="10"
-    VerticalAlignment="Top">
-                        <DataGrid x:Name="BangLSNVTPT"
-    ItemsSource="{Binding DanhSachVTPT, Mode=TwoWay}"
-    VerticalAlignment="Top" FontSize="20">
+            <DataGrid AutoGenerateColumns="False" x:Name="dtgLS" FontSize="20" Width="1600" Margin="50,38,50,87" >
+                <DataGrid.Columns>
 
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="ID" Width="3*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox Text="{Binding MaVTPT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                             IsReadOnly="{Binding isReadOnly}" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-
-                                <DataGridTemplateColumn Header="Ngày nhập hàng" Width="3*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox Text="{Binding tenVTPT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         IsReadOnly="{Binding isReadOnly}" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-
-                                <DataGridTemplateColumn Header="Đơn vị nhập" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox
-                Style="{StaticResource MaterialDesignTextBox}"
-
-                IsEnabled="{Binding isReadOnly}"
-                
-            />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-
-                                <DataGridTemplateColumn Header="Tổng tiền thanh toán" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox Text="{Binding giaNhap,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         IsReadOnly="{Binding isReadOnly}">
-                                            </TextBox>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-
-
-                                <DataGridTemplateColumn Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button 
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                        Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                        ToolTip="MaterialDesignFloatingActionMiniDarkButton" 
-                        Margin="30"
-                        Width="70"
-                        Height="70" HorizontalAlignment="Center" >
-                                                    <materialDesign:PackIcon
-                        Width="70"
-                        Height="70"
-                        Kind="Edit" 
-                        HorizontalAlignment="Center"
-                    />
-                                                </Button>
-
-                                                <Button 
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                    ToolTip="MaterialDesignFloatingActionMiniDarkButton" 
-                    Margin="30"
-                    Width="70"
-                    Height="70" HorizontalAlignment="Center" >
-                                                    <materialDesign:PackIcon
-                        Width="70"
-                        Height="70"
-                        Kind="Delete" 
-                        HorizontalAlignment="Center"
-                    />
-                                                </Button>
-
-                                                <Button Style="{StaticResource MaterialDesignFlatButton}"
-                            Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                            CommandParameter="{Binding}"
-                            Padding="4"
-                            Visibility="{Binding isReadOnly}">
-                                                    <materialDesign:PackIcon
-                        Width="70"
-                        Height="70"
-                        Kind="Check" 
-                        HorizontalAlignment="Center"
-                    />
-                                                </Button>
-
-                                                <Button Style="{StaticResource MaterialDesignFlatButton}"
-                            Command="{Binding DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                            CommandParameter="{Binding}"
-                            Padding="4"
-                            Visibility="{Binding isReadOnly}">
-                                                    <materialDesign:PackIcon
-                        Width="70"
-                        Height="70"
-                        Kind="Apps" 
-                        HorizontalAlignment="Center"
-                    />
-                                                </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Border>
-                </ScrollViewer>
-
-            </materialDesign:Card>
+                    <DataGridTextColumn Header = "Mã nhập hàng" IsReadOnly="True" Width="*"
+                        Binding = "{Binding MaNH}" />
+                    <DataGridTextColumn Header = "Ngày nhập hàng" Width="*" IsReadOnly="True"
+                        Binding = "{Binding NgayNH}"/>
+                    <DataGridTextColumn Header = "Đơn vị cung cấp"  Width="*" IsReadOnly="True"
+                        Binding = "{Binding DonViCC}"/>
+                    <DataGridTextColumn Header = "Tổng tiền" IsReadOnly="True" Width="*"
+                        Binding = "{Binding TongTien}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </Window>

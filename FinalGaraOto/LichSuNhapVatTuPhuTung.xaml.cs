@@ -1,6 +1,7 @@
 ﻿using FinalGaraOto.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FinalGaraOto
 {
@@ -24,6 +26,8 @@ namespace FinalGaraOto
         {
             InitializeComponent();
             tbUserName.Text = n;
+            LoadLS();
+            LoadDonViCC();
 
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
@@ -108,8 +112,88 @@ namespace FinalGaraOto
         }
         #endregion
 
+        void LoadLS()
+        {
+            ObservableCollection<NhapHang> nh = new ObservableCollection<NhapHang>();
+            var List = DataProvider.Ins.DB.PHIEUNHAPs.ToList();
+            foreach (var item in List)
+            {
+                NhapHang nh1 = new NhapHang();
+                nh1.MaNH = item.MaNhapHang;
+                nh1.NgayNH = item.NgayNhapHang;
+                var ncc = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == item.MaNhaCungCap).SingleOrDefault();
+                nh1.DonViCC = ncc.TenNhaCungCap;
+                nh1.TongTien = item.TongTienNhapHang;
+                nh.Add(nh1);
+                dtgLS.ItemsSource = nh;
+            }
+        }
+        void LoadDonViCC()
+        {
+            var List = DataProvider.Ins.DB.NHACUNGCAPs.Select(x => x.TenNhaCungCap).ToList();
+            foreach (var item in List)
+            {
+                cbbDonViCC.Items.Add(item);
+            }
+        }
+        public class NhapHang
+        {
+            public int MaNH { get; set; }
+            public DateTime? NgayNH { get; set; }
+            public string DonViCC { get; set; }
+            public decimal? TongTien { get; set; }
+        }
 
+        private void dpNgayNH_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ObservableCollection<NhapHang> h = new ObservableCollection<NhapHang>();
+            DateTime? dt = dpNgayNH.SelectedDate;
 
+            var List = DataProvider.Ins.DB.PHIEUNHAPs.ToList();
+            foreach (var item in List)
+            {
+                if (dt == item.NgayNhapHang)
+                {
+                    NhapHang nh1 = new NhapHang();
+                    nh1.MaNH = item.MaNhapHang;
+                    nh1.NgayNH = item.NgayNhapHang;
+                    var ncc = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == item.MaNhaCungCap).SingleOrDefault();
+                    nh1.DonViCC = ncc.TenNhaCungCap;
+                    nh1.TongTien = item.TongTienNhapHang;
+                    h.Add(nh1);
+                    dtgLS.ItemsSource = h;
+                }
+            }
+        }
 
+        private void cbbDonViCC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ObservableCollection<NhapHang> h = new ObservableCollection<NhapHang>();
+            string ncc = cbbDonViCC.Text;
+
+            var List = DataProvider.Ins.DB.PHIEUNHAPs.ToList();
+            foreach (var item in List)
+            {
+                var ncc1 = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == item.MaNhaCungCap).SingleOrDefault();
+                string text = ncc1.TenNhaCungCap;
+                if (ncc.Contains(text))
+                {
+                    NhapHang nh1 = new NhapHang();
+                    nh1.MaNH = item.MaNhapHang;
+                    nh1.NgayNH = item.NgayNhapHang;
+                    nh1.DonViCC = cbbDonViCC.Text;
+                    nh1.TongTien = item.TongTienNhapHang;
+                    h.Add(nh1);
+                    dtgLS.ItemsSource = h;
+                }
+            }
+        }
+
+        private void BtnLamMoi_Click(object sender, RoutedEventArgs e)
+        {
+            dpNgayNH.Text = "";
+            cbbDonViCC.Text = "";
+            LoadDonViCC();
+        }
     }
 }
