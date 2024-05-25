@@ -272,8 +272,8 @@ namespace FinalGaraOto
         private void BtnLamMoiTC_Click(object sender, RoutedEventArgs e) //Reset lai du lieu 
         {
             txbTenTienCong.Text = "";
-            txbGiaTienDuoi.Text = "";
-            txbGiaTienTren.Text = "";
+            txbMaTienCong.Text = "";
+            txbGiaTienCong.Text = "";
             LoadTienCong();
         }
 
@@ -285,20 +285,18 @@ namespace FinalGaraOto
         }
         private void BtnSuaTC_Click(object sender, RoutedEventArgs e) //cap nhat thong tin tien cong
         {
-            DataGrid grid = (DataGrid)dtgTienCong;
-            dynamic t = grid.SelectedItem;
-            /*if (string.IsNullOrEmpty(t.MaTienCong) || string.IsNullOrEmpty(t.TenTienCong) || string.IsNullOrEmpty(t.GiaTienCong))
+            if (string.IsNullOrEmpty(txbMaTienCong.Text) || string.IsNullOrEmpty(txbTenTienCong.Text) || string.IsNullOrEmpty(txbGiaTienCong.Text))
             {
-                MessageBox.Show("Hãy điền đầy đủ thông tin");
+                MessageBox.Show("Hãy điền đầy đủ mã và tên hiệu xe");
             }
             else
             {
-                int MaTC = t.MaTienCong;
-                var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
+                int MATC = int.Parse(txbMaTienCong.Text);
+                var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MATC).SingleOrDefault();
 
-                n.MaTienCong = MaTC;
-                n.TenTienCong = t.TenTienCong;
-                n.GiaTienCong=t.GiaTienCong;
+                n.MaTienCong = MATC;
+                n.TenTienCong = txbTenTienCong.Text;
+                n.GiaTienCong = decimal.Parse(txbGiaTienCong.Text);
                 MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (r == MessageBoxResult.Yes)
                 {
@@ -309,90 +307,45 @@ namespace FinalGaraOto
                     LoadTienCong();
                 }
                 else return;
-            }*/
-            
-            /*MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (r == MessageBoxResult.Yes)
-            {
-                int MaTC = t.MaTienCong;
-                string TenTC= t.TenTienCong;
-                var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
-              
-                n.MaTienCong = MaTC;
-                n.TenTienCong = t.TenTienCong;
-                MessageBox.Show(MaTC.ToString()+TenTC.ToString());
-                n.GiaTienCong = t.GiaTienCong;
-                DataProvider.Ins.DB.SaveChanges();
-
-                MessageBox.Show("Cập nhật thành công!");
-
-                LoadTienCong();
             }
-            else return;*/
         }
         private void BtnXoaTC_Click(object sender, RoutedEventArgs e) //xoa tien cong
         {
-            DataGrid grid = (DataGrid)dtgTienCong;
-            dynamic t = grid.SelectedItem;
-            int MaTC = t.MaTienCong;
-            var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
-            if (n != null)
+            if (string.IsNullOrEmpty(txbMaTienCong.Text))
             {
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (r == MessageBoxResult.Yes)
+                MessageBox.Show("Hãy chọn mã tiền công muốn xóa!");
+            }
+            else
+            {
+                int MaTC = int.Parse(txbMaTienCong.Text);
+                var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
+                if (n != null)
                 {
-                    DataProvider.Ins.DB.TIENCONGs.Remove(n);
-                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.TIENCONGs.Remove(n);
+                        DataProvider.Ins.DB.SaveChanges();
 
-                    MessageBox.Show("Xóa tiền công thành công!");
+                        MessageBox.Show("Xóa tiền công thành công!");
 
-                    LoadTienCong();
+                        LoadTienCong();
+                    }
+                    else return;
                 }
-                else return;
             }
         }
 
-        /*private void dtgTienCong_SelectionChanged(object sender, SelectionChangedEventArgs e, string n)
+        private void dtgTienCong_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid grid = (DataGrid)sender;
             dynamic selected_row = grid.SelectedItem;
             if (selected_row != null)
             {
-                Ma = selected_row.MaTienCong;
-
-                g = selected_row as dynamic;
+                txbMaTienCong.Text = selected_row.MaTienCong.ToString();
+                txbTenTienCong.Text = selected_row.TenTienCong.ToString();
+                txbGiaTienCong.Text = selected_row.GiaTienCong.ToString();
             }
-        }*/
-        private void txbGiaTienDuoi_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ObservableCollection<TIENCONG> tiencong = new ObservableCollection<TIENCONG>();
-            decimal tien1=decimal.Parse(txbGiaTienDuoi.Text);
-            var List = DataProvider.Ins.DB.TIENCONGs.ToList();
-            foreach (var item in List)
-            {
-                decimal _TC = item.GiaTienCong;
-                if (_TC>=tien1)
-                {
-                    tiencong.Add(item);
-                }
-            }
-            dtgTienCong.ItemsSource = tiencong;
-        }
-
-        private void txbGiaTienTren_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ObservableCollection<TIENCONG> tiencong = new ObservableCollection<TIENCONG>();
-            decimal tien2 = decimal.Parse(txbGiaTienTren.Text);
-            var List = DataProvider.Ins.DB.TIENCONGs.ToList();
-            foreach (var item in List)
-            {
-                decimal _TC = item.GiaTienCong;
-                if (_TC <= tien2)
-                {
-                    tiencong.Add(item);
-                }
-            }
-            dtgTienCong.ItemsSource = tiencong;
         }
         #endregion
 
