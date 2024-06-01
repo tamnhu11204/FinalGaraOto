@@ -32,6 +32,7 @@ namespace FinalGaraOto
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
             MaXe_ = MaCX;
             LoadChiTietSuaChua();
+            LoadThongTinChuXe();
         }
 
         #region scroll bar button
@@ -143,7 +144,11 @@ namespace FinalGaraOto
                 ct1.Gia = item.TongTienVTPT.ToString();
                 ct1.TenVT = "";
                 ct1.Gia = "";
+
                 decimal ThanhTien = 0;
+
+               
+
                 var List2 = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).ToList();
                 int SL = 0;
                 foreach (var item2 in List2)
@@ -151,19 +156,25 @@ namespace FinalGaraOto
 
                     string ten = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item2.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
                     ct1.TenVT = ct1.TenVT + item2.SoLuong.ToString() + " " + ten + " , ";
-                    SL = SL + item2.SoLuong;
+                    SL = SL + item2.SoLuong ;
+
                     item2.DonGia = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung).Select(x => x.DonGiaBan).First();
 
-                    decimal Tien = (item2.SoLuong) * decimal.Parse(item2.DonGia.ToString());
+                    decimal Tien = (item2.SoLuong) * Convert.ToDecimal(item2.DonGia);
                     item2.ThanhTien = Tien;
-                    ThanhTien = ThanhTien + decimal.Parse(item2.ThanhTien.ToString());
+                    ThanhTien = ThanhTien + Convert.ToDecimal(item2.ThanhTien);
+
 
                 }
 
                 i++;
                 ct1.SL = SL;
                 ct1.Gia = ThanhTien.ToString();
+
                 ct1.ThanhTien = (decimal.Parse(ct1.Gia) + decimal.Parse(ct1.TC)).ToString();
+
+                ct1.ThanhTien = ct1.Gia +  ct1.TC;
+
                 ChiTiets.Add(ct1);
                 dtgChiTiet.ItemsSource = ChiTiets;
             }
@@ -177,14 +188,17 @@ namespace FinalGaraOto
             ct_.Show();
         }
 
-<<<<<<< HEAD
-=======
+
         void LoadThongTinChuXe ()
         {
-            string y = DataProvider.Ins.DB.XEs.Where(x => x.NgayTiepNhan.ToString() == MaXe_).Select(x => x.MaChuXe).First().ToString();
+            string y = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).Select(x => x.MaChuXe.ToString()).First();
             var c = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe.ToString() == y).First();
+            txbHoVaTen.Text = c.TenChuXe;
+            txbDiaChi.Text = c.DiaChiChuXe;
+            txbSDT.Text = c.SDTChuXe;
+            txbEmail.Text = c.EmailChuXe;
             
         }
->>>>>>> 07a3c77b4c1aa5bd90024de0debf194e4d17ea1b
+
     }
 }

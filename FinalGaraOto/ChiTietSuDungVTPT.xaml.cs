@@ -1,6 +1,7 @@
 ﻿using FinalGaraOto.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,24 +38,34 @@ namespace FinalGaraOto
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            if(cbLoaiTC.SelectedValue == null || txbSL.Text == null)
+            if(cbVTPT.SelectedValue == null || txbSL.Text == null)
             {
                 MessageBox.Show("Chưa điền đầy đủ thông tin");
-
             }
             else
             {
-                
+                var n = new CT_SUDUNGVTPT();
+                var v = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == cbVTPT.SelectedItem.ToString()).SingleOrDefault();
+                n.MaVatTuPhuTung = v.MaVatTuPhuTung;
+                n.MaChiTietSuaChua = int.Parse(MaCT_);
+                n.SoLuong = int.Parse(txbSL.Text);
+                n.ThanhTien = v.DonGiaBan * n.SoLuong;
+                v.SoLuongTon = v.SoLuongTon - n.SoLuong;
+                DataProvider.Ins.DB.CT_SUDUNGVTPT.Add(n);
+                DataProvider.Ins.DB.SaveChanges();
+                MessageBox.Show("Thêm vật tư phụ tùng và số lượng thành công ");
+                txbSL.Text = null;
+                cbVTPT.SelectedIndex = 0;
             }   
             
         }
 
         void LoadComboBox()
         {
-            var List = DataProvider.Ins.DB.TIENCONGs.Select(x => x.TenTienCong).ToList();
+            var List = DataProvider.Ins.DB.VATTUPHUTUNGs.Select(x => x.TenVTPT).ToList();
             foreach (var item in List)
             {
-                cbLoaiTC.Items.Add(item);
+                cbVTPT.Items.Add(item);
             }
         }
     }

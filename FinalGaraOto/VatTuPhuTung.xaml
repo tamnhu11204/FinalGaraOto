@@ -320,7 +320,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <TextBox x:Name="txbDonViTinh" IsReadOnly="True"
                                                 materialDesign:HintAssist.Hint="Đơn vị tính"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                        <TextBox x:Name="txbGiaNhap" 
+                                        <TextBox x:Name="txbGiaNhap" IsReadOnly="True"
                                                 materialDesign:HintAssist.Hint="Giá nhập"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
                                         <TextBox x:Name="txbGiaBan" 

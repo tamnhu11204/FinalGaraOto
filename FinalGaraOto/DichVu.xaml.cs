@@ -120,11 +120,11 @@ namespace FinalGaraOto
         {
             ObservableCollection<Xes> Xe = new ObservableCollection<Xes>();
             var List = DataProvider.Ins.DB.XEs.ToList();
-            foreach (var item in List )
+            foreach (var item in List)
             {
                 if (item.BienSoXe != null)
                 {
-                    Xes Xe1 = new Xes() ;
+                    Xes Xe1 = new Xes();
                     Xe1.BienSo = item.BienSoXe;
                     Xe1.HieuXe = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == item.MaHieuXe).Select(x => x.TenHieuXe).First();
                     Xe1.ChuXe = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe == item.MaChuXe).Select(x => x.TenChuXe).First();
@@ -134,7 +134,14 @@ namespace FinalGaraOto
                     dtgdsXe.ItemsSource = Xe;
                 }
             }
-
+            var List2 = DataProvider.Ins.DB.XEs.Where(x => x.NgayTiepNhan == DateTime.Today).ToList();
+            int i = 0;
+            foreach (var item2 in List2)
+            {
+                i++;
+            }
+            var t = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "X").SingleOrDefault();
+            tbXE.Text = "Số xe đã tiếp nhận hôm nay : " + i.ToString() + "/" + t.GiaTri.ToString();
         }
 
         void LoadComboBoxHieuXe() //Hien thi cac item trong combobox
@@ -279,11 +286,24 @@ namespace FinalGaraOto
                 dynamic t = grid.SelectedItem;
                 string BS = t.BienSo.ToString();
                 var n = DataProvider.Ins.DB.XEs.Where(x => x.BienSoXe.ToString() == BS).SingleOrDefault();
+                var m = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan == n.MaTiepNhan).SingleOrDefault();
+                var c = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == m.MaSuaChua).ToList();
+                
                 if (n != null)
                 {
-                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa xe?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (r == MessageBoxResult.Yes)
                     {
+                        foreach (var item in c)
+                        {
+                            var d = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).ToList();
+                            foreach (var item1 in d)
+                            {
+                                DataProvider.Ins.DB.CT_SUDUNGVTPT.Remove(item1);
+                            }
+                            DataProvider.Ins.DB.CHITIETSUACHUAs.Remove(item);
+                        }
+                        DataProvider.Ins.DB.PHIEUSUACHUAs.Remove(m);
                         DataProvider.Ins.DB.XEs.Remove(n);
                         DataProvider.Ins.DB.SaveChanges();
 

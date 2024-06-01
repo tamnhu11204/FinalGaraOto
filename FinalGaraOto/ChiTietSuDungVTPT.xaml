@@ -34,12 +34,12 @@
                         <RowDefinition Height="127*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Margin="-42,50,0,0" HorizontalAlignment="Left" Width="742"  Grid.RowSpan="2">
-                        <ComboBox x:Name="cbLoaiTC" Margin="-100,11,0,0" Width="450"
-                                materialDesign:HintAssist.Hint="Loại tiền công"
+                        <ComboBox x:Name="cbVTPT" Margin="-100,11,0,0" Width="450"
+                                materialDesign:HintAssist.Hint="Vật tư phụ tùng"
                                  Style="{StaticResource MaterialDesignOutlinedComboBox}" Height="65" FontSize="20"/>
 
                         <TextBox x:Name="txbSL"
-                            materialDesign:HintAssist.Hint="Tên đơn vị"
+                            materialDesign:HintAssist.Hint="Số lượng"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,20,0,0" FontSize="20"  Width="450" />
                         <Button x:Name="btnThem" Content="Thêm" Background="#FF89BAD2"
                     Margin="-410,20,0,0" Height="50" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThem_Click"/>

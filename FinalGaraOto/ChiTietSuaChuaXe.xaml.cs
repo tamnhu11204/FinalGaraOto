@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static FinalGaraOto.DichVu;
 
+
 namespace FinalGaraOto
 {
     /// <summary>
@@ -23,7 +24,8 @@ namespace FinalGaraOto
     public partial class ChiTietSuaChuaXe : Window
     {
         string MaXe_;
-        string MaCT;
+        string MaCT, MaCT_;
+        
         public ChiTietSuaChuaXe(string n, string MaXe)
 
         {
@@ -35,9 +37,11 @@ namespace FinalGaraOto
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
 
             MaXe_ = MaXe;
+            MessageBox.Show("Đi đến chi tiết sửa chữa xe!");
             LoadChiTietTT();
             LoadComboBoxHieuXe();
             LoadChiTietSuaChua();
+            LoadTongTien();
 
         }
 
@@ -131,6 +135,13 @@ namespace FinalGaraOto
 
         #endregion
 
+        void LoadTongTien()
+        {
+            int ma = int.Parse(MaXe_);
+            var m1 = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan== ma).SingleOrDefault();
+            txbTongTien.Text = m1.TongTienSuaCHua.ToString();
+        }
+
         void LoadChiTietTT ()
         {
             var l = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
@@ -215,7 +226,7 @@ namespace FinalGaraOto
             MaCT = l.MaSuaChua.ToString();
             var List = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == l.MaSuaChua).ToList();
             int i = 1;
-            decimal TongTien = 0;
+            //decimal TongTien = 0;
             foreach (var item in List)
             {
                 CHITIET ct1 = new CHITIET();
@@ -223,7 +234,7 @@ namespace FinalGaraOto
                ct1.NoiDung = item.NoiDung;
                ct1.TenTC = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.TenTienCong).First();
                 ct1.TC = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong.ToString()).First();
-                ct1.Gia = item.TongTienVTPT.ToString();
+                ct1.Gia = item.TongTienVTPT.ToString(); ;
                 ct1.TenVT = "";
                 ct1.Gia = "";
                 decimal ThanhTien = 0 ;
@@ -237,9 +248,10 @@ namespace FinalGaraOto
                     SL = SL + item2.SoLuong;
                     item2.DonGia = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung).Select(x => x.DonGiaBan).First() ;
                     
-                    decimal Tien = (item2.SoLuong) * decimal.Parse(item2.DonGia.ToString());
-                    item2.ThanhTien = Tien;
-                    ThanhTien = ThanhTien + decimal.Parse(item2.ThanhTien.ToString());
+                    //decimal Tien = (item2.SoLuong) * decimal.Parse(item2.DonGia.ToString());
+                    string t = ((item2.SoLuong) * item2.DonGia).ToString();
+                    item2.ThanhTien = (item2.SoLuong) * item2.DonGia;
+                    ThanhTien = ThanhTien + Convert.ToDecimal(item2.ThanhTien);
                     var c = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung && x.MaChiTietSuaChua == item2.MaChiTietSuaChua).First();
                     c.ThanhTien = item2.ThanhTien;
                     c.DonGia = item2.DonGia;
@@ -252,12 +264,23 @@ namespace FinalGaraOto
                 i++;
                 ct1.SL = SL;
                 ct1.Gia = ThanhTien.ToString();
-                ct1.ThanhTien = (decimal.Parse(ct1.Gia) + decimal.Parse( ct1.TC)).ToString();
+                ct1.ThanhTien = (DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong.ToString()).First() + ThanhTien);
+                //ct1.ThanhTien = (int.Parse(ct1.Gia) + int.Parse( ct1.TC)).ToString();
                 ChiTiets.Add(ct1);
                 dtgChiTiet.ItemsSource = ChiTiets;
-                TongTien = TongTien + decimal.Parse(ct1.Gia) + decimal.Parse(ct1.TC);
+
+                LoadTongTien();
+               
+                //TongTien = TongTien + DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong).First() + ThanhTien;
             }
-            txbTongTien.Text = TongTien.ToString();
+            /*if (TongTien == 0)
+            {
+                txbTongTien.Text = "0";
+            }
+            else
+            {
+                txbTongTien.Text = TongTien.ToString();
+            }*/
         }
 
         public class CHITIET
@@ -279,20 +302,28 @@ namespace FinalGaraOto
 
             ThemThongTinSuaChua them = new ThemThongTinSuaChua(tbUserName.Text,MaCT);
             them.Show();
+            this.Close();
         }
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
             HoaDonThanhToan hd_ = new HoaDonThanhToan(tbUserName.Text, MaXe_);
-          
             hd_.Show();
+            this.Close();
         }
 
       
 
         private void dtgChiTiet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            DataGrid grid = (DataGrid)sender;
+            dynamic selected_row = grid.SelectedItem;
+            if (selected_row != null )
+            {
+                //string b = selected_row.BienSo.ToString();
+                //var m = DataProvider.Ins.DB.XEs.Where(x => x.BienSoXe.ToString() == b).SingleOrDefault();
+                //MaCT_ = m.MaTiepNhan.ToString();
+            }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)

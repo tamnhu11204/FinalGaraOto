@@ -307,16 +307,16 @@ namespace FinalGaraOto
 
         private void btnDong_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             VatTuPhuTung vatTuPhuTung = new VatTuPhuTung(tbUserName.Text);
             vatTuPhuTung.Show();
+            this.Close();
         }
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
             HoaDonThanhToanPhuTung hoaDonThanhToan = new HoaDonThanhToanPhuTung(tbUserName.Text);
             hoaDonThanhToan.Show();
+            this.Close();
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)

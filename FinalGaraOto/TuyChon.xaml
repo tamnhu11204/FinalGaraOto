@@ -133,8 +133,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                             <TextBox x:Name="txbSoXeTiepNhan"
                                                 materialDesign:HintAssist.Hint="Số xe tiếp nhận tối đa"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
-                                            <CheckBox Background="#FFEDEBF1" Width="18" Margin="-640,20,0,0" RenderTransformOrigin="-5.333,0.457" ClickMode="Hover" ></CheckBox>
-                                            <TextBlock Text="Cho phép trả vượt tiền nợ" Width="250" Margin="-350,-25,0,0"/>
+                                            
                                             <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhatSoXe_Click"
                                                 Margin="-150,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                         </StackPanel>

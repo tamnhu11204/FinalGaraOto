@@ -108,18 +108,5 @@ namespace FinalGaraOto
         }
         #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

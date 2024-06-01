@@ -183,7 +183,7 @@
                     Content="Doanh thu" FontSize="20" 
                     Background="#FF1B76C6" BorderBrush="{x:Null}" 
                     RenderTransformOrigin="1.001,0.513"
-                    Margin="1252,49,288,766"/>
+                    Margin="1252,49,288,766" Click="Bnt_bcdoanhthu_Click"/>
 
 
         </Grid>

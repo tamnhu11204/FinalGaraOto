@@ -115,7 +115,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         </Grid>
 
         <Grid Grid.Row="3" >
-            <TextBlock HorizontalAlignment="Left" Margin="16,20,0,0" TextWrapping="Wrap" Text="Số xe đã tiếp nhận hôm nay : 0/30" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+            <TextBlock x:Name="tbXE" HorizontalAlignment="Left" Margin="16,20,0,0" TextWrapping="Wrap" Text="Số xe đã tiếp nhận hôm nay : 0/30" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
             <TextBox x:Name="txbBienSo"  materialDesign:HintAssist.Hint="Biển số"
                       Style="{StaticResource MaterialDesignOutlinedTextBox}"
       HorizontalAlignment="Left" Margin="16,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="20" TextChanged="txbBienSo_TextChanged"/>
@@ -151,7 +151,6 @@ x:Name="dtgdsXe" Margin="16,233,16,42" Height="600" FontSize="20" SelectionChang
 
             <Button x:Name="btnTiepNhanXe" Content="Tiếp nhận xe" HorizontalAlignment="Left" Margin="400,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.213,-0.5" Background="#FF89BAD2" Width="auto" FontSize="20" Height="47" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnTiepNhanXe_Click"/>
             <Button x:Name="btnLamMoi" Content="Làm mới" HorizontalAlignment="Left" Margin="1105,85,0,0" VerticalAlignment="Top" Background="#FF89BAD2" FontSize="20" Height="46" BorderBrush="{DynamicResource MaterialDesignPaper}" Width="110" Click="btnLamMoi_Click"/>
-            <Button x:Name="btnXuat" Content="Xuất" HorizontalAlignment="Left" Margin="1282,158,0,0" VerticalAlignment="Top" Background="#FF2D8138" Width="110" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Height="47"/>
             <Button x:Name="btnChiTiet" Content="Chi tiết" HorizontalAlignment="Left" Margin="1105,158,0,0" VerticalAlignment="Top" Background="#FF1D2850" Width="110" FontSize="20" Height="47" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnChiTiet_Click"/>
             <Button x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" Margin="1282,84,0,0" VerticalAlignment="Top" Background="#FFB73E3A" Width="110" FontSize="20" Height="47" RenderTransformOrigin="0.891,0.461" Click="btnXoa_Click"/>
         </Grid>

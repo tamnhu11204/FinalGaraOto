@@ -200,6 +200,13 @@ namespace FinalGaraOto
         {
             ExportToExcel_BCTon export = new ExportToExcel_BCTon(Dg_BCTon, DateTime.Now);
         }
+
+        private void Bnt_bcdoanhthu_Click(object sender, RoutedEventArgs e)
+        {
+            BCDoanhThu bCDT = new BCDoanhThu(tbUserName.Text);
+            bCDT.Show();
+            this.Close();
+        }
     }
 
 }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ThemThongTinSuaChua" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Height="800" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" Icon="/OIG2.ico" >
+        Height="800" Width="720" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" Icon="/OIG2.ico" MouseMove="Window_MouseMove" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -33,7 +33,7 @@
                         <TranslateTransform X="-1.925"/>
                     </TransformGroup>
                 </StackPanel.RenderTransform>
-                <TextBox x:Name="btnNoiDung"
+                <TextBox x:Name="txbNoiDung"
         materialDesign:HintAssist.Hint="Nội dung sửa chữa"
         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
                
@@ -46,7 +46,7 @@
         Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" IsReadOnly="True" />
                 <ComboBox x:Name="cbLoaiTC" Margin="-50,11,0,0" Width="400"
               materialDesign:HintAssist.Hint="Loại tiền công"
-              Style="{StaticResource MaterialDesignOutlinedComboBox}" Height="58" FontSize="20">
+              Style="{StaticResource MaterialDesignOutlinedComboBox}" Height="58" FontSize="20" SelectionChanged="cbLoaiTC_SelectionChanged">
                   
                 </ComboBox>
                 <TextBox x:Name="txbTC"

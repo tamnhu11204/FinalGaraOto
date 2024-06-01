@@ -177,9 +177,8 @@ Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" Font
             <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="74,604,0,0" TextWrapping="Wrap" Text="Tổng tiền : " VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
             <TextBlock Grid.Column="3" HorizontalAlignment="Center" Margin="0,527,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
             <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="387,604,0,0" TextWrapping="Wrap" Text="đồng" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
-            <Button Grid.Column="3"  Content="Thanh toán" HorizontalAlignment="Left" Margin="306,717,0,0" VerticalAlignment="Top" Background="#FF3AB73F" FontSize="20" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7"/>
-            <Button Grid.Column="3" Content="Xuất hóa đơn" HorizontalAlignment="Left" Margin="68,717,0,0" VerticalAlignment="Top" Background="#FF89BAD2" FontSize="20" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.527,3.339"/>
-            <Button x:Name="btnThoat" Margin="179,772,180,34" Content="Thoát" Background="#FF1D2850" Height="59" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThoat_Click" RenderTransformOrigin="0.381,0.844" Grid.Column="3"/>
+            <Button Grid.Column="3"  Content="Thanh toán" HorizontalAlignment="Left" Margin="57,730,0,0" VerticalAlignment="Top" Background="#FF3AB73F" FontSize="20"  BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7" Height="50"/>
+            <Button x:Name="btnThoat" Margin="339,730,20,85" Content="Thoát" Background="#FF1D2850" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThoat_Click" RenderTransformOrigin="0.381,0.844" Grid.Column="3" Height="50"/>
         </Grid>
     </Grid>
 </Window>

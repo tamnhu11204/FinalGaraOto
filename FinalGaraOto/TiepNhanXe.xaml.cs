@@ -70,6 +70,7 @@ namespace FinalGaraOto
                 var p = new PHIEUSUACHUA();
                 p.NgaySuaChua = m.NgayTiepNhan;
                 p.MaTiepNhan = m.MaTiepNhan;
+                p.TongTienSuaCHua = 0;
 
                 DataProvider.Ins.DB.PHIEUSUACHUAs.Add(p);
 
