@@ -1,6 +1,9 @@
 ﻿using FinalGaraOto.Model;
+using MaterialDesignThemes.Wpf;
+//using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,15 +21,23 @@ namespace FinalGaraOto
     /// <summary>
     /// Interaction logic for HoaDonThanhToanPhuTung.xaml
     /// </summary>
+    /// 
+    
     public partial class HoaDonThanhToanPhuTung : Window
     {
-        public HoaDonThanhToanPhuTung(string n)
+        string _MaNCC;
+
+        public HoaDonThanhToanPhuTung(string n, string MaHDPT)
         {
             InitializeComponent();
             tbUserName.Text = n;
 
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
+
+            _MaNCC = MaHDPT;
+
+            //LoadChiTietThanhToanPhuTung();
         }
 
         #region scroll bar button
@@ -106,6 +117,73 @@ namespace FinalGaraOto
             tuychon_tab.Show();
             this.Close();
         }
+        #endregion
+
+        #region chi tiet thanh toan phu tung
+
+        public class ChiTietNhapVatTuPhuTungs //Khong can cung duoc, tai co Class san ben EntityFramework
+        {
+            public int STT { get; set; }
+            public int MaVTPT { get; set; }
+            public string TenVT { get; set; }
+            public Nullable<int> SL { get; set; }
+            public int MaNhapHang { get; set; }
+            public Nullable<decimal> GiaNhap { get; set; }
+            public Nullable<decimal> ThanhTien { get; set; }
+        }
+
+/*        void LoadChiTietThanhToanPhuTung()
+        {
+            ObservableCollection<ChiTietNhapVatTuPhuTungs> ChiTiets = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
+            var l = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhaCungCap.ToString() == _MaNCC).SingleOrDefault();
+            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == l.MaNhapHang).ToList();
+            int i = 1;
+            foreach (var item in List)
+            {
+                ChiTietNhapVatTuPhuTungs ct1 = new ChiTietNhapVatTuPhuTungs();
+                ct1.STT = i;
+                ct1.MaVTPT = item.MaVatTuPhuTung;
+                ct1.TenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item.MaVatTuPhuTung).Select(x => x.TenTienCong).First();
+                ct1.SL = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.SoLuong == item.SoLuong).Select(x => x.GiaTienCong.ToString()).First();
+                ct1.GiaNhap = item.GiaNhap;
+                ct1.TenVT = "";
+                
+
+                decimal ThanhTien = 0;
+
+
+
+                var List2 = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).ToList();
+                int SL = 0;
+                foreach (var item2 in List2)
+                {
+
+                    string ten = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
+                    ct1.TenVT = ct1.TenVT + item2.SoLuong.ToString() + " " + ten + " , ";
+                    SL = SL + item2.SoLuong;
+
+                    item2.DonGia = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung).Select(x => x.DonGiaBan).First();
+
+                    decimal Tien = (item2.SoLuong) * Convert.ToDecimal(item2.DonGia);
+                    item2.ThanhTien = Tien;
+                    ThanhTien = ThanhTien + Convert.ToDecimal(item2.ThanhTien);
+
+
+                }
+
+                i++;
+                ct1.SL = SL;
+                ct1.Gia = ThanhTien.ToString();
+
+                ct1.ThanhTien = (decimal.Parse(ct1.Gia) + decimal.Parse(ct1.TC)).ToString();
+
+                ct1.ThanhTien = ct1.Gia + ct1.TC;
+
+                ChiTiets.Add(ct1);
+                dtgChiTiet.ItemsSource = ChiTiets;
+            }
+        }*/
+
         #endregion
 
     }

@@ -124,8 +124,71 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             <Button x:Name="BackButton" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="63" Background="#FFF4F3F7" BorderBrush="#FFF2EEFB"/>
             <TextBlock HorizontalAlignment="Left" Margin="333,15,0,0" TextWrapping="Wrap" Text="Hóa đơn thanh toán vật tư phụ tùng" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.615,2.406" Grid.Column="1"/>
             <materialDesign:PackIcon Kind="ArrowLeft" Height="36" Width="74" Margin="4,8,0,0" RenderTransformOrigin="0.5,0.804" />
-            <TextBlock HorizontalAlignment="Left" Margin="10,49,0,0" TextWrapping="Wrap" Text="Chi tiết sửa chữa" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2" Width="277"/>
-            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,73,18,10" FontSize="20" Grid.ColumnSpan="2"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,98,10,10" FontSize="20" Grid.ColumnSpan="2">
+                <Border Background="Blue"
+            CornerRadius="10"
+            VerticalAlignment="Top">
+                    <DataGrid x:Name="dtgChiTiet" AutoGenerateColumns="False" 
+                
+                ItemsSource="{Binding DanhSachVTPT, Mode=TwoWay}"
+                VerticalAlignment="Center" FontSize="20">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="STT" Width="*"
+                                    Binding="{Binding STT}"
+                />
+
+                            <DataGridTextColumn Header="Mã vật tư" Width="*" 
+                                        Binding="{Binding MaVTPT}"
+
+                />
+
+                            <DataGridTextColumn Header="Tên vật tư" Width="2*"
+                                    Binding="{Binding TenVT}"
+                />
+
+                            <DataGridTextColumn Header="Số lượng" Width="*"
+                                    Binding="{Binding SL}"
+                />
+
+                            <DataGridTextColumn Header="Giá nhập" Width="*"
+                                    Binding="{Binding GiaNhap}"
+                />
+                            <DataGridTextColumn x:Name="ThanhTien"
+                    Header="Thành tiền" Width="*"
+                                    Binding="{Binding ThanhTien}"
+                />
+                            <DataGridTemplateColumn Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <Button x:Name="btnXoa"
+                                        Click="btnXoa_Click"        
+                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton" 
+                                    Margin="5"
+                                    Width="20"
+                                    Height="20" HorizontalAlignment="Center" >
+                                                <materialDesign:PackIcon
+                                        Width="20"
+                                        Height="20"
+                                        Kind="Delete" 
+                                        HorizontalAlignment="Center"
+                                    />
+                                            </Button>
+
+
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </ScrollViewer>
             <GroupBox Margin="10,26,10,341"  Header="Thông tin nhà cung cấp" BorderBrush="{DynamicResource MaterialDesignPaper}" Grid.Column="2" FontSize="20" Height="400">
                 <StackPanel Width="455" Height="557" Orientation="Horizontal">
                     <Grid Margin="-50,-30,467,0" Width="133" Height="516" >
@@ -140,28 +203,28 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <RowDefinition Height="44*"/>
                         </Grid.RowDefinitions>
                         <StackPanel Margin="66,0,66,0" Grid.RowSpan="2">
-                            <TextBox
+                            <TextBox x:Name="txbTenNCC"
                                 materialDesign:HintAssist.Hint="Tên nhà cung cấp"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="20"  Width="250"/>
 
-                            <TextBox
+                            <TextBox x:Name ="txbDiaChi"
                                 materialDesign:HintAssist.Hint="Địa chỉ"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="20"  Width="250" />
-                            <TextBox
+                            <TextBox x:Name="txbSDT"
                                 materialDesign:HintAssist.Hint="Số điện thoại"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="20"  Width="250" />
-                            <TextBox
+                            <TextBox x:Name="txbEmail"
                                 materialDesign:HintAssist.Hint="Email"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="20"  Width="250" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>
             </GroupBox>
-            <DatePicker materialDesign:HintAssist.Hint="Ngày nhập hàng"
+            <DatePicker materialDesign:HintAssist.Hint="Ngày nhập hàng" x:Name="dtpNgayNhapHang"
                 Grid.Column="2" HorizontalAlignment="Left" Margin="150,502,0,0" Height="40" Width="250" FontSize="20" VerticalAlignment="Top"/>
             <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="74,604,0,0" TextWrapping="Wrap" Text="Tổng tiền : " VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
-            <TextBlock Grid.Column="2" HorizontalAlignment="Center" Margin="0,527,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
-            <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="387,604,0,0" TextWrapping="Wrap" Text="đồng" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="205,595,0,0" TextWrapping="Wrap"  Text="000000" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Width="196" Height="47"/>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="417,600,0,0" TextWrapping="Wrap" Text="đồng" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
             <Button Grid.Column="2"  Content="Thanh toán" HorizontalAlignment="Center" Margin="0,721,0,0" VerticalAlignment="Top" Background="#FF3AB73F" FontSize="20" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7"/>
 
         </Grid>

@@ -26,6 +26,7 @@ namespace FinalGaraOto
         {
             InitializeComponent();
             LoadSoXeTiepNhan();
+            LoadPhamTramLoi();
             LoadDVT();
             LoadTienCong();
             LoadHieuXe();
@@ -117,7 +118,7 @@ namespace FinalGaraOto
         }
         #endregion
 
-        #region ThongTinGara va DonViVTPT
+        #region ThongTinGara va DonViVTPT va Ti Le loi
 
         int Ma;
         dynamic g;
@@ -125,6 +126,12 @@ namespace FinalGaraOto
         {
             var S = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "X").SingleOrDefault();
             txbSoXeTiepNhan.Text = S.GiaTri.ToString();
+        }
+
+        void LoadPhamTramLoi() //Hien thi phan tram loi cua vat tu
+        {
+            var S = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "L").SingleOrDefault();
+            txbPhanTramLoi.Text = S.GiaTri.ToString();
         }
 
         private void BtnCapNhatSoXe_Click(object sender, RoutedEventArgs e) //cap nhat so xe
@@ -150,6 +157,31 @@ namespace FinalGaraOto
                 else return;
             }
         }
+
+        private void BtnCapNhatPhanTramLoi_Click(object sender, RoutedEventArgs e) //cap nhat phan tram loi
+        {
+            if (string.IsNullOrEmpty(txbPhanTramLoi.Text))
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin");
+            }
+            else
+            {
+                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật phần trăm lời của vật tư?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (r == MessageBoxResult.Yes)
+                {
+                    var S = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "L").SingleOrDefault();
+                    S.GiaTri = int.Parse(txbPhanTramLoi.Text);
+
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Cập nhật thành công!");
+
+                    LoadPhamTramLoi();
+                }
+                else return;
+            }
+        }
+
         void LoadDVT() //Hien thi don vi VTPT len datagrid
         {
             ObservableCollection<DONVITINH> donvi = new ObservableCollection<DONVITINH>();

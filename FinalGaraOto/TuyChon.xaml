@@ -140,6 +140,29 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                     </Grid>
                                 </StackPanel>
                             </GroupBox>
+                            <GroupBox Width="750" Height="334" 
+                                Header="Thông tin tỉ lệ lời" BorderBrush="{DynamicResource MaterialDesignPaper}">
+                                <StackPanel Width="556" Orientation="Horizontal" Margin="0,17,0,-351">
+                                    <Grid Margin="-70,-30,467,0" Width="124" Height="522" >
+                                        <materialDesign:PackIcon Kind="Cash" Margin="73,20,0,0" Width="40" Height="40"/>
+
+                                    </Grid>
+                                    <Grid Margin="-500,6,0,0" Height="564" Width="700">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="61*"/>
+                                            <RowDefinition Height="127*"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
+                                            <TextBox x:Name="txbPhanTramLoi"
+                                                materialDesign:HintAssist.Hint="Phần trăm lời của sản phẩm (10, 20...)"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
+
+                                            <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhatPhanTramLoi_Click"
+                                                Margin="-150,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </GroupBox>
                         </StackPanel>
                         <StackPanel>
                             <GroupBox Width="750" Height="683"  Margin="0,20,0,0"
