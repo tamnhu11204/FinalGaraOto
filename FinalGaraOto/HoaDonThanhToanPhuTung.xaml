@@ -158,33 +158,9 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     Header="Thành tiền" Width="*"
                                     Binding="{Binding ThanhTien}"
                 />
-                            <DataGridTemplateColumn Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-
-                                            <Button x:Name="btnXoa"
-                                        Click="btnXoa_Click"        
-                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton" 
-                                    Margin="5"
-                                    Width="20"
-                                    Height="20" HorizontalAlignment="Center" >
-                                                <materialDesign:PackIcon
-                                        Width="20"
-                                        Height="20"
-                                        Kind="Delete" 
-                                        HorizontalAlignment="Center"
-                                    />
-                                            </Button>
+                            
 
 
-
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
