@@ -36,17 +36,31 @@ namespace FinalGaraOto
             }
             else
             {
-                var n = new DONVITINH();
-                n.TenDVT = txbTenDVT.Text;
+                int i = 0;
+                var check = DataProvider.Ins.DB.DONVITINHs.ToList();
+                foreach (var item in check)
+                {
+                    if (txbTenDVT.Text.ToLower() == item.TenDVT.ToLower())
+                    {
 
-                DataProvider.Ins.DB.DONVITINHs.Add(n);
-                DataProvider.Ins.DB.SaveChanges();
+                        i++;
+                    }
+                }
+                if (i == 0)
+                {
+                    var n = new DONVITINH();
+                    n.TenDVT = txbTenDVT.Text;
 
-                MessageBox.Show("Thêm đơn vị tính thành công!");
+                    DataProvider.Ins.DB.DONVITINHs.Add(n);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                TuyChon tuychon_ = new TuyChon(tbUserName.Text);
-                tuychon_.Show();
-                this.Close();
+                    MessageBox.Show("Thêm đơn vị tính thành công!");
+
+                    TuyChon tuychon_ = new TuyChon(tbUserName.Text);
+                    tuychon_.Show();
+                    this.Close();
+                }
+                else MessageBox.Show("Tên đơn vị này đã tồn tại!");
             }
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e)

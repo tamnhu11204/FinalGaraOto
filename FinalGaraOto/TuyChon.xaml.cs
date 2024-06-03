@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -181,7 +182,14 @@ namespace FinalGaraOto
                 else return;
             }
         }
-
+        private void txbSoXeTiepNhan_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
+        }
+        private void txbPhanTramLoi_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
+        }
         void LoadDVT() //Hien thi don vi VTPT len datagrid
         {
             ObservableCollection<DONVITINH> donvi = new ObservableCollection<DONVITINH>();
@@ -204,21 +212,35 @@ namespace FinalGaraOto
             }
             else
             {
-                int MaDVT = int.Parse(txbMaDVT.Text);
-                var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
-
-                n.MaDVT = MaDVT;
-                n.TenDVT = txbTenDVT.Text;
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật đơn vị vật tư phụ tùng?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (r == MessageBoxResult.Yes)
+                int i = 0;
+                var check = DataProvider.Ins.DB.DONVITINHs.ToList();
+                foreach(var item in check)
                 {
-                    DataProvider.Ins.DB.SaveChanges();
-
-                    MessageBox.Show("Cập nhật thành công!");
-
-                    LoadDVT();
+                    if (txbTenDVT.Text.ToLower() == item.TenDVT.ToLower())
+                    {
+                        
+                        i++;
+                    } 
                 }
-                else return;
+                if (i == 0)
+                {
+                    int MaDVT = int.Parse(txbMaDVT.Text);
+                    var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
+
+                    n.MaDVT = MaDVT;
+                    n.TenDVT = txbTenDVT.Text;
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật đơn vị vật tư phụ tùng?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Cập nhật thành công!");
+
+                        LoadDVT();
+                    }
+                    else return;
+                }
+                else MessageBox.Show("Tên đơn vị này đã tồn tại!");
             }
         }
 
@@ -265,6 +287,7 @@ namespace FinalGaraOto
                 txbTenDVT.Text = selected_row.TenDVT.ToString();
             }
         }
+
         #endregion
 
 
@@ -300,7 +323,10 @@ namespace FinalGaraOto
             }
             dtgTienCong.ItemsSource = tiencong;
         }
-
+        private void txbGiaTienCong_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
+        }
         private void BtnLamMoiTC_Click(object sender, RoutedEventArgs e) //Reset lai du lieu 
         {
             txbTenTienCong.Text = "";
@@ -323,22 +349,37 @@ namespace FinalGaraOto
             }
             else
             {
-                int MATC = int.Parse(txbMaTienCong.Text);
-                var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MATC).SingleOrDefault();
-
-                n.MaTienCong = MATC;
-                n.TenTienCong = txbTenTienCong.Text;
-                n.GiaTienCong = decimal.Parse(txbGiaTienCong.Text);
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (r == MessageBoxResult.Yes)
+                int i = 0;
+                var check = DataProvider.Ins.DB.TIENCONGs.ToList();
+                foreach (var item in check)
                 {
-                    DataProvider.Ins.DB.SaveChanges();
+                    if (txbTenTienCong.Text.ToLower() == item.TenTienCong.ToLower())
+                    {
 
-                    MessageBox.Show("Cập nhật thành công!");
-
-                    LoadTienCong();
+                        i++;
+                    }
                 }
-                else return;
+                if (i == 0)
+                {
+                    int MATC = int.Parse(txbMaTienCong.Text);
+                    var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MATC).SingleOrDefault();
+
+                    n.MaTienCong = MATC;
+                    n.TenTienCong = txbTenTienCong.Text;
+                    n.GiaTienCong = decimal.Parse(txbGiaTienCong.Text);
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Cập nhật thành công!");
+
+                        LoadTienCong();
+                    }
+                    else return;
+                }
+                else MessageBox.Show("Tên tiền công này đã tồn tại!");
+               
             }
         }
         private void BtnXoaTC_Click(object sender, RoutedEventArgs e) //xoa tien cong
@@ -463,29 +504,44 @@ namespace FinalGaraOto
             }
             else
             {
-                int MaHX = int.Parse(txbMaHieuXe.Text);
-                var n = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == MaHX).SingleOrDefault();
-
-                n.MaHieuXe = MaHX;
-                n.TenHieuXe = txbTenHieuXe.Text;
-                if (string.IsNullOrEmpty(txbGhiChu.Text))
+                int i = 0;
+                var check = DataProvider.Ins.DB.HIEUXEs.ToList();
+                foreach (var item in check)
                 {
-                    n.GhiChu = "Không có";
-                }
-                else
-                {
-                    n.GhiChu = txbGhiChu.Text;
-                }
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật hiệu xe?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (r == MessageBoxResult.Yes)
-                {
-                    DataProvider.Ins.DB.SaveChanges();
+                    if (txbTenHieuXe.Text.ToLower() == item.TenHieuXe.ToLower())
+                    {
 
-                    MessageBox.Show("Cập nhật thành công!");
-
-                    LoadHieuXe();
+                        i++;
+                    }
                 }
-                else return;
+                if (i == 0)
+                {
+                    int MaHX = int.Parse(txbMaHieuXe.Text);
+                    var n = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == MaHX).SingleOrDefault();
+
+                    n.MaHieuXe = MaHX;
+                    n.TenHieuXe = txbTenHieuXe.Text;
+                    if (string.IsNullOrEmpty(txbGhiChu.Text))
+                    {
+                        n.GhiChu = "Không có";
+                    }
+                    else
+                    {
+                        n.GhiChu = txbGhiChu.Text;
+                    }
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật hiệu xe?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Cập nhật thành công!");
+
+                        LoadHieuXe();
+                    }
+                    else return;
+                }
+                else MessageBox.Show("Tên tiền công này đã tồn tại!");
+                
             }
         }
         private void dtgHieuXe_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -604,25 +660,41 @@ namespace FinalGaraOto
             }
             else
             {
-                int MaNCC = int.Parse(txbMaNCC.Text);
-                var n = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == MaNCC).SingleOrDefault();
-
-                n.MaNhaCungCap = MaNCC;
-                n.TenNhaCungCap = txbTenNCC.Text;
-                n.SDTNhaCungCap = txbSDT.Text;
-                n.EmailNhaCungCap = txbEmail.Text;
-                n.DiachiNhaCungCap = txbDiaChi.Text;
-
-                MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật nhà cung cấp?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (r == MessageBoxResult.Yes)
+                int i = 0;
+                var check = DataProvider.Ins.DB.NHACUNGCAPs.ToList();
+                foreach (var item in check)
                 {
-                    DataProvider.Ins.DB.SaveChanges();
+                    if (txbTenNCC.Text.ToLower() == item.TenNhaCungCap.ToLower())
+                    {
 
-                    MessageBox.Show("Cập nhật thành công!");
-
-                    LoadNCC();
+                        i++;
+                    }
                 }
-                else return;
+                if (i == 0)
+                {
+                    int MaNCC = int.Parse(txbMaNCC.Text);
+                    var n = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == MaNCC).SingleOrDefault();
+
+                    n.MaNhaCungCap = MaNCC;
+                    n.TenNhaCungCap = txbTenNCC.Text;
+                    n.SDTNhaCungCap = txbSDT.Text;
+                    n.EmailNhaCungCap = txbEmail.Text;
+                    n.DiachiNhaCungCap = txbDiaChi.Text;
+
+                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn cập nhật nhà cung cấp?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (r == MessageBoxResult.Yes)
+                    {
+                        DataProvider.Ins.DB.SaveChanges();
+
+                        MessageBox.Show("Cập nhật thành công!");
+
+                        LoadNCC();
+                    }
+                    else return;
+                }
+                else MessageBox.Show("Tên tiền công này đã tồn tại!");
+
+                
             }
         }
         private void txbTenNCC_TextChanged(object sender, TextChangedEventArgs e)
@@ -692,6 +764,14 @@ namespace FinalGaraOto
             }
             dtgNCC.ItemsSource = h;
         }
+
+
+        private void txbSDT_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
+        }
+
+
 
         #endregion
 

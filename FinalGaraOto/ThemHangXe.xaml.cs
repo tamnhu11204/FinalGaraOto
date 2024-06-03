@@ -40,25 +40,40 @@ namespace FinalGaraOto
             }
             else
             {
-                var n = new HIEUXE();
-                n.TenHieuXe = txbTenHieuXe.Text;
-                if (string.IsNullOrEmpty(txbGhiChu.Text))
+                int i = 0;
+                var check = DataProvider.Ins.DB.HIEUXEs.ToList();
+                foreach (var item in check)
                 {
-                    n.GhiChu = "Không có";
+                    if (txbTenHieuXe.Text.ToLower() == item.TenHieuXe.ToLower())
+                    {
+
+                        i++;
+                    }
                 }
-                else
+                if (i == 0)
                 {
-                    n.GhiChu = txbGhiChu.Text;
+                    var n = new HIEUXE();
+                    n.TenHieuXe = txbTenHieuXe.Text;
+                    if (string.IsNullOrEmpty(txbGhiChu.Text))
+                    {
+                        n.GhiChu = "Không có";
+                    }
+                    else
+                    {
+                        n.GhiChu = txbGhiChu.Text;
+                    }
+
+                    DataProvider.Ins.DB.HIEUXEs.Add(n);
+                    DataProvider.Ins.DB.SaveChanges();
+
+                    MessageBox.Show("Thêm hiệu xe thành công!");
+
+                    TuyChon tuychon_ = new TuyChon(tbUserName.Text);
+                    this.Close();
+                    tuychon_.Show();
                 }
-
-                DataProvider.Ins.DB.HIEUXEs.Add(n);
-                DataProvider.Ins.DB.SaveChanges();
-
-                MessageBox.Show("Thêm hiệu xe thành công!");
-
-                TuyChon tuychon_ = new TuyChon(tbUserName.Text);
-                this.Close();
-                tuychon_.Show();
+                else MessageBox.Show("Tên tiền công này đã tồn tại!");
+                
             }
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e)

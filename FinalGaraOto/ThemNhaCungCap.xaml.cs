@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,20 +41,34 @@ namespace FinalGaraOto
             }
             else
             {
-                var n = new NHACUNGCAP();
-                n.TenNhaCungCap = txbTen.Text;
-                n.SDTNhaCungCap = txbSDT.Text;
-                n.EmailNhaCungCap = txbEmail.Text;
-                n.DiachiNhaCungCap = txbDiaChi.Text;
+                int i = 0;
+                var check = DataProvider.Ins.DB.NHACUNGCAPs.ToList();
+                foreach (var item in check)
+                {
+                    if (txbTen.Text.ToLower() == item.TenNhaCungCap.ToLower())
+                    {
 
-                DataProvider.Ins.DB.NHACUNGCAPs.Add(n);
-                DataProvider.Ins.DB.SaveChanges();
+                        i++;
+                    }
+                }
+                if (i == 0)
+                {
+                    var n = new NHACUNGCAP();
+                    n.TenNhaCungCap = txbTen.Text;
+                    n.SDTNhaCungCap = txbSDT.Text;
+                    n.EmailNhaCungCap = txbEmail.Text;
+                    n.DiachiNhaCungCap = txbDiaChi.Text;
 
-                MessageBox.Show("Thêm nhà cung cấp thành công!");
+                    DataProvider.Ins.DB.NHACUNGCAPs.Add(n);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                TuyChon tuyChon = new TuyChon(tbUserName.Text);
-                tuyChon.Show();
-                this.Close();
+                    MessageBox.Show("Thêm nhà cung cấp thành công!");
+
+                    TuyChon tuyChon = new TuyChon(tbUserName.Text);
+                    tuyChon.Show();
+                    this.Close();
+                }
+                else MessageBox.Show("Tên tiền công này đã tồn tại!");
 
             }
         }
@@ -62,6 +77,11 @@ namespace FinalGaraOto
             TuyChon tuychon_ = new TuyChon(tbUserName.Text);
             this.Close();
             tuychon_.Show();
+        }
+
+        private void txbSDT_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
         }
     }
 }

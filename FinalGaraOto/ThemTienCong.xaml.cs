@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,18 +40,32 @@ namespace FinalGaraOto
             }
             else
             {
-                var n = new TIENCONG();
-                n.TenTienCong = txbTenTienCong.Text;
-                n.GiaTienCong = Decimal.Parse(txbGiaTienCong.Text);
+                int i = 0;
+                var check = DataProvider.Ins.DB.TIENCONGs.ToList();
+                foreach (var item in check)
+                {
+                    if (txbTenTienCong.Text.ToLower() == item.TenTienCong.ToLower())
+                    {
 
-                DataProvider.Ins.DB.TIENCONGs.Add(n);
-                DataProvider.Ins.DB.SaveChanges();
+                        i++;
+                    }
+                }
+                if (i == 0)
+                {
+                    var n = new TIENCONG();
+                    n.TenTienCong = txbTenTienCong.Text;
+                    n.GiaTienCong = Decimal.Parse(txbGiaTienCong.Text);
 
-                MessageBox.Show("Thêm tiền công thành công!");
+                    DataProvider.Ins.DB.TIENCONGs.Add(n);
+                    DataProvider.Ins.DB.SaveChanges();
 
-                TuyChon tuychon_ = new TuyChon(tbUserName.Text);
-                this.Close();
-                tuychon_.Show();
+                    MessageBox.Show("Thêm tiền công thành công!");
+
+                    TuyChon tuychon_ = new TuyChon(tbUserName.Text);
+                    this.Close();
+                    tuychon_.Show();
+                }
+                else MessageBox.Show("Tên tiền công này đã tồn tại!");
             }
         }
         private void BtnThoat_Click(object sender, RoutedEventArgs e)
@@ -58,6 +73,11 @@ namespace FinalGaraOto
             TuyChon tuychon_ = new TuyChon(tbUserName.Text);
             this.Close();
             tuychon_.Show();
+        }
+
+        private void txbGiaTienCong_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
         }
     }
 }

@@ -35,7 +35,7 @@
                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
                 <TextBox  x:Name="txbGiaTienCong"
                     materialDesign:HintAssist.Hint="Giá tiền"
- Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
+ Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" PreviewTextInput="txbGiaTienCong_PreviewTextInput"/>
 
                 <Button Content="Thêm" Background="#FF89BAD2" Click="BtnThem_Click"
                     Margin="-290,30,0,0" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>

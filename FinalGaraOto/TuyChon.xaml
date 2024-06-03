@@ -132,7 +132,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
                                             <TextBox x:Name="txbSoXeTiepNhan"
                                                 materialDesign:HintAssist.Hint="Số xe tiếp nhận tối đa"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" PreviewTextInput="txbSoXeTiepNhan_PreviewTextInput"  />
                                             
                                             <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhatSoXe_Click"
                                                 Margin="-150,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
@@ -155,7 +155,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                         <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
                                             <TextBox x:Name="txbPhanTramLoi"
                                                 materialDesign:HintAssist.Hint="Phần trăm lời của sản phẩm (10, 20...)"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" />
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" PreviewTextInput="txbPhanTramLoi_PreviewTextInput" />
 
                                             <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhatPhanTramLoi_Click"
                                                 Margin="-150,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
@@ -176,10 +176,10 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                             <RowDefinition Height="127*"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
-                                            <TextBox x:Name="txbTenDVT" 
+                                            <TextBox x:Name="txbMaDVT" IsReadOnly="True"
                                                 materialDesign:HintAssist.Hint="Mã đơn vị"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,11,0,0" FontSize="18"  Width="450" />
-                                            <TextBox x:Name="txbMaDVT" 
+                                            <TextBox x:Name= "txbTenDVT"  
                                                 materialDesign:HintAssist.Hint="Tên đơn vị"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,11,0,0" FontSize="18"  Width="450" />
                                             <Button Content="Thêm" Background="#FF89BAD2" Click="BtnThemDVT_Click"
@@ -225,7 +225,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             </TextBox>
                             <TextBox Margin="690,-60,0,0" x:Name="txbGiaTienCong" 
             materialDesign:HintAssist.Hint="Giá tiền"
-            Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" >
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" PreviewTextInput="txbGiaTienCong_PreviewTextInput" >
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>
@@ -325,7 +325,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             </TextBox>
                             <TextBox Margin="690,-60,0,0" x:Name="txbSDT"
                                     materialDesign:HintAssist.Hint="Số điện thoại"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbSDT_TextChanged">
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbSDT_TextChanged" PreviewTextInput="txbSDT_PreviewTextInput">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
                                 </TextBox.Text>

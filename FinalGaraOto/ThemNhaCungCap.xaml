@@ -38,7 +38,7 @@
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400"/>
                 <TextBox  x:Name="txbSDT"
                     materialDesign:HintAssist.Hint="SĐT"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" />
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" PreviewTextInput="txbSDT_PreviewTextInput" />
                 <TextBox  x:Name="txbEmail"
                           materialDesign:HintAssist.Hint="Email"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-50,11,0,0" FontSize="20"  Width="400" />
