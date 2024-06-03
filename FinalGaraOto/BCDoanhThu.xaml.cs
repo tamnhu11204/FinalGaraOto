@@ -166,89 +166,38 @@ namespace FinalGaraOto
             }
         }
 
-        void LoadDataBCDT()
+        private void LoadDataBCDT()
         {
-            ObservableCollection<BCDT> doanhthu = new ObservableCollection<BCDT>();
-
-            var List = DataProvider.Ins.DB.BAOCAODOANHTHUs.ToList();
-            int stt = 1;
+            ObservableCollection<CT_BCDT> kinhdoanh = new ObservableCollection<CT_BCDT>();
+            var Listhx = DataProvider.Ins.DB.HIEUXEs.Distinct().ToList();
+           foreach(var item in Listhx)
+            {
+                CT_BCDT ct= new CT_BCDT();
+                ct.hieuxe= item.MaHieuXe;
+                ct.tenhieuxe= item.TenHieuXe;
+                kinhdoanh.Add(ct);
+            }
+           
+           foreach (var item in kinhdoanh)
+            {
+                item.thanhtien= DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe==item.hieuxe).Sum(t => t.SoTienThu);
+                item.soluotsua=  DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe==item.hieuxe).Count();
+                
+            }
             decimal sum = 0;
-            foreach (var item in List)
+           foreach(var item in kinhdoanh)
             {
-                BCDT doanhthu1 = new BCDT();
-                doanhthu1.stt=stt++;
-                doanhthu1.hieuxe= DataProvider.Ins.DB.HIEUXEs.Select(x => x.TenHieuXe).First();
-                var xe = DataProvider.Ins.DB.XEs.Select(x => x.MaTiepNhan).First();
-                doanhthu1.soluotxe = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.MaTiepNhan==xe).Count();
-
-                var ma = DataProvider.Ins.DB.HIEUXEs.Select(x => x.MaHieuXe).First();
-                var a = (int)DataProvider.Ins.DB.XEs.Where(x => x.MaHieuXe== ma).Select(x => x.MaTiepNhan).First();
-                doanhthu1.thanhtien= Convert.ToDecimal(DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.MaTiepNhan== (int)DataProvider.Ins.DB.XEs.Where(y => y.MaHieuXe==ma).Select(y => y.MaTiepNhan).First()).Select(x => x.SoTienThu));
-                // doanhthu1.thanhtien= (float)DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu== item.MaBaoCaoDoanhThu).Select(x => x.ThanhTien).First();
-                doanhthu1.tile= (float)DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Where(x => x.MaBaoCaoDoanhThu== item.MaBaoCaoDoanhThu).Select(x => x.TiLe).First();
-                doanhthu1.thang= Convert.ToDateTime(DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.MaTiepNhan== (int)DataProvider.Ins.DB.XEs.Where(y => y.MaHieuXe==ma).Select(y => y.MaTiepNhan).First()).Select(z => z.NgayThuTien.Month).First());
-                doanhthu1.nam= Convert.ToDateTime(DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.MaTiepNhan== (int)DataProvider.Ins.DB.XEs.Where(y => y.MaHieuXe==ma).Select(y => y.MaTiepNhan).First()).Select(z => z.NgayThuTien.Month).First());
-
-
-                Lb_tongdt.Content= "Tong tien: "+ (sum+doanhthu1.thanhtien);
-                if ((NamCb.Text== Convert.ToString(doanhthu1.nam.Year)) && ThangCb.Text== Convert.ToString(doanhthu1.thang.Month))
-                {
-                    doanhthu.Add(doanhthu1);
-
-                }
-                Dg_Bcdoanhthu.ItemsSource= doanhthu;
-
+                sum+=item.thanhtien;
             }
 
-
-
-        }
-
-
-        public void load_ctBCDT()
-        {
-
-            /* var b= DataProvider.Ins.DB.BAOCAODOANHTHUs.ToList();
-             var c= DataProvider.Ins.DB.HIEUXEs.ToList();
-             foreach(var x in b)
-             {
-                 //CTBAOCAODOANHTHU ct = new CTBAOCAODOANHTHU();
-                 //ct.MaBaoCaoDoanhThu= x.MaBaoCaoDoanhThu;
-                 foreach(var y in c)
-                 {
-                     CTBAOCAODOANHTHU ct1 = new CTBAOCAODOANHTHU();
-                     ct1.MaHieuXe= y.MaHieuXe;
-                     ct1.MaBaoCaoDoanhThu = x.MaBaoCaoDoanhThu;
-                     DataProvider.Ins.DB.CTBAOCAODOANHTHUs.Add(ct1);
-
-                 }
-
-             }
-             DataProvider.Ins.DB.CTBAOCAODOANHTHUs.
-             DataProvider.Ins.DB.SaveChanges();*/
-
-            ObservableCollection<CT_BCDT> ctBCDT = new ObservableCollection<CT_BCDT>();
-            var List = DataProvider.Ins.DB.CTBAOCAODOANHTHUs.ToList();
-            var List2 = DataProvider.Ins.DB.HIEUXEs.ToList();
-            foreach (var item in List)
+           foreach(var item in kinhdoanh)
             {
-                CT_BCDT ctbcdt = new CT_BCDT();
-                foreach (var item2 in List2)
-                {
-                    ctbcdt.mabc= item.MaBaoCaoDoanhThu;
-                    ctbcdt.tenhieuxe= DataProvider.Ins.DB.HIEUXEs.Select(x => x.TenHieuXe).First();
-                    ctbcdt.mahieuxe= DataProvider.Ins.DB.HIEUXEs.Select(x => x.MaHieuXe).First();
-                }
-
-
-
+                item.tile= Convert.ToDouble(item.thanhtien)/ Convert.ToDouble(sum);
             }
+           Dg_Bcdoanhthu.ItemsSource= kinhdoanh;
+           
         }
-
-        public void loadbcdt()
-        {
-
-        }
+        
         private void Bnt_xembc_Click(object sender, RoutedEventArgs e)
         {
             LoadDataBCDT();
@@ -265,11 +214,6 @@ namespace FinalGaraOto
         {
             ExportToExcel_BCDoanhThu export = new ExportToExcel_BCDoanhThu(Dg_Bcdoanhthu, System.DateTime.Now);
         }
-
-
-
-
-
     }
 
 
@@ -302,7 +246,7 @@ namespace FinalGaraOto
     public class BCDT
     {
         public int stt { get; set; }
-        public string hieuxe { get; set; }
+
         public int soluotxe { get; set; }
         public decimal thanhtien { get; set; }
         public float tile { get; set; }
@@ -315,11 +259,11 @@ namespace FinalGaraOto
     {
 
         public int mabc { get; set; }
-        public int mahieuxe { get; set; }
+        public int hieuxe { get; set; }
         public string tenhieuxe { get; set; }
         public int soluotsua { get; set; }
         public decimal thanhtien { get; set; }
-        public float tile { get; set; }
+        public double tile { get; set; }
     }
 }
 

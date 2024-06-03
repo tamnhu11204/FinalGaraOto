@@ -153,7 +153,7 @@
                       AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" Binding="{Binding stt}" Width="*"  />
+                 
                     <DataGridTextColumn Header="Hiệu xe" Binding="{Binding hieuxe}" Width="*" />
                     <DataGridTextColumn Header="Số lượt sửa" Binding="{Binding soluotxe}" Width="*"/>
                     <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhtien}" Width="*"/>

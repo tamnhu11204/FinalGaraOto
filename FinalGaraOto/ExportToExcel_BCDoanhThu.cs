@@ -40,12 +40,12 @@ namespace FinalGaraOto
 
             for (int i = 0; i<datagrid.Items.Count; i++)
             {
-                var item = datagrid.Items[i] as BCDT;
+                var item = datagrid.Items[i] as CT_BCDT;
                 if (item != null)
                 {
-                    sheet1.Cells[i+5, 1].Value= item.stt;
-                    sheet1.Cells[i+5, 2].Value= item.hieuxe;
-                    sheet1.Cells[i+5, 3].Value= item.soluotxe;
+                    sheet1.Cells[i+5, 1].Value= item.hieuxe;
+                    sheet1.Cells[i+5, 2].Value= item.tenhieuxe;
+                    sheet1.Cells[i+5, 3].Value= item.soluotsua;
                     sheet1.Cells[i+5, 4].Value= item.thanhtien;
                     sheet1.Cells[i+5, 5].Value= item.tile;
 

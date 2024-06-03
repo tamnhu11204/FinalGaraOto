@@ -62,7 +62,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Tài khoản" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnDichVu" 
                             Click="dichVu_Tab"
                             ToolTip="Tiếp nhận sửa chữa xe">
@@ -71,7 +71,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Dịch vụ" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnKhoHang" 
                            Click="khoHang_Tab"
                             ToolTip="Xem vật tư phụ tùng">
@@ -80,7 +80,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             <TextBlock Text="Kho hàng" FontSize="20" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    
+
                     <Button x:Name="btnThongKe" 
                             Click="thongKe_Tab"
                             ToolTip="Xem thống kê tháng">
@@ -130,22 +130,22 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             <ComboBox
                 Name="NamCb"
                 materialDesign:TextFieldAssist.PrefixText="Năm"
-                IsEditable="True" FontSize="14" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
-                
+                IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
+
             </ComboBox>
             <ComboBox
   Name="ThangCb"
   materialDesign:TextFieldAssist.PrefixText="Tháng "
-  IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="14">
-                
+  IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
+
             </ComboBox>
 
             <StackPanel Margin="290,30,1156,560" >
                 <Button x:Name="Btn_Xuat"
              Command="{Binding XuatCommand}"
              CommandParameter="{Binding ElementName=UCThongKe}"
-             Content="Xuất" FontSize="14" Background="#FF18A7A7"
-             Width="84" Height="35"  FontWeight="Bold" RenderTransformOrigin="0.352,-0.217"
+             Content="Xuất" FontSize="20" Background="#FF18A7A7"
+             Width="106" Height="46"  FontWeight="Bold" RenderTransformOrigin="0.352,-0.217"
              Margin="-20,30,10,0" Click="Btn_Xuat_Click"/>
 
             </StackPanel>
@@ -162,41 +162,22 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     </TransformGroup>
                 </TabControl.RenderTransform>
                 <TabItem x:Name="lichsukinhdoanh" TabIndex="0"
-                         Header="Lịch sử kinh doanh" Width="169" HorizontalAlignment="Left" FontSize="48" Background="#FF584CAE">
+                         Header="Lịch sử kinh doanh" Width="1697" HorizontalAlignment="Left" 
+                         FontSize="48" Background="#FF584CAE" Height="56">
                     <DataGrid 
                         x:Name="LichSuKinhDoanh"
                         AutoGenerateColumns="False"
                         Margin="0,2,0,-2">
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã hóa đơn" IsReadOnly="True" Binding="{Binding Mahoadon}" Width="*"/>
-                            <DataGridTextColumn Header="Khách hàng" IsReadOnly="True" Binding="{Binding Khachhang}" Width="*"/>
+                            <DataGridTextColumn Header="Mã hóa đơn"  IsReadOnly="True" Binding="{Binding Mahoadon}" Width="*" FontSize="20"/>
+                            <DataGridTextColumn Header="Khách hàng" IsReadOnly="True" Binding="{Binding Khachhang}" Width="*" FontSize="20"/>
                             <DataGridTextColumn Header="Biển số xe" IsReadOnly="True" Binding="{Binding Biensoxe}" Width="*"/>
                             <DataGridTextColumn Header="Ngày thanh toán" IsReadOnly="True" Binding="{Binding Ngaythanhtoan}" Width="*"/>
                             <DataGridTextColumn Header="Doanh thu" IsReadOnly="True" Binding="{Binding Doanhthu}" Width="*"/>
 
                         </DataGrid.Columns>
                     </DataGrid>
-                </TabItem>
-                <TabItem x:Name="lichsunhaphang" TabIndex="1"
-                         Header="Lịch sử nhập hàng" HorizontalAlignment="Left" Margin="-680,0,0,0" Width="169" Background="#FF584CAE">
-                    <Grid  Background="#FFE5E5E5" Width="1526">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <DataGrid x:Name="Lichsunhaphang"   Margin="-87,0,54,0" IsReadOnly="True" AutoGenerateColumns="False" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Vật tư" Binding="{Binding Vattu}" Width="*"/>
-
-                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Soluong}" Width="*"/>
-                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding Dongia}" Width="*"/>
-                                <DataGridTextColumn Header="Nhà cung cấp" Binding="{Binding Nhacungcap}" Width="*"/>
-                                <DataGridTextColumn Header="Ngày nhập hàng" Binding="{Binding Ngaynhaphang}" Width="*"/>
-                                <DataGridTextColumn Header="Mã đơn nhập" Binding="{Binding Madonnhap}" Width="*"/>
-                                <DataGridTextColumn Header="Tổng chi phí" Binding="{Binding Tongchiphi}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
                 </TabItem>
             </TabControl>
         </Grid>
