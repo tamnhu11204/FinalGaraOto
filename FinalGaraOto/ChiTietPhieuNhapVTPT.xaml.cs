@@ -200,6 +200,26 @@ namespace FinalGaraOto
             gnh.SoLuongTon = gnh1.SoLuong;
         }
 
+        void LoadGiaBan()
+        {
+            decimal Loi = 0;
+            var giaban = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "L").FirstOrDefault();
+            Loi = decimal.Parse(giaban.GiaTri.ToString());
+
+            int Maa = 0;
+            string selectedValue = cbbChonVTPT.SelectedItem as string;
+            //decimal giaNhap = decimal.Parse(txbNhapGiaNhap.Text);
+            //var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == Maa).SingleOrDefault();
+            var gnh2 = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.TenVTPT == selectedValue).FirstOrDefault();
+            if (gnh2 != null)
+            {
+                Maa = gnh2.MaVatTuPhuTung;
+            }
+            var gnh3 = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == Maa).FirstOrDefault();
+
+            gnh2.DonGiaBan = gnh3.GiaNhap * (1 + Loi / 100);
+        }
+
         void LamMoi()
         {
             cbbChonVTPT.Text = null;
@@ -290,13 +310,22 @@ namespace FinalGaraOto
 
                 var slg = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
                 slg.SoLuongTon += n.SoLuong;
-                DataProvider.Ins.DB.SaveChanges();
                 LoadSoLuongTon();
+
+                DataProvider.Ins.DB.SaveChanges();
 
                 var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
                 gnh.DonGiaNhap = n.GiaNhap;
                 DataProvider.Ins.DB.SaveChanges();
                 LoadGiaNhap();
+
+
+                decimal loi = 0;
+                var t = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "L").SingleOrDefault();
+                loi = decimal.Parse(t.GiaTri.ToString());
+                var gban = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
+                gban.DonGiaBan = n.GiaNhap * ( 1 + loi/100);
+                LoadGiaBan();
 
                 MessageBox.Show("Thêm thành công!");
                 LamMoi();

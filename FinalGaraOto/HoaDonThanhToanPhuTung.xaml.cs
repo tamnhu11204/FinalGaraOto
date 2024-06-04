@@ -121,6 +121,33 @@ namespace FinalGaraOto
 
         #region chi tiet thanh toan phu tung
 
+        void LoadThongTinNCC()
+        {
+            int mancc = 0;
+            int _ma = int.Parse(_MaNCC);
+            //var maNH = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == ).SingleOrDefault();
+            var maNCC = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == _ma).SingleOrDefault();
+            if (maNCC != null)
+            {
+                mancc = maNCC.MaNhaCungCap;
+
+                if (mancc != 0)
+                {
+                    var ma = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == mancc).SingleOrDefault();
+
+                    txbTenNCC.Text = ma.TenNhaCungCap;
+                    txbDiaChi.Text = ma.DiachiNhaCungCap;
+                    txbEmail.Text = ma.EmailNhaCungCap;
+                    txbSDT.Text = ma.SDTNhaCungCap;
+
+                }
+            }
+            dtpNgayNhapHang.Text = maNCC.NgayNhapHang.ToString();
+
+
+
+        }
+
         public class ChiTietNhapVatTuPhuTungs //Khong can cung duoc, tai co Class san ben EntityFramework
         {
             public int STT { get; set; }
@@ -132,7 +159,7 @@ namespace FinalGaraOto
             public Nullable<decimal> ThanhTien { get; set; }
         }
 
-/*        void LoadChiTietThanhToanPhuTung()
+        void LoadChiTietThanhToanPhuTung()
         {
             ObservableCollection<ChiTietNhapVatTuPhuTungs> ChiTiets = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
             var l = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhaCungCap.ToString() == _MaNCC).SingleOrDefault();
@@ -143,46 +170,16 @@ namespace FinalGaraOto
                 ChiTietNhapVatTuPhuTungs ct1 = new ChiTietNhapVatTuPhuTungs();
                 ct1.STT = i;
                 ct1.MaVTPT = item.MaVatTuPhuTung;
-                ct1.TenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item.MaVatTuPhuTung).Select(x => x.TenTienCong).First();
-                ct1.SL = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.SoLuong == item.SoLuong).Select(x => x.GiaTienCong.ToString()).First();
+                ct1.MaNhapHang = item.MaNhapHang;
+                ct1.TenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
+                ct1.SL = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.SoLuong == item.SoLuong).Select(x => x.SoLuong).First();
                 ct1.GiaNhap = item.GiaNhap;
-                ct1.TenVT = "";
-                
-
-                decimal ThanhTien = 0;
+                ct1.ThanhTien = item.ThanhTien;
 
 
 
-                var List2 = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).ToList();
-                int SL = 0;
-                foreach (var item2 in List2)
-                {
-
-                    string ten = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
-                    ct1.TenVT = ct1.TenVT + item2.SoLuong.ToString() + " " + ten + " , ";
-                    SL = SL + item2.SoLuong;
-
-                    item2.DonGia = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung).Select(x => x.DonGiaBan).First();
-
-                    decimal Tien = (item2.SoLuong) * Convert.ToDecimal(item2.DonGia);
-                    item2.ThanhTien = Tien;
-                    ThanhTien = ThanhTien + Convert.ToDecimal(item2.ThanhTien);
-
-
-                }
-
-                i++;
-                ct1.SL = SL;
-                ct1.Gia = ThanhTien.ToString();
-
-                ct1.ThanhTien = (decimal.Parse(ct1.Gia) + decimal.Parse(ct1.TC)).ToString();
-
-                ct1.ThanhTien = ct1.Gia + ct1.TC;
-
-                ChiTiets.Add(ct1);
-                dtgChiTiet.ItemsSource = ChiTiets;
             }
-        }*/
+        }
 
         #endregion
 
