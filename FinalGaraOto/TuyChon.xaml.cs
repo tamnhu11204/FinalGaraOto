@@ -246,27 +246,35 @@ namespace FinalGaraOto
 
         private void BtnXoaDVT_Click(object sender, RoutedEventArgs e) //Xoa don vi tinh
         {
-            if (string.IsNullOrEmpty(txbMaDVT.Text) || string.IsNullOrEmpty(txbTenDVT.Text))
+            if (string.IsNullOrEmpty(txbMaDVT.Text) )
             {
-                MessageBox.Show("Hãy điền đầy đủ thông tin");
+                MessageBox.Show("Hãy chọn mã đơn vị muốn xóa");
             }
             else
             {
                 int MaDVT = int.Parse(txbMaDVT.Text);
-                var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
-                if (n != null)
+                var list=DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x=>x.MaDVT== MaDVT).Count();
+                if (list != 0)
                 {
-                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa đơn vị tính?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (r == MessageBoxResult.Yes)
+                    MessageBox.Show("Đơn vị này đã được sử dụng. Không được xóa!");
+                }
+                else
+                {
+                    var n = DataProvider.Ins.DB.DONVITINHs.Where(x => x.MaDVT == MaDVT).SingleOrDefault();
+                    if (n != null)
                     {
-                        DataProvider.Ins.DB.DONVITINHs.Remove(n);
-                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa đơn vị tính?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (r == MessageBoxResult.Yes)
+                        {
+                            DataProvider.Ins.DB.DONVITINHs.Remove(n);
+                            DataProvider.Ins.DB.SaveChanges();
 
-                        MessageBox.Show("Xóa đơn vị tính thành công!");
+                            MessageBox.Show("Xóa đơn vị tính thành công!");
 
-                        LoadDVT();
+                            LoadDVT();
+                        }
+                        else return;
                     }
-                    else return;
                 }
             }
                
@@ -391,20 +399,29 @@ namespace FinalGaraOto
             else
             {
                 int MaTC = int.Parse(txbMaTienCong.Text);
-                var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
-                if (n != null)
+
+                var list = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaTienCong == MaTC).Count();
+                if (list != 0)
                 {
-                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (r == MessageBoxResult.Yes)
+                    MessageBox.Show("Loại tiền công này đã được sử dụng. Không được xóa!");
+                }
+                else
+                {
+                    var n = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == MaTC).SingleOrDefault();
+                    if (n != null)
                     {
-                        DataProvider.Ins.DB.TIENCONGs.Remove(n);
-                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa tiền công?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (r == MessageBoxResult.Yes)
+                        {
+                            DataProvider.Ins.DB.TIENCONGs.Remove(n);
+                            DataProvider.Ins.DB.SaveChanges();
 
-                        MessageBox.Show("Xóa tiền công thành công!");
+                            MessageBox.Show("Xóa tiền công thành công!");
 
-                        LoadTienCong();
+                            LoadTienCong();
+                        }
+                        else return;
                     }
-                    else return;
                 }
             }
         }
@@ -479,20 +496,29 @@ namespace FinalGaraOto
             else
             {
                 int MaHX = int.Parse(txbMaHieuXe.Text);
-                var n = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == MaHX).SingleOrDefault();
-                if (n != null)
+
+                var list = DataProvider.Ins.DB.XEs.Where(x => x.MaChuXe == MaHX).Count();
+                if (list != 0)
                 {
-                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa hiệu xe?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (r == MessageBoxResult.Yes)
+                    MessageBox.Show("Hiệu xe này đã được sử dụng. Không được xóa!");
+                }
+                else
+                {
+                    var n = DataProvider.Ins.DB.HIEUXEs.Where(x => x.MaHieuXe == MaHX).SingleOrDefault();
+                    if (n != null)
                     {
-                        DataProvider.Ins.DB.HIEUXEs.Remove(n);
-                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa hiệu xe?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (r == MessageBoxResult.Yes)
+                        {
+                            DataProvider.Ins.DB.HIEUXEs.Remove(n);
+                            DataProvider.Ins.DB.SaveChanges();
 
-                        MessageBox.Show("Xóa hiệu xe thành công!");
+                            MessageBox.Show("Xóa hiệu xe thành công!");
 
-                        LoadHieuXe();
+                            LoadHieuXe();
+                        }
+                        else return;
                     }
-                    else return;
                 }
             }
         }
@@ -632,20 +658,29 @@ namespace FinalGaraOto
             else
             {
                 int MaNCC = int.Parse(txbMaNCC.Text);
-                var n = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == MaNCC).SingleOrDefault();
-                if (n != null)
+
+                var list = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhaCungCap == MaNCC).Count();
+                if (list != 0)
                 {
-                    MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa nhà cung cấp?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (r == MessageBoxResult.Yes)
+                    MessageBox.Show("Nhà cung cấp này đã được sử dụng. Không được xóa!");
+                }
+                else
+                {
+                    var n = DataProvider.Ins.DB.NHACUNGCAPs.Where(x => x.MaNhaCungCap == MaNCC).SingleOrDefault();
+                    if (n != null)
                     {
-                        DataProvider.Ins.DB.NHACUNGCAPs.Remove(n);
-                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBoxResult r = MessageBox.Show("Bạn chắc chắn muốn xóa nhà cung cấp?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (r == MessageBoxResult.Yes)
+                        {
+                            DataProvider.Ins.DB.NHACUNGCAPs.Remove(n);
+                            DataProvider.Ins.DB.SaveChanges();
 
-                        MessageBox.Show("Xóa nhà cung cấp thành công!");
+                            MessageBox.Show("Xóa nhà cung cấp thành công!");
 
-                        LoadNCC();
+                            LoadNCC();
+                        }
+                        else return;
                     }
-                    else return;
                 }
             }
         }

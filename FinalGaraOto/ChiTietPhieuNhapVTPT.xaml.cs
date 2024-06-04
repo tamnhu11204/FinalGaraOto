@@ -183,7 +183,7 @@ namespace FinalGaraOto
 
         }
 
-        void LoadSoLuongTon()
+        /*void LoadSoLuongTon()
         {
             int Maa = 0;
             string selectedValue = cbbChonVTPT.SelectedItem as string;
@@ -197,7 +197,7 @@ namespace FinalGaraOto
             var gnh1 = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung == Maa).FirstOrDefault();
 
             gnh.SoLuongTon = gnh1.SoLuong;
-        }
+        }*/
 
         void LoadGiaBan()
         {
@@ -309,8 +309,7 @@ namespace FinalGaraOto
 
                 var slg = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
                 slg.SoLuongTon += n.SoLuong;
-                LoadSoLuongTon();
-
+                //LoadSoLuongTon();
                 DataProvider.Ins.DB.SaveChanges();
 
                 var gnh = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == n.MaVatTuPhuTung).SingleOrDefault();
