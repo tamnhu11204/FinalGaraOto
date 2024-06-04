@@ -38,6 +38,7 @@ namespace FinalGaraOto
             //MessageBox.Show(tbMa.Text);
             LoadChiTietThanhToanPhuTung();
             LoadThongTinNCC();
+            LoadTongTien();
         }
 
         #region scroll bar button
@@ -158,26 +159,34 @@ namespace FinalGaraOto
             public Nullable<decimal> GiaNhap { get; set; }
             public Nullable<decimal> ThanhTien { get; set; }
         }
-
+        void LoadTongTien()
+        {
+            int Maa = int.Parse(tbMa.Text);
+            var m1 = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == Maa).SingleOrDefault();
+            tbTien.Text = m1.TongTienNhapHang.ToString();
+        }
         void LoadChiTietThanhToanPhuTung()
         {
-            int _ma = int.Parse(tbMa.Text);
-            ObservableCollection<ChiTietNhapVatTuPhuTungs> ChiTiets = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
-            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == _ma).ToList();
-            int i = 1;
+            int Ma1 = int.Parse(tbMa.Text);
+            ObservableCollection<ChiTietNhapVatTuPhuTungs> chiTietNhapVatTuPhuTungs = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
+            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == Ma1).ToList();
+
+            int stt = 1;
+
             foreach (var item in List)
             {
-                ChiTietNhapVatTuPhuTungs ct1 = new ChiTietNhapVatTuPhuTungs();
-                ct1.STT = i;
-                ct1.MaVTPT = item.MaVatTuPhuTung;
-                ct1.MaNhapHang = item.MaNhapHang;
-                ct1.TenVT = DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
-                ct1.SL = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.SoLuong == item.SoLuong).Select(x => x.SoLuong).First();
-                ct1.GiaNhap = item.GiaNhap;
-                ct1.ThanhTien = item.ThanhTien;
 
+                ChiTietNhapVatTuPhuTungs chiTietNhapVatTuPhuTungs1 = new ChiTietNhapVatTuPhuTungs();
 
-
+                chiTietNhapVatTuPhuTungs1.STT = stt++;
+                chiTietNhapVatTuPhuTungs1.MaVTPT = item.MaVatTuPhuTung;
+                chiTietNhapVatTuPhuTungs1.MaNhapHang = item.MaNhapHang;
+                chiTietNhapVatTuPhuTungs1.TenVT = item.VATTUPHUTUNG.TenVTPT;
+                chiTietNhapVatTuPhuTungs1.GiaNhap = item.GiaNhap;
+                chiTietNhapVatTuPhuTungs1.SL = item.SoLuong;
+                chiTietNhapVatTuPhuTungs1.ThanhTien = item.ThanhTien;
+                chiTietNhapVatTuPhuTungs.Add(chiTietNhapVatTuPhuTungs1);
+                dtgChiTiet.ItemsSource = chiTietNhapVatTuPhuTungs;
             }
         }
 

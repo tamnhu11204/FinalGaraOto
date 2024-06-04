@@ -131,7 +131,6 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             VerticalAlignment="Top">
                     <DataGrid x:Name="dtgChiTiet" AutoGenerateColumns="False" 
                 
-                ItemsSource="{Binding DanhSachVTPT, Mode=TwoWay}"
                 VerticalAlignment="Center" FontSize="20">
 
                         <DataGrid.Columns>
@@ -200,7 +199,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             <DatePicker materialDesign:HintAssist.Hint="Ngày nhập hàng" x:Name="dtpNgayNhapHang"
                 Grid.Column="2" HorizontalAlignment="Left" Margin="150,502,0,0" Height="40" Width="250" FontSize="20" VerticalAlignment="Top"/>
             <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="74,604,0,0" TextWrapping="Wrap" Text="Tổng tiền : " VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
-            <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="205,595,0,0" TextWrapping="Wrap"  Text="000000" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Width="196" Height="47"/>
+            <TextBlock x:Name="tbTien" Grid.Column="2" HorizontalAlignment="Left" Margin="205,595,0,0" TextWrapping="Wrap"  Text="000000" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Width="196" Height="47"/>
             <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="417,600,0,0" TextWrapping="Wrap" Text="đồng" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
             <Button Grid.Column="2"  Content="Xuất hóa đơn" HorizontalAlignment="Center" Margin="0,721,0,0" VerticalAlignment="Top" Background="#FF3AB73F" FontSize="20" Height="50" BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7"/>
 
