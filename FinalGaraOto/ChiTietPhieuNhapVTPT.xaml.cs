@@ -22,7 +22,6 @@ namespace FinalGaraOto
     /// </summary>
     public partial class ChiTietPhieuNhapVTPT : Window
     {
-        string MaPhNh_;
 
         public ChiTietPhieuNhapVTPT(string n, int MaNH)
         {
@@ -345,7 +344,8 @@ namespace FinalGaraOto
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
-            HoaDonThanhToanPhuTung hoaDonThanhToan = new HoaDonThanhToanPhuTung(tbUserName.Text, MaPhNh_);
+
+            HoaDonThanhToanPhuTung hoaDonThanhToan = new HoaDonThanhToanPhuTung(tbUserName.Text, tbMa.Text);
             hoaDonThanhToan.Show();
             this.Close();
         }

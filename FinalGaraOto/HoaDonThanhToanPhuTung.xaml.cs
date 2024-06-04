@@ -25,7 +25,6 @@ namespace FinalGaraOto
     
     public partial class HoaDonThanhToanPhuTung : Window
     {
-        string _MaNCC;
 
         public HoaDonThanhToanPhuTung(string n, string MaHDPT)
         {
@@ -35,9 +34,10 @@ namespace FinalGaraOto
             var l = DataProvider.Ins.DB.NGUOIDUNGs.Where(x => x.TenDangNhap == n).SingleOrDefault();
             if (l.MaNhom != 1) btnNhanVien.Visibility = Visibility.Hidden;
 
-            _MaNCC = MaHDPT;
-
-            //LoadChiTietThanhToanPhuTung();
+            tbMa.Text = MaHDPT;
+            //MessageBox.Show(tbMa.Text);
+            LoadChiTietThanhToanPhuTung();
+            LoadThongTinNCC();
         }
 
         #region scroll bar button
@@ -124,7 +124,7 @@ namespace FinalGaraOto
         void LoadThongTinNCC()
         {
             int mancc = 0;
-            int _ma = int.Parse(_MaNCC);
+            int _ma = int.Parse(tbMa.Text);
             //var maNH = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == ).SingleOrDefault();
             var maNCC = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhapHang == _ma).SingleOrDefault();
             if (maNCC != null)
@@ -161,9 +161,9 @@ namespace FinalGaraOto
 
         void LoadChiTietThanhToanPhuTung()
         {
+            int _ma = int.Parse(tbMa.Text);
             ObservableCollection<ChiTietNhapVatTuPhuTungs> ChiTiets = new ObservableCollection<ChiTietNhapVatTuPhuTungs>();
-            var l = DataProvider.Ins.DB.PHIEUNHAPs.Where(x => x.MaNhaCungCap.ToString() == _MaNCC).SingleOrDefault();
-            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == l.MaNhapHang).ToList();
+            var List = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaNhapHang == _ma).ToList();
             int i = 1;
             foreach (var item in List)
             {
