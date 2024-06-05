@@ -176,7 +176,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                             <RowDefinition Height="127*"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="-42,0,0,0" HorizontalAlignment="Left" Width="742" Grid.RowSpan="2">
-                                            <TextBox x:Name="txbMaDVT" IsReadOnly="True"
+                                            <TextBox x:Name="txbMaDVT" IsReadOnly="True" Background="#FFD6D6D6"
                                                 materialDesign:HintAssist.Hint="Mã đơn vị"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,11,0,0" FontSize="18"  Width="450" />
                                             <TextBox x:Name= "txbTenDVT"  
@@ -210,7 +210,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     <StackPanel Width="1600" Margin="0,11,0,-6" Orientation="Horizontal">
                         <StackPanel Width="1600" Height="806">
                             <TextBox Margin="10,11,0,0" x:Name="txbMaTienCong" IsReadOnly="True"
-            materialDesign:HintAssist.Hint="Mã tiền công"
+            materialDesign:HintAssist.Hint="Mã tiền công" Background="#FFD6D6D6"
             Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" >
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
@@ -260,7 +260,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     <StackPanel Width="1600" Margin="0,11,0,-6" Orientation="Horizontal">
                         <StackPanel Width="1600" Height="806">
                             <TextBox Margin="10,11,0,0" x:Name="txbMaHieuXe" IsReadOnly="True"
-                                    materialDesign:HintAssist.Hint="Mã hiệu xe"
+                                    materialDesign:HintAssist.Hint="Mã hiệu xe" Background="#FFD6D6D6"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbTenHangXe_TextChanged">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>
@@ -310,7 +310,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     <StackPanel Width="1600" Margin="0,11,0,-6" Orientation="Horizontal">
                         <StackPanel Width="1600" Height="806">
                             <TextBox Margin="10,11,0,0" x:Name="txbMaNCC" IsReadOnly="True"
-                                    materialDesign:HintAssist.Hint="Mã"
+                                    materialDesign:HintAssist.Hint="Mã" Background="#FFD6D6D6"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="61" Width="300" HorizontalAlignment="Left" TextChanged="txbTenHangXe_TextChanged">
                                 <TextBox.Text>
                                     <Binding Path="Text2" UpdateSourceTrigger="PropertyChanged"/>

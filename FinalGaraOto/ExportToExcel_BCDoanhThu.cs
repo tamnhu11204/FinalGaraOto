@@ -40,7 +40,7 @@ namespace FinalGaraOto
 
             for (int i = 0; i<datagrid.Items.Count; i++)
             {
-                var item = datagrid.Items[i] as CT_BCDT;
+                var item = datagrid.Items[i] as BCDT;
                 if (item != null)
                 {
                     sheet1.Cells[i+5, 1].Value= item.hieuxe;
