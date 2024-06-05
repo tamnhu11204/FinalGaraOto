@@ -168,11 +168,11 @@ namespace FinalGaraOto
 
         private void LoadDataBCDT()
         {
-            ObservableCollection<CT_BCDT> kinhdoanh = new ObservableCollection<CT_BCDT>();
+            ObservableCollection<BCDT> kinhdoanh = new ObservableCollection<BCDT>();
             var Listhx = DataProvider.Ins.DB.HIEUXEs.Distinct().ToList();
            foreach(var item in Listhx)
             {
-                CT_BCDT ct= new CT_BCDT();
+                BCDT ct= new BCDT();
                 ct.hieuxe= item.MaHieuXe;
                 ct.tenhieuxe= item.TenHieuXe;
                 kinhdoanh.Add(ct);
@@ -245,26 +245,18 @@ namespace FinalGaraOto
 
     public class BCDT
     {
-        public int stt { get; set; }
+        public int hieuxe {  get; set; }
+        public string tenhieuxe { get; set; }
 
-        public int soluotxe { get; set; }
+        public int soluotsua { get; set; }
         public decimal thanhtien { get; set; }
-        public float tile { get; set; }
+        public double tile { get; set; }
 
         public System.DateTime thang { get; set; }
         public System.DateTime nam { get; set; }
     }
 
-    public class CT_BCDT
-    {
-
-        public int mabc { get; set; }
-        public int hieuxe { get; set; }
-        public string tenhieuxe { get; set; }
-        public int soluotsua { get; set; }
-        public decimal thanhtien { get; set; }
-        public double tile { get; set; }
-    }
+  
 }
 
     
