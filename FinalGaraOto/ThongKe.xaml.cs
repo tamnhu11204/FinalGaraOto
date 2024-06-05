@@ -218,7 +218,9 @@ namespace FinalGaraOto
 
         }
 
-       
+        private void Hanghoa_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }
