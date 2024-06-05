@@ -156,17 +156,17 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                         </Grid.RowDefinitions>
                         <StackPanel Margin="66,0,66,0" Grid.RowSpan="2">
                             <TextBox x:Name="txbHoVaTen"
-materialDesign:HintAssist.Hint="Họ và tên"
+materialDesign:HintAssist.Hint="Họ và tên" Background="#FFD6D6D6"
 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="20"  Width="250" IsReadOnly="True"/>
 
                             <TextBox x:Name="txbDiaChi"
-materialDesign:HintAssist.Hint="Địa chỉ"
+materialDesign:HintAssist.Hint="Địa chỉ" Background="#FFD6D6D6"
 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="20"  Width="250" IsReadOnly="True" />
                             <TextBox x:Name="txbSDT"
-materialDesign:HintAssist.Hint="Số điện thoại"
+materialDesign:HintAssist.Hint="Số điện thoại" Background="#FFD6D6D6"
 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="20"  Width="250" IsReadOnly="True" />
                             <TextBox x:Name="txbEmail"
-materialDesign:HintAssist.Hint="Email"
+materialDesign:HintAssist.Hint="Email" Background="#FFD6D6D6"
 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="20"  Width="250" IsReadOnly="True" />
                         </StackPanel>
                     </Grid>
@@ -175,10 +175,13 @@ Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" Font
             <DatePicker x:Name="dpNgay" materialDesign:HintAssist.Hint="Ngày thu tiền"
       Grid.Column="3" HorizontalAlignment="Left" Margin="150,502,0,0" Height="40" Width="250" FontSize="20" VerticalAlignment="Top"/>
             <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="74,604,0,0" TextWrapping="Wrap" Text="Tổng tiền : " VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="74,650,0,0" TextWrapping="Wrap" Text="Tiền nợ : " VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
             <TextBlock Grid.Column="3" HorizontalAlignment="Center" Margin="0,527,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
             <TextBlock x:Name="tbTongTien" Grid.Column="3" HorizontalAlignment="Left" Margin="387,604,0,0" TextWrapping="Wrap" Text="đồng" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
-            <Button x:Name="btnThanhToan" Grid.Column="3"  Content="Thanh toán" HorizontalAlignment="Left" Margin="57,730,0,0" VerticalAlignment="Top" Background="#FF3AB73F" FontSize="20"  BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7" Height="50" Click="btnThanhToan_Click"/>
-            <Button x:Name="btnThoat" Margin="339,730,20,85" Content="Thoát" Background="#FF1D2850" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThoat_Click" RenderTransformOrigin="0.381,0.844" Grid.Column="3" Height="50"/>
+            <TextBlock x:Name="tbTienNo" Grid.Column="3" HorizontalAlignment="Left" Margin="387,650,0,0" TextWrapping="Wrap" Text="đồng" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+            <Button x:Name="btnThanhToan" Grid.Column="3"  Content="Thanh toán" HorizontalAlignment="Left" Margin="57,705,0,0" VerticalAlignment="Top" Background="#FF3AB73F" FontSize="20"  BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7" Height="50" Click="btnThanhToan_Click"/>
+            <Button x:Name="btnXuat" Grid.Column="3"  Content="Xuất file" HorizontalAlignment="Center" Margin="0,782,0,0" VerticalAlignment="Top" Background="#FF3A43B7" FontSize="20"  BorderBrush="{DynamicResource MaterialDesignPaper}" RenderTransformOrigin="0.525,1.7" Height="50" Click="btnXuat_Click"/>
+            <Button x:Name="btnThoat" Margin="339,705,20,110" Content="Thoát" Background="#FF1D2850" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}" Click="btnThoat_Click" RenderTransformOrigin="0.381,0.844" Grid.Column="3" Height="50"/>
         </Grid>
     </Grid>
 </Window>

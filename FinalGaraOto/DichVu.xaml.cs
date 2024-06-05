@@ -22,6 +22,7 @@ namespace FinalGaraOto
     /// </summary>
     public partial class DichVu : Window
     {
+        int s = 0;
         public DichVu(string n)
         {
             InitializeComponent();
@@ -142,6 +143,7 @@ namespace FinalGaraOto
             }
             var t = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "X").SingleOrDefault();
             tbXE.Text = "Số xe đã tiếp nhận hôm nay : " + i.ToString() + "/" + t.GiaTri.ToString();
+            s = i;
         }
 
         void LoadComboBoxHieuXe() //Hien thi cac item trong combobox
@@ -169,9 +171,17 @@ namespace FinalGaraOto
         #region btn TiepNhan
         private void btnTiepNhanXe_Click(object sender, RoutedEventArgs e)
         {
-            TiepNhanXe tiepnhan = new TiepNhanXe(tbUserName.Text);
-            tiepnhan.ShowDialog();
-            this.Close();
+            var t = DataProvider.Ins.DB.THAMSOes.Where(x => x.TenThamSo == "X").SingleOrDefault();
+            if (s >= t.GiaTri)
+            {
+                MessageBox.Show("Số xe tiếp nhận đã đủ với quy định.Xin điều chỉnh số lượng xe nếu muốn tiếp nhận thêm ");
+            }
+            else
+            {
+                TiepNhanXe tiepnhan = new TiepNhanXe(tbUserName.Text);
+                tiepnhan.ShowDialog();
+                this.Close();
+            }
         }
         #endregion
 

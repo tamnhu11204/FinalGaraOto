@@ -64,6 +64,7 @@ namespace FinalGaraOto
                 m.MaHieuXe = l.MaHieuXe;
                 m.BienSoXe = txbBienSo.Text;
                 m.NgayTiepNhan = DateTime.Parse(dpNgayTiepNhan.Text);
+                m.TienNo = 0;
 
                 DataProvider.Ins.DB.XEs.Add(m);
 
@@ -71,6 +72,7 @@ namespace FinalGaraOto
                 p.NgaySuaChua = m.NgayTiepNhan;
                 p.MaTiepNhan = m.MaTiepNhan;
                 p.TongTienSuaCHua = 0;
+                
 
                 DataProvider.Ins.DB.PHIEUSUACHUAs.Add(p);
 

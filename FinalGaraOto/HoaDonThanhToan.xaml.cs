@@ -207,12 +207,14 @@ namespace FinalGaraOto
         void LoadThongTinChuXe ()
         {
             string y = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).Select(x => x.MaChuXe.ToString()).First();
+            string n = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).Select(x => x.TienNo.ToString()).First();
             var c = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe.ToString() == y).First();
             txbHoVaTen.Text = c.TenChuXe;
             txbDiaChi.Text = c.DiaChiChuXe;
             txbSDT.Text = c.SDTChuXe;
             txbEmail.Text = c.EmailChuXe;
             dpNgay.SelectedDate = DateTime.Now;
+            tbTienNo.Text = c + "đồng ";
         }
 
         void LoadPhieuThu()
@@ -236,11 +238,34 @@ namespace FinalGaraOto
 
             }    
 
+
         }
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
+            var n = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
+            if (n.TienNo == 0)
+            {
+                MessageBox.Show("Hoa don da duoc thanh toan trc do ");
+            }
+            else
+            {
+                n.TienNo = 0;
+                DataProvider.Ins.DB.SaveChanges();
+                MessageBox.Show("Thanh toán thành công");
+            } 
+                
+        }
 
+        private void btnXuat_Click(object sender, RoutedEventArgs e)
+        {
+            string Ngay = dpNgay.Text;
+            string TenCX = txbHoVaTen.Text;
+            string DiaChi = txbDiaChi.Text;
+            string SDT = txbSDT.Text;
+            string Email = txbEmail.Text;
+            string Tien = tbTongTien.Text;
+            XuatFileHoaDonThanhToan export = new XuatFileHoaDonThanhToan(dtgChiTiet, Ngay, TenCX, DiaChi, SDT, Email, Tien);
         }
     }
 }
