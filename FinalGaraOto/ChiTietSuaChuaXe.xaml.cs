@@ -331,11 +331,7 @@ namespace FinalGaraOto
 
         }
 
-        private void btnSua_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         
     }
 }
