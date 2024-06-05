@@ -117,7 +117,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                     <StackPanel Width="1684" Margin="0,11,0,0" Orientation="Horizontal">
 
                         <StackPanel Width="850" Height="806">
-                            <GroupBox Margin="0,20,0,0" Width="750" Height="306" 
+                            <GroupBox Margin="0,20,0,0" Width="750" Height="306" x:Name="gbThongTinGara"
                                 Header="Thông tin Gara" BorderBrush="{DynamicResource MaterialDesignPaper}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <StackPanel Width="556" Orientation="Horizontal" Margin="0,17,0,-351">
                                     <Grid Margin="-70,-30,467,0" Width="124" Height="522" >
@@ -140,7 +140,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                     </Grid>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox Width="750" Height="334" 
+                            <GroupBox Width="750" Height="334" x:Name="gbTiLeLoi"
                                 Header="Thông tin tỉ lệ lời" BorderBrush="{DynamicResource MaterialDesignPaper}">
                                 <StackPanel Width="556" Orientation="Horizontal" Margin="0,17,0,-351">
                                     <Grid Margin="-70,-30,467,0" Width="124" Height="522" >
@@ -157,7 +157,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                                 materialDesign:HintAssist.Hint="Phần trăm lời của sản phẩm (10, 20...)"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="450" PreviewTextInput="txbPhanTramLoi_PreviewTextInput" />
 
-                                            <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhatPhanTramLoi_Click"
+                                            <Button x:Name="btnCapNhatTiLeLoi" Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhatPhanTramLoi_Click"
                                                 Margin="-150,11,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                         </StackPanel>
                                     </Grid>
@@ -165,7 +165,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                             </GroupBox>
                         </StackPanel>
                         <StackPanel>
-                            <GroupBox Width="750" Height="683"  Margin="0,20,0,0"
+                            <GroupBox Width="750" Height="683"  Margin="0,20,0,0" x:Name="gbDonViVTPT"
                                 Header="Đơn vị vật tư phụ tùng" BorderBrush="{DynamicResource MaterialDesignPaper}">
                                 <StackPanel Width="682" Height="557" Orientation="Horizontal" Margin="0,32,0,31">
                                     <Grid Margin="-70,-30,467,0" Width="124" Height="522" >
@@ -182,11 +182,11 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                                             <TextBox x:Name= "txbTenDVT"  
                                                 materialDesign:HintAssist.Hint="Tên đơn vị"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,11,0,0" FontSize="18"  Width="450" />
-                                            <Button Content="Thêm" Background="#FF89BAD2" Click="BtnThemDVT_Click"
+                                            <Button x:Name="btnThemDV" Content="Thêm" Background="#FF89BAD2" Click="BtnThemDVT_Click"
                                                 Margin="-310,20,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                                            <Button Content="Xóa" Background="#FFB73E3A" Click="BtnXoaDVT_Click"
+                                            <Button x:Name="btnXoaDV" Content="Xóa" Background="#FFB73E3A" Click="BtnXoaDVT_Click"
                                                 Margin="310,-50,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                                            <Button Content="Cập nhật" Background="#FF1B76C6" Click="BtnCapNhapDVT_Click"
+                                            <Button x:Name="btnCapNhatDV" Content="Cập nhật" Background="#FF1B76C6" Click="BtnCapNhapDVT_Click"
                                                 Margin="0,-50,0,0" Height="47" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                                             <DataGrid 
                                                 AutoGenerateColumns="False" Margin="0,20,0,0"

@@ -170,34 +170,44 @@ namespace FinalGaraOto
         {
             ObservableCollection<BCDT> kinhdoanh = new ObservableCollection<BCDT>();
             var Listhx = DataProvider.Ins.DB.HIEUXEs.Distinct().ToList();
-           foreach(var item in Listhx)
+            foreach (var item in Listhx)
             {
-                BCDT ct= new BCDT();
-                ct.hieuxe= item.MaHieuXe;
-                ct.tenhieuxe= item.TenHieuXe;
+                BCDT ct = new BCDT();
+                ct.hieuxe = item.MaHieuXe;
+                ct.tenhieuxe = item.TenHieuXe;
                 kinhdoanh.Add(ct);
             }
-           
-           foreach (var item in kinhdoanh)
+
+            foreach (var item in kinhdoanh)
             {
-                item.thanhtien= DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe==item.hieuxe).Sum(t => t.SoTienThu);
-                item.soluotsua=  DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe==item.hieuxe).Count();
-                
+                var tt = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe);
+                if (tt != null)
+                {
+
+                    item.thanhtien = tt.Sum(t => t.SoTienThu);
+
+                }
+                else
+                {
+                    item.thanhtien = 0;
+                }
+                item.soluotsua = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe).Count();
+
             }
             decimal sum = 0;
-           foreach(var item in kinhdoanh)
+            foreach (var item in kinhdoanh)
             {
-                sum+=item.thanhtien;
+                sum += item.thanhtien;
             }
 
-           foreach(var item in kinhdoanh)
+            foreach (var item in kinhdoanh)
             {
-                item.tile= Convert.ToDouble(item.thanhtien)/ Convert.ToDouble(sum);
+                item.tile = Convert.ToDouble(item.thanhtien) / Convert.ToDouble(sum);
             }
-           Dg_Bcdoanhthu.ItemsSource= kinhdoanh;
-           
+            Dg_Bcdoanhthu.ItemsSource = kinhdoanh;
+
         }
-        
+
         private void Bnt_xembc_Click(object sender, RoutedEventArgs e)
         {
             LoadDataBCDT();
