@@ -131,12 +131,6 @@ namespace FinalGaraOto
             this.Close();
         }
 
-        private void Hangton_Click(object sender, RoutedEventArgs e)
-        {
-            BCTon Child = new BCTon(tbUserName.Text);
-            Child.Show();
-            this.Close();
-        }
 
         void LoadComboBoxNamBaoCao()
         {
@@ -174,11 +168,14 @@ namespace FinalGaraOto
                     }
                 }
             }
-           
-            
 
-            /*Cb_Thang.ItemsSource = data;*/
+        }
 
+        private void Hanghoa_Click(object sender, RoutedEventArgs e)
+        {
+            BCTon Child = new BCTon(tbUserName.Text);
+            Child.Show();
+            this.Close();
         }
 
         void LoadDataGridLSKD()
@@ -218,9 +215,6 @@ namespace FinalGaraOto
 
         }
 
-        private void Hanghoa_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
     }
 }

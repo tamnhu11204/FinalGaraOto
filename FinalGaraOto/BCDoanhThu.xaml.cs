@@ -80,7 +80,7 @@ namespace FinalGaraOto
 
         #region button tab
 
-        private void Bnt_bcton_Click(object sender, RoutedEventArgs e)
+        private void Bnt_hanghoa_Click(object sender, RoutedEventArgs e)
         {
             BCTon HangTon = new BCTon(tbUserName.Text);
             HangTon.Show();
@@ -232,9 +232,8 @@ namespace FinalGaraOto
 
             Dg_Bcdoanhthu.ItemsSource = kinhdoanh;
 
-            Lb_tongdt.Content= sum.ToString();
 
-            Lb_tongdt.Content = sum.ToString();
+           
 
 
         }

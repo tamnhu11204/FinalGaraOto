@@ -122,7 +122,7 @@
                 Height="50" BorderBrush="{x:Null}" 
                 Margin="850,0,0,0"
                 Click="Bnt_xuatfilebc_Click"/>
-                <Button x:Name="Bnt_dong"
+                <Button x:Name="Bnt_thoat"
                 Command="{Binding DongCommand}"
                 
                 Content="Thoát" FontSize="20" Background="#FF1D2850" Width="106" 
@@ -143,10 +143,7 @@
                 VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
             </ComboBox>
             
-            <StackPanel Width=" 500" Height="500" Margin="1058,310,142,55">
-                <Label x:Name="Lb_tongdt" FontWeight="Bold" 
-                   FontSize="20" Margin="100,250,0,146" Height="176" Width="auto"/>
-            </StackPanel>
+            
             <DataGrid x:Name="Dg_Bcdoanhthu"   
                       Margin="0,132,0,221" 
                       FontSize="20" IsReadOnly="True"
@@ -171,13 +168,13 @@
                     Margin="100,35, 430,0"
                     Click="Bnt_xembc_Click"/>
             </StackPanel>
-            <Button x:Name="Bnt_bcton"
+            <Button x:Name="Bnt_hanghoa"
                 Command="{Binding XemBaoCaoCommand}"
                 CommandParameter="{Binding ElementName=UCBaoCaoDoanhThu}"
                 Content="Hàng hóa" FontSize="20"
                 Background="#FF1B76C6" 
                     Width="150"  Height="50" BorderBrush="{x:Null}" Margin="1058,45,492,770"
-                Click="Bnt_bcton_Click"/>
+                Click="Bnt_hanghoa_Click"/>
 
         </Grid>
     </Grid>

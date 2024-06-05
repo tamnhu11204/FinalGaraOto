@@ -119,11 +119,13 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 <Button x:Name="Btn_doanhthu"
                         Command="{Binding DoanhthuCommand}"
                         CommandParameter="{Binding ElementName= UCThongKe}"
-                        Content="Doanh thu" FontSize="20" Background="#FF1079D6" Width="140" Height="52" Margin="0,30,0,681.4" HorizontalAlignment="Left" Click="Doanhthu_Click"/>
-                <Button x:Name="Btn_hangton"
+                        Content="Doanh thu" FontSize="20" Background="#FF1079D6" Width="140" Height="52" Margin="0,30,0,681.4"
+                        HorizontalAlignment="Left" Click="Doanhthu_Click"/>
+                <Button x:Name="Btn_hanghoa"
                         Command="{Binding HangtonCommand}"
                         CommandParameter="{Binding ElementName=UCHangTon}"
-                        Content="Hàng hóa" FontSize="20" Background="#FF1079D6" Width="140" Height="52" HorizontalAlignment="Right" Margin="-10,-1000,100,415" Click="Hangton_Click"/>
+                        Content="Hàng hóa" FontSize="20" Background="#FF1079D6" 
+                        Width="140" Height="52" HorizontalAlignment="Right" Margin="-10,-1000,100,415" Click="Hanghoa_Click"/>
 
             </StackPanel>
 
