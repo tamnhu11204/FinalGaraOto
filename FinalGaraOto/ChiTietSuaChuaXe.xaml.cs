@@ -227,6 +227,7 @@ namespace FinalGaraOto
             var List = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == l.MaSuaChua).ToList();
             int i = 1;
             //decimal TongTien = 0;
+            var tt = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
             foreach (var item in List)
             {
                 CHITIET ct1 = new CHITIET();
@@ -261,8 +262,6 @@ namespace FinalGaraOto
                 d.TongTienVTPT = ThanhTien;
                 d.TongCong =ThanhTien + DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == d.MaTienCong).Select(x => x.GiaTienCong).First();
 
-                l.TongTienSuaCHua = l.TongTienSuaCHua + d.TongCong;
-                DataProvider.Ins.DB.SaveChanges();
                 i++;
                 ct1.SL = SL;
                 ct1.Gia = ThanhTien.ToString();
@@ -272,9 +271,22 @@ namespace FinalGaraOto
                 dtgChiTiet.ItemsSource = ChiTiets;
 
                 LoadTongTien();
-               
+
+
                 //TongTien = TongTien + DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong).First() + ThanhTien;
             }
+
+            int ma = int.Parse(MaXe_);
+            var m1 = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan == ma).SingleOrDefault();
+            m1.TongTienSuaCHua = 0;
+              DataProvider.Ins.DB.SaveChanges();
+            var m2 = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == m1.MaSuaChua).ToList();
+            foreach (var item in m2)
+            {
+                m1.TongTienSuaCHua = m1.TongTienSuaCHua + item.TongCong;
+                DataProvider.Ins.DB.SaveChanges();
+            }
+            
             /*if (TongTien == 0)
             {
                 txbTongTien.Text = "0";

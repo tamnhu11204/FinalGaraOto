@@ -84,9 +84,12 @@ namespace FinalGaraOto
                 DataProvider.Ins.DB.SaveChanges();
 
                 var v = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaSuaChua == c.MaSuaChua).SingleOrDefault();
+                v.TongTienSuaCHua = v.TongTienSuaCHua + c.TongCong;
+                DataProvider.Ins.DB.SaveChanges();
                 var xe = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan == v.MaTiepNhan).SingleOrDefault();
                 xe.TienNo = xe.TienNo + c.TongCong;
                 DataProvider.Ins.DB.SaveChanges();
+
 
                 ChiTietSuaChuaXe ct_ = new ChiTietSuaChuaXe(tbUserName.Text, psc.MaTiepNhan.ToString());
                 this.Close();

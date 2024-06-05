@@ -65,15 +65,13 @@ namespace FinalGaraOto
                 m.BienSoXe = txbBienSo.Text;
                 m.NgayTiepNhan = DateTime.Parse(dpNgayTiepNhan.Text);
                 m.TienNo = 0;
-
                 DataProvider.Ins.DB.XEs.Add(m);
+                DataProvider.Ins.DB.SaveChanges();
 
                 var p = new PHIEUSUACHUA();
                 p.NgaySuaChua = m.NgayTiepNhan;
                 p.MaTiepNhan = m.MaTiepNhan;
-                p.TongTienSuaCHua = 0;
-                
-
+               // p.TongTienSuaCHua = 0;
                 DataProvider.Ins.DB.PHIEUSUACHUAs.Add(p);
 
                 DataProvider.Ins.DB.SaveChanges();
