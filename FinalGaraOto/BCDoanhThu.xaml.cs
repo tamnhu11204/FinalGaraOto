@@ -175,23 +175,34 @@ namespace FinalGaraOto
                 BCDT ct = new BCDT();
                 ct.hieuxe = item.MaHieuXe;
                 ct.tenhieuxe = item.TenHieuXe;
+
+
                 kinhdoanh.Add(ct);
+
+
             }
 
             foreach (var item in kinhdoanh)
             {
                 var tt = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe);
+
                 if (tt != null)
                 {
+                    int _t1 = Convert.ToInt32(Cb_Thang.Text);
+                    int _t2 = Convert.ToInt32(Cb_Nam.Text);
+                    item.thanhtien = tt.Where(x => x.NgayThuTien.Month == _t1 && x.NgayThuTien.Year == _t2).Sum(t => t.SoTienThu);
 
-                    item.thanhtien = tt.Sum(t => t.SoTienThu);
+                    int _t3 = Convert.ToInt32(Cb_Thang.Text);
+                    int _t4 = Convert.ToInt32(Cb_Nam.Text);
+                    item.soluotsua = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe && x.NgayThuTien.Month == _t3 && x.NgayThuTien.Year == _t4).Count();
 
                 }
                 else
                 {
                     item.thanhtien = 0;
+                    item.soluotsua = 0;
                 }
-                item.soluotsua = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe).Count();
+
 
             }
             decimal sum = 0;
@@ -204,6 +215,7 @@ namespace FinalGaraOto
             {
                 item.tile = Convert.ToDouble(item.thanhtien) / Convert.ToDouble(sum);
             }
+
             Dg_Bcdoanhthu.ItemsSource = kinhdoanh;
 
         }
