@@ -165,7 +165,11 @@ namespace FinalGaraOto
                     var c = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung && x.MaChiTietSuaChua == item2.MaChiTietSuaChua).First();
                    
                 }
-              
+                var d = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).First();
+                d.TongTienVTPT = ThanhTien;
+                d.TongCong = ThanhTien + DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == d.MaTienCong).Select(x => x.GiaTienCong).First();
+                DataProvider.Ins.DB.SaveChanges();
+
                 i++;
                 ct1.SL = SL;
                 ct1.Gia = ThanhTien.ToString();
@@ -173,6 +177,7 @@ namespace FinalGaraOto
                 //ct1.ThanhTien = (int.Parse(ct1.Gia) + int.Parse( ct1.TC)).ToString();
                 ChiTiets.Add(ct1);
                 dtgChiTiet.ItemsSource = ChiTiets;
+
 
                 LoadTongTien();
 
