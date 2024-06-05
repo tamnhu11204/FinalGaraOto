@@ -61,7 +61,7 @@
                     <PasswordBox x:Name="txtMatKhau"
                 materialDesign:HintAssist.Hint="Mật khẩu"
                 Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Password="" Width="403" Height="65" Margin="0,11,0,0" FontSize="20" />
-                    <Button 
+                    <Button x:Name="btnDangNhap"
                         Content="Đăng nhập" Width="150" Margin="-20,20,0,0" Height="47" Background="#FF89BAD2" BorderBrush="{DynamicResource MaterialDesignPaper}" FontSize="20" FontWeight="Bold" Foreground="Black"
                         Click="BtnDangNhap_Click"/>
                 </StackPanel>

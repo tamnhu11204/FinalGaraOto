@@ -1,5 +1,7 @@
 ﻿using FinalGaraOto.Model;
 using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
+
 //using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
@@ -191,6 +193,16 @@ namespace FinalGaraOto
         }
 
         #endregion
-
+        private void btnXuatHoaDon_Click(object sender, RoutedEventArgs e)
+        {
+            //string NgayNH, string TenNCC, string DiaChi, string SDT, string Email, string Tien
+            string Ngay=dtpNgayNhapHang.Text;
+            string TenNCC=txbTenNCC.Text;
+            string DiaChi=txbDiaChi.Text;
+            string SDT=txbSDT.Text;
+            string Email=txbEmail.Text;
+            string Tien=tbTien.Text;
+            XuatHoaDonVTPT export = new XuatHoaDonVTPT(dtgChiTiet, Ngay,  TenNCC,  DiaChi,  SDT,  Email,  Tien);
+        }
     }
 }

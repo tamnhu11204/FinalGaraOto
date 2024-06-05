@@ -137,7 +137,7 @@
                     <RowDefinition Height="auto" ></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <GroupBox BorderBrush="{DynamicResource MaterialDesignPaper}"
+                    <GroupBox BorderBrush="{DynamicResource MaterialDesignPaper}" x:Name="gbThongTinNV"
            Width="600"
            materialDesign:ElevationAssist.Elevation="Dp6"
            Background="White"
@@ -263,14 +263,14 @@
                     </GroupBox>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhat_Click"
+                    <Button Content="Cập nhật" Background="#FF89BAD2" Click="BtnCapNhat_Click" x:Name="btnCapNhat"
                             Margin="350,0,350,68" Height="50" Width="150" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                 </Grid>
 
             </Grid>
 
             <Grid Grid.Column="1" >
-                <GroupBox BorderBrush="{DynamicResource MaterialDesignPaper}"
+                <GroupBox BorderBrush="{DynamicResource MaterialDesignPaper}" x:Name="gbPhanQuyen"
            Margin="20,-70,0,0"
            Width="600"
            materialDesign:ElevationAssist.Elevation="Dp6"
