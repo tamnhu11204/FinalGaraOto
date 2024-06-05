@@ -139,7 +139,7 @@ namespace FinalGaraOto
         {
             int ma = int.Parse(MaXe_);
             var m1 = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan== ma).SingleOrDefault();
-            txbTongTien.Text = m1.TongTienSuaCHua.ToString();
+            tbTongTien.Text = m1.TongTienSuaCHua.ToString();
         }
 
         void LoadChiTietTT ()
@@ -264,7 +264,7 @@ namespace FinalGaraOto
                 i++;
                 ct1.SL = SL;
                 ct1.Gia = ThanhTien.ToString();
-                ct1.ThanhTien = (DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong.ToString()).First() + ThanhTien);
+                ct1.ThanhTien = (DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong).First() + ThanhTien).ToString() ;
                 //ct1.ThanhTien = (int.Parse(ct1.Gia) + int.Parse( ct1.TC)).ToString();
                 ChiTiets.Add(ct1);
                 dtgChiTiet.ItemsSource = ChiTiets;

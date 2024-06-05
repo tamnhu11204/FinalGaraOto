@@ -149,6 +149,7 @@ namespace FinalGaraOto
             txbVatTu.Text = t;
             txbSL.Text = s.ToString();
             txbDonGia.Text = a.ToString();
+
         }
     }
 }

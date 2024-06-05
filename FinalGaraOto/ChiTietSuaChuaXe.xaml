@@ -166,8 +166,7 @@ Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-200,11,0,0" Font
                         </StackPanel>
                     </GroupBox>
                     <TextBlock Margin="40,650,0,0" TextWrapping="Wrap" Text="Tổng tiền: " FontSize="30" Foreground="#FFE92713" Height="49" Width="171"/>
-                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                        x:Name="txbTongTien" TextWrapping="Wrap"  Width="224" Height="35" Margin="0,650,0,0" FontSize="30" Foreground="#FFE92713" IsReadOnly="True"/>
+                    <TextBlock x:Name="tbTongTien" Margin="40,650,0,0" TextWrapping="Wrap" Text="00000" FontSize="30" Foreground="#FF121010" Height="49" Width="171"/>
                 </StackPanel>
                 <DataGrid AutoGenerateColumns="False"
                     x:Name="dtgChiTiet"  Margin="428,20,10,280" BorderBrush="Black" FontSize="20" SelectionChanged="dtgChiTiet_SelectionChanged" IsReadOnly="True">
