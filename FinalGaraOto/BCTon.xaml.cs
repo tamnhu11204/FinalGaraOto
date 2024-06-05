@@ -124,7 +124,7 @@ namespace FinalGaraOto
                 if (!uniqueYears.Contains(item))
                 {
                     uniqueYears.Add(item);
-                    NamCb.Items.Add(item);
+                    Cb_Nam.Items.Add(item);
                 }
             }
         }
@@ -139,7 +139,7 @@ namespace FinalGaraOto
                 if (!uniqueYears.Contains(item))
                 {
                     uniqueYears.Add(item);
-                    ThangCb.Items.Add(item);
+                    Cb_Thang.Items.Add(item);
                 }
             }
         }
@@ -163,7 +163,7 @@ namespace FinalGaraOto
                 baocaoton1.nam= item.NamBaoCaoTon;
                 baocaoton1.thang = item.ThangBaoCaoTon;
 
-                if ((NamCb.Text== Convert.ToString(baocaoton1.nam.Year)) && ThangCb.Text== Convert.ToString(baocaoton1.thang.Month))
+                if ((Cb_Nam.Text== Convert.ToString(baocaoton1.nam.Year)) && Cb_Thang.Text== Convert.ToString(baocaoton1.thang.Month))
                 {
                     bcton.Add(baocaoton1);
                 }

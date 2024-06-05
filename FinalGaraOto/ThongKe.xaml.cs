@@ -150,7 +150,7 @@ namespace FinalGaraOto
                     if (!uniqueYears.Contains(item))
                     {
                         uniqueYears.Add(item);
-                        NamCb.Items.Add(item);
+                        Cb_Nam.Items.Add(item);
                     }
                 }
             }
@@ -170,14 +170,14 @@ namespace FinalGaraOto
                     if (!uniqueYears.Contains(item))
                     {
                         uniqueYears.Add(item);
-                        ThangCb.Items.Add(item);
+                        Cb_Thang.Items.Add(item);
                     }
                 }
             }
            
             
 
-            /*ThangCb.ItemsSource = data;*/
+            /*Cb_Thang.ItemsSource = data;*/
 
         }
 
@@ -194,12 +194,12 @@ namespace FinalGaraOto
                 kinhdoanh1.Ngaythanhtoan= item.NgayThuTien;
                 kinhdoanh1.Doanhthu= item.SoTienThu;
                
-                if ((NamCb.Text == Convert.ToString(kinhdoanh1.Ngaythanhtoan.Year)) && (ThangCb.Text == Convert.ToString(kinhdoanh1.Ngaythanhtoan.Month)))
+                if ((Cb_Nam.Text == Convert.ToString(kinhdoanh1.Ngaythanhtoan.Year)) && (Cb_Thang.Text == Convert.ToString(kinhdoanh1.Ngaythanhtoan.Month)))
                 {
 
                     kinhdoanh.Add(kinhdoanh1);
                 }
-                LichSuKinhDoanh.ItemsSource = kinhdoanh;
+                Dg_LichSuKinhDoanh.ItemsSource = kinhdoanh;
 
             }
         }

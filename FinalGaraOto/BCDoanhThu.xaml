@@ -131,13 +131,13 @@
 
             </StackPanel>
 
-            <ComboBox Name="NamCb"
+            <ComboBox Name="Cb_Nam"
                 materialDesign:TextFieldAssist.PrefixText="Năm"
                 IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
 
             </ComboBox>
             <ComboBox
-                Name="ThangCb"
+                Name="Cb_Thang"
                 materialDesign:TextFieldAssist.PrefixText="Tháng "
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">

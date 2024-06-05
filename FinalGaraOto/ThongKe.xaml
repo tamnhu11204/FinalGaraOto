@@ -116,11 +116,11 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         <Grid Grid.Row="3">
 
             <StackPanel Margin="1100,10,10,555" >
-                <Button x:Name="Doanhthu"
+                <Button x:Name="Btn_doanhthu"
                         Command="{Binding DoanhthuCommand}"
                         CommandParameter="{Binding ElementName= UCThongKe}"
                         Content="Doanh thu" FontSize="20" Background="#FF1079D6" Width="140" Height="52" Margin="0,30,0,681.4" HorizontalAlignment="Left" Click="Doanhthu_Click"/>
-                <Button x:Name="Hangton"
+                <Button x:Name="Btn_hangton"
                         Command="{Binding HangtonCommand}"
                         CommandParameter="{Binding ElementName=UCHangTon}"
                         Content="Hàng tồn" FontSize="20" Background="#FF1079D6" Width="140" Height="52" HorizontalAlignment="Right" Margin="-10,-1000,100,415" Click="Hangton_Click"/>
@@ -128,13 +128,13 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
             </StackPanel>
 
             <ComboBox
-                Name="NamCb"
+                Name="Cb_Nam"
                 materialDesign:TextFieldAssist.PrefixText="Năm"
                 IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple" materialDesign:BottomDashedLineAdorner.Thickness="2">
 
             </ComboBox>
             <ComboBox
-  Name="ThangCb"
+  Name="Cb_Thang"
   materialDesign:TextFieldAssist.PrefixText="Tháng "
   IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="173,68,0,0" FontSize="20">
 
@@ -165,7 +165,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                          Header="Lịch sử kinh doanh" Width="1697" HorizontalAlignment="Left" 
                          FontSize="48" Background="#FF584CAE" Height="56">
                     <DataGrid 
-                        x:Name="LichSuKinhDoanh"
+                        x:Name="Dg_LichSuKinhDoanh"
                         AutoGenerateColumns="False"
                         Margin="0,2,0,-2">
 

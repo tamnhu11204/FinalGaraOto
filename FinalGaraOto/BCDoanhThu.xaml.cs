@@ -146,7 +146,7 @@ namespace FinalGaraOto
                 if (!uniqueYears.Contains(item))
                 {
                     uniqueYears.Add(item);
-                    NamCb.Items.Add(item);
+                    Cb_Nam.Items.Add(item);
                 }
             }
         }
@@ -161,7 +161,7 @@ namespace FinalGaraOto
                 if (!uniqueYears.Contains(item))
                 {
                     uniqueYears.Add(item);
-                    ThangCb.Items.Add(item);
+                    Cb_Thang.Items.Add(item);
                 }
             }
         }

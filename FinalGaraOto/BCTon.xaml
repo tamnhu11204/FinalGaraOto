@@ -129,7 +129,7 @@
                         Background="#FF747778" Width="184" Height="50" 
                         Click="Bnt_xuatfilebc_Click"
                         BorderBrush="{x:Null}" Margin="800,0,0,0"/>
-                <Button x:Name="Bnt_dong" 
+                <Button x:Name="Bnt_thoat" 
                         Command="{Binding DongCommand}"
                         CommandParameter="{Binding ElementName= UCBaoCaoTon}"
                         Content="Thoát" FontSize="20" 
@@ -148,13 +148,13 @@
                     Margin="20,10,00,0" Click="Bnt_xembc_Click" />
             </StackPanel>
 
-            <ComboBox Name="NamCb" 
+            <ComboBox Name="Cb_Nam" 
         materialDesign:TextFieldAssist.PrefixText="Năm"
         IsEditable="True" FontSize="20" Margin="45,69,0,0" VerticalAlignment="Top" Width="112" HorizontalAlignment="Left"  materialDesign:BottomDashedLineAdorner.Brush="Purple"
         materialDesign:BottomDashedLineAdorner.Thickness="2">
             </ComboBox>
             
-            <ComboBox Name="ThangCb"
+            <ComboBox Name="Cb_Thang"
         materialDesign:TextFieldAssist.PrefixText="Tháng "
         IsEditable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="207,74,0,0" FontSize="20"
          Width="126">
