@@ -21,7 +21,7 @@ namespace FinalGaraOto
             sheet1.Range["A1:D1"].Merge();
             sheet1.Range["A2:D2"].Merge();
 
-            string title = "Báo cáo tồn";
+            string title = "Báo cáo nhập hàng";
 
             sheet1.Range["A1:D1"].Value= title;
             sheet1.Range["A1:D1"].Font.Bold= true;
@@ -44,11 +44,11 @@ namespace FinalGaraOto
                 var item = datagrid.Items[i] as BCTon.BaoCaoTon;
                 if (item != null)
                 {
-                    sheet1.Cells[i+5, 1].Value= item.stt;
-                    sheet1.Cells[i+5, 2].Value= item.tevtpt;
-                    sheet1.Cells[i+5, 3].Value= item.tondau;
-                    sheet1.Cells[i+5, 4].Value= item.phatsinh;
-                    sheet1.Cells[i+5, 5].Value= item.toncuoi;
+                   
+                    sheet1.Cells[i+5, 1].Value= item.tenvtpt;
+                    sheet1.Cells[i+5, 2].Value= item.dongia;
+                    sheet1.Cells[i+5, 3].Value= item.tongtien;
+                  
                     
                 }
             }

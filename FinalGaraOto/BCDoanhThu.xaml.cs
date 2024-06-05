@@ -170,34 +170,62 @@ namespace FinalGaraOto
         {
             ObservableCollection<BCDT> kinhdoanh = new ObservableCollection<BCDT>();
             var Listhx = DataProvider.Ins.DB.HIEUXEs.Distinct().ToList();
-           foreach(var item in Listhx)
+            foreach (var item in Listhx)
             {
-                BCDT ct= new BCDT();
-                ct.hieuxe= item.MaHieuXe;
-                ct.tenhieuxe= item.TenHieuXe;
+                BCDT ct = new BCDT();
+                ct.hieuxe = item.MaHieuXe;
+                ct.tenhieuxe = item.TenHieuXe;
+
+
                 kinhdoanh.Add(ct);
-            }
-           
-           foreach (var item in kinhdoanh)
-            {
-                item.thanhtien= DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe==item.hieuxe).Sum(t => t.SoTienThu);
-                item.soluotsua=  DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe==item.hieuxe).Count();
-                
-            }
-            decimal sum = 0;
-           foreach(var item in kinhdoanh)
-            {
-                sum+=item.thanhtien;
+
+
             }
 
-           foreach(var item in kinhdoanh)
+            foreach (var item in kinhdoanh)
             {
-                item.tile= Convert.ToDouble(item.thanhtien)/ Convert.ToDouble(sum);
+                var tt = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe);
+
+                if (tt != null)
+                {
+                    int _t1 = Convert.ToInt32(Cb_Thang.Text);
+                    int _t2 = Convert.ToInt32(Cb_Nam.Text);
+                    var sotienthu =DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe && x.NgayThuTien.Month == _t1 && x.NgayThuTien.Year == _t2).Select(t=>t.SoTienThu).ToList();
+                    decimal thanhtien = 0;
+                    foreach (var t in sotienthu)
+                    {
+                        thanhtien += t;
+                    }
+                    item.thanhtien= thanhtien;
+                    item.soluotsua = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe && x.NgayThuTien.Month == _t1 && x.NgayThuTien.Year == _t2).Count();
+
+                }
+                else
+                {
+                    item.thanhtien = 0;
+                    item.soluotsua = 0;
+                }
+
             }
-           Dg_Bcdoanhthu.ItemsSource= kinhdoanh;
-           
+            decimal sum = 0;
+            foreach (var item in kinhdoanh)
+            {
+                sum += item.thanhtien;
+            }
+
+            foreach (var item in kinhdoanh)
+            { double a = Convert.ToDouble(item.thanhtien);
+              double b = Convert.ToDouble(sum);
+                if(sum!=0)
+                item.tile =  a/b;
+                else item.tile = 0;
+            }
+
+            Dg_Bcdoanhthu.ItemsSource = kinhdoanh;
+            Lb_tongdt.Content= sum.ToString();
+
         }
-        
+
         private void Bnt_xembc_Click(object sender, RoutedEventArgs e)
         {
             LoadDataBCDT();
@@ -252,8 +280,7 @@ namespace FinalGaraOto
         public decimal thanhtien { get; set; }
         public double tile { get; set; }
 
-        public System.DateTime thang { get; set; }
-        public System.DateTime nam { get; set; }
+      
     }
 
   

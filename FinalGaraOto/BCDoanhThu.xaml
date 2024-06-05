@@ -154,8 +154,8 @@
 
                 <DataGrid.Columns>
                  
-                    <DataGridTextColumn Header="Hiệu xe" Binding="{Binding hieuxe}" Width="*" />
-                    <DataGridTextColumn Header="Số lượt sửa" Binding="{Binding soluotxe}" Width="*"/>
+                    <DataGridTextColumn Header="Hiệu xe" Binding="{Binding tenhieuxe}" Width="*" />
+                    <DataGridTextColumn Header="Số lượt sửa" Binding="{Binding soluotsua}" Width="*"/>
                     <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhtien}" Width="*"/>
                     <DataGridTextColumn Header="Tỉ lệ" Binding="{Binding tile}" Width="*"/>
 

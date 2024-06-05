@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,7 +119,7 @@ namespace FinalGaraOto
         {
             HashSet<int> uniqueYears = new HashSet<int>();
 
-            var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Month).ToList();
+            var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang.Value.Year).ToList();
             foreach (var item in List)
             {
                 if (!uniqueYears.Contains(item))
@@ -133,7 +134,7 @@ namespace FinalGaraOto
         {
             HashSet<int> uniqueYears = new HashSet<int>();
 
-            var List = DataProvider.Ins.DB.PHIEUTHUTIENs.Select(x => x.NgayThuTien.Month).ToList();
+            var List = DataProvider.Ins.DB.PHIEUNHAPs.Select(x => x.NgayNhapHang.Value.Month).ToList();
             foreach (var item in List)
             {
                 if (!uniqueYears.Contains(item))
@@ -147,46 +148,57 @@ namespace FinalGaraOto
         private void Bnt_xembc_Click(object sender, RoutedEventArgs e)
         {
             ObservableCollection<BaoCaoTon> bcton = new ObservableCollection<BaoCaoTon>();
-            int stt = 1;
-            var List = DataProvider.Ins.DB.BAOCAOTONs.ToList();
+
+            var List = DataProvider.Ins.DB.VATTUPHUTUNGs.ToList();
+
             foreach (var item in List)
             {
                 BaoCaoTon baocaoton1 = new BaoCaoTon();
-                baocaoton1.stt= stt++;
-                baocaoton1.tevtpt=(string)DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung== item.MaVatTuPhuTung).Select(x => x.TenVTPT).First();
-                baocaoton1.tondau= item.TonDau;
-                baocaoton1.phatsinh= item.PhatSinh;
-                baocaoton1.toncuoi= baocaoton1.tondau- baocaoton1.phatsinh;
-                var tc = DataProvider.Ins.DB.BAOCAOTONs.Where(x => x.MaVatTuPhuTung== item.MaVatTuPhuTung && x.ThangBaoCaoTon== item.ThangBaoCaoTon && x.NamBaoCaoTon== item.NamBaoCaoTon).SingleOrDefault();
-                tc.TonCuoi=baocaoton1.toncuoi;
-                DataProvider.Ins.DB.SaveChanges();
-                baocaoton1.nam= item.NamBaoCaoTon;
-                baocaoton1.thang = item.ThangBaoCaoTon;
-
-                if ((Cb_Nam.Text== Convert.ToString(baocaoton1.nam.Year)) && Cb_Thang.Text== Convert.ToString(baocaoton1.thang.Month))
-                {
-                    bcton.Add(baocaoton1);
-                }
-                    Dg_BCTon.ItemsSource= bcton;
-                
-
+                baocaoton1.mavtpt= item.MaVatTuPhuTung;
+                baocaoton1.tenvtpt= item.TenVTPT;
+                if (item.DonGiaNhap!= null)
+                    baocaoton1.dongia= Convert.ToDecimal(item.DonGiaNhap);
+                else
+                    baocaoton1.dongia=0;
+                bcton.Add(baocaoton1);
             }
+            foreach (var item in bcton)
+            {
+                int _t1 = Convert.ToInt32(Cb_Thang.Text);
+                int _t2 = Convert.ToInt32(Cb_Nam.Text);
+                var sl = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung== item.mavtpt  && x.PHIEUNHAP.NgayNhapHang.Value.Month== _t1
+                    && x.PHIEUNHAP.NgayNhapHang.Value.Year== _t2).ToList();
+                int soluongnhap = 0;
+                decimal tiennhap = 0;
 
+                if (sl!=null)
+                {
+                    foreach (var i in sl)
+                    {
+                        int a = Convert.ToInt32(i.SoLuong);
 
+                        soluongnhap+= a;
 
+                        decimal t2 = Convert.ToDecimal(i.ThanhTien);
+                        tiennhap+= t2;
+                    }
+
+                }
+                item.soluong= soluongnhap;
+
+                item.tongtien= tiennhap;
+            }
+            Dg_BCTon.ItemsSource= bcton;
         }
-
-        
 
         public class BaoCaoTon
         { 
-            public int stt {  get; set; }
-            public string tevtpt { get; set; }
-            public int tondau { get; set; }
-            public int phatsinh { get; set; }
-            public int toncuoi { get; set; }
-            public DateTime thang { get; set; }
-            public DateTime nam { get; set; }
+           public int mavtpt {  get; set; }
+            public string tenvtpt { get; set; }
+            public decimal dongia { get; set; }
+            public int soluong { get; set; }
+            
+            public decimal tongtien { get; set; }
         }
 
         private void Bnt_dong_Click(object sender, RoutedEventArgs e)
