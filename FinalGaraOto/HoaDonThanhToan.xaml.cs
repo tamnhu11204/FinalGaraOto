@@ -183,14 +183,15 @@ namespace FinalGaraOto
 
                 //TongTien = TongTien + DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == item.MaTienCong).Select(x => x.GiaTienCong).First() + ThanhTien;
             }
-            /*if (TongTien == 0)
+            int ma = int.Parse(MaXe_);
+            var m1 = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaTiepNhan == ma).SingleOrDefault();
+            DataProvider.Ins.DB.SaveChanges();
+            var m2 = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaSuaChua == m1.MaSuaChua).ToList();
+            foreach (var item in m2)
             {
-                txbTongTien.Text = "0";
+                m1.TongTienSuaCHua = m1.TongTienSuaCHua + item.TongCong;
+                DataProvider.Ins.DB.SaveChanges();
             }
-            else
-            {
-                txbTongTien.Text = TongTien.ToString();
-            }*/
 
         }
 
@@ -247,7 +248,6 @@ namespace FinalGaraOto
                 s.SoTienThu = Convert.ToDecimal (t.TongTienSuaCHua);
                 DataProvider.Ins.DB.PHIEUTHUTIENs.Add(s);
                 DataProvider.Ins.DB.SaveChanges();
-
             }    
 
 
