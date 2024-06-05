@@ -260,7 +260,9 @@ namespace FinalGaraOto
                 var d = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).First();
                 d.TongTienVTPT = ThanhTien;
                 d.TongCong =ThanhTien + DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == d.MaTienCong).Select(x => x.GiaTienCong).First();
-                DataProvider.Ins.DB.SaveChanges(); 
+
+                l.TongTienSuaCHua = l.TongTienSuaCHua + d.TongCong;
+                DataProvider.Ins.DB.SaveChanges();
                 i++;
                 ct1.SL = SL;
                 ct1.Gia = ThanhTien.ToString();
@@ -331,11 +333,7 @@ namespace FinalGaraOto
 
         }
 
-        private void btnSua_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         
     }
 }

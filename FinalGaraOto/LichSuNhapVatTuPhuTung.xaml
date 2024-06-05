@@ -149,7 +149,7 @@
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3" Margin="100,0,420,0">
 
-                <Button
+                <Button x:Name="btnLamMoi"
                     Width="150"
                     Height="50"
                     Content="Làm mới"
@@ -167,7 +167,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="3" Margin="148,0,0,0">
-                <Button
+                <Button x:Name="btnXem"
                     Width="150"
                     Height="50"
                     Content="Xem"

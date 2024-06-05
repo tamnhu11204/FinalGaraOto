@@ -167,7 +167,7 @@
                                             <RowDefinition Height="319*"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="19,0,0,-87" Grid.RowSpan="2">
-                                            <TextBox x:Name="txbMa" IsReadOnly="True"
+                                            <TextBox x:Name="txbMa" IsReadOnly="True" Background="#FFD6D6D6"
                                                      materialDesign:HintAssist.Hint="Mã nhân viên"
                                                      Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350"/>
                                             <TextBox x:Name="txbHoVaTen" 
@@ -186,7 +186,7 @@
                                             <TextBox x:Name="txbSDT" 
                                                 materialDesign:HintAssist.Hint="Số điện thoại"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
-                                            <TextBox x:Name="txbTenDangNhap" IsReadOnly="True"
+                                            <TextBox x:Name="txbTenDangNhap" IsReadOnly="True" Background="#FFD6D6D6"
                                                 materialDesign:HintAssist.Hint="Tên đăng nhập"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,11,0,0" FontSize="18"  Width="350" />
                                             <TextBox x:Name="txbMatKhau" 

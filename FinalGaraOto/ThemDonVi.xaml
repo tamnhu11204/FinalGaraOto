@@ -36,9 +36,9 @@
                         <TextBox x:Name="txbTenDVT"
                             materialDesign:HintAssist.Hint="Tên đơn vị"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="-100,20,0,0" FontSize="20"  Width="450" />
-                        <Button Content="Thêm" Background="#FF89BAD2" Click="BtnThem_Click"
+                        <Button x:Name="btnThem" Content="Thêm" Background="#FF89BAD2" Click="BtnThem_Click"
                             Margin="-410,20,0,0" Height="50" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
-                        <Button Content="Thoát" Background="#FF1D2850" Click="BtnThoat_Click"
+                        <Button x:Name="btnThoat" Content="Thoát" Background="#FF1D2850" Click="BtnThoat_Click"
                                 Margin="220,-50,0,0" Height="50" Width="136" FontSize="20" BorderBrush="{DynamicResource MaterialDesignPaper}"/>
                     </StackPanel>
                 </Grid>

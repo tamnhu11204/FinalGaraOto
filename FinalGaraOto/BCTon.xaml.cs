@@ -166,8 +166,7 @@ namespace FinalGaraOto
             {
                 int _t1 = Convert.ToInt32(Cb_Thang.Text);
                 int _t2 = Convert.ToInt32(Cb_Nam.Text);
-                var sl = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung== item.mavtpt  && x.PHIEUNHAP.NgayNhapHang.Value.Month== _t1
-                    && x.PHIEUNHAP.NgayNhapHang.Value.Year== _t2).ToList();
+                var sl = DataProvider.Ins.DB.CHITIETPHIEUNHAPs.Where(x => x.MaVatTuPhuTung== item.mavtpt  && x.PHIEUNHAP.NgayNhapHang.Value.Month== _t1 && x.PHIEUNHAP.NgayNhapHang.Value.Year== _t2).ToList();
                 int soluongnhap = 0;
                 decimal tiennhap = 0;
 
@@ -191,16 +190,6 @@ namespace FinalGaraOto
             Dg_BCTon.ItemsSource= bcton;
         }
 
-        public class BaoCaoTon
-        { 
-           public int mavtpt {  get; set; }
-            public string tenvtpt { get; set; }
-            public decimal dongia { get; set; }
-            public int soluong { get; set; }
-            
-            public decimal tongtien { get; set; }
-        }
-
         private void Bnt_dong_Click(object sender, RoutedEventArgs e)
         {
             ThongKe child= new ThongKe(tbUserName.Text);
@@ -219,6 +208,17 @@ namespace FinalGaraOto
             bCDT.Show();
             this.Close();
         }
+
+        public class BaoCaoTon
+        {
+            public int mavtpt { get; set; }
+            public string tenvtpt { get; set; }
+            public decimal dongia { get; set; }
+            public int soluong { get; set; }
+
+            public decimal tongtien { get; set; }
+        }
+
     }
 
 }

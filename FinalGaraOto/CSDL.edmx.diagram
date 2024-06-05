@@ -4,6 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
       <Diagram DiagramId="4d619a3525c64b7d83e08e305b552eeb" Name="Diagram1" ZoomLevel="51">
         <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAODOANHTHU" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAOTON" Width="1.5" PointX="12.75" PointY="14" />
@@ -24,10 +25,42 @@
         <EntityTypeShape EntityType="QLGARAOTOModel.TIENCONG" Width="1.5" PointX="8.25" PointY="9.25" />
         <EntityTypeShape EntityType="QLGARAOTOModel.VATTUPHUTUNG" Width="1.5" PointX="10.5" PointY="13.75" />
         <EntityTypeShape EntityType="QLGARAOTOModel.XE" Width="1.5" PointX="6" PointY="4.375" />
+=======
+      <Diagram DiagramId="4d619a3525c64b7d83e08e305b552eeb" Name="Diagram1" ZoomLevel="44">
+        <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAODOANHTHU" Width="1.5" PointX="0.5" PointY="1.125" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.BAOCAOTON" Width="1.5" PointX="10" PointY="12.75" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHITIETPHIEUNHAP" Width="1.5" PointX="11.125" PointY="9.125" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHITIETSUACHUA" Width="1.5" PointX="7.5" PointY="5.125" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CHUXE" Width="1.5" PointX="2.625" PointY="1" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CT_SUDUNGVTPT" Width="1.5" PointX="9.75" PointY="5.75" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.CTBAOCAODOANHTHU" Width="1.5" PointX="0.5" PointY="5.25" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.DONVITINH" Width="1.5" PointX="5.125" PointY="12.5" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.HIEUXE" Width="1.5" PointX="0.5" PointY="9.25" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NGUOIDUNG" Width="1.5" PointX="2.875" PointY="11.875" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NHACUNGCAP" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.NHOMNGUOIDUNG" Width="1.5" PointX="0.625" PointY="12.75" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUNHAP" Width="1.5" PointX="10.625" PointY="0.875" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUSUACHUA" Width="1.5" PointX="5.375" PointY="5.625" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.PHIEUTHUTIEN" Width="1.5" PointX="5" PointY="1" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.THAMSO" Width="1.5" PointX="0.625" PointY="14.875" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.TIENCONG" Width="1.5" PointX="7.625" PointY="8.75" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.VATTUPHUTUNG" Width="1.5" PointX="8" PointY="12.5" />
+        <EntityTypeShape EntityType="QLGARAOTOModel.XE" Width="1.5" PointX="2.75" PointY="5" />
+>>>>>>> aeca6dbc3475b6da6372b27b9fb86ab9016c3267
         <AssociationConnector Association="QLGARAOTOModel.fk_CTBaoCaoDoanhThu1" />
         <AssociationConnector Association="QLGARAOTOModel.fk_BaoCaoTon" />
         <AssociationConnector Association="QLGARAOTOModel.fk_CTPhieuNhap1" />
-        <AssociationConnector Association="QLGARAOTOModel.fk_CTPhieuNhap2" />
+        <AssociationConnector Association="QLGARAOTOModel.fk_CTPhieuNhap2" ManuallyRouted="true" >
+          <ConnectorPoint PointX="9.28906125" PointY="12.5" />
+          <ConnectorPoint PointX="9.28906125" PointY="12.341570883300781" />
+          <ConnectorPoint PointX="9.3424497916666649" PointY="12.341570883300781" />
+          <ConnectorPoint PointX="9.5091164583333327" PointY="12.341570883300781" />
+          <ConnectorPoint PointX="9.9835079161661859" PointY="12.341570883300781" />
+          <ConnectorPoint PointX="9.9835079161661859" PointY="12.019911767578126" />
+          <ConnectorPoint PointX="10.082272190435528" PointY="12.019911767578126" />
+          <ConnectorPoint PointX="10.082272190435528" PointY="11.045187174479167" />
+          <ConnectorPoint PointX="11.125" PointY="11.045187174479167" />
+        </AssociationConnector>
         <AssociationConnector Association="QLGARAOTOModel.fk_CTSC1" />
         <AssociationConnector Association="QLGARAOTOModel.fk_CTSC2" />
         <AssociationConnector Association="QLGARAOTOModel.fk_CTSuDungVTPT1" />

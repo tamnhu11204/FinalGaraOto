@@ -165,7 +165,11 @@ namespace FinalGaraOto
                     var c = DataProvider.Ins.DB.CT_SUDUNGVTPT.Where(x => x.MaVatTuPhuTung == item2.MaVatTuPhuTung && x.MaChiTietSuaChua == item2.MaChiTietSuaChua).First();
                    
                 }
-              
+                var d = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaChiTietSuaChua == item.MaChiTietSuaChua).First();
+                d.TongTienVTPT = ThanhTien;
+                d.TongCong = ThanhTien + DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == d.MaTienCong).Select(x => x.GiaTienCong).First();
+                DataProvider.Ins.DB.SaveChanges();
+
                 i++;
                 ct1.SL = SL;
                 ct1.Gia = ThanhTien.ToString();
@@ -173,6 +177,7 @@ namespace FinalGaraOto
                 //ct1.ThanhTien = (int.Parse(ct1.Gia) + int.Parse( ct1.TC)).ToString();
                 ChiTiets.Add(ct1);
                 dtgChiTiet.ItemsSource = ChiTiets;
+
 
                 LoadTongTien();
 
@@ -207,12 +212,21 @@ namespace FinalGaraOto
         void LoadThongTinChuXe ()
         {
             string y = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).Select(x => x.MaChuXe.ToString()).First();
+            var n = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).First();
             var c = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe.ToString() == y).First();
             txbHoVaTen.Text = c.TenChuXe;
             txbDiaChi.Text = c.DiaChiChuXe;
             txbSDT.Text = c.SDTChuXe;
             txbEmail.Text = c.EmailChuXe;
             dpNgay.SelectedDate = DateTime.Now;
+            if (n.TienNo != null)
+            {
+                tbTienNo.Text = n.TienNo.ToString() + "đồng ";
+            }
+            else
+            {
+                tbTienNo.Text =   " 00000 đồng ";
+            }    
         }
 
         void LoadPhieuThu()
@@ -236,11 +250,34 @@ namespace FinalGaraOto
 
             }    
 
+
         }
 
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
+            var n = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
+            if (n.TienNo == 0 || n.TienNo == null)
+            {
+                MessageBox.Show("Hoa don da duoc thanh toan truoc do ");
+            }
+            else
+            {
+                n.TienNo = 0;
+                DataProvider.Ins.DB.SaveChanges();
+                MessageBox.Show("Thanh toán thành công");
+            } 
+                
+        }
 
+        private void btnXuat_Click(object sender, RoutedEventArgs e)
+        {
+            string Ngay = dpNgay.Text;
+            string TenCX = txbHoVaTen.Text;
+            string DiaChi = txbDiaChi.Text;
+            string SDT = txbSDT.Text;
+            string Email = txbEmail.Text;
+            string Tien = tbTongTien.Text;
+            XuatFileHoaDonThanhToan export = new XuatFileHoaDonThanhToan(dtgChiTiet, Ngay, TenCX, DiaChi, SDT, Email, Tien);
         }
     }
 }

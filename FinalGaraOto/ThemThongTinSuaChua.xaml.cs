@@ -1,6 +1,7 @@
 ﻿using FinalGaraOto.Model;
 using MaterialDesignThemes.Wpf;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -51,7 +52,9 @@ namespace FinalGaraOto
             var d = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaSuaChua.ToString() == MaBC_).SingleOrDefault();
             string m = d.MaTiepNhan.ToString();
             ChiTietSuaChuaXe t = new ChiTietSuaChuaXe(tbUserName.Text, m);
+            ChiTietSuaChuaXe ct_ = new ChiTietSuaChuaXe(tbUserName.Text, d.MaTiepNhan.ToString());
             this.Close();
+            ct_.Show();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -80,7 +83,14 @@ namespace FinalGaraOto
                 psc.TongTienSuaCHua = psc.TongTienSuaCHua + c.TongCong;
                 DataProvider.Ins.DB.SaveChanges();
 
+                var v = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaSuaChua == c.MaSuaChua).SingleOrDefault();
+                var xe = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan == v.MaTiepNhan).SingleOrDefault();
+                xe.TienNo = xe.TienNo + c.TongCong;
+                DataProvider.Ins.DB.SaveChanges();
+
+                ChiTietSuaChuaXe ct_ = new ChiTietSuaChuaXe(tbUserName.Text, psc.MaTiepNhan.ToString());
                 this.Close();
+                ct_.Show();
             }
         }
 
@@ -134,22 +144,19 @@ namespace FinalGaraOto
                  t = t + item.SoLuong.ToString() + " " + ten + " , ";
                 s = s + item.SoLuong;
 
-                /*var dgb= DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item.MaVatTuPhuTung).SingleOrDefault();
-                decimal? b = item.SoLuong * dgb.DonGiaBan;
-                if (b.HasValue)
-                {
-
-                    a = a + b.Value;
-                }
-                else
-                {
-                    return;
-                }*/
+                var dgb= DataProvider.Ins.DB.VATTUPHUTUNGs.Where(x => x.MaVatTuPhuTung == item.MaVatTuPhuTung).SingleOrDefault();
+                decimal? b = item.SoLuong * dgb.DonGiaBan;  
+                    a = a + Convert.ToDecimal(b);
             }
             txbVatTu.Text = t;
             txbSL.Text = s.ToString();
             txbDonGia.Text = a.ToString();
-
+            var v = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaChiTietSuaChua.ToString() == MaCT).SingleOrDefault();
+            if (cbLoaiTC.SelectedItem != null)
+            {
+                decimal tc = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == v.MaTienCong).Select(x => x.GiaTienCong).SingleOrDefault();
+                txbThanhTien.Text = (tc + a).ToString();
+            }
         }
     }
 }

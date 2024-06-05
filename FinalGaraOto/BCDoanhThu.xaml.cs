@@ -190,12 +190,17 @@ namespace FinalGaraOto
                 {
                     int _t1 = Convert.ToInt32(Cb_Thang.Text);
                     int _t2 = Convert.ToInt32(Cb_Nam.Text);
-                    var sotienthu =DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe && x.NgayThuTien.Month == _t1 && x.NgayThuTien.Year == _t2).Select(t=>t.SoTienThu).ToList();
+
+                    var sotienthu = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe && x.NgayThuTien.Month == _t1 && x.NgayThuTien.Year == _t2).Select(t => t.SoTienThu).ToList();
+
+
+
                     decimal thanhtien = 0;
                     foreach (var t in sotienthu)
                     {
                         thanhtien += t;
                     }
+
                     item.thanhtien= thanhtien;
                     item.soluotsua = DataProvider.Ins.DB.PHIEUTHUTIENs.Where(x => x.XE.HIEUXE.MaHieuXe == item.hieuxe && x.NgayThuTien.Month == _t1 && x.NgayThuTien.Year == _t2).Count();
 
@@ -214,15 +219,23 @@ namespace FinalGaraOto
             }
 
             foreach (var item in kinhdoanh)
-            { double a = Convert.ToDouble(item.thanhtien);
-              double b = Convert.ToDouble(sum);
-                if(sum!=0)
-                item.tile =  a/b;
+
+
+            {
+                double a = Convert.ToDouble(item.thanhtien);
+                double b = Convert.ToDouble(sum);
+                if (sum != 0)
+                    item.tile = a / b;
+
                 else item.tile = 0;
             }
 
             Dg_Bcdoanhthu.ItemsSource = kinhdoanh;
+
             Lb_tongdt.Content= sum.ToString();
+
+            Lb_tongdt.Content = sum.ToString();
+
 
         }
 

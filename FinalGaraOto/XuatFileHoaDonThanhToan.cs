@@ -27,7 +27,7 @@ namespace FinalGaraOto
             sheet1.Range["A1:F1"].Value = title;
             sheet1.Range["A1:F1"].Font.Bold = true;
             sheet1.Range["A1:F1"].Font.Size = 15;
-            sheet1.Range["A1:F1"].AutoFit();
+            //sheet1.Range["A1:F1"].AutoFit();
             sheet1.Range["A2:F2"].Value = Ngay;
             sheet1.Range["A3:F3"].Value = Ten;
             sheet1.Range["A4:F4"].Value = DiaChi;
@@ -42,7 +42,7 @@ namespace FinalGaraOto
                 string header = datagrid.Columns[i].Header.ToString();
                 sheet1.Columns[i + 1].ColumnWidth = header.Length + 5;
                 myrange.Value = header;
-                myrange.AutoFit();
+                //myrange.AutoFit();
             }
 
             for (int i = 0; i < datagrid.Items.Count; i++)
