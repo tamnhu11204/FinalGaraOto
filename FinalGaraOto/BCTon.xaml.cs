@@ -187,7 +187,7 @@ namespace FinalGaraOto
 
                 item.tongtien= tiennhap;
             }
-            Dg_BCTon.ItemsSource= bcton;
+            Dg_bcnhaphang.ItemsSource= bcton;
         }
 
         private void Bnt_dong_Click(object sender, RoutedEventArgs e)
@@ -199,7 +199,7 @@ namespace FinalGaraOto
 
         private void Bnt_xuatfilebc_Click(object sender, RoutedEventArgs e)
         {
-            ExportToExcel_BCTon export = new ExportToExcel_BCTon(Dg_BCTon, DateTime.Now);
+            ExportToExcel_BCTon export = new ExportToExcel_BCTon(Dg_bcnhaphang, DateTime.Now);
         }
 
         private void Bnt_bcdoanhthu_Click(object sender, RoutedEventArgs e)

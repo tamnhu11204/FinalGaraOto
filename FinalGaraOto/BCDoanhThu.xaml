@@ -174,7 +174,7 @@
             <Button x:Name="Bnt_bcton"
                 Command="{Binding XemBaoCaoCommand}"
                 CommandParameter="{Binding ElementName=UCBaoCaoDoanhThu}"
-                Content="Hàng tồn" FontSize="20"
+                Content="Hàng hóa" FontSize="20"
                 Background="#FF1B76C6" 
                     Width="150"  Height="50" BorderBrush="{x:Null}" Margin="1058,45,492,770"
                 Click="Bnt_bcton_Click"/>

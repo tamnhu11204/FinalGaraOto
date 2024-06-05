@@ -123,7 +123,7 @@ WindowState="Maximized" WindowStyle="None" WindowStartupLocation="CenterScreen" 
                 <Button x:Name="Btn_hangton"
                         Command="{Binding HangtonCommand}"
                         CommandParameter="{Binding ElementName=UCHangTon}"
-                        Content="Hàng tồn" FontSize="20" Background="#FF1079D6" Width="140" Height="52" HorizontalAlignment="Right" Margin="-10,-1000,100,415" Click="Hangton_Click"/>
+                        Content="Hàng hóa" FontSize="20" Background="#FF1079D6" Width="140" Height="52" HorizontalAlignment="Right" Margin="-10,-1000,100,415" Click="Hangton_Click"/>
 
             </StackPanel>
 

@@ -139,7 +139,7 @@
 
             </StackPanel>
             <StackPanel Margin="157,49,924,496">
-                <Button x:Name="Bnt_xembc"
+                <Button x:Name="Bnt_Xembc"
                     Width="150"
                                         Height="50"
                     Content="Xem báo cáo" FontSize="20" 
@@ -163,7 +163,7 @@
 
 
 
-            <DataGrid x:Name="Dg_BCTon"
+            <DataGrid x:Name="Dg_bcnhaphang"
                       ItemsSource="{Binding List}"
                       Margin="0,132,0,139" FontSize="20"
                       AutoGenerateColumns="False">
