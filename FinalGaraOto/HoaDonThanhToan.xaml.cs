@@ -207,14 +207,21 @@ namespace FinalGaraOto
         void LoadThongTinChuXe ()
         {
             string y = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).Select(x => x.MaChuXe.ToString()).First();
-            string n = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).Select(x => x.TienNo.ToString()).First();
+            var n = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).First();
             var c = DataProvider.Ins.DB.CHUXEs.Where(x => x.MaChuXe.ToString() == y).First();
             txbHoVaTen.Text = c.TenChuXe;
             txbDiaChi.Text = c.DiaChiChuXe;
             txbSDT.Text = c.SDTChuXe;
             txbEmail.Text = c.EmailChuXe;
             dpNgay.SelectedDate = DateTime.Now;
-            tbTienNo.Text = c + "đồng ";
+            if (n.TienNo != null)
+            {
+                tbTienNo.Text = n.TienNo.ToString() + "đồng ";
+            }
+            else
+            {
+                tbTienNo.Text =   " 00000 đồng ";
+            }    
         }
 
         void LoadPhieuThu()
@@ -244,9 +251,9 @@ namespace FinalGaraOto
         private void btnThanhToan_Click(object sender, RoutedEventArgs e)
         {
             var n = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan.ToString() == MaXe_).SingleOrDefault();
-            if (n.TienNo == 0)
+            if (n.TienNo == 0 || n.TienNo == null)
             {
-                MessageBox.Show("Hoa don da duoc thanh toan trc do ");
+                MessageBox.Show("Hoa don da duoc thanh toan truoc do ");
             }
             else
             {

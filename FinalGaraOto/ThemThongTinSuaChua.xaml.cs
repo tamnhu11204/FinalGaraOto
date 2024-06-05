@@ -83,7 +83,7 @@ namespace FinalGaraOto
                 psc.TongTienSuaCHua = psc.TongTienSuaCHua + c.TongCong;
                 DataProvider.Ins.DB.SaveChanges();
 
-                var v = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaSuaChua.ToString() == MaCT).SingleOrDefault();
+                var v = DataProvider.Ins.DB.PHIEUSUACHUAs.Where(x => x.MaSuaChua == c.MaSuaChua).SingleOrDefault();
                 var xe = DataProvider.Ins.DB.XEs.Where(x => x.MaTiepNhan == v.MaTiepNhan).SingleOrDefault();
                 xe.TienNo = xe.TienNo + c.TongCong;
                 DataProvider.Ins.DB.SaveChanges();
@@ -152,8 +152,11 @@ namespace FinalGaraOto
             txbSL.Text = s.ToString();
             txbDonGia.Text = a.ToString();
             var v = DataProvider.Ins.DB.CHITIETSUACHUAs.Where(x => x.MaChiTietSuaChua.ToString() == MaCT).SingleOrDefault();
-            decimal tc = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == v.MaTienCong).Select(x => x.GiaTienCong).SingleOrDefault();
-            txbThanhTien.Text = (tc + a).ToString();
+            if (cbLoaiTC.SelectedItem != null)
+            {
+                decimal tc = DataProvider.Ins.DB.TIENCONGs.Where(x => x.MaTienCong == v.MaTienCong).Select(x => x.GiaTienCong).SingleOrDefault();
+                txbThanhTien.Text = (tc + a).ToString();
+            }
         }
     }
 }
